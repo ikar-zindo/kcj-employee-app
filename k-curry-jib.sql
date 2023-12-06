@@ -213,9 +213,9 @@ ALTER TABLE `order`
 -- Constraints for table `order_details`
 --
 
-ALTER TABLE `order_detail` 
-	ADD CONSTRAINT `order_detai_fk_order` FOREIGN KEY (`order_id`) REFERENCES `order` (`order_id`),
-	ADD CONSTRAINT `order_detai_fk_product` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`);
+ALTER TABLE `order_product` 
+	ADD CONSTRAINT `order_product_fk_order` FOREIGN KEY (`order_id`) REFERENCES `order` (`order_id`),
+	ADD CONSTRAINT `order_product_fk_product` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`);
 
 --
 -- Constraints for table `product`
