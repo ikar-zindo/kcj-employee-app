@@ -3,8 +3,8 @@ package com.kcurryjib.entity;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
-import java.time.Instant;
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -25,11 +25,14 @@ public class Product {
    @Column(name = "price")
    private BigDecimal price;
 
-   @Column(name = "created_at")
-   private Timestamp createdAt;
+   @Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+   private LocalDateTime createdAt;
 
-   @Column(name = "available")
-   private boolean available;
+   @Column(name = "is_available")
+   private boolean isAvailable;
+
+   @OneToMany(mappedBy = "product")
+   private List<CartProduct> cartProducts;
 
    public Product() {
    }
@@ -39,8 +42,7 @@ public class Product {
       this.description = description;
       this.price = price;
 
-      createdAt = Timestamp.from(Instant.now());
-      this.available = true;
+      this.isAvailable = true;
    }
 
    public long getId() {
@@ -75,20 +77,28 @@ public class Product {
       this.price = price;
    }
 
-   public Timestamp getCreatedAt() {
+   public LocalDateTime getCreatedAt() {
       return createdAt;
    }
 
-   public void setCreatedAt(Timestamp createdAt) {
+   public void setCreatedAt(LocalDateTime createdAt) {
       this.createdAt = createdAt;
    }
 
    public boolean isAvailable() {
-      return available;
+      return isAvailable;
    }
 
    public void setAvailable(boolean available) {
-      this.available = available;
+      isAvailable = available;
+   }
+
+   public List<CartProduct> getCartProducts() {
+      return cartProducts;
+   }
+
+   public void setCartProducts(List<CartProduct> cartProducts) {
+      this.cartProducts = cartProducts;
    }
 
    @Override
@@ -96,23 +106,26 @@ public class Product {
       if (this == o) return true;
       if (o == null || getClass() != o.getClass()) return false;
       Product product = (Product) o;
-      return id == product.id && available == product.available && Objects.equals(name, product.name) && Objects.equals(description, product.description) && Objects.equals(price, product.price) && Objects.equals(createdAt, product.createdAt);
+      return id == product.id && isAvailable == product.isAvailable && Objects.equals(name, product.name) &&
+              Objects.equals(description, product.description) && Objects.equals(price, product.price) &&
+              Objects.equals(createdAt, product.createdAt) && Objects.equals(cartProducts, product.cartProducts);
    }
 
    @Override
    public int hashCode() {
-      return Objects.hash(id, name, description, price, createdAt, available);
+      return Objects.hash(id, name, description, price, createdAt, isAvailable, cartProducts);
    }
 
    @Override
    public String toString() {
-      return getClass().getSimpleName() + '{' +
+      return "Product{" +
               "id=" + id +
               ", name='" + name + '\'' +
               ", description='" + description + '\'' +
               ", price=" + price +
               ", createdAt=" + createdAt +
-              ", available=" + available +
+              ", isAvailable=" + isAvailable +
+              ", cartProducts=" + cartProducts +
               '}';
    }
 }
