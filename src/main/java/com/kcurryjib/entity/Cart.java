@@ -18,13 +18,8 @@ public class Cart {
    @JoinColumn(name = "customer_id")
    private Customer customer;
 
-   @ManyToMany
-   @JoinTable(
-           name = "cart_product",
-           joinColumns = @JoinColumn(name = "cart_id"),
-           inverseJoinColumns = @JoinColumn(name = "product_id")
-   )
-   private List<Product> products;
+   @OneToMany(mappedBy = "cart")
+   private List<CartProduct> cartProducts;
 
    public Cart() {
    }
@@ -49,12 +44,12 @@ public class Cart {
       this.customer = customer;
    }
 
-   public List<Product> getProducts() {
-      return products;
+   public List<CartProduct> getCartProducts() {
+      return cartProducts;
    }
 
-   public void setProducts(List<Product> products) {
-      this.products = products;
+   public void setCartProducts(List<CartProduct> cartProducts) {
+      this.cartProducts = cartProducts;
    }
 
    @Override
@@ -62,20 +57,21 @@ public class Cart {
       if (this == o) return true;
       if (o == null || getClass() != o.getClass()) return false;
       Cart cart = (Cart) o;
-      return id == cart.id && Objects.equals(customer, cart.customer) && Objects.equals(products, cart.products);
+      return id == cart.id && Objects.equals(customer, cart.customer) &&
+              Objects.equals(cartProducts, cart.cartProducts);
    }
 
    @Override
    public int hashCode() {
-      return Objects.hash(id, customer, products);
+      return Objects.hash(id, customer, cartProducts);
    }
 
    @Override
    public String toString() {
-      return getClass().getSimpleName() + '{' +
+      return "Cart{" +
               "id=" + id +
               ", customer=" + customer +
-              ", products=" + products +
+              ", CartProducts=" + cartProducts +
               '}';
    }
 }

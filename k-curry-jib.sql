@@ -23,11 +23,14 @@ USE `k-curry-jib`;
 --
 
 CREATE TABLE `customer` (
-  customer_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255),
+  customer_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  first_name VARCHAR(255),
+  last_name VARCHAR(255),
   email VARCHAR(255),
+  password VARCHAR(255),
   phone_number VARCHAR(20),
   address VARCHAR(255),
+  postal_code VARCHAR(16),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   is_blocked BOOL DEFAULT FALSE
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
@@ -37,8 +40,8 @@ CREATE TABLE `customer` (
 --
 
 CREATE TABLE `cart` (
-  cart_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  customer_id INT
+  cart_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  customer_id BIGINT
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 --
@@ -46,9 +49,9 @@ CREATE TABLE `cart` (
 --
 
 CREATE TABLE `cart_product` (
-  cart_product_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  cart_id INT,
-  product_id INT,
+  cart_product_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  cart_id BIGINT,
+  product_id BIGINT,
   quantity INT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
@@ -59,9 +62,9 @@ CREATE TABLE `cart_product` (
 --
 
 CREATE TABLE `order` (
-  order_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  customer_id INT,
-  restaurant_id INT,
+  order_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  customer_id BIGINT,
+  restaurant_id BIGINT,
   order_date DATETIME,
   delivery_address VARCHAR(255),
   total_amount DECIMAL(10, 2),
@@ -72,10 +75,10 @@ CREATE TABLE `order` (
 -- Table structure for table `order_detail`
 --
 
-CREATE TABLE `order_detail` (
-  order_detail_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  order_id INT,
-  product_id INT,
+CREATE TABLE `order_product` (
+  order_product_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  order_id BIGINT,
+  product_id BIGINT,
   quantity INT,
   total DECIMAL(10, 2),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -87,11 +90,11 @@ CREATE TABLE `order_detail` (
 
 
 CREATE TABLE `product` (
-  product_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  product_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(123),
   description TEXT,
   price DECIMAL(10, 2),
-  restaurant_id INT,
+  restaurant_id BIGINT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   is_available BOOL DEFAULT TRUE
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
@@ -101,14 +104,15 @@ CREATE TABLE `product` (
 --
 
 CREATE TABLE `restaurant` (
-  restaurant_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  restaurant_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(255),
   address VARCHAR(255),
   phone_number VARCHAR(20),
   opening_hours VARCHAR(255),
   cuisine_type VARCHAR(100),
   description TEXT,
-  social_media_links VARCHAR(255)
+  social_media_links VARCHAR(255),
+  is_open BOOL DEFAULT TRUE
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 --
@@ -116,9 +120,9 @@ CREATE TABLE `restaurant` (
 --
 
 CREATE TABLE `review` (
-  review_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  restaurant_id INT,
-  customer_id INT,
+  review_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  restaurant_id BIGINT,
+  customer_id BIGINT,
   rating DECIMAL(3, 2),
   comment TEXT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -156,7 +160,7 @@ ALTER TABLE `order`
 -- Indexes for table `order_detail`
 --
 
-ALTER TABLE `order_detail`
+ALTER TABLE `order_product`
   ADD KEY `order_id` (`order_id`),
   ADD KEY `product_id` (`product_id`);
 
@@ -209,9 +213,9 @@ ALTER TABLE `order`
 -- Constraints for table `order_details`
 --
 
-ALTER TABLE `order_detail` 
-	ADD CONSTRAINT `order_detai_fk_order` FOREIGN KEY (`order_id`) REFERENCES `order` (`order_id`),
-	ADD CONSTRAINT `order_detai_fk_product` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`);
+ALTER TABLE `order_product` 
+	ADD CONSTRAINT `order_product_fk_order` FOREIGN KEY (`order_id`) REFERENCES `order` (`order_id`),
+	ADD CONSTRAINT `order_product_fk_product` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`);
 
 --
 -- Constraints for table `product`
