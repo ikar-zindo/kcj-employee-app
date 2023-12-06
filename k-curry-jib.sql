@@ -23,7 +23,7 @@ USE `k-curry-jib`;
 --
 
 CREATE TABLE `customer` (
-  customer_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  customer_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(255),
   email VARCHAR(255),
   phone_number VARCHAR(20),
@@ -37,8 +37,8 @@ CREATE TABLE `customer` (
 --
 
 CREATE TABLE `cart` (
-  cart_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  customer_id INT
+  cart_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  customer_id BIGINT
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 --
@@ -46,9 +46,9 @@ CREATE TABLE `cart` (
 --
 
 CREATE TABLE `cart_product` (
-  cart_product_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  cart_id INT,
-  product_id INT,
+  cart_product_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  cart_id BIGINT,
+  product_id BIGINT,
   quantity INT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
@@ -59,9 +59,9 @@ CREATE TABLE `cart_product` (
 --
 
 CREATE TABLE `order` (
-  order_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  customer_id INT,
-  restaurant_id INT,
+  order_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  customer_id BIGINT,
+  restaurant_id BIGINT,
   order_date DATETIME,
   delivery_address VARCHAR(255),
   total_amount DECIMAL(10, 2),
@@ -73,9 +73,9 @@ CREATE TABLE `order` (
 --
 
 CREATE TABLE `order_detail` (
-  order_detail_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  order_id INT,
-  product_id INT,
+  order_detail_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  order_id BIGINT,
+  product_id BIGINT,
   quantity INT,
   total DECIMAL(10, 2),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -87,11 +87,11 @@ CREATE TABLE `order_detail` (
 
 
 CREATE TABLE `product` (
-  product_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  product_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(123),
   description TEXT,
   price DECIMAL(10, 2),
-  restaurant_id INT,
+  restaurant_id BIGINT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   is_available BOOL DEFAULT TRUE
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
@@ -101,7 +101,7 @@ CREATE TABLE `product` (
 --
 
 CREATE TABLE `restaurant` (
-  restaurant_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  restaurant_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(255),
   address VARCHAR(255),
   phone_number VARCHAR(20),
@@ -116,9 +116,9 @@ CREATE TABLE `restaurant` (
 --
 
 CREATE TABLE `review` (
-  review_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  restaurant_id INT,
-  customer_id INT,
+  review_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  restaurant_id BIGINT,
+  customer_id BIGINT,
   rating DECIMAL(3, 2),
   comment TEXT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
