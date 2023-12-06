@@ -24,10 +24,13 @@ USE `k-curry-jib`;
 
 CREATE TABLE `customer` (
   customer_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255),
+  first_name VARCHAR(255),
+  last_name VARCHAR(255),
   email VARCHAR(255),
+  password VARCHAR(255),
   phone_number VARCHAR(20),
   address VARCHAR(255),
+  postal_code VARCHAR(16),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   is_blocked BOOL DEFAULT FALSE
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
@@ -72,8 +75,8 @@ CREATE TABLE `order` (
 -- Table structure for table `order_detail`
 --
 
-CREATE TABLE `order_detail` (
-  order_detail_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE `order_product` (
+  order_product_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   order_id BIGINT,
   product_id BIGINT,
   quantity INT,
@@ -108,7 +111,8 @@ CREATE TABLE `restaurant` (
   opening_hours VARCHAR(255),
   cuisine_type VARCHAR(100),
   description TEXT,
-  social_media_links VARCHAR(255)
+  social_media_links VARCHAR(255),
+  is_open BOOL DEFAULT TRUE
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 --
@@ -156,7 +160,7 @@ ALTER TABLE `order`
 -- Indexes for table `order_detail`
 --
 
-ALTER TABLE `order_detail`
+ALTER TABLE `order_product`
   ADD KEY `order_id` (`order_id`),
   ADD KEY `product_id` (`product_id`);
 
