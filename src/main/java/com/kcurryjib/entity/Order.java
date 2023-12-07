@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "order")
+@Table(name = "\"order\"")
 public class Order {
 
    @Id
@@ -15,7 +15,7 @@ public class Order {
    @Column(name = "order_id")
    private long id;
 
-   @OneToOne
+   @ManyToOne
    @JoinColumn(name = "customer_id")
    private Customer customer;
 
