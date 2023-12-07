@@ -60,7 +60,12 @@ public class Customer {
     * но в таком случае добавляется поле (customer_cart_product_id)
     */
    @OneToMany
+   @JoinTable(name = "cart_product")
    private List<CartProduct> cartProducts;
+
+   @OneToMany
+   @JoinTable(name = "order_product")
+   private List<OrderProduct> orderProducts;
 
    public Customer() {
    }
