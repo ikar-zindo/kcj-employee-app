@@ -1,24 +1,34 @@
 package com.kcurryjib.dto;
 
-import com.kcurryjib.entity.Restaurant;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kcurryjib.entity.enums.Role;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 public class EmployeeDto {
 
    private long id;
+
    private String firstName;
+
    private String lastName;
+
    private String email;
+
    private String nickname;
+
    private Role role;
-   private Restaurant restaurant;
+
    private String password;
+
    private String phoneNumber;
+
    private LocalDateTime createdAt;
+
    private boolean isActive;
+
+   @JsonProperty("Restaurant")
+   private RestaurantDto restaurantDto;
 
    public EmployeeDto() {
    }
@@ -71,14 +81,6 @@ public class EmployeeDto {
       this.role = role;
    }
 
-   public Restaurant getRestaurant() {
-      return restaurant;
-   }
-
-   public void setRestaurant(Restaurant restaurant) {
-      this.restaurant = restaurant;
-   }
-
    public String getPassword() {
       return password;
    }
@@ -111,37 +113,11 @@ public class EmployeeDto {
       isActive = active;
    }
 
-   @Override
-   public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
-      EmployeeDto that = (EmployeeDto) o;
-      return id == that.id && isActive == that.isActive && Objects.equals(firstName, that.firstName) &&
-              Objects.equals(lastName, that.lastName) && Objects.equals(email, that.email) &&
-              Objects.equals(nickname, that.nickname) && role == that.role &&
-              Objects.equals(restaurant, that.restaurant) && Objects.equals(password, that.password) &&
-              Objects.equals(phoneNumber, that.phoneNumber) && Objects.equals(createdAt, that.createdAt);
+   public RestaurantDto getRestaurantDto() {
+      return restaurantDto;
    }
 
-   @Override
-   public int hashCode() {
-      return Objects.hash(id, firstName, lastName, email, nickname, role, restaurant, password, phoneNumber, createdAt, isActive);
-   }
-
-   @Override
-   public String toString() {
-      return "EmployeeDto{" +
-              "id=" + id +
-              ", firstName='" + firstName + '\'' +
-              ", lastName='" + lastName + '\'' +
-              ", email='" + email + '\'' +
-              ", nickname='" + nickname + '\'' +
-              ", role=" + role +
-              ", restaurant=" + restaurant +
-              ", password='" + password + '\'' +
-              ", phoneNumber='" + phoneNumber + '\'' +
-              ", createdAt=" + createdAt +
-              ", isActive=" + isActive +
-              '}';
+   public void setRestaurantDto(RestaurantDto restaurantDto) {
+      this.restaurantDto = restaurantDto;
    }
 }

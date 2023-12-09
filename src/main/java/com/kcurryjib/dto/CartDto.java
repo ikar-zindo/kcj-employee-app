@@ -1,16 +1,18 @@
 package com.kcurryjib.dto;
 
-import com.kcurryjib.entity.CartProduct;
-import com.kcurryjib.entity.Customer;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
-import java.util.Objects;
 
 public class CartDto {
 
    private long id;
-   private Customer customer;
-   private List<CartProduct> cartProducts;
+
+   @JsonProperty("customer")
+   private CustomerDto customerDto;
+
+   @JsonProperty("cartProduct")
+   private List<CartProductDto> cartProductsDto;
 
    public CartDto() {
    }
@@ -23,42 +25,19 @@ public class CartDto {
       this.id = id;
    }
 
-   public Customer getCustomer() {
-      return customer;
+   public CustomerDto getCustomerDto() {
+      return customerDto;
    }
 
-   public void setCustomer(Customer customer) {
-      this.customer = customer;
+   public void setCustomerDto(CustomerDto customerDto) {
+      this.customerDto = customerDto;
    }
 
-   public List<CartProduct> getCartProducts() {
-      return cartProducts;
+   public List<CartProductDto> getCartProductsDto() {
+      return cartProductsDto;
    }
 
-   public void setCartProducts(List<CartProduct> cartProducts) {
-      this.cartProducts = cartProducts;
-   }
-
-   @Override
-   public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
-      CartDto cartDto = (CartDto) o;
-      return id == cartDto.id && Objects.equals(customer, cartDto.customer) &&
-              Objects.equals(cartProducts, cartDto.cartProducts);
-   }
-
-   @Override
-   public int hashCode() {
-      return Objects.hash(id, customer, cartProducts);
-   }
-
-   @Override
-   public String toString() {
-      return "CartDto{" +
-              "id=" + id +
-              ", customer=" + customer +
-              ", cartProducts=" + cartProducts +
-              '}';
+   public void setCartProductsDto(List<CartProductDto> cartProductsDto) {
+      this.cartProductsDto = cartProductsDto;
    }
 }

@@ -1,11 +1,10 @@
 package com.kcurryjib.dto;
 
-import com.kcurryjib.entity.CartProduct;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 
 public class ProductDto {
 
@@ -15,7 +14,9 @@ public class ProductDto {
    private BigDecimal price;
    private LocalDateTime createdAt;
    private boolean isAvailable;
-   private List<CartProduct> cartProducts;
+
+   @JsonProperty("cartProduct")
+   private List<CartProductDto> cartProductsDto;
 
    public ProductDto() {
    }
@@ -68,39 +69,11 @@ public class ProductDto {
       isAvailable = available;
    }
 
-   public List<CartProduct> getCartProducts() {
-      return cartProducts;
+   public List<CartProductDto> getCartProductsDto() {
+      return cartProductsDto;
    }
 
-   public void setCartProducts(List<CartProduct> cartProducts) {
-      this.cartProducts = cartProducts;
-   }
-
-   @Override
-   public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
-      ProductDto that = (ProductDto) o;
-      return id == that.id && isAvailable == that.isAvailable && Objects.equals(name, that.name) &&
-              Objects.equals(description, that.description) && Objects.equals(price, that.price) &&
-              Objects.equals(createdAt, that.createdAt) && Objects.equals(cartProducts, that.cartProducts);
-   }
-
-   @Override
-   public int hashCode() {
-      return Objects.hash(id, name, description, price, createdAt, isAvailable, cartProducts);
-   }
-
-   @Override
-   public String toString() {
-      return "ProductDto{" +
-              "id=" + id +
-              ", name='" + name + '\'' +
-              ", description='" + description + '\'' +
-              ", price=" + price +
-              ", createdAt=" + createdAt +
-              ", isAvailable=" + isAvailable +
-              ", cartProducts=" + cartProducts +
-              '}';
+   public void setCartProductsDto(List<CartProductDto> cartProductsDto) {
+      this.cartProductsDto = cartProductsDto;
    }
 }

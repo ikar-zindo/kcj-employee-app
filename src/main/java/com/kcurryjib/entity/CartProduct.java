@@ -28,6 +28,9 @@ public class CartProduct {
    @Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
    private LocalDateTime cratedAt;
 
+   @ManyToOne(fetch = FetchType.LAZY)
+   private Customer customer;
+
    public CartProduct() {
    }
 
