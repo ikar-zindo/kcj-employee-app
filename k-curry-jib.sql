@@ -65,6 +65,7 @@ CREATE TABLE `order` (
   order_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   customer_id BIGINT,
   restaurant_id BIGINT,
+  employee_id BIGINT,
   order_date DATETIME,
   delivery_address VARCHAR(255),
   total_amount DECIMAL(10, 2),
@@ -128,6 +129,23 @@ CREATE TABLE `review` (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
+--
+-- Table structure for table `employee`
+--
+
+CREATE TABLE `employee` (
+  employee_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  first_name VARCHAR(64),
+  last_name VARCHAR(64),
+  email VARCHAR(123),
+  nickname VARCHAR(64),
+  password VARCHAR(123),
+  phone_number VARCHAR(20),
+  role VARCHAR(123),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  is_active BOOL DEFAULT FALSE
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
+
 -- --------------------------------------------------------
 
 --
@@ -179,6 +197,13 @@ ALTER TABLE `product`
 ALTER TABLE `review`
   ADD KEY `restaurant_id` (`restaurant_id`),
   ADD KEY `customer_id` (`customer_id`);
+  
+--
+-- Indexes for table `employee`
+--
+
+ALTER TABLE `employee`
+  ADD KEY `employee_id` (`employee_id`);
 
 -- --------------------------------------------------------
 
@@ -207,7 +232,8 @@ ALTER TABLE `cart_product`
 
 ALTER TABLE `order`
   ADD CONSTRAINT `order_fk_customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`),
-  ADD CONSTRAINT `order_fk_restaurant` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`restaurant_id`);
+  ADD CONSTRAINT `order_fk_restaurant` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`restaurant_id`),
+  ADD CONSTRAINT `order_fk_employee` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`employee_id`);
   
 --
 -- Constraints for table `order_details`
