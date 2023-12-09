@@ -32,6 +32,9 @@ public class OrderProduct {
    @Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
    private LocalDateTime cratedAt;
 
+   @ManyToOne(fetch = FetchType.LAZY)
+   private Customer customer;
+
    public OrderProduct() {
    }
 

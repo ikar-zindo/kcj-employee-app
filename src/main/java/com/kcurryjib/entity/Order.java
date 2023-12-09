@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -39,6 +40,9 @@ public class Order {
 
    @Column(name = "order_status")
    private String orderStatus;
+
+   @OneToMany(mappedBy = "order")
+   private List<OrderProduct> orderProducts;
 
    public Order() {
    }

@@ -61,11 +61,11 @@ public class Customer {
     * Но без этого, они всё равно создаются
     */
    @OneToMany
-   @JoinTable(name = "cart_product")
+//   @JoinTable(name = "cart_product")
    private List<CartProduct> cartProducts;
 
    @OneToMany
-   @JoinTable(name = "order_product")
+//   @JoinTable(name = "order_product")
    private List<OrderProduct> orderProducts;
 
    public Customer() {

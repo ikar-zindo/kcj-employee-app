@@ -1,10 +1,10 @@
 package com.kcurryjib.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kcurryjib.entity.Cart;
 import com.kcurryjib.entity.Product;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 public class CartProductDto {
 
@@ -13,6 +13,9 @@ public class CartProductDto {
    private Product product;
    private int quantity;
    private LocalDateTime cratedAt;
+
+   @JsonProperty("customer")
+   private CustomerDto customerDto;
 
    public CartProductDto() {
    }
@@ -55,30 +58,5 @@ public class CartProductDto {
 
    public void setCratedAt(LocalDateTime cratedAt) {
       this.cratedAt = cratedAt;
-   }
-
-   @Override
-   public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
-      CartProductDto that = (CartProductDto) o;
-      return id == that.id && quantity == that.quantity && Objects.equals(cart, that.cart) &&
-              Objects.equals(product, that.product) && Objects.equals(cratedAt, that.cratedAt);
-   }
-
-   @Override
-   public int hashCode() {
-      return Objects.hash(id, cart, product, quantity, cratedAt);
-   }
-
-   @Override
-   public String toString() {
-      return "CartProductDto{" +
-              "id=" + id +
-              ", cart=" + cart +
-              ", product=" + product +
-              ", quantity=" + quantity +
-              ", cratedAt=" + cratedAt +
-              '}';
    }
 }

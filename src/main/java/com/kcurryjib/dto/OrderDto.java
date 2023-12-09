@@ -1,23 +1,34 @@
 package com.kcurryjib.dto;
 
-import com.kcurryjib.entity.Customer;
-import com.kcurryjib.entity.Employee;
-import com.kcurryjib.entity.Restaurant;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Objects;
+import java.util.List;
 
 public class OrderDto {
 
    private long id;
-   private Customer customer;
-   private Restaurant restaurant;
-   private Employee employee;
+
+   @JsonProperty("customer")
+   private CustomerDto customerDto;
+
+   @JsonProperty("restaurant")
+   private RestaurantDto restaurantDto;
+
+   @JsonProperty("employee")
+   private EmployeeDto employeeDto;
+
    private LocalDateTime orderDate;
+
    private String deliveryAddress;
+
    private BigDecimal totalAmount;
+
    private String orderStatus;
+
+   @JsonProperty("orderProducts")
+   private List<OrderProductDto> orderProductsDto;
 
    public OrderDto() {
    }
@@ -30,28 +41,28 @@ public class OrderDto {
       this.id = id;
    }
 
-   public Customer getCustomer() {
-      return customer;
+   public CustomerDto getCustomerDto() {
+      return customerDto;
    }
 
-   public void setCustomer(Customer customer) {
-      this.customer = customer;
+   public void setCustomerDto(CustomerDto customerDto) {
+      this.customerDto = customerDto;
    }
 
-   public Restaurant getRestaurant() {
-      return restaurant;
+   public RestaurantDto getRestaurantDto() {
+      return restaurantDto;
    }
 
-   public void setRestaurant(Restaurant restaurant) {
-      this.restaurant = restaurant;
+   public void setRestaurantDto(RestaurantDto restaurantDto) {
+      this.restaurantDto = restaurantDto;
    }
 
-   public Employee getEmployee() {
-      return employee;
+   public EmployeeDto getEmployeeDto() {
+      return employeeDto;
    }
 
-   public void setEmployee(Employee employee) {
-      this.employee = employee;
+   public void setEmployeeDto(EmployeeDto employeeDto) {
+      this.employeeDto = employeeDto;
    }
 
    public LocalDateTime getOrderDate() {
@@ -86,34 +97,11 @@ public class OrderDto {
       this.orderStatus = orderStatus;
    }
 
-   @Override
-   public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
-      OrderDto orderDto = (OrderDto) o;
-      return id == orderDto.id && Objects.equals(customer, orderDto.customer) &&
-              Objects.equals(restaurant, orderDto.restaurant) && Objects.equals(employee, orderDto.employee) &&
-              Objects.equals(orderDate, orderDto.orderDate) &&
-              Objects.equals(deliveryAddress, orderDto.deliveryAddress) &&
-              Objects.equals(totalAmount, orderDto.totalAmount) && Objects.equals(orderStatus, orderDto.orderStatus);
+   public List<OrderProductDto> getOrderProductsDto() {
+      return orderProductsDto;
    }
 
-   @Override
-   public int hashCode() {
-      return Objects.hash(id, customer, restaurant, employee, orderDate, deliveryAddress, totalAmount, orderStatus);
-   }
-
-   @Override
-   public String toString() {
-      return "OrderDto{" +
-              "id=" + id +
-              ", customer=" + customer +
-              ", restaurant=" + restaurant +
-              ", employee=" + employee +
-              ", orderDate=" + orderDate +
-              ", deliveryAddress='" + deliveryAddress + '\'' +
-              ", totalAmount=" + totalAmount +
-              ", orderStatus='" + orderStatus + '\'' +
-              '}';
+   public void setOrderProductsDto(List<OrderProductDto> orderProductsDto) {
+      this.orderProductsDto = orderProductsDto;
    }
 }
