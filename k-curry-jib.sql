@@ -141,7 +141,7 @@ CREATE TABLE `employee` (
   nickname VARCHAR(64),
   password VARCHAR(123),
   phone_number VARCHAR(20),
-  role VARCHAR(123),
+  role ENUM,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   is_active BOOL DEFAULT FALSE
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;

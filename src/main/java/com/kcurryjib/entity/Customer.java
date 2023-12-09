@@ -57,7 +57,8 @@ public class Customer {
 
    /**
     * Здесь было в скобках (mappedBy = "customer"),
-    * но в таком случае добавляется поле (customer_cart_product_id)
+    * но в таком случае добавляется поле (customer_cart_product_id).
+    * Но без этого, они всё равно создаются
     */
    @OneToMany
    @JoinTable(name = "cart_product")
