@@ -24,6 +24,10 @@ public class Order {
    @JoinColumn(name = "restaurant_id")
    private Restaurant restaurant;
 
+   @OneToOne
+   @JoinColumn(name = "employee_id")
+   private Employee employee;
+
    @Column(name = "order_date", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
    private LocalDateTime orderDate;
 

@@ -181,6 +181,14 @@ public class Customer {
       this.cartProducts = cartProducts;
    }
 
+   public List<OrderProduct> getOrderProducts() {
+      return orderProducts;
+   }
+
+   public void setOrderProducts(List<OrderProduct> orderProducts) {
+      this.orderProducts = orderProducts;
+   }
+
    @Override
    public boolean equals(Object o) {
       if (this == o) return true;
@@ -191,12 +199,12 @@ public class Customer {
               Objects.equals(phoneNumber, customer.phoneNumber) && Objects.equals(address, customer.address) &&
               Objects.equals(postal_code, customer.postal_code) && Objects.equals(password, customer.password) &&
               Objects.equals(cart, customer.cart) && Objects.equals(createdAt, customer.createdAt) &&
-              Objects.equals(cartProducts, customer.cartProducts);
+              Objects.equals(cartProducts, customer.cartProducts) && Objects.equals(orderProducts, customer.orderProducts);
    }
 
    @Override
    public int hashCode() {
-      return Objects.hash(id, firstName, lastName, email, phoneNumber, address, postal_code, password, cart, createdAt, isBlocked, cartProducts);
+      return Objects.hash(id, firstName, lastName, email, phoneNumber, address, postal_code, password, cart, createdAt, isBlocked, cartProducts, orderProducts);
    }
 
    @Override
@@ -214,6 +222,7 @@ public class Customer {
               ", createdAt=" + createdAt +
               ", isBlocked=" + isBlocked +
               ", cartProducts=" + cartProducts +
+              ", orderProducts=" + orderProducts +
               '}';
    }
 }
