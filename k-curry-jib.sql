@@ -141,7 +141,8 @@ CREATE TABLE `employee` (
   nickname VARCHAR(64),
   password VARCHAR(123),
   phone_number VARCHAR(20),
-  role ENUM,
+  role ENUM('USER', 'MANAGER', 'ADMIN', 'DEALER', 'DRIVER'),
+  restaurant_id BIGINT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   is_active BOOL DEFAULT FALSE
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
@@ -258,6 +259,14 @@ ALTER TABLE `product`
 ALTER TABLE `review`
 	ADD CONSTRAINT `review_fk_restaurant` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`restaurant_id`),
 	ADD CONSTRAINT `review_fk_customer_id` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`);
+
+
+--
+-- Constraints for table `employee`
+--
+
+ALTER TABLE `employee`
+    ADD CONSTRAINT `employee_fk_restaurant` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`restaurant_id`);
 
 COMMIT;
 

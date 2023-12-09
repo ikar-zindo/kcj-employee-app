@@ -1,46 +1,25 @@
-package com.kcurryjib.entity;
+package com.kcurryjib.dto;
 
-
-import jakarta.persistence.*;
+import com.kcurryjib.entity.Customer;
+import com.kcurryjib.entity.Employee;
+import com.kcurryjib.entity.Restaurant;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-@Entity
-@Table(name = "\"order\"")
-public class Order {
+public class OrderDto {
 
-   @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   @Column(name = "order_id")
    private long id;
-
-   @ManyToOne
-   @JoinColumn(name = "customer_id")
    private Customer customer;
-
-   @OneToOne
-   @JoinColumn(name = "restaurant_id")
    private Restaurant restaurant;
-
-   @ManyToOne
-   @JoinColumn(name = "employee_id")
    private Employee employee;
-
-   @Column(name = "order_date", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
    private LocalDateTime orderDate;
-
-   @Column(name = "delivery_address")
    private String deliveryAddress;
-
-   @Column(name = "total_amount")
    private BigDecimal totalAmount;
-
-   @Column(name = "order_status")
    private String orderStatus;
 
-   public Order() {
+   public OrderDto() {
    }
 
    public long getId() {
@@ -111,11 +90,12 @@ public class Order {
    public boolean equals(Object o) {
       if (this == o) return true;
       if (o == null || getClass() != o.getClass()) return false;
-      Order order = (Order) o;
-      return id == order.id && Objects.equals(customer, order.customer) &&
-              Objects.equals(restaurant, order.restaurant) && Objects.equals(employee, order.employee) &&
-              Objects.equals(orderDate, order.orderDate) && Objects.equals(deliveryAddress, order.deliveryAddress) &&
-              Objects.equals(totalAmount, order.totalAmount) && Objects.equals(orderStatus, order.orderStatus);
+      OrderDto orderDto = (OrderDto) o;
+      return id == orderDto.id && Objects.equals(customer, orderDto.customer) &&
+              Objects.equals(restaurant, orderDto.restaurant) && Objects.equals(employee, orderDto.employee) &&
+              Objects.equals(orderDate, orderDto.orderDate) &&
+              Objects.equals(deliveryAddress, orderDto.deliveryAddress) &&
+              Objects.equals(totalAmount, orderDto.totalAmount) && Objects.equals(orderStatus, orderDto.orderStatus);
    }
 
    @Override
@@ -125,7 +105,7 @@ public class Order {
 
    @Override
    public String toString() {
-      return "Order{" +
+      return "OrderDto{" +
               "id=" + id +
               ", customer=" + customer +
               ", restaurant=" + restaurant +
