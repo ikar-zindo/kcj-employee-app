@@ -122,35 +122,4 @@ public class Restaurant {
    public void setOpen(boolean open) {
       isOpen = open;
    }
-
-   @Override
-   public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
-      Restaurant that = (Restaurant) o;
-      return id == that.id && isOpen == that.isOpen && Objects.equals(name, that.name) &&
-              Objects.equals(address, that.address) && Objects.equals(phoneNumber, that.phoneNumber) &&
-              Objects.equals(openingHours, that.openingHours) && Objects.equals(cuisineType, that.cuisineType) &&
-              Objects.equals(description, that.description) && Objects.equals(socialMediaLinks, that.socialMediaLinks);
-   }
-
-   @Override
-   public int hashCode() {
-      return Objects.hash(id, name, address, phoneNumber, openingHours, cuisineType, description, socialMediaLinks, isOpen);
-   }
-
-   @Override
-   public String toString() {
-      return "Restaurant{" +
-              "id=" + id +
-              ", name='" + name + '\'' +
-              ", address='" + address + '\'' +
-              ", phoneNumber='" + phoneNumber + '\'' +
-              ", openingHours='" + openingHours + '\'' +
-              ", cuisineType='" + cuisineType + '\'' +
-              ", description='" + description + '\'' +
-              ", socialMediaLinks='" + socialMediaLinks + '\'' +
-              ", isOpen=" + isOpen +
-              '}';
-   }
 }
