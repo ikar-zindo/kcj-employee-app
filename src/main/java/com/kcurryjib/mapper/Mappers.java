@@ -15,12 +15,14 @@ public class Mappers {
    @Autowired
    private ModelMapper modelMapper;
 
+   /**
+    * converts entity to DTO
+    */
+
    public CartDto convertToCartDto(Cart cart) {
-      /**
-       * if you need to skip the field and not display it in JSON
-       */
+       // if you need to skip the field and not display it in JSON
 //      modelMapper.typeMap(Cart.class, CartDto.class)
-//              .addMappings(mapper -> mapper.skip(CartDto::setCartProductsDto));
+//              .addMappings(mapper -> mapper.skip(CartDto::setCartProductsDto))
 
       CartDto cartDto = modelMapper.map(cart, CartDto.class);
 
@@ -95,6 +97,7 @@ public class Mappers {
       ProductDto productDto = modelMapper.map(product, ProductDto.class);
 
       productDto.setCartProductsDto(convertToCartProductsDto(product.getCartProducts())); // need List
+      productDto.setRestaurantDto(convertToRestaurantDto(product.getRestaurant()));
 
       return productDto;
    }
@@ -111,4 +114,8 @@ public class Mappers {
 
       return reviewDto;
    }
+
+   /**
+    * converts DTO to entity
+    */
 }

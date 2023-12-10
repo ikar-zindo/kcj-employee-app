@@ -16,6 +16,9 @@ public class ProductDto {
 
    private BigDecimal price;
 
+   @JsonProperty("restaurant")
+   private RestaurantDto restaurantDto;
+
    private LocalDateTime createdAt;
 
    private boolean isAvailable;
@@ -81,5 +84,13 @@ public class ProductDto {
 
    public void setCartProductsDto(List<CartProductDto> cartProductsDto) {
       this.cartProductsDto = cartProductsDto;
+   }
+
+   public RestaurantDto getRestaurantDto() {
+      return restaurantDto;
+   }
+
+   public void setRestaurantDto(RestaurantDto restaurantDto) {
+      this.restaurantDto = restaurantDto;
    }
 }
