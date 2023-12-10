@@ -30,7 +30,7 @@ CREATE TABLE `customer` (
   password VARCHAR(255),
   phone_number VARCHAR(20),
   address VARCHAR(255),
-  postal_code VARCHAR(16),
+  postal_code VARCHAR(5),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   is_blocked BOOL DEFAULT FALSE
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
@@ -144,7 +144,7 @@ CREATE TABLE `employee` (
   role ENUM('USER', 'MANAGER', 'ADMIN', 'DEALER', 'DRIVER'),
   restaurant_id BIGINT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  is_active BOOL DEFAULT FALSE
+  is_active BOOL DEFAULT TRUE
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 -- --------------------------------------------------------
@@ -266,6 +266,83 @@ ALTER TABLE `review`
 
 ALTER TABLE `employee`
     ADD CONSTRAINT `employee_fk_restaurant` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`restaurant_id`);
+	
+-- --------------------------------------------------------
+
+--
+-- Dumping data for tables
+--
+
+--
+-- Dumping data for table `restaurant`
+--
+
+INSERT INTO `restaurant` (`name`, `address`, `phone_number`, `opening_hours`, `cuisine_type`, `description`, `social_media_links`) VALUES
+('K-Curry Jib', 'Alexanderplaz 1, 10178', '+49123456789', '12:00 - 22:00', 'Asian food', '', 'social-media-link.com');
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`first_name`, `last_name`, `email`, `password`, `phone_number`, `address`, `postal_code`) VALUES
+('Maria', 'Anders',	'maria@mailcom', '1qaz2wsx', '+49123456789', 'Obere Str. 57', '12209'),
+('Ana', 'Trujillo',	'ana@mailcom', '1qaz2wsx', '+49123456789', 'Minerstrasse 33', '10115'),
+('Antonio', 'Moreno', 'antonio@mailcom', '1qaz2wsx', '+49123456789', 'Alexanderplatz 3', '10178'),
+('Thomas', 'Hardy',	'thomas@mailcom', '1qaz2wsx', '+49123456789', 'Friedrichstrasse 123', '10117'),
+('Christina', 'Berglund', 'christina@mailcom', '1qaz2wsx', '+49123456789', 'Karl-Liebknecht-Strasse 29', '10178'),
+('Hanna', 'Moos', 'hanna@mailcom', '1qaz2wsx', '+49123456789', 'Potsdamer Platz 1', '10785'),
+('Frederique', 'Citeaux', 'frederique@mailcom', '1qaz2wsx', '+49123456789', 'Stralauer Strasse 34', '10243'),
+('Martin', 'Sommer', 'martin@mailcom', '1qaz2wsx', '+49123456789', 'Lichtenberger Strasse 11', '10179'),
+('Laurence', 'Lebihans', 'laurence@mailcom', '1qaz2wsx', '+49123456789', 'Charlottenstrasse 22', '10117'),
+('Elizabeth', 'Lincoln', 'elizabeth@mailcom', '1qaz2wsx', '+49123456789', 'Pariser Platz 7', '10117');
+
+--
+-- Dumping data for table `cart`
+--
+INSERT INTO `cart` (`customer_id`) VALUES
+(1),
+(2),
+(3),
+(4),
+(5),
+(6),
+(7),
+(8),
+(9),
+(10);
+
+--
+-- Dumping data for table `employee`
+--
+
+INSERT INTO `employee` (`last_name`, `first_name`,  `email`, `nickname`, `password`, `phone_number`, `role`, `restaurant_id`) VALUES
+('Davolio', 'Nancy', 'nancy@mail.com', 'nancy', 'qwerty123', '+49123456789', 'USER', 1),
+('Fuller', 'Andrew', 'andrew@mail.com', 'andrew', 'qwerty123', '+49123456789', 'USER', 1),
+('Leverling', 'Janet', 'janet@mail.com', 'janet', 'qwerty123', '+49123456789', 'USER', 1),
+('Peacock', 'Margaret', 'margaret@mail.com', 'margaret', 'qwerty123', '+49123456789', 'USER', 1),
+('Buchanan', 'Steven', 'steven@mail.com', 'steven', 'qwerty123', '+49123456789', 'USER', 1),
+('Suyama', 'Michael', 'michael@mail.com', 'michael', 'qwerty123', '+49123456789', 'MANAGER', 1),
+('King', 'Robert', 'robert@mail.com', 'robert', 'qwerty123', '+49123456789', 'MANAGER', 1),
+('Callahan', 'Laura', 'laura@mail.com', 'laura', 'qwerty123', '+49123456789', 'ADMIN', 1),
+('Dodsworth', 'Anne', 'anne@mail.com', 'anne', 'qwerty123', '+49123456789', 'DRIVER', 1),
+('West', 'Adam', 'adam@mail.com', 'adam', 'qwerty123', '+49123456789', 'DRIVER', 1);
+
+--
+-- Dumping data for table `product`
+--
+
+INSERT INTO `product` (`name`, `description`,  `price`, `restaurant_id`) VALUES
+('Bibimbap', '', 12, 1),
+('KimChi', '', 4, 1),
+('Ramen', '', 10, 1),
+('Haemul Ramen', '', 7, 1),
+('Miso  Shiru', '', 5, 1),
+('Haemul Bokkum', '', 15, 1),
+('Ori Teriyaki', '', 18, 1),
+('KimChi Zige', '', 14, 1),
+('Haemul Denzang Zige', '', 13, 1),
+('Osam Bokum', '', 28, 1),
+('Samgyupsal', '', 40, 1);
 
 COMMIT;
 
