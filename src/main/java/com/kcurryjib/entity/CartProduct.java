@@ -80,28 +80,11 @@ public class CartProduct {
       this.cratedAt = cratedAt;
    }
 
-   @Override
-   public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
-      CartProduct that = (CartProduct) o;
-      return id == that.id && quantity == that.quantity && Objects.equals(cart, that.cart) &&
-              Objects.equals(product, that.product) && Objects.equals(cratedAt, that.cratedAt);
+   public Customer getCustomer() {
+      return customer;
    }
 
-   @Override
-   public int hashCode() {
-      return Objects.hash(id, cart, product, quantity, cratedAt);
-   }
-
-   @Override
-   public String toString() {
-      return "CartProduct{" +
-              "id=" + id +
-              ", cart=" + cart +
-              ", product=" + product +
-              ", quantity=" + quantity +
-              ", cratedAt=" + cratedAt +
-              '}';
+   public void setCustomer(Customer customer) {
+      this.customer = customer;
    }
 }

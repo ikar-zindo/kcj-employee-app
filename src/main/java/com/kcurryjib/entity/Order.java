@@ -45,6 +45,7 @@ public class Order {
    private List<OrderProduct> orderProducts;
 
    public Order() {
+
    }
 
    public long getId() {
@@ -109,6 +110,14 @@ public class Order {
 
    public void setOrderStatus(String orderStatus) {
       this.orderStatus = orderStatus;
+   }
+
+   public List<OrderProduct> getOrderProducts() {
+      return orderProducts;
+   }
+
+   public void setOrderProducts(List<OrderProduct> orderProducts) {
+      this.orderProducts = orderProducts;
    }
 
    @Override
