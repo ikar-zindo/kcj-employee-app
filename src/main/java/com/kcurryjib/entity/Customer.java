@@ -59,13 +59,16 @@ public class Customer {
     * Здесь было в скобках (mappedBy = "customer"),
     * но в таком случае добавляется поле (customer_cart_product_id).
     * Но без этого, они всё равно создаются
+    *
+    * (name = "cart_product") & (name = "order_product") = без них создаются таблицы связей
+    * customer_cart_products & customer_order_products, которые мне не нужны так как я их сам явно создаю
     */
    @OneToMany
-//   @JoinTable(name = "cart_product")
+   @JoinTable(name = "cart_product")
    private List<CartProduct> cartProducts;
 
    @OneToMany
-//   @JoinTable(name = "order_product")
+   @JoinTable(name = "order_product")
    private List<OrderProduct> orderProducts;
 
    public Customer() {
