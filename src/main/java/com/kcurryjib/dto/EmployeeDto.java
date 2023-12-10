@@ -1,5 +1,6 @@
 package com.kcurryjib.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kcurryjib.entity.enums.Role;
 
@@ -19,6 +20,7 @@ public class EmployeeDto {
 
    private Role role;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL) // if the value is `null` then it will not be output to JSON
    private String password;
 
    private String phoneNumber;
@@ -27,7 +29,7 @@ public class EmployeeDto {
 
    private boolean isActive;
 
-   @JsonProperty("Restaurant")
+   @JsonProperty("restaurant") // alias
    private RestaurantDto restaurantDto;
 
    public EmployeeDto() {

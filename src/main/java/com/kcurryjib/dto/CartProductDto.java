@@ -9,9 +9,15 @@ import java.time.LocalDateTime;
 public class CartProductDto {
 
    private long id;
-   private Cart cart;
-   private Product product;
+
+   @JsonProperty("cart")
+   private CartDto cartDto;
+
+   @JsonProperty("product")
+   private ProductDto productDto;
+
    private int quantity;
+
    private LocalDateTime cratedAt;
 
    @JsonProperty("customer")
@@ -28,20 +34,20 @@ public class CartProductDto {
       this.id = id;
    }
 
-   public Cart getCart() {
-      return cart;
+   public CartDto getCartDto() {
+      return cartDto;
    }
 
-   public void setCart(Cart cart) {
-      this.cart = cart;
+   public void setCartDto(CartDto cartDto) {
+      this.cartDto = cartDto;
    }
 
-   public Product getProduct() {
-      return product;
+   public ProductDto getProductDto() {
+      return productDto;
    }
 
-   public void setProduct(Product product) {
-      this.product = product;
+   public void setProductDto(ProductDto productDto) {
+      this.productDto = productDto;
    }
 
    public int getQuantity() {
@@ -58,5 +64,13 @@ public class CartProductDto {
 
    public void setCratedAt(LocalDateTime cratedAt) {
       this.cratedAt = cratedAt;
+   }
+
+   public CustomerDto getCustomerDto() {
+      return customerDto;
+   }
+
+   public void setCustomerDto(CustomerDto customerDto) {
+      this.customerDto = customerDto;
    }
 }

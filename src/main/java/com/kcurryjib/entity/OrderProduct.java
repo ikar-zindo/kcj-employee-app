@@ -93,6 +93,14 @@ public class OrderProduct {
       this.cratedAt = cratedAt;
    }
 
+   public Customer getCustomer() {
+      return customer;
+   }
+
+   public void setCustomer(Customer customer) {
+      this.customer = customer;
+   }
+
    @Override
    public boolean equals(Object o) {
       if (this == o) return true;

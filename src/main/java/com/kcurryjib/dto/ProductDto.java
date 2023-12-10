@@ -9,11 +9,17 @@ import java.util.List;
 public class ProductDto {
 
    private long id;
+
    private String name;
+
    private String description;
+
    private BigDecimal price;
+
    private LocalDateTime createdAt;
+
    private boolean isAvailable;
+
 
    @JsonProperty("cartProduct")
    private List<CartProductDto> cartProductsDto;
