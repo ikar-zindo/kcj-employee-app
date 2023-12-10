@@ -56,7 +56,6 @@ CREATE TABLE `cart_product` (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
-
 --
 -- Table structure for table `order`
 --
@@ -88,7 +87,6 @@ CREATE TABLE `order_product` (
 --
 -- Table structure for table `product`
 --
-
 
 CREATE TABLE `product` (
   product_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -189,7 +187,6 @@ ALTER TABLE `order_product`
 
 ALTER TABLE `product`
   ADD KEY `restaurant_id` (`restaurant_id`);
-  
 
 --
 -- Indexes for table `review`
@@ -258,7 +255,7 @@ ALTER TABLE `product`
 
 ALTER TABLE `review`
 	ADD CONSTRAINT `review_fk_restaurant` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`restaurant_id`),
-	ADD CONSTRAINT `review_fk_customer_id` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`);
+	ADD CONSTRAINT `review_fk_customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`);
 
 --
 -- Constraints for table `employee`
@@ -278,71 +275,81 @@ ALTER TABLE `employee`
 --
 
 INSERT INTO `restaurant` (`name`, `address`, `phone_number`, `opening_hours`, `cuisine_type`, `description`, `social_media_links`) VALUES
-('K-Curry Jib', 'Alexanderplaz 1, 10178', '+49123456789', '12:00 - 22:00', 'Asian food', '', 'social-media-link.com');
+    ('K-Curry Jib', 'Alexanderplaz 1, 10178', '+49123456789', '12:00 - 22:00', 'Asian food', '', 'social-media-link.com');
 
 --
 -- Dumping data for table `customer`
 --
 
 INSERT INTO `customer` (`first_name`, `last_name`, `email`, `password`, `phone_number`, `address`, `postal_code`) VALUES
-('Maria', 'Anders',	'maria@mailcom', '1qaz2wsx', '+49123456789', 'Obere Str. 57', '12209'),
-('Ana', 'Trujillo',	'ana@mailcom', '1qaz2wsx', '+49123456789', 'Minerstrasse 33', '10115'),
-('Antonio', 'Moreno', 'antonio@mailcom', '1qaz2wsx', '+49123456789', 'Alexanderplatz 3', '10178'),
-('Thomas', 'Hardy',	'thomas@mailcom', '1qaz2wsx', '+49123456789', 'Friedrichstrasse 123', '10117'),
-('Christina', 'Berglund', 'christina@mailcom', '1qaz2wsx', '+49123456789', 'Karl-Liebknecht-Strasse 29', '10178'),
-('Hanna', 'Moos', 'hanna@mailcom', '1qaz2wsx', '+49123456789', 'Potsdamer Platz 1', '10785'),
-('Frederique', 'Citeaux', 'frederique@mailcom', '1qaz2wsx', '+49123456789', 'Stralauer Strasse 34', '10243'),
-('Martin', 'Sommer', 'martin@mailcom', '1qaz2wsx', '+49123456789', 'Lichtenberger Strasse 11', '10179'),
-('Laurence', 'Lebihans', 'laurence@mailcom', '1qaz2wsx', '+49123456789', 'Charlottenstrasse 22', '10117'),
-('Elizabeth', 'Lincoln', 'elizabeth@mailcom', '1qaz2wsx', '+49123456789', 'Pariser Platz 7', '10117');
+    ('Maria', 'Anders',	'maria@mailcom', '1qaz2wsx', '+49123456789', 'Obere Str. 57', '12209'),
+    ('Ana', 'Trujillo',	'ana@mailcom', '1qaz2wsx', '+49123456789', 'Minerstrasse 33', '10115'),
+    ('Antonio', 'Moreno', 'antonio@mailcom', '1qaz2wsx', '+49123456789', 'Alexanderplatz 3', '10178'),
+    ('Thomas', 'Hardy',	'thomas@mailcom', '1qaz2wsx', '+49123456789', 'Friedrichstrasse 123', '10117'),
+    ('Christina', 'Berglund', 'christina@mailcom', '1qaz2wsx', '+49123456789', 'Karl-Liebknecht-Strasse 29', '10178'),
+    ('Hanna', 'Moos', 'hanna@mailcom', '1qaz2wsx', '+49123456789', 'Potsdamer Platz 1', '10785'),
+    ('Frederique', 'Citeaux', 'frederique@mailcom', '1qaz2wsx', '+49123456789', 'Stralauer Strasse 34', '10243'),
+    ('Martin', 'Sommer', 'martin@mailcom', '1qaz2wsx', '+49123456789', 'Lichtenberger Strasse 11', '10179'),
+    ('Laurence', 'Lebihans', 'laurence@mailcom', '1qaz2wsx', '+49123456789', 'Charlottenstrasse 22', '10117'),
+    ('Elizabeth', 'Lincoln', 'elizabeth@mailcom', '1qaz2wsx', '+49123456789', 'Pariser Platz 7', '10117');
 
 --
 -- Dumping data for table `cart`
 --
+
 INSERT INTO `cart` (`customer_id`) VALUES
-(1),
-(2),
-(3),
-(4),
-(5),
-(6),
-(7),
-(8),
-(9),
-(10);
+    (1),
+    (2),
+    (3),
+    (4),
+    (5),
+    (6),
+    (7),
+    (8),
+    (9),
+    (10);
 
 --
 -- Dumping data for table `employee`
 --
 
 INSERT INTO `employee` (`last_name`, `first_name`,  `email`, `nickname`, `password`, `phone_number`, `role`, `restaurant_id`) VALUES
-('Davolio', 'Nancy', 'nancy@mail.com', 'nancy', 'qwerty123', '+49123456789', 'USER', 1),
-('Fuller', 'Andrew', 'andrew@mail.com', 'andrew', 'qwerty123', '+49123456789', 'USER', 1),
-('Leverling', 'Janet', 'janet@mail.com', 'janet', 'qwerty123', '+49123456789', 'USER', 1),
-('Peacock', 'Margaret', 'margaret@mail.com', 'margaret', 'qwerty123', '+49123456789', 'USER', 1),
-('Buchanan', 'Steven', 'steven@mail.com', 'steven', 'qwerty123', '+49123456789', 'USER', 1),
-('Suyama', 'Michael', 'michael@mail.com', 'michael', 'qwerty123', '+49123456789', 'MANAGER', 1),
-('King', 'Robert', 'robert@mail.com', 'robert', 'qwerty123', '+49123456789', 'MANAGER', 1),
-('Callahan', 'Laura', 'laura@mail.com', 'laura', 'qwerty123', '+49123456789', 'ADMIN', 1),
-('Dodsworth', 'Anne', 'anne@mail.com', 'anne', 'qwerty123', '+49123456789', 'DRIVER', 1),
-('West', 'Adam', 'adam@mail.com', 'adam', 'qwerty123', '+49123456789', 'DRIVER', 1);
+    ('Davolio', 'Nancy', 'nancy@mail.com', 'nancy', 'qwerty123', '+49123456789', 'USER', 1),
+    ('Fuller', 'Andrew', 'andrew@mail.com', 'andrew', 'qwerty123', '+49123456789', 'USER', 1),
+    ('Leverling', 'Janet', 'janet@mail.com', 'janet', 'qwerty123', '+49123456789', 'USER', 1),
+    ('Peacock', 'Margaret', 'margaret@mail.com', 'margaret', 'qwerty123', '+49123456789', 'USER', 1),
+    ('Buchanan', 'Steven', 'steven@mail.com', 'steven', 'qwerty123', '+49123456789', 'USER', 1),
+    ('Suyama', 'Michael', 'michael@mail.com', 'michael', 'qwerty123', '+49123456789', 'MANAGER', 1),
+    ('King', 'Robert', 'robert@mail.com', 'robert', 'qwerty123', '+49123456789', 'MANAGER', 1),
+    ('Callahan', 'Laura', 'laura@mail.com', 'laura', 'qwerty123', '+49123456789', 'ADMIN', 1),
+    ('Dodsworth', 'Anne', 'anne@mail.com', 'anne', 'qwerty123', '+49123456789', 'DRIVER', 1),
+    ('West', 'Adam', 'adam@mail.com', 'adam', 'qwerty123', '+49123456789', 'DRIVER', 1);
 
 --
 -- Dumping data for table `product`
 --
 
 INSERT INTO `product` (`name`, `description`,  `price`, `restaurant_id`) VALUES
-('Bibimbap', '', 12, 1),
-('KimChi', '', 4, 1),
-('Ramen', '', 10, 1),
-('Haemul Ramen', '', 7, 1),
-('Miso  Shiru', '', 5, 1),
-('Haemul Bokkum', '', 15, 1),
-('Ori Teriyaki', '', 18, 1),
-('KimChi Zige', '', 14, 1),
-('Haemul Denzang Zige', '', 13, 1),
-('Osam Bokum', '', 28, 1),
-('Samgyupsal', '', 40, 1);
+    ('Chicken Curry', 'Fried chicken with vegetables and rice in medium spicy curry sauce', 14, 1),
+    ('Bibimbap', 'Beef with rice, vegetables, seaweed, fried egg and chilli paste', 12, 1),
+    ('Samgyupsal', 'Bacon for grill, lettuce, garlic, soy bean Samjang paste and leek salad', 40, 1),
+    ('KimChi', 'Korean fermented dish of seasoned vegetables, known for its tangy, spicy taste', 4, 1),
+    ('KimChi Zige', 'Spicy soup with kimchi, bacon, tofu & vegetables', 13, 1),
+    ('Ozingo Kampungi', 'Fried battered squids in spicy-and-sweet sauce and vegetables', 18, 1),
+    ('Ramen', 'Soup with noodles, beef or pork, egg, katsuobushi, vegetables and leek', 10, 1),
+    ('Haemul Ramen', 'Spicy noodle soup with seafood, vegetables and egg', 7, 1),
+    ('Miso  Shiru', 'Soybean soup with tofu, seaweed', 5, 1),
+    ('Haemul Bokkum', 'Fried seawood with vegetables', 15, 1),
+    ('Ori Teriyaki', 'Grilled duck with vegetables in sweet teriyaki sauce', 18, 1),
+    ('Kampungi', 'Medium spicy chicken breast with vegetables', 10, 1),
+    ('Chiken Teriyaki', 'Fried chicken leg with grilled vegetables in sweet teriyaki sauce', 8, 1),
+    ('Yaki Tori', 'Chicken shashliks (2 pieces) in sweet sauce, fries', 6, 1),
+    ('Yaki Gyoza', 'Fried dumplings with vegetable filling', 8, 1),
+    ('Ebi Tempura', 'Fried shrimps coated in tempura, fries', 16, 1),
+    ('Dubu Yache Bokkum', 'Fried tofu with vegetables in soya sauce', 9, 1),
+    ('Yukhoe', 'Beef tartar, garlic, onion, sesame oil', 20, 1),
+    ('Bulgogi Zungshik', 'Beef & vehetables in sweet sauce on the hot plate, rice', 13, 1),
+    ('Osam Bokum', 'Fried squids, pork and vegetables in spicy gochujang sauce', 28, 1);
 
 COMMIT;
 
