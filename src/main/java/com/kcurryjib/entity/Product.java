@@ -25,6 +25,10 @@ public class Product {
    @Column(name = "price")
    private BigDecimal price;
 
+   @ManyToOne
+   @JoinColumn(name = "restaurant_id")
+   private Restaurant restaurant;
+
    @Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
    private LocalDateTime createdAt;
 
@@ -37,10 +41,11 @@ public class Product {
    public Product() {
    }
 
-   public Product(String name, String description, BigDecimal price) {
+   public Product(String name, String description, BigDecimal price, Restaurant restaurant) {
       this.name = name;
       this.description = description;
       this.price = price;
+      this.restaurant = restaurant;
 
       this.isAvailable = true;
    }
@@ -101,31 +106,11 @@ public class Product {
       this.cartProducts = cartProducts;
    }
 
-   @Override
-   public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
-      Product product = (Product) o;
-      return id == product.id && isAvailable == product.isAvailable && Objects.equals(name, product.name) &&
-              Objects.equals(description, product.description) && Objects.equals(price, product.price) &&
-              Objects.equals(createdAt, product.createdAt) && Objects.equals(cartProducts, product.cartProducts);
+   public Restaurant getRestaurant() {
+      return restaurant;
    }
 
-   @Override
-   public int hashCode() {
-      return Objects.hash(id, name, description, price, createdAt, isAvailable, cartProducts);
-   }
-
-   @Override
-   public String toString() {
-      return "Product{" +
-              "id=" + id +
-              ", name='" + name + '\'' +
-              ", description='" + description + '\'' +
-              ", price=" + price +
-              ", createdAt=" + createdAt +
-              ", isAvailable=" + isAvailable +
-              ", cartProducts=" + cartProducts +
-              '}';
+   public void setRestaurant(Restaurant restaurant) {
+      this.restaurant = restaurant;
    }
 }
