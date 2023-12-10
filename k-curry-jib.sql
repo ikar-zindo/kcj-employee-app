@@ -260,7 +260,6 @@ ALTER TABLE `review`
 	ADD CONSTRAINT `review_fk_restaurant` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`restaurant_id`),
 	ADD CONSTRAINT `review_fk_customer_id` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`);
 
-
 --
 -- Constraints for table `employee`
 --
