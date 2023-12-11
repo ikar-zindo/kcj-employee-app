@@ -1,18 +1,15 @@
 package com.kcurryjib.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+
 
 public class ReviewDto {
 
    private long id;
 
-   @JsonProperty("restaurant")
    private RestaurantDto restaurantDto;
 
-   @JsonProperty("customer")
    private CustomerDto customerDto;
 
    private BigDecimal rating;
@@ -20,7 +17,6 @@ public class ReviewDto {
    private String comment;
 
    private LocalDateTime createdAt;
-
 
    public ReviewDto() {
    }

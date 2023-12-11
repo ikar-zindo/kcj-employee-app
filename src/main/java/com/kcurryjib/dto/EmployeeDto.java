@@ -1,10 +1,10 @@
 package com.kcurryjib.dto;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kcurryjib.entity.enums.Role;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
 
 public class EmployeeDto {
 
@@ -20,7 +20,6 @@ public class EmployeeDto {
 
    private Role role;
 
-   @JsonInclude(JsonInclude.Include.NON_NULL) // if the value is `null` then it will not be output to JSON
    private String password;
 
    private String phoneNumber;
@@ -29,8 +28,9 @@ public class EmployeeDto {
 
    private boolean isActive;
 
-   @JsonProperty("restaurant") // alias
    private RestaurantDto restaurantDto;
+
+   private List<OrderDto> ordersDto;
 
    public EmployeeDto() {
    }
@@ -121,5 +121,13 @@ public class EmployeeDto {
 
    public void setRestaurantDto(RestaurantDto restaurantDto) {
       this.restaurantDto = restaurantDto;
+   }
+
+   public List<OrderDto> getOrdersDto() {
+      return ordersDto;
+   }
+
+   public void setOrdersDto(List<OrderDto> ordersDto) {
+      this.ordersDto = ordersDto;
    }
 }

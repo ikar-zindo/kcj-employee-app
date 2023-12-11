@@ -1,27 +1,22 @@
 package com.kcurryjib.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+
 
 public class OrderProductDto {
 
    private long id;
 
-   @JsonProperty("order")
-   private OrderDto orderDto;
-
-   @JsonProperty("product")
-   private ProductDto productDto;
-
    private int quantity;
+
    private BigDecimal total;
 
    private LocalDateTime cratedAt;
 
-   @JsonProperty("customer")
-   private CustomerDto customerDto;
+   private OrderDto orderDto;
+
+   private ProductDto productDto;
 
    public OrderProductDto() {
    }
@@ -32,22 +27,6 @@ public class OrderProductDto {
 
    public void setId(long id) {
       this.id = id;
-   }
-
-   public OrderDto getOrderDto() {
-      return orderDto;
-   }
-
-   public void setOrderDto(OrderDto orderDto) {
-      this.orderDto = orderDto;
-   }
-
-   public ProductDto getProductDto() {
-      return productDto;
-   }
-
-   public void setProductDto(ProductDto productDto) {
-      this.productDto = productDto;
    }
 
    public int getQuantity() {
@@ -74,11 +53,21 @@ public class OrderProductDto {
       this.cratedAt = cratedAt;
    }
 
-   public CustomerDto getCustomerDto() {
-      return customerDto;
+   public OrderDto getOrderDto() {
+      return orderDto;
    }
 
-   public void setCustomerDto(CustomerDto customerDto) {
-      this.customerDto = customerDto;
+   public void setOrderDto(OrderDto orderDto) {
+      this.orderDto = orderDto;
+   }
+
+   public ProductDto getProductDto() {
+      return productDto;
+   }
+
+   public void setProductDto(ProductDto productDto) {
+      this.productDto = productDto;
    }
 }
+
+

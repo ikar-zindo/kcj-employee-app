@@ -1,27 +1,19 @@
 package com.kcurryjib.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.kcurryjib.entity.Cart;
-import com.kcurryjib.entity.Product;
-
 import java.time.LocalDateTime;
+
 
 public class CartProductDto {
 
    private long id;
 
-   @JsonProperty("cart")
    private CartDto cartDto;
 
-   @JsonProperty("product")
    private ProductDto productDto;
 
    private int quantity;
 
    private LocalDateTime cratedAt;
-
-   @JsonProperty("customer")
-   private CustomerDto customerDto;
 
    public CartProductDto() {
    }
@@ -64,13 +56,5 @@ public class CartProductDto {
 
    public void setCratedAt(LocalDateTime cratedAt) {
       this.cratedAt = cratedAt;
-   }
-
-   public CustomerDto getCustomerDto() {
-      return customerDto;
-   }
-
-   public void setCustomerDto(CustomerDto customerDto) {
-      this.customerDto = customerDto;
    }
 }

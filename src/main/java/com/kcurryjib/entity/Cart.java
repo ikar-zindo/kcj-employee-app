@@ -14,7 +14,7 @@ public class Cart {
    private long id;
 
    @OneToOne(cascade = CascadeType.ALL)
-   @JoinColumn(name = "customer_id")
+   @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
    private Customer customer;
 
    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
