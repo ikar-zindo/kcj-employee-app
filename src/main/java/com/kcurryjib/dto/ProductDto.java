@@ -1,10 +1,9 @@
 package com.kcurryjib.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+
 
 public class ProductDto {
 
@@ -16,16 +15,15 @@ public class ProductDto {
 
    private BigDecimal price;
 
-   @JsonProperty("restaurant")
-   private RestaurantDto restaurantDto;
-
    private LocalDateTime createdAt;
 
    private boolean isAvailable;
 
+   private RestaurantDto restaurantDto;
 
-   @JsonProperty("cartProduct")
    private List<CartProductDto> cartProductsDto;
+
+   private List<OrderProductDto> orderProductsDto;
 
    public ProductDto() {
    }
@@ -78,6 +76,14 @@ public class ProductDto {
       isAvailable = available;
    }
 
+   public RestaurantDto getRestaurantDto() {
+      return restaurantDto;
+   }
+
+   public void setRestaurantDto(RestaurantDto restaurantDto) {
+      this.restaurantDto = restaurantDto;
+   }
+
    public List<CartProductDto> getCartProductsDto() {
       return cartProductsDto;
    }
@@ -86,11 +92,11 @@ public class ProductDto {
       this.cartProductsDto = cartProductsDto;
    }
 
-   public RestaurantDto getRestaurantDto() {
-      return restaurantDto;
+   public List<OrderProductDto> getOrderProductsDto() {
+      return orderProductsDto;
    }
 
-   public void setRestaurantDto(RestaurantDto restaurantDto) {
-      this.restaurantDto = restaurantDto;
+   public void setOrderProductsDto(List<OrderProductDto> orderProductsDto) {
+      this.orderProductsDto = orderProductsDto;
    }
 }

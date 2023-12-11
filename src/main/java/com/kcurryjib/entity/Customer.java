@@ -7,7 +7,6 @@ import jakarta.validation.constraints.Pattern;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "customer")
@@ -30,6 +29,9 @@ public class Customer {
    @Column(name = "email")
    private String email;
 
+   @Column(name = "password")
+   private String password;
+
    @NotBlank(message = "Phone cant be empty")
    @Pattern(regexp = "\\+\\d{8,15}", message = "Phone is not valid")
    @Column(name = "phone_number")
@@ -43,23 +45,11 @@ public class Customer {
    @Column(name = "postal_code")
    private String postal_code;
 
-   @Column(name = "password")
-   private String password;
-
    @Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
    private LocalDateTime createdAt;
 
    @Column(name = "is_blocked")
    private boolean isBlocked;
-
-   /**
-    * Здесь было в скобках (mappedBy = "customer"),
-    * но в таком случае добавляется поле (customer_cart_product_id).
-    * Но без этого, они всё равно создаются
-    *
-    * (name = "cart_product") & (name = "order_product") = без них создаются таблицы связей
-    * customer_cart_products & customer_order_products, которые мне не нужны так как я их сам явно создаю
-    */
 
    // todo: понять, что здесь происходит
    @OneToOne(mappedBy = "customer")
@@ -192,4 +182,6 @@ public class Customer {
    public void setReviews(List<Review> reviews) {
       this.reviews = reviews;
    }
+
+
 }

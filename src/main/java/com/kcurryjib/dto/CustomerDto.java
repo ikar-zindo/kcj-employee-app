@@ -1,10 +1,8 @@
 package com.kcurryjib.dto;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.time.LocalDateTime;
 import java.util.List;
+
 
 public class CustomerDto {
 
@@ -16,28 +14,23 @@ public class CustomerDto {
 
    private String email;
 
+   private String password;
+
    private String phoneNumber;
 
    private String address;
 
    private String postal_code;
 
-   @JsonInclude(JsonInclude.Include.NON_NULL) // if the value is `null` then it will not be output to JSON
-   private String password;
-
    private LocalDateTime createdAt;
 
    private boolean isBlocked;
 
-
-   @JsonProperty("cart")
    private CartDto cartDto;
 
-   @JsonProperty("cartProducts")
-   private List<CartProductDto> cartProductsDto;
+   private List<OrderDto> ordersDto;
 
-   @JsonProperty("orderProducts")
-   private List<OrderProductDto> orderProductsDto;
+   private List<ReviewDto> reviewsDto;
 
    public CustomerDto() {
    }
@@ -74,6 +67,14 @@ public class CustomerDto {
       this.email = email;
    }
 
+   public String getPassword() {
+      return password;
+   }
+
+   public void setPassword(String password) {
+      this.password = password;
+   }
+
    public String getPhoneNumber() {
       return phoneNumber;
    }
@@ -96,14 +97,6 @@ public class CustomerDto {
 
    public void setPostal_code(String postal_code) {
       this.postal_code = postal_code;
-   }
-
-   public String getPassword() {
-      return password;
-   }
-
-   public void setPassword(String password) {
-      this.password = password;
    }
 
    public LocalDateTime getCreatedAt() {
@@ -130,19 +123,19 @@ public class CustomerDto {
       this.cartDto = cartDto;
    }
 
-   public List<CartProductDto> getCartProductsDto() {
-      return cartProductsDto;
+   public List<OrderDto> getOrdersDto() {
+      return ordersDto;
    }
 
-   public void setCartProductsDto(List<CartProductDto> cartProductsDto) {
-      this.cartProductsDto = cartProductsDto;
+   public void setOrdersDto(List<OrderDto> ordersDto) {
+      this.ordersDto = ordersDto;
    }
 
-   public List<OrderProductDto> getOrderProductsDto() {
-      return orderProductsDto;
+   public List<ReviewDto> getReviewsDto() {
+      return reviewsDto;
    }
 
-   public void setOrderProductsDto(List<OrderProductDto> orderProductsDto) {
-      this.orderProductsDto = orderProductsDto;
+   public void setReviewsDto(List<ReviewDto> reviewsDto) {
+      this.reviewsDto = reviewsDto;
    }
 }
