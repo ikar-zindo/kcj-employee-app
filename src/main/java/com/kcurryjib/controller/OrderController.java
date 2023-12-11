@@ -1,7 +1,7 @@
 package com.kcurryjib.controller;
 
-import com.kcurryjib.dto.CustomerDto;
-import com.kcurryjib.service.CustomerService;
+import com.kcurryjib.dto.OrderDto;
+import com.kcurryjib.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,16 +12,16 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/customer")
-public class CustomerController {
+@RequestMapping("/order")
+public class OrderController {
 
    @Autowired
-   private CustomerService customerService;
+   private OrderService orderService;
 
    @GetMapping
-   public ResponseEntity<List<CustomerDto>> gatAll() {
-      List<CustomerDto> customersDto = customerService.getAll();
+   public ResponseEntity<List<OrderDto>> getAll() {
+      List<OrderDto> ordersDto = orderService.getAll();
 
-      return new ResponseEntity<>(customersDto, HttpStatus.OK);
+      return new ResponseEntity<>(ordersDto, HttpStatus.OK);
    }
 }

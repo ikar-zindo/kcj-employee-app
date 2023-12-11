@@ -19,8 +19,6 @@ public class RestaurantController {
    @Autowired
    private RestaurantService service;
 
-
-
    @GetMapping
    public ResponseEntity<List<RestaurantDto>> getAll() {
       List<RestaurantDto> restaurants = service.getAll();
