@@ -109,7 +109,7 @@ public class Mappers {
    public ProductDto convertToProductDto(Product product) {
       ProductDto productDto = modelMapper.map(product, ProductDto.class);
 
-      productDto.setRestaurantDto(convertToRestaurantDto(product.getRestaurant()));
+//      productDto.setRestaurantDto(convertToRestaurantDto(product.getRestaurant()));
 //      productDto.setCartProductsDto(convertToCartProductsDto(product.getCartProducts())); // need List
 //      productDto.setOrderProductsDto(convertToOrderProductsDto(product.getOrderProducts())); // need List
 
@@ -120,7 +120,7 @@ public class Mappers {
    public RestaurantDto convertToRestaurantDto(Restaurant restaurant) {
       RestaurantDto restaurantDto = modelMapper.map(restaurant, RestaurantDto.class);
 
-//      restaurantDto.setProductsDto(convertToProductsDto(restaurant.getProducts()));
+      restaurantDto.setProductsDto(convertToProductsDto(restaurant.getProducts()));
 //      restaurantDto.setReviewsDto(convertToReviewsDto(restaurant.getReviews()));
 //      restaurantDto.setOrdersDto(convertToOrdersDto(restaurant.getOrders()));
 //      restaurantDto.setEmployeesDto(convertToEmployeesDto(restaurant.getEmployees()));
@@ -128,11 +128,11 @@ public class Mappers {
       return restaurantDto;
    }
 
-//   public List<ProductDto> convertToProductsDto(List<Product> products) {
-//      return products.stream()
-//              .map(this::convertToProductDto)
-//              .collect(Collectors.toList());
-//   }
+   public List<ProductDto> convertToProductsDto(List<Product> products) {
+      return products.stream()
+              .map(this::convertToProductDto)
+              .collect(Collectors.toList());
+   }
 
 //   public List<EmployeeDto> convertToEmployeesDto(List<Employee> employees) {
 //      return employees.stream()
