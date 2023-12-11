@@ -3,7 +3,7 @@ package com.kcurryjib.service;
 import com.kcurryjib.config.MapperUtil;
 import com.kcurryjib.dto.ReviewDto;
 import com.kcurryjib.entity.Review;
-import com.kcurryjib.mapper.Mappers;
+import com.kcurryjib.mapper.ReviewMapper;
 import com.kcurryjib.repo.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,18 +15,14 @@ import java.util.List;
 public class ReviewService {
 
    @Autowired
-   private ReviewRepository repository;
+   private ReviewRepository reviewRepository;
 
    @Autowired
-   private Mappers mappers;
+   private ReviewMapper reviewMapper;
 
    public List<ReviewDto> getAll() {
-      List<Review> reviews = new ArrayList<>();
-      reviews.addAll(repository.findAll());
-//      repository.findAll().forEach(reviews::add);
+      List<Review> reviews = new ArrayList<>(reviewRepository.findAll());
 
-      List<ReviewDto> reviewsDto = MapperUtil.convertlist(reviews, mappers::convertToReviewDto);
-
-      return reviewsDto;
+      return MapperUtil.convertlist(reviews, reviewMapper::convertToReviewDto);
    }
 }
