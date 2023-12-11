@@ -3,7 +3,6 @@ package com.kcurryjib.entity;
 import jakarta.persistence.*;
 
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "cart")
@@ -14,11 +13,11 @@ public class Cart {
    @Column(name = "cart_id")
    private long id;
 
-   @OneToOne
+   @OneToOne(cascade = CascadeType.ALL)
    @JoinColumn(name = "customer_id")
    private Customer customer;
 
-   @OneToMany(mappedBy = "cart")
+   @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
    private List<CartProduct> cartProducts;
 
    public Cart() {
@@ -50,28 +49,5 @@ public class Cart {
 
    public void setCartProducts(List<CartProduct> cartProducts) {
       this.cartProducts = cartProducts;
-   }
-
-   @Override
-   public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
-      Cart cart = (Cart) o;
-      return id == cart.id && Objects.equals(customer, cart.customer) &&
-              Objects.equals(cartProducts, cart.cartProducts);
-   }
-
-   @Override
-   public int hashCode() {
-      return Objects.hash(id, customer, cartProducts);
-   }
-
-   @Override
-   public String toString() {
-      return "Cart{" +
-              "id=" + id +
-              ", customer=" + customer +
-              ", CartProducts=" + cartProducts +
-              '}';
    }
 }

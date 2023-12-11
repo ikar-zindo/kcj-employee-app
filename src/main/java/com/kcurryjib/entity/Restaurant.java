@@ -2,6 +2,7 @@ package com.kcurryjib.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -36,6 +37,18 @@ public class Restaurant {
 
    @Column(name = "is_open")
    private boolean isOpen;
+
+   @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+   private List<Product> products;
+
+   @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+   private List<Review> reviews;
+
+   @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+   private List<Order> orders;
+
+   @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+   private List<Employee> employees;
 
    public Restaurant() {
    }
@@ -121,5 +134,37 @@ public class Restaurant {
 
    public void setOpen(boolean open) {
       isOpen = open;
+   }
+
+   public List<Product> getProducts() {
+      return products;
+   }
+
+   public void setProducts(List<Product> products) {
+      this.products = products;
+   }
+
+   public List<Review> getReviews() {
+      return reviews;
+   }
+
+   public void setReviews(List<Review> reviews) {
+      this.reviews = reviews;
+   }
+
+   public List<Order> getOrders() {
+      return orders;
+   }
+
+   public void setOrders(List<Order> orders) {
+      this.orders = orders;
+   }
+
+   public List<Employee> getEmployees() {
+      return employees;
+   }
+
+   public void setEmployees(List<Employee> employees) {
+      this.employees = employees;
    }
 }

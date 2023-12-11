@@ -25,18 +25,21 @@ public class Product {
    @Column(name = "price")
    private BigDecimal price;
 
-   @ManyToOne
-   @JoinColumn(name = "restaurant_id")
-   private Restaurant restaurant;
-
    @Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
    private LocalDateTime createdAt;
 
    @Column(name = "is_available")
    private boolean isAvailable;
 
-   @OneToMany(mappedBy = "product")
+   @ManyToOne(fetch = FetchType.LAZY)
+   @JoinColumn(name = "restaurant_id")
+   private Restaurant restaurant;
+
+   @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
    private List<CartProduct> cartProducts;
+
+   @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+   private List<OrderProduct> orderProducts;
 
    public Product() {
    }
@@ -98,6 +101,14 @@ public class Product {
       isAvailable = available;
    }
 
+   public Restaurant getRestaurant() {
+      return restaurant;
+   }
+
+   public void setRestaurant(Restaurant restaurant) {
+      this.restaurant = restaurant;
+   }
+
    public List<CartProduct> getCartProducts() {
       return cartProducts;
    }
@@ -106,11 +117,11 @@ public class Product {
       this.cartProducts = cartProducts;
    }
 
-   public Restaurant getRestaurant() {
-      return restaurant;
+   public List<OrderProduct> getOrderProducts() {
+      return orderProducts;
    }
 
-   public void setRestaurant(Restaurant restaurant) {
-      this.restaurant = restaurant;
+   public void setOrderProducts(List<OrderProduct> orderProducts) {
+      this.orderProducts = orderProducts;
    }
 }

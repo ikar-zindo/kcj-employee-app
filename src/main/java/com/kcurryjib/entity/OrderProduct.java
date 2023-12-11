@@ -15,14 +15,6 @@ public class OrderProduct {
    @Column(name = "order_product_id")
    private long id;
 
-   @ManyToOne
-   @JoinColumn(name = "order_id")
-   private Order order;
-
-   @ManyToOne
-   @JoinColumn(name = "product_id")
-   private Product product;
-
    @Column(name = "quantity")
    private int quantity;
 
@@ -32,8 +24,13 @@ public class OrderProduct {
    @Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
    private LocalDateTime cratedAt;
 
-   @ManyToOne(fetch = FetchType.LAZY)
-   private Customer customer;
+   @ManyToOne
+   @JoinColumn(name = "order_id")
+   private Order order;
+
+   @ManyToOne
+   @JoinColumn(name = "product_id")
+   private Product product;
 
    public OrderProduct() {
    }
@@ -51,22 +48,6 @@ public class OrderProduct {
 
    public void setId(long id) {
       this.id = id;
-   }
-
-   public Order getOrder() {
-      return order;
-   }
-
-   public void setOrder(Order order) {
-      this.order = order;
-   }
-
-   public Product getProduct() {
-      return product;
-   }
-
-   public void setProduct(Product product) {
-      this.product = product;
    }
 
    public int getQuantity() {
@@ -93,38 +74,19 @@ public class OrderProduct {
       this.cratedAt = cratedAt;
    }
 
-   public Customer getCustomer() {
-      return customer;
+   public Order getOrder() {
+      return order;
    }
 
-   public void setCustomer(Customer customer) {
-      this.customer = customer;
+   public void setOrder(Order order) {
+      this.order = order;
    }
 
-   @Override
-   public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
-      OrderProduct that = (OrderProduct) o;
-      return id == that.id && quantity == that.quantity && Objects.equals(order, that.order) &&
-              Objects.equals(product, that.product) && Objects.equals(total, that.total) &&
-              Objects.equals(cratedAt, that.cratedAt);
+   public Product getProduct() {
+      return product;
    }
 
-   @Override
-   public int hashCode() {
-      return Objects.hash(id, order, product, quantity, total, cratedAt);
-   }
-
-   @Override
-   public String toString() {
-      return "OrderProduct{" +
-              "id=" + id +
-              ", order=" + order +
-              ", product=" + product +
-              ", quantity=" + quantity +
-              ", total=" + total +
-              ", cratedAt=" + cratedAt +
-              '}';
+   public void setProduct(Product product) {
+      this.product = product;
    }
 }

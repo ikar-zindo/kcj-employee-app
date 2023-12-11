@@ -3,7 +3,6 @@ package com.kcurryjib.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @Entity
 @Table(name = "cart_product")
@@ -14,11 +13,11 @@ public class CartProduct {
    @Column(name = "cart_product_id")
    private long id;
 
-   @ManyToOne
+   @ManyToOne(fetch = FetchType.LAZY)
    @JoinColumn(name = "cart_id")
    private Cart cart;
 
-   @ManyToOne
+   @ManyToOne(fetch = FetchType.LAZY)
    @JoinColumn(name = "product_id")
    private Product product;
 
@@ -27,9 +26,6 @@ public class CartProduct {
 
    @Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
    private LocalDateTime cratedAt;
-
-   @ManyToOne(fetch = FetchType.LAZY)
-   private Customer customer;
 
    public CartProduct() {
    }
@@ -78,13 +74,5 @@ public class CartProduct {
 
    public void setCratedAt(LocalDateTime cratedAt) {
       this.cratedAt = cratedAt;
-   }
-
-   public Customer getCustomer() {
-      return customer;
-   }
-
-   public void setCustomer(Customer customer) {
-      this.customer = customer;
    }
 }

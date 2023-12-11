@@ -15,7 +15,7 @@ public class Review {
    @Column(name = "review_id")
    private long id;
 
-   @OneToOne
+   @ManyToOne
    @JoinColumn(name = "restaurant_id")
    private Restaurant restaurant;
 
