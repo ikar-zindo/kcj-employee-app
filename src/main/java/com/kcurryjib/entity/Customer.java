@@ -18,12 +18,12 @@ public class Customer {
    @Column(name = "customer_id")
    private long id;
 
-   @Column(name = "first_name")
    @Pattern(regexp = "[A-Z][a-z]{1,49}", message = "a string should start with a capital letter (rest lowercase) and contain at least two letters")
+   @Column(name = "first_name")
    private String firstName;
 
-   @Column(name = "last_name")
    @Pattern(regexp = "[A-Z][a-z]{1,49}", message = "a string should start with a capital letter (rest lowercase) and contain at least two letters")
+   @Column(name = "last_name")
    private String lastName;
 
    @Email(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$", message = "Email is not valid")
@@ -46,9 +46,6 @@ public class Customer {
    @Column(name = "password")
    private String password;
 
-   @OneToOne(mappedBy = "customer")
-   private Cart cart;
-
    @Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
    private LocalDateTime createdAt;
 
@@ -63,13 +60,16 @@ public class Customer {
     * (name = "cart_product") & (name = "order_product") = без них создаются таблицы связей
     * customer_cart_products & customer_order_products, которые мне не нужны так как я их сам явно создаю
     */
-   @OneToMany
-   @JoinTable(name = "cart_product")
-   private List<CartProduct> cartProducts;
 
-   @OneToMany
-   @JoinTable(name = "order_product")
-   private List<OrderProduct> orderProducts;
+   // todo: понять, что здесь происходит
+   @OneToOne(mappedBy = "customer")
+   private Cart cart;
+
+   @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+   private List<Order> orders;
+
+   @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+   private List<Review> reviews;
 
    public Customer() {
    }
@@ -153,14 +153,6 @@ public class Customer {
       this.password = password;
    }
 
-   public Cart getCart() {
-      return cart;
-   }
-
-   public void setCart(Cart cart) {
-      this.cart = cart;
-   }
-
    public LocalDateTime getCreatedAt() {
       return createdAt;
    }
@@ -177,56 +169,27 @@ public class Customer {
       isBlocked = blocked;
    }
 
-   public List<CartProduct> getCartProducts() {
-      return cartProducts;
+   public Cart getCart() {
+      return cart;
    }
 
-   public void setCartProducts(List<CartProduct> cartProducts) {
-      this.cartProducts = cartProducts;
+   public void setCart(Cart cart) {
+      this.cart = cart;
    }
 
-   public List<OrderProduct> getOrderProducts() {
-      return orderProducts;
+   public List<Order> getOrders() {
+      return orders;
    }
 
-   public void setOrderProducts(List<OrderProduct> orderProducts) {
-      this.orderProducts = orderProducts;
+   public void setOrders(List<Order> orders) {
+      this.orders = orders;
    }
 
-   @Override
-   public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
-      Customer customer = (Customer) o;
-      return id == customer.id && isBlocked == customer.isBlocked && Objects.equals(firstName, customer.firstName) &&
-              Objects.equals(lastName, customer.lastName) && Objects.equals(email, customer.email) &&
-              Objects.equals(phoneNumber, customer.phoneNumber) && Objects.equals(address, customer.address) &&
-              Objects.equals(postal_code, customer.postal_code) && Objects.equals(password, customer.password) &&
-              Objects.equals(cart, customer.cart) && Objects.equals(createdAt, customer.createdAt) &&
-              Objects.equals(cartProducts, customer.cartProducts) && Objects.equals(orderProducts, customer.orderProducts);
+   public List<Review> getReviews() {
+      return reviews;
    }
 
-   @Override
-   public int hashCode() {
-      return Objects.hash(id, firstName, lastName, email, phoneNumber, address, postal_code, password, cart, createdAt, isBlocked, cartProducts, orderProducts);
-   }
-
-   @Override
-   public String toString() {
-      return "Customer{" +
-              "id=" + id +
-              ", firstName='" + firstName + '\'' +
-              ", lastName='" + lastName + '\'' +
-              ", email='" + email + '\'' +
-              ", phoneNumber='" + phoneNumber + '\'' +
-              ", address='" + address + '\'' +
-              ", postal_code='" + postal_code + '\'' +
-              ", password='" + password + '\'' +
-              ", cart=" + cart +
-              ", createdAt=" + createdAt +
-              ", isBlocked=" + isBlocked +
-              ", cartProducts=" + cartProducts +
-              ", orderProducts=" + orderProducts +
-              '}';
+   public void setReviews(List<Review> reviews) {
+      this.reviews = reviews;
    }
 }

@@ -21,7 +21,7 @@ public class Order {
    @JoinColumn(name = "customer_id")
    private Customer customer;
 
-   @OneToOne
+   @ManyToOne
    @JoinColumn(name = "restaurant_id")
    private Restaurant restaurant;
 
@@ -41,7 +41,7 @@ public class Order {
    @Column(name = "order_status")
    private String orderStatus;
 
-   @OneToMany(mappedBy = "order")
+   @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
    private List<OrderProduct> orderProducts;
 
    public Order() {
@@ -118,35 +118,5 @@ public class Order {
 
    public void setOrderProducts(List<OrderProduct> orderProducts) {
       this.orderProducts = orderProducts;
-   }
-
-   @Override
-   public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
-      Order order = (Order) o;
-      return id == order.id && Objects.equals(customer, order.customer) &&
-              Objects.equals(restaurant, order.restaurant) && Objects.equals(employee, order.employee) &&
-              Objects.equals(orderDate, order.orderDate) && Objects.equals(deliveryAddress, order.deliveryAddress) &&
-              Objects.equals(totalAmount, order.totalAmount) && Objects.equals(orderStatus, order.orderStatus);
-   }
-
-   @Override
-   public int hashCode() {
-      return Objects.hash(id, customer, restaurant, employee, orderDate, deliveryAddress, totalAmount, orderStatus);
-   }
-
-   @Override
-   public String toString() {
-      return "Order{" +
-              "id=" + id +
-              ", customer=" + customer +
-              ", restaurant=" + restaurant +
-              ", employee=" + employee +
-              ", orderDate=" + orderDate +
-              ", deliveryAddress='" + deliveryAddress + '\'' +
-              ", totalAmount=" + totalAmount +
-              ", orderStatus='" + orderStatus + '\'' +
-              '}';
    }
 }

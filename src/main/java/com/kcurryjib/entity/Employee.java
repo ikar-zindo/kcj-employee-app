@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -36,12 +37,7 @@ public class Employee {
 
    @Enumerated(EnumType.STRING)
    @Column(name = "role")
-   @NotBlank
    private Role role;
-
-   @ManyToOne
-   @JoinColumn(name = "restaurant_id")
-   private Restaurant restaurant;
 
    @Column(name = "password")
    private String password;
@@ -56,6 +52,13 @@ public class Employee {
 
    @Column(name = "is_active")
    private boolean isActive;
+
+   @ManyToOne
+   @JoinColumn(name = "restaurant_id")
+   private Restaurant restaurant;
+
+   @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+   private List<Order> orders;
 
    public Employee() {
    }
@@ -123,14 +126,6 @@ public class Employee {
       this.role = role;
    }
 
-   public Restaurant getRestaurant() {
-      return restaurant;
-   }
-
-   public void setRestaurant(Restaurant restaurant) {
-      this.restaurant = restaurant;
-   }
-
    public String getPassword() {
       return password;
    }
@@ -163,37 +158,19 @@ public class Employee {
       isActive = active;
    }
 
-   @Override
-   public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
-      Employee employee = (Employee) o;
-      return id == employee.id && isActive == employee.isActive && Objects.equals(firstName, employee.firstName) &&
-              Objects.equals(lastName, employee.lastName) && Objects.equals(email, employee.email) &&
-              Objects.equals(nickname, employee.nickname) && role == employee.role &&
-              Objects.equals(restaurant, employee.restaurant) && Objects.equals(password, employee.password) &&
-              Objects.equals(phoneNumber, employee.phoneNumber) && Objects.equals(createdAt, employee.createdAt);
+   public Restaurant getRestaurant() {
+      return restaurant;
    }
 
-   @Override
-   public int hashCode() {
-      return Objects.hash(id, firstName, lastName, email, nickname, role, restaurant, password, phoneNumber, createdAt, isActive);
+   public void setRestaurant(Restaurant restaurant) {
+      this.restaurant = restaurant;
    }
 
-   @Override
-   public String toString() {
-      return "Employee{" +
-              "id=" + id +
-              ", firstName='" + firstName + '\'' +
-              ", lastName='" + lastName + '\'' +
-              ", email='" + email + '\'' +
-              ", nickname='" + nickname + '\'' +
-              ", role=" + role +
-              ", restaurant=" + restaurant +
-              ", password='" + password + '\'' +
-              ", phoneNumber='" + phoneNumber + '\'' +
-              ", createdAt=" + createdAt +
-              ", isActive=" + isActive +
-              '}';
+   public List<Order> getOrders() {
+      return orders;
+   }
+
+   public void setOrders(List<Order> orders) {
+      this.orders = orders;
    }
 }
