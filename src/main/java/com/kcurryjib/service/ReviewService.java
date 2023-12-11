@@ -22,7 +22,8 @@ public class ReviewService {
 
    public List<ReviewDto> getAll() {
       List<Review> reviews = new ArrayList<>();
-      repository.findAll().forEach(reviews::add);
+      reviews.addAll(repository.findAll());
+//      repository.findAll().forEach(reviews::add);
 
       List<ReviewDto> reviewsDto = MapperUtil.convertlist(reviews, mappers::convertToReviewDto);
 

@@ -1,6 +1,9 @@
 package com.kcurryjib.service;
 
+import com.kcurryjib.config.MapperUtil;
+import com.kcurryjib.dto.RestaurantDto;
 import com.kcurryjib.entity.Restaurant;
+import com.kcurryjib.mapper.Mappers;
 import com.kcurryjib.repo.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,9 +15,17 @@ import java.util.List;
 public class RestaurantService {
 
    @Autowired
-   RestaurantRepository repository;
+   private RestaurantRepository repository;
 
-   public List<Restaurant> getAll() {
-      return new ArrayList<>(repository.findAll());
+   @Autowired
+   private Mappers mappers;
+
+   public List<RestaurantDto> getAll() {
+      List<Restaurant> restaurants = new ArrayList<>();
+      restaurants.addAll(repository.findAll());
+
+      List<RestaurantDto> restaurantsDto = MapperUtil.convertlist(restaurants, mappers::convertToRestaurantDto);
+
+      return restaurantsDto;
    }
 }

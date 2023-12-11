@@ -1,5 +1,6 @@
 package com.kcurryjib.controller;
 
+import com.kcurryjib.dto.RestaurantDto;
 import com.kcurryjib.entity.Restaurant;
 import com.kcurryjib.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,8 @@ public class RestaurantController {
 
 
    @GetMapping
-   public ResponseEntity<List<Restaurant>> getAll() {
-      List<Restaurant> restaurants = service.getAll();
+   public ResponseEntity<List<RestaurantDto>> getAll() {
+      List<RestaurantDto> restaurants = service.getAll();
       return new ResponseEntity<>(restaurants, HttpStatus.OK);
    }
 }
