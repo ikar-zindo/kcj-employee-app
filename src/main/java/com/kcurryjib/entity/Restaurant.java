@@ -53,17 +53,6 @@ public class Restaurant {
    public Restaurant() {
    }
 
-   public Restaurant(String name, String address, String phoneNumber, String openingHours,
-                     String cuisineType, String description, String socialMediaLinks) {
-      this.name = name;
-      this.address = address;
-      this.phoneNumber = phoneNumber;
-      this.openingHours = openingHours;
-      this.cuisineType = cuisineType;
-      this.description = description;
-      this.socialMediaLinks = socialMediaLinks;
-   }
-
    public long getId() {
       return id;
    }

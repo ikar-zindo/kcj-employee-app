@@ -44,15 +44,6 @@ public class Product {
    public Product() {
    }
 
-   public Product(String name, String description, BigDecimal price, Restaurant restaurant) {
-      this.name = name;
-      this.description = description;
-      this.price = price;
-      this.restaurant = restaurant;
-
-      this.isAvailable = true;
-   }
-
    public long getId() {
       return id;
    }
