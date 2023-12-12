@@ -23,10 +23,6 @@ public class Cart {
    public Cart() {
    }
 
-   public Cart(Customer customer) {
-      this.customer = customer;
-   }
-
    public long getId() {
       return id;
    }

@@ -51,7 +51,6 @@ public class Customer {
    @Column(name = "is_blocked")
    private boolean isBlocked;
 
-   // todo: понять, что здесь происходит
    @OneToOne(mappedBy = "customer")
    private Cart cart;
 
@@ -62,21 +61,6 @@ public class Customer {
    private List<Review> reviews;
 
    public Customer() {
-   }
-
-   public Customer(String firstName, String lastName, String email, String phoneNumber,
-                   String address, String postal_code, String password, Cart cart) {
-
-      this.firstName = firstName;
-      this.lastName = lastName;
-      this.email = email;
-      this.phoneNumber = phoneNumber;
-      this.address = address;
-      this.postal_code = postal_code;
-      this.password = password;
-      this.cart = cart;
-
-      isBlocked = false;
    }
 
    public long getId() {
@@ -182,6 +166,4 @@ public class Customer {
    public void setReviews(List<Review> reviews) {
       this.reviews = reviews;
    }
-
-
 }

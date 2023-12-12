@@ -44,7 +44,6 @@ public class Order {
    private List<OrderProduct> orderProducts;
 
    public Order() {
-
    }
 
    public long getId() {

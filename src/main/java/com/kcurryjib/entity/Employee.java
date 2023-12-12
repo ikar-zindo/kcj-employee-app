@@ -62,21 +62,6 @@ public class Employee {
    public Employee() {
    }
 
-   public Employee(String firstName, String lastName, String email,
-                   String nickname, Role role,Restaurant restaurant, String password, String phoneNumber) {
-
-      this.firstName = firstName;
-      this.lastName = lastName;
-      this.email = email;
-      this.nickname = nickname;
-      this.restaurant = restaurant;
-      this.role = role;
-      this.password = password;
-      this.phoneNumber = phoneNumber;
-
-      isActive = true;
-   }
-
    public long getId() {
       return id;
    }

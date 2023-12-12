@@ -35,13 +35,6 @@ public class OrderProduct {
    public OrderProduct() {
    }
 
-   public OrderProduct(Order order, Product product, int quantity, BigDecimal total) {
-      this.order = order;
-      this.product = product;
-      this.quantity = quantity;
-      this.total = total;
-   }
-
    public long getId() {
       return id;
    }
