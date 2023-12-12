@@ -17,6 +17,7 @@ public class CustomerMapper {
    @Autowired
    private ModelMapper mapper;
 
+   // convert to DTO
    public CustomerDto convertToCustomerDto(Customer customer) {
       CustomerDto customerDto = mapper.map(customer, CustomerDto.class);
 
@@ -26,6 +27,19 @@ public class CustomerMapper {
    public List<CustomerDto> convertToCustomersDto(List<Customer> customers) {
       return customers.stream()
               .map(this::convertToCustomerDto)
+              .collect(Collectors.toList());
+   }
+
+   // convert to entity
+   public Customer convertToCustomer(CustomerDto customerDto) {
+      Customer customer = mapper.map(customerDto, Customer.class);
+
+      return customer;
+   }
+
+   public List<Customer> convertToCustomers(List<CustomerDto> customersDto) {
+      return customersDto.stream()
+              .map(this::convertToCustomer)
               .collect(Collectors.toList());
    }
 }

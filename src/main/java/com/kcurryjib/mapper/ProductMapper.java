@@ -15,6 +15,7 @@ public class ProductMapper {
    @Autowired
    private ModelMapper mapper;
 
+   // convert to DTO
    public ProductDto convertToProductDto(Product product) {
       ProductDto productDto = mapper.map(product, ProductDto.class);
 
@@ -24,6 +25,19 @@ public class ProductMapper {
    public List<ProductDto> convertToProductsDto(List<Product> products) {
       return products.stream()
               .map(this::convertToProductDto)
+              .collect(Collectors.toList());
+   }
+
+   // convert to entity
+   public Product convertToProduct(ProductDto productDto) {
+      Product product = mapper.map(productDto, Product.class);
+
+      return product;
+   }
+
+   public List<Product> convertToProducts(List<ProductDto> productsDto) {
+      return productsDto.stream()
+              .map(this::convertToProduct)
               .collect(Collectors.toList());
    }
 }

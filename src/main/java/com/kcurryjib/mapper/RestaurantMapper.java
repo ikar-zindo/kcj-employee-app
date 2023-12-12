@@ -15,6 +15,7 @@ public class RestaurantMapper {
    @Autowired
    private ModelMapper mapper;
 
+   // convert to DTO
    public RestaurantDto convertToRestaurantDto(Restaurant restaurant) {
       RestaurantDto restaurantDto = mapper.map(restaurant, RestaurantDto.class);
 
@@ -24,6 +25,19 @@ public class RestaurantMapper {
    public List<RestaurantDto> convertToRestaurantsDto(List<Restaurant> restaurants) {
       return restaurants.stream()
               .map(this::convertToRestaurantDto)
+              .collect(Collectors.toList());
+   }
+
+   // convert to entity
+   public Restaurant convertToRestaurant(RestaurantDto restaurantDto) {
+      Restaurant restaurant = mapper.map(restaurantDto, Restaurant.class);
+
+      return restaurant;
+   }
+
+   public List<Restaurant> convertToRestaurants(List<RestaurantDto> restaurantsDto) {
+      return restaurantsDto.stream()
+              .map(this::convertToRestaurant)
               .collect(Collectors.toList());
    }
 }

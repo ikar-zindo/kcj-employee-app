@@ -12,9 +12,17 @@ public class CartMapper {
    @Autowired
    private ModelMapper mapper;
 
+   // convert to DTO
    public CartDto convertToCartDto(Cart cart) {
       CartDto cartDto = mapper.map(cart, CartDto.class);
 
       return cartDto;
+   }
+
+   // convert to entity
+   public Cart convertTocart(CartDto cartDto) {
+      Cart cart = mapper.map(cartDto, Cart.class);
+
+      return cart;
    }
 }
