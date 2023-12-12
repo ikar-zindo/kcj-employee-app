@@ -1,5 +1,7 @@
 package com.kcurryjib.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 
@@ -23,12 +25,16 @@ public class RestaurantDto {
 
    private boolean isOpen;
 
+   @JsonProperty("products")
    private List<ProductDto> productsDto;
 
+   @JsonProperty("reviews")
    private List<ReviewDto> reviewsDto;
 
+   @JsonProperty("orders")
    private List<OrderDto> ordersDto;
 
+   @JsonProperty("employees")
    private List<EmployeeDto> employeesDto;
 
    public RestaurantDto() {

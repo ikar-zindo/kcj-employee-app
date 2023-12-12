@@ -1,5 +1,7 @@
 package com.kcurryjib.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -19,10 +21,13 @@ public class ProductDto {
 
    private boolean isAvailable;
 
+   @JsonProperty("restaurant")
    private RestaurantDto restaurantDto;
 
+   @JsonProperty("cartProducts")
    private List<CartProductDto> cartProductsDto;
 
+   @JsonProperty("orderProducts")
    private List<OrderProductDto> orderProductsDto;
 
    public ProductDto() {

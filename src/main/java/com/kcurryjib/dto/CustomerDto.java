@@ -1,5 +1,7 @@
 package com.kcurryjib.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -26,10 +28,13 @@ public class CustomerDto {
 
    private boolean isBlocked;
 
+   @JsonProperty("cart")
    private CartDto cartDto;
 
+   @JsonProperty("order")
    private List<OrderDto> ordersDto;
 
+   @JsonProperty("review")
    private List<ReviewDto> reviewsDto;
 
    public CustomerDto() {

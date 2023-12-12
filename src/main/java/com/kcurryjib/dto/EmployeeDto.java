@@ -1,5 +1,6 @@
 package com.kcurryjib.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kcurryjib.entity.enums.Role;
 
 import java.time.LocalDateTime;
@@ -30,6 +31,7 @@ public class EmployeeDto {
 
    private RestaurantDto restaurantDto;
 
+   @JsonProperty("orders")
    private List<OrderDto> ordersDto;
 
    public EmployeeDto() {
