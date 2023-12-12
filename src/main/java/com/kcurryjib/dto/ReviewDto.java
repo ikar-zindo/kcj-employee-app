@@ -1,5 +1,6 @@
 package com.kcurryjib.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.math.BigDecimal;
@@ -8,18 +9,24 @@ import java.time.LocalDateTime;
 
 public class ReviewDto {
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private long id;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    @JsonProperty("restaurant")
    private RestaurantDto restaurantDto;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    @JsonProperty("customer")
    private CustomerDto customerDto;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private BigDecimal rating;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private String comment;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private LocalDateTime createdAt;
 
    public ReviewDto() {
@@ -72,4 +79,6 @@ public class ReviewDto {
    public void setCreatedAt(LocalDateTime createdAt) {
       this.createdAt = createdAt;
    }
+
+
 }

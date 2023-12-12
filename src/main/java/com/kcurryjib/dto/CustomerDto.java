@@ -1,5 +1,6 @@
 package com.kcurryjib.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDateTime;
@@ -8,32 +9,44 @@ import java.util.List;
 
 public class CustomerDto {
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private long id;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private String firstName;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private String lastName;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private String email;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private String password;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private String phoneNumber;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private String address;
 
-   private String postal_code;
+   @JsonInclude(JsonInclude.Include.NON_NULL)
+   private String postalCode;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private LocalDateTime createdAt;
 
    private boolean isBlocked;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    @JsonProperty("cart")
    private CartDto cartDto;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    @JsonProperty("order")
    private List<OrderDto> ordersDto;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    @JsonProperty("review")
    private List<ReviewDto> reviewsDto;
 
@@ -96,12 +109,12 @@ public class CustomerDto {
       this.address = address;
    }
 
-   public String getPostal_code() {
-      return postal_code;
+   public String getPostalCode() {
+      return postalCode;
    }
 
-   public void setPostal_code(String postal_code) {
-      this.postal_code = postal_code;
+   public void setPostalCode(String postalCode) {
+      this.postalCode = postalCode;
    }
 
    public LocalDateTime getCreatedAt() {

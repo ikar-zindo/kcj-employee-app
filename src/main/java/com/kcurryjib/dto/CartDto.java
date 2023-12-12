@@ -1,5 +1,6 @@
 package com.kcurryjib.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kcurryjib.entity.CartProduct;
 import com.kcurryjib.entity.Customer;
@@ -7,12 +8,14 @@ import com.kcurryjib.entity.Customer;
 import java.util.List;
 
 public class CartDto {
-
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private long id;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    @JsonProperty("customer")
    private CustomerDto customerDto;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    @JsonProperty("customerProducts")
    private List<CartProductDto> cartProductsDto;
 
