@@ -52,7 +52,7 @@ public class Employee {
    @Column(name = "is_active")
    private boolean isActive;
 
-   @ManyToOne
+   @ManyToOne(fetch = FetchType.LAZY)
    @JoinColumn(name = "restaurant_id")
    private Restaurant restaurant;
 

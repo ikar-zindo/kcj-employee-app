@@ -1,5 +1,7 @@
 package com.kcurryjib.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.time.LocalDateTime;
 
 
@@ -7,8 +9,10 @@ public class CartProductDto {
 
    private long id;
 
+   @JsonProperty("cart")
    private CartDto cartDto;
 
+   @JsonProperty("product")
    private ProductDto productDto;
 
    private int quantity;
