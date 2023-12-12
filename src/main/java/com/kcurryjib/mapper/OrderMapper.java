@@ -15,6 +15,7 @@ public class OrderMapper {
    @Autowired
    private ModelMapper mapper;
 
+   // convert to DTO
    public OrderDto convertToOrderDto(Order order ) {
       OrderDto orderDto = mapper.map(order, OrderDto.class);
 
@@ -26,4 +27,18 @@ public class OrderMapper {
               .map(this::convertToOrderDto)
               .collect(Collectors.toList());
    }
+
+   // convert to entity
+   public Order convertToOrder(OrderDto orderDto) {
+      Order order = mapper.map(orderDto, Order.class);
+
+      return order;
+   }
+
+   public List<Order> convertToOrders(List<OrderDto> ordersDto) {
+      return ordersDto.stream()
+              .map(this::convertToOrder)
+              .collect(Collectors.toList());
+   }
+
 }
