@@ -1,5 +1,6 @@
 package com.kcurryjib.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.math.BigDecimal;
@@ -9,24 +10,33 @@ import java.util.List;
 
 public class ProductDto {
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private long id;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private String name;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private String description;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private BigDecimal price;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private LocalDateTime createdAt;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private boolean isAvailable;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    @JsonProperty("restaurant")
    private RestaurantDto restaurantDto;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    @JsonProperty("cartProducts")
    private List<CartProductDto> cartProductsDto;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    @JsonProperty("orderProducts")
    private List<OrderProductDto> orderProductsDto;
 

@@ -1,5 +1,6 @@
 package com.kcurryjib.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kcurryjib.entity.enums.Role;
 
@@ -9,28 +10,40 @@ import java.util.List;
 
 public class EmployeeDto {
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private long id;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private String firstName;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private String lastName;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private String email;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private String nickname;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private Role role;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private String password;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private String phoneNumber;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private LocalDateTime createdAt;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private boolean isActive;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private RestaurantDto restaurantDto;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    @JsonProperty("orders")
    private List<OrderDto> ordersDto;
 

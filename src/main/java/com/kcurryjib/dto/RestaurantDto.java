@@ -1,5 +1,6 @@
 package com.kcurryjib.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
@@ -7,33 +8,46 @@ import java.util.List;
 
 public class RestaurantDto {
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private long id;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private String name;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private String address;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private String phoneNumber;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private String openingHours;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private String cuisineType;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private String description;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private String socialMediaLinks;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private boolean isOpen;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    @JsonProperty("products")
    private List<ProductDto> productsDto;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    @JsonProperty("reviews")
    private List<ReviewDto> reviewsDto;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    @JsonProperty("orders")
    private List<OrderDto> ordersDto;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    @JsonProperty("employees")
    private List<EmployeeDto> employeesDto;
 
