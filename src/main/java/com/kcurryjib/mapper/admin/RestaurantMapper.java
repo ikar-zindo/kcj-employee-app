@@ -1,4 +1,4 @@
-package com.kcurryjib.mapper;
+package com.kcurryjib.mapper.admin;
 
 import com.kcurryjib.dto.RestaurantDto;
 import com.kcurryjib.entity.Restaurant;
@@ -15,17 +15,33 @@ public class RestaurantMapper {
    @Autowired
    private ModelMapper mapper;
 
+   @Autowired
+   private ReviewMapper reviewMapper;
+
+   @Autowired
+   private EmployeeMapper employeeMapper;
+
    // convert to DTO
    public RestaurantDto convertToRestaurantDto(Restaurant restaurant) {
-      RestaurantDto restaurantDto = mapper.map(restaurant, RestaurantDto.class);
+      return mapper.map(restaurant, RestaurantDto.class);
+   }
+
+   public RestaurantDto showCustomersWithComments(Restaurant restaurant) {
+      RestaurantDto restaurantDto = convertToRestaurantDto(restaurant);
+
+      restaurantDto.setReviewsDto(reviewMapper.convertToReviewsDto(restaurant.getReviews()));
+
 
       return restaurantDto;
    }
 
-   public List<RestaurantDto> convertToRestaurantsDto(List<Restaurant> restaurants) {
-      return restaurants.stream()
-              .map(this::convertToRestaurantDto)
-              .collect(Collectors.toList());
+
+   public RestaurantDto fullEmployeeReview(Restaurant restaurant) {
+      RestaurantDto restaurantDto = convertToRestaurantDto(restaurant);
+
+      restaurantDto.setEmployeesDto(employeeMapper.convertToEmployeesDto(restaurant.getEmployees()));
+
+      return restaurantDto;
    }
 
    // convert to entity

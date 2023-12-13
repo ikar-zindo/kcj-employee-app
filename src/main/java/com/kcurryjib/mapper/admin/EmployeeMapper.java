@@ -1,7 +1,8 @@
-package com.kcurryjib.mapper;
+package com.kcurryjib.mapper.admin;
 
 import com.kcurryjib.dto.EmployeeDto;
 import com.kcurryjib.entity.Employee;
+import com.kcurryjib.entity.Order;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,9 +16,14 @@ public class EmployeeMapper {
    @Autowired
    private ModelMapper mapper;
 
+   @Autowired
+   private OrderMapper orderMapper;
+
    // convert to DTO
    public EmployeeDto convertToEmployeeDto(Employee employee) {
       EmployeeDto employeeDto = mapper.map(employee, EmployeeDto.class);
+
+      employeeDto.setOrdersDto(orderMapper.convertToOrdersDto(employee.getOrders()));
 
       return employeeDto;
    }

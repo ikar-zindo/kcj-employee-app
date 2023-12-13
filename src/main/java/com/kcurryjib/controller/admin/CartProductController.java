@@ -1,7 +1,7 @@
-package com.kcurryjib.controller;
+package com.kcurryjib.controller.admin;
 
 import com.kcurryjib.dto.CartProductDto;
-import com.kcurryjib.service.CartProductService;
+import com.kcurryjib.service.admin.CartProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cart-product")
+@RequestMapping("/admin/cart-product")
 public class CartProductController {
 
    @Autowired

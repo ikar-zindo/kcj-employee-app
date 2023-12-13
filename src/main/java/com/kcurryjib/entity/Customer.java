@@ -43,7 +43,7 @@ public class Customer {
 
    @Pattern(regexp = "^\\d{5}$", message = "Must save 5 digits")
    @Column(name = "postal_code")
-   private String postal_code;
+   private String postalCode;
 
    @Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
    private LocalDateTime createdAt;
@@ -95,6 +95,14 @@ public class Customer {
       this.email = email;
    }
 
+   public String getPassword() {
+      return password;
+   }
+
+   public void setPassword(String password) {
+      this.password = password;
+   }
+
    public String getPhoneNumber() {
       return phoneNumber;
    }
@@ -111,20 +119,12 @@ public class Customer {
       this.address = address;
    }
 
-   public String getPostal_code() {
-      return postal_code;
+   public String getPostalCode() {
+      return postalCode;
    }
 
-   public void setPostal_code(String postal_code) {
-      this.postal_code = postal_code;
-   }
-
-   public String getPassword() {
-      return password;
-   }
-
-   public void setPassword(String password) {
-      this.password = password;
+   public void setPostalCode(String postalCode) {
+      this.postalCode = postalCode;
    }
 
    public LocalDateTime getCreatedAt() {

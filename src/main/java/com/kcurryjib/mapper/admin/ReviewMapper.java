@@ -1,4 +1,4 @@
-package com.kcurryjib.mapper;
+package com.kcurryjib.mapper.admin;
 
 import com.kcurryjib.dto.ReviewDto;
 import com.kcurryjib.entity.Review;
@@ -15,16 +15,29 @@ public class ReviewMapper {
    @Autowired
    private ModelMapper mapper;
 
+//   @Autowired
+   private RestaurantMapper restaurantMapper;
+
+   @Autowired
+   private CustomerMapper customerMapper;
+
    // convert to DTO
    public ReviewDto convertToReviewDto(Review review) {
+      return mapper.map(review, ReviewDto.class);
+   }
+
+   public ReviewDto showReviewDtoWithCustomer(Review review) {
       ReviewDto reviewDto = mapper.map(review, ReviewDto.class);
+
+      reviewDto.setCustomerDto(customerMapper.convertToCustomerDto(review.getCustomer()));
+
 
       return reviewDto;
    }
 
    public List<ReviewDto> convertToReviewsDto(List<Review> reviews) {
       return reviews.stream()
-              .map(this::convertToReviewDto)
+              .map(this::showReviewDtoWithCustomer)
               .collect(Collectors.toList());
    }
 

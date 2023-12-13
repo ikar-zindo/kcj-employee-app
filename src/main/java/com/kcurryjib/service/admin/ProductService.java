@@ -1,9 +1,9 @@
-package com.kcurryjib.service;
+package com.kcurryjib.service.admin;
 
 import com.kcurryjib.config.MapperUtil;
 import com.kcurryjib.dto.ProductDto;
 import com.kcurryjib.entity.Product;
-import com.kcurryjib.mapper.ProductMapper;
+import com.kcurryjib.mapper.admin.ProductMapper;
 import com.kcurryjib.repo.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

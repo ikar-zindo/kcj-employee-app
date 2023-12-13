@@ -1,8 +1,7 @@
-package com.kcurryjib.controller;
+package com.kcurryjib.controller.admin;
 
 import com.kcurryjib.dto.RestaurantDto;
-import com.kcurryjib.entity.Restaurant;
-import com.kcurryjib.service.RestaurantService;
+import com.kcurryjib.service.admin.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/restaurant")
+@RequestMapping(value = "/admin/restaurant")
 public class RestaurantController {
 
    @Autowired
@@ -21,7 +20,14 @@ public class RestaurantController {
 
    @GetMapping
    public ResponseEntity<List<RestaurantDto>> getAll() {
-      List<RestaurantDto> restaurants = service.getAll();
-      return new ResponseEntity<>(restaurants, HttpStatus.OK);
+      List<RestaurantDto> restaurantsDto = service.getAll();
+      return new ResponseEntity<>(restaurantsDto, HttpStatus.OK);
+   }
+
+   @GetMapping("/full")
+   ResponseEntity<List<RestaurantDto>> fullEmployeeReview() {
+      List<RestaurantDto> restaurantsDto = service.fullEmployeeReview();
+
+      return new ResponseEntity<>(restaurantsDto, HttpStatus.OK);
    }
 }
