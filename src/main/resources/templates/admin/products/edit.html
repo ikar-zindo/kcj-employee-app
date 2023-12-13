@@ -1,0 +1,253 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" class="h-100" data-bs-theme="auto">
+<head>
+	<script type="text/javascript" th:src="@{/assets/js/color-modes.js}"></script>
+	<title>Add product</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+	<meta name="generator" content="Hugo 0.118.2">
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+			integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+			  integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+			  crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+			  integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+			  crossorigin="anonymous"></script>
+
+	<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sticky-footer-navbar/">
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+	<link th:href="@{/assets/dist/css/bootstrap.min.css}" rel="stylesheet">
+
+	<style th:inline="text">
+       .bd-placeholder-img {
+           font-size: 1.125rem;
+           text-anchor: middle;
+           -webkit-user-select: none;
+           -moz-user-select: none;
+           user-select: none;
+       }
+
+       @media (min-width: 768px) {
+           .bd-placeholder-img-lg {
+               font-size: 3.5rem;
+           }
+       }
+
+       .b-example-divider {
+           width: 100%;
+           height: 3rem;
+           background-color: rgba(0, 0, 0, .1);
+           border: solid rgba(0, 0, 0, .15);
+           border-width: 1px 0;
+           box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+       }
+
+       .b-example-vr {
+           flex-shrink: 0;
+           width: 1.5rem;
+           height: 100vh;
+       }
+
+       .bi {
+           vertical-align: -.125em;
+           fill: currentColor;
+       }
+
+       .nav-scroller {
+           position: relative;
+           z-index: 2;
+           height: 2.75rem;
+           overflow-y: hidden;
+       }
+
+       .nav-scroller .nav {
+           display: flex;
+           flex-wrap: nowrap;
+           padding-bottom: 1rem;
+           margin-top: -1px;
+           overflow-x: auto;
+           text-align: center;
+           white-space: nowrap;
+           -webkit-overflow-scrolling: touch;
+       }
+
+       .btn-bd-primary {
+           --bd-violet-bg: #712cf9;
+           --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+           --bs-btn-font-weight: 600;
+           --bs-btn-color: var(--bs-white);
+           --bs-btn-bg: var(--bd-violet-bg);
+           --bs-btn-border-color: var(--bd-violet-bg);
+           --bs-btn-hover-color: var(--bs-white);
+           --bs-btn-hover-bg: #6528e0;
+           --bs-btn-hover-border-color: #6528e0;
+           --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+           --bs-btn-active-color: var(--bs-btn-hover-color);
+           --bs-btn-active-bg: #5a23c8;
+           --bs-btn-active-border-color: #5a23c8;
+       }
+
+       .bd-mode-toggle {
+           z-index: 1500;
+       }
+
+       .bd-mode-toggle .dropdown-menu .active .bi {
+           display: block !important;
+       }
+	</style>
+
+
+	<!-- Custom styles for this template -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+	<!-- Custom styles for this template -->
+	<link rel="stylesheet" th:href="@{/assets/dist/css/dashboard.css}"/>
+</head>
+
+<body>
+
+<!--Themes-2-->
+<div th:insert="~{/blocks/themes :: themes-2}"></div>
+
+<!--Header-dashboard-->
+<div th:insert="~{/blocks/header :: header-dashboard}"></div>
+
+<div class="container-fluid">
+	<div class="row">
+
+		<!--Sidebar-->
+		<div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
+			<div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu"
+				  aria-labelledby="sidebarMenuLabel">
+				<div class="offcanvas-header">
+					<h5 class="offcanvas-title" id="sidebarMenuLabel">Company name</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu"
+							  aria-label="Close"></button>
+				</div>
+				<div th:insert="~{/blocks/sidebar :: sidebar}"></div>
+			</div>
+		</div>
+
+		<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+			<div class="col-md-7 col-lg-8">
+
+				<h2>Product edit</h2>
+
+				<div th:each="el : ${product}">
+					<form method="post">
+						<div class="row g-3">
+
+							<div class="col-12">
+								<label class="form-label">Product name</label>
+								<div class="input-group has-validation">
+									<input type="text" th:value="${el.name}" name="product_name" placeholder="Enter product name"
+											 class="form-control">
+
+									<div class="invalid-feedback">
+										Your product name is required.
+									</div>
+								</div>
+							</div>
+
+							<div class="col-sm-6">
+								<label class="form-label">Unit</label>
+								<input type="text" th:value="${el.unit}" name="unit" placeholder="Enter packaging type"
+										 class="form-control">
+								<div class="invalid-feedback">
+									Valid unit is required.
+								</div>
+							</div>
+
+							<div class="col-sm-6">
+								<label class="form-label">Price</label>
+								<input type="number" th:value="${el.price}" name="price"
+										 placeholder="Enter the price of the product" class="form-control" step="any">
+								<div class="invalid-feedback">
+									Valid price is required.
+								</div>
+							</div>
+
+							<div class="col-12">
+								<label class="form-label">Description <span
+										  class="text-body-secondary">(Optional)</span></label>
+								<textarea name="description" placeholder="Enter product description" class="form-control" step="any"
+											 th:text="${el.description}"/>
+
+
+							</div>
+
+							<div class="col-md-5">
+								<label class="form-label">Category</label>
+								<select class="form-select" name="category_id">
+									<option th:each="el : ${categories}" th:text="${el.name}"
+											  th:value="${el.id}" th:selected="${el.name}"/>
+								</select>
+								<div class="invalid-feedback">
+									Please select a valid category.
+								</div>
+							</div>
+
+							<div class="col-md-7">
+								<label class="form-label">Supplier</label>
+								<select class="form-select" name="supplier_id">
+									<option th:each="el : ${suppliers}" th:text="${el.name}"
+											  th:value="${el.id}" th:selected="${el.name}"></option>
+								</select>
+								<div class="invalid-feedback">
+									Please provide a valid supplier.
+								</div>
+							</div>
+
+						</div>
+
+						<hr class="my-4">
+
+						<div class="form-check">
+							<input type="checkbox" class="form-check-input" id="availableCheckbox" name="available" checked>
+							<label class="form-check-label" for="availableCheckbox">Available</label>
+						</div>
+
+						<!--					<div class="form-check">-->
+						<!--						<input type="checkbox" class="form-check-input" name="available" th:checked="available">-->
+						<!--						<label class="form-check-label">Available</label>-->
+						<!--					</div>-->
+
+						<hr class="my-4">
+
+						<button type="submit" class="w-100 btn btn-success btn-lg">Confirm</button>
+					</form>
+				</div>
+			</div>
+
+
+			<foot th:insert="~{/blocks/footer :: footer}"></foot>
+
+		</main>
+	</div>
+</div>
+<script type="text/javascript" th:src="@{/assets/dist/js/bootstrap.bundle.min.js}"
+		  integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+		  crossorigin="anonymous"></script>
+<script type="text/javascript" th:src="@{/assets/dist/js/bootstrap.bundle.min.js}"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js"
+		  integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp"
+		  crossorigin="anonymous"></script>
+<script type="text/javascript" th:src="@{/assets/dist/css/dashboard.css}"></script>
+</body>
+
+</html>
+
+
+
+

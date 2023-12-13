@@ -26,7 +26,7 @@ public class RestaurantService {
       return MapperUtil.convertlist(restaurants, restaurantMapper::showCustomersWithComments);
    }
 
-   public List<RestaurantDto> fullEmployeeReview() {
+   public List<RestaurantDto> fullInfo() {
       List<Restaurant> restaurants = new ArrayList<>(restaurantRepository.findAll());
 
       return MapperUtil.convertlist(restaurants, restaurantMapper::fullEmployeeReview);
