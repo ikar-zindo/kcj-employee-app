@@ -23,6 +23,6 @@ public class ProductService {
    public List<ProductDto> gatAll() {
       List<Product> products = new ArrayList<>(productRepository.findAll());
 
-      return MapperUtil.convertlist(products, productMapper::convertToProductDto);
+      return MapperUtil.convertlist(products, productMapper::showProductDetails);
    }
 }

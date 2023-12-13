@@ -94,6 +94,7 @@ CREATE TABLE `product` (
   description TEXT,
   price DECIMAL(10, 2),
   restaurant_id BIGINT,
+  image_url VARCHAR(600),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   is_available BOOL DEFAULT TRUE
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;

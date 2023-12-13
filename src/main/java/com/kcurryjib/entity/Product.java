@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "product")
@@ -24,6 +23,9 @@ public class Product {
 
    @Column(name = "price")
    private BigDecimal price;
+
+   @Column(name = "image_url")
+   private String imageUrl;
 
    @Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
    private LocalDateTime createdAt;
@@ -74,6 +76,14 @@ public class Product {
 
    public void setPrice(BigDecimal price) {
       this.price = price;
+   }
+
+   public String getImageUrl() {
+      return imageUrl;
+   }
+
+   public void setImageUrl(String imgUrl) {
+      this.imageUrl = imgUrl;
    }
 
    public LocalDateTime getCreatedAt() {
