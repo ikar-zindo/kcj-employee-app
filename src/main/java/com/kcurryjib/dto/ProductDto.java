@@ -23,6 +23,9 @@ public class ProductDto {
    private BigDecimal price;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
+   private String imageUrl;
+
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private LocalDateTime createdAt;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -73,6 +76,14 @@ public class ProductDto {
 
    public void setPrice(BigDecimal price) {
       this.price = price;
+   }
+
+   public String getImageUrl() {
+      return imageUrl;
+   }
+
+   public void setImageUrl(String imageUrl) {
+      this.imageUrl = imageUrl;
    }
 
    public LocalDateTime getCreatedAt() {

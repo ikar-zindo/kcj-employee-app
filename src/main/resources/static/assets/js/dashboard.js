@@ -20,13 +20,13 @@
       ],
       datasets: [{
         data: [
-          500,
+          6,
+          1,
           8,
-          200,
-          12,
-          32,
-          34,
-          1280
+          3,
+          8,
+          20,
+          42
         ],
         lineTension: 0,
         backgroundColor: 'transparent',

@@ -31,7 +31,6 @@ public class RestaurantMapper {
 
       restaurantDto.setReviewsDto(reviewMapper.convertToReviewsDto(restaurant.getReviews()));
 
-
       return restaurantDto;
    }
 
@@ -42,6 +41,10 @@ public class RestaurantMapper {
       restaurantDto.setEmployeesDto(employeeMapper.convertToEmployeesDto(restaurant.getEmployees()));
 
       return restaurantDto;
+   }
+
+   public RestaurantDto RestaurantShort(Restaurant restaurant) {
+      return mapper.map(restaurant, RestaurantDto.class);
    }
 
    // convert to entity
