@@ -1,7 +1,7 @@
-package com.kcurryjib.controller;
+package com.kcurryjib.controller.admin;
 
-import com.kcurryjib.dto.CustomerDto;
-import com.kcurryjib.service.CustomerService;
+import com.kcurryjib.dto.ProductDto;
+import com.kcurryjib.service.admin.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,16 +12,16 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/customer")
-public class CustomerController {
+@RequestMapping("/admin/product")
+public class ProductController {
 
    @Autowired
-   private CustomerService customerService;
+   private ProductService productService;
 
    @GetMapping
-   public ResponseEntity<List<CustomerDto>> gatAll() {
-      List<CustomerDto> customersDto = customerService.getAll();
+   public ResponseEntity<List<ProductDto>> getAll() {
+      List<ProductDto> productsDto = productService.gatAll();
 
-      return new ResponseEntity<>(customersDto, HttpStatus.OK);
+      return new ResponseEntity<>(productsDto, HttpStatus.OK);
    }
 }

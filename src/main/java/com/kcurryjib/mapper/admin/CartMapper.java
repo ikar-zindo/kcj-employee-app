@@ -1,4 +1,4 @@
-package com.kcurryjib.mapper;
+package com.kcurryjib.mapper.admin;
 
 import com.kcurryjib.dto.CartDto;
 import com.kcurryjib.entity.Cart;

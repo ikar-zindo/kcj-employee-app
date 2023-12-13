@@ -1,4 +1,4 @@
-package com.kcurryjib.mapper;
+package com.kcurryjib.mapper.admin;
 
 import com.kcurryjib.dto.OrderProductDto;
 import com.kcurryjib.entity.OrderProduct;
@@ -15,10 +15,15 @@ public class OrderProductMapper {
    @Autowired
    private ModelMapper mapper;
 
+   @Autowired
+   private ProductMapper productMapper;
+
    // convert to DTO
 
    public OrderProductDto convertToOrderProductDto(OrderProduct orderProduct) {
       OrderProductDto orderProductDto = mapper.map(orderProduct, OrderProductDto.class);
+
+      orderProductDto.setProductDto(productMapper.convertToProductDto(orderProduct.getProduct()));
 
       return orderProductDto;
    }

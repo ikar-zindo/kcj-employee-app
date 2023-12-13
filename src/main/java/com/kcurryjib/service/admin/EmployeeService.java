@@ -1,9 +1,9 @@
-package com.kcurryjib.service;
+package com.kcurryjib.service.admin;
 
 import com.kcurryjib.config.MapperUtil;
 import com.kcurryjib.dto.EmployeeDto;
 import com.kcurryjib.entity.Employee;
-import com.kcurryjib.mapper.EmployeeMapper;
+import com.kcurryjib.mapper.admin.EmployeeMapper;
 import com.kcurryjib.repo.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
