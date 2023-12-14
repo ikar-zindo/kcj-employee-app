@@ -3,11 +3,9 @@ package com.kcurryjib.controller.admin;
 import com.kcurryjib.dto.ProductDto;
 import com.kcurryjib.exceptions.ProductException;
 import com.kcurryjib.service.admin.ProductService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +19,7 @@ public class ProductRestController {
 
    @GetMapping
    public ResponseEntity<List<ProductDto>> getProducts() {
-      List<ProductDto> products = service.gatProductShort();
+      List<ProductDto> products = service.getAll();
       return new ResponseEntity<>(products, HttpStatus.OK);
    }
 
@@ -32,7 +30,7 @@ public class ProductRestController {
    }
 
    @PostMapping
-   public ResponseEntity<ProductDto> createProduct(@RequestBody @Valid ProductDto productDto) throws ProductException {
+   public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto) throws ProductException {
       ProductDto product = service.addProduct(productDto);
       return new ResponseEntity<>(product, HttpStatus.OK);
    }

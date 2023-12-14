@@ -11,7 +11,7 @@ import java.util.List;
 public class OrderDto {
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   private long id;
+   private Long id;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
    @JsonProperty("customer")
@@ -44,11 +44,11 @@ public class OrderDto {
    public OrderDto() {
    }
 
-   public long getId() {
+   public Long getId() {
       return id;
    }
 
-   public void setId(long id) {
+   public void setId(Long id) {
       this.id = id;
    }
 

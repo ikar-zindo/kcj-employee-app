@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 public class CartProductDto {
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   private long id;
+   private Long id;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
    @JsonProperty("cart")
@@ -28,11 +28,11 @@ public class CartProductDto {
    public CartProductDto() {
    }
 
-   public long getId() {
+   public Long getId() {
       return id;
    }
 
-   public void setId(long id) {
+   public void setId(Long id) {
       this.id = id;
    }
 

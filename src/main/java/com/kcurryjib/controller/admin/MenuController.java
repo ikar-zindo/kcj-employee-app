@@ -19,7 +19,7 @@ public class MenuController {
 
    @GetMapping
    public String getAll(Model model) {
-      List<ProductDto> productsDto = service.gatAll();
+      List<ProductDto> productsDto = service.getAll();
 
       model.addAttribute("products", productsDto);
 
