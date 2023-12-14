@@ -84,17 +84,20 @@
 				<div th:each="product : ${product}" class="alert alert-info mt-2">
 					<!--							<img src="http://dummyimage.com/248.400x80.125" />-->
 					<div class="card-body">
-						<h1 class="text-warning" th:text="${product}"/>
-						<p><span class="text-danger">Unit: </span><span th:text="${product.unit}"/></p>
+						<h1 class="text-warning" th:text="${product.name}"/>
 						<p><span class="text-danger">Description: </span><span th:text="${product.description}"/></p>
-						<p><span class="text-danger">Add time: </span><span th:text="${product.created_at}"/></p>
-						<p><span class="text-danger">Avaliable: </span><span th:text="${product}"/></p>
+						<p><span class="text-danger">Add time: </span><span th:text="${product.createdAt}"/></p>
+						<p><span class="text-danger">Available: </span><span th:text="${product.available}"/></p>
+						<p><span class="text-danger">Restaurant: </span><span th:text="${product.restaurantDto.name}"/></p>
 						<div class="d-flex justify-content-between align-items-center">
 							<div class="btn-group">
-								<a th:href="'/product/' + ${el.product_id} + '/edit'"
+								<a th:href="'/admin/products/' + ${product.id} + '/edit'"
 									class="btn btn-sm btn-outline-secondary">Edit</a>
 
-								<form th:action="'/product/' + ${el.product_id} + '/remove'" method="post">
+
+								<!-- TODO: оформить правильно DELETE запрос -->
+								<form id="deleteForm"  th:action="'/admin/products/' + ${product.id}" method="post">
+									<input type="hidden" name="_method" value="DELETE">
 									<button type="submit"
 											  class="btn btn-sm btn-outline-secondary text-danger">
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -105,7 +108,7 @@
 								</form>
 
 							</div>
-							<p th:text="'Price: ' + |${el.price}| + ' €'" class="text-body-secondary"/>
+							<p th:text="'Price: ' + |${product.price}| + ' €'" class="text-body-secondary"/>
 						</div>
 					</div>
 				</div>

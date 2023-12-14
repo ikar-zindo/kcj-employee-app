@@ -12,9 +12,11 @@ import com.kcurryjib.repo.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -69,7 +71,11 @@ public class ProductService {
 
             if (restaurant != null) {
                Product product = productMapper.convertToProduct(productDto);
+
                product.setRestaurant(restaurant);
+               product.setAvailable(true);
+               product.setCreatedAt(LocalDateTime.now());
+
                Product productResponse = productRepository.save(product);
                Long idResponse = productResponse.getId();
 
@@ -80,7 +86,7 @@ public class ProductService {
                      throw new ProductException("Could not create a client in the database");
                   }
                } else {
-                  throw new ProductException(String.format("No restaurant found with Id=%d. I can't create a client!",productDto.getId()));
+                  throw new ProductException(String.format("No restaurant found with Id=%d. I can't create a client!", restaurantDto.getId()));
                }
             } else {
                throw new ProductException("The ID of the associated restaurant is missing. I can't create a client!");
