@@ -2,6 +2,8 @@ package com.kcurryjib.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Pattern;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -19,12 +21,14 @@ public class CustomerDto {
    private String lastName;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
+   @Email(message = "Invalid email")
    private String email;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
    private String password;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
+   @Pattern(regexp = "\\\\+49\\\\d{10}", message = "Invalid phone number")
    private String phoneNumber;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)

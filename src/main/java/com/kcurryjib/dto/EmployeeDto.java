@@ -3,6 +3,7 @@ package com.kcurryjib.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kcurryjib.entity.enums.Role;
+import jakarta.validation.constraints.Email;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,6 +21,7 @@ public class EmployeeDto {
    private String lastName;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
+   @Email(message = "Invalid email")
    private String email;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)

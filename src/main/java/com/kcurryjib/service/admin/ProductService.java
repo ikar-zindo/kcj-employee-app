@@ -9,8 +9,6 @@ import com.kcurryjib.exceptions.ProductException;
 import com.kcurryjib.mapper.admin.ProductMapper;
 import com.kcurryjib.repo.ProductRepository;
 import com.kcurryjib.repo.RestaurantRepository;
-import jakarta.persistence.metamodel.ListAttribute;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -31,32 +29,36 @@ public class ProductService {
    private ProductMapper productMapper;
 
    //   @Autowired
-   public ProductService(ProductRepository productRepository,
-                         RestaurantRepository restaurantRepository, ProductMapper productMapper) throws ProductException{
+   public ProductService(ProductRepository productRepository, RestaurantRepository restaurantRepository,
+                         ProductMapper productMapper) throws ProductException{
 
       this.productRepository = productRepository;
       this.restaurantRepository = restaurantRepository;
       this.productMapper = productMapper;
    }
 
+   // READ
    public List<ProductDto> getAll() throws ProductException {
       List<Product> products = new ArrayList<>(productRepository.findAll());
 
       return MapperUtil.convertlist(products, productMapper::showProductDetails);
    }
 
-   public List<ProductDto> getAvailableProducts() {
+   // READ
+   public List<ProductDto> getAvailableProducts() throws ProductException {
       List<Product> products = new ArrayList<>(productRepository.findAll()).stream().filter(Product::isAvailable).collect(Collectors.toList());
 
       return MapperUtil.convertlist(products, productMapper::showProductDetails);
    }
 
-   public List<ProductDto> getProductShort() {
+   // READ
+   public List<ProductDto> getProductShort() throws ProductException {
       List<Product> products = new ArrayList<>(productRepository.findAll());
 
       return MapperUtil.convertlist(products, productMapper::convertToProductDto);
    }
 
+   // READ
    public ProductDto getProductById(Long id) {
       Optional<Product> productOptional = productRepository.findById(id);
       ProductDto productDto = null;
@@ -68,6 +70,7 @@ public class ProductService {
       return productDto;
    }
 
+   // CREATE
    public ProductDto addProduct(ProductDto productDto) throws ProductException {
 
       if (productDto != null && productDto.getId() == null) {
@@ -80,7 +83,6 @@ public class ProductService {
                Product product = productMapper.convertToProduct(productDto);
 
                product.setRestaurant(restaurant);
-//               product.setAvailable(true);
                product.setCreatedAt(LocalDateTime.now());
 
                Product productResponse = productRepository.save(product);
@@ -108,13 +110,49 @@ public class ProductService {
 //              productRepository.save(productMapper.convertToProduct(productDto)));
    }
 
-   public ProductDto updateProduct(ProductDto productDto) {
-      return productMapper.convertToProductDto(
-              productRepository.save(productMapper.convertToProduct(productDto)));
+   // UPDATE
+   public ProductDto updateProduct(ProductDto productDto) throws ProductException {
+
+      if (productDto.getId() != null) {
+         Optional<Product> productOptional = productRepository.findById(productDto.getId());
+         RestaurantDto restaurantDto = productDto.getRestaurantDto();
+         Restaurant restaurant = restaurantRepository.findById(restaurantDto.getId()).orElse(null);
+
+         if (productOptional.isPresent()) {
+            Product product = productOptional.get();
+            product.setName(productDto.getName());
+            product.setDescription(productDto.getDescription());
+            product.setPrice(productDto.getPrice());
+            product.setImageUrl(productDto.getImageUrl());
+            product.setAvailable(productDto.isAvailable());
+            product.setRestaurant(restaurant);
+
+            Product productResponse = productRepository.save(product);
+
+            if (productResponse != null) {
+               return productMapper.convertToProductDto(productResponse);
+
+            } else {
+               throw new ProductException(
+                       String.format("Failed to update the product in the database with Id=%d!",
+                               productDto.getId()));
+            }
+         } else {
+            throw new ProductException(
+                    String.format("The product was not found in the database with Id=%d!",
+                            productDto.getId()));
+         }
+      } else {
+         throw new ProductException("Error processing received body request!");
+      }
    }
 
-   public ProductDto delete(Long id) throws ProductException {
-      Product product = productRepository.findById(id).orElseThrow(() -> new ProductException(""));
+   //DELETE
+   public ProductDto deleteProduct(Long id) throws ProductException {
+      Product product = productRepository.findById(id)
+              .orElseThrow(() -> new ProductException(
+                      String.format("The product was not found in the database with Id=%d!", id)));
+
       product.setAvailable(false);
       product = productRepository.save(product);
       return productMapper.convertToProductDto(product);

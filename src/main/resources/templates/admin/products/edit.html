@@ -63,14 +63,14 @@
 
 				<h2>Product edit</h2>
 
-				<div th:each="el : ${product}">
+				<div th:each="product : ${product}">
 					<form method="post">
 						<div class="row g-3">
 
 							<div class="col-12">
 								<label class="form-label">Product name</label>
 								<div class="input-group has-validation">
-									<input type="text" th:value="${el.name}" name="product_name" placeholder="Enter product name"
+									<input type="text" th:value="${product.name}" name="name" placeholder="Enter product name"
 											 class="form-control">
 
 									<div class="invalid-feedback">
@@ -80,17 +80,8 @@
 							</div>
 
 							<div class="col-sm-6">
-								<label class="form-label">Unit</label>
-								<input type="text" th:value="${el.unit}" name="unit" placeholder="Enter packaging type"
-										 class="form-control">
-								<div class="invalid-feedback">
-									Valid unit is required.
-								</div>
-							</div>
-
-							<div class="col-sm-6">
 								<label class="form-label">Price</label>
-								<input type="number" th:value="${el.price}" name="price"
+								<input type="number" th:value="${product.price}" name="price"
 										 placeholder="Enter the price of the product" class="form-control" step="any">
 								<div class="invalid-feedback">
 									Valid price is required.
@@ -98,30 +89,24 @@
 							</div>
 
 							<div class="col-12">
-								<label class="form-label">Description <span
+								<label class="form-label">Description<span
 										  class="text-body-secondary">(Optional)</span></label>
 								<textarea name="description" placeholder="Enter product description" class="form-control" step="any"
-											 th:text="${el.description}"/>
-
-
+											 th:text="${product.description}"/>
 							</div>
 
-							<div class="col-md-5">
-								<label class="form-label">Category</label>
-								<select class="form-select" name="category_id">
-									<option th:each="el : ${categories}" th:text="${el.name}"
-											  th:value="${el.id}" th:selected="${el.name}"/>
-								</select>
-								<div class="invalid-feedback">
-									Please select a valid category.
-								</div>
+							<div class="col-12">
+								<label class="form-label">ImageUrl<span
+										  class="text-body-secondary">(Optional)</span></label>
+								<textarea name="imageUrl" placeholder="Enter product description" class="form-control" step="any"
+											 th:text="${product.imageUrl}"/>
 							</div>
 
 							<div class="col-md-7">
-								<label class="form-label">Supplier</label>
-								<select class="form-select" name="supplier_id">
-									<option th:each="el : ${suppliers}" th:text="${el.name}"
-											  th:value="${el.id}" th:selected="${el.name}"></option>
+								<label class="form-label">Restaurant</label>
+								<select class="form-select" name="restaurantId">
+									<option th:each="restaurant : ${restaurants}" th:text="${restaurant.name}"
+											  th:value="${restaurant.id}" th:selected="${restaurant.name}"></option>
 								</select>
 								<div class="invalid-feedback">
 									Please provide a valid supplier.
@@ -133,7 +118,7 @@
 						<hr class="my-4">
 
 						<div class="form-check">
-							<input type="checkbox" class="form-check-input" id="availableCheckbox" name="available" checked>
+							<input type="checkbox" class="form-check-input" id="availableCheckbox" name="available" th:checked="${product.available}">
 							<label class="form-check-label" for="availableCheckbox">Available</label>
 						</div>
 

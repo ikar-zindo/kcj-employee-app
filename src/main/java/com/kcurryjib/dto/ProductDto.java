@@ -2,6 +2,8 @@ package com.kcurryjib.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotBlank;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -15,12 +17,15 @@ public class ProductDto {
    private Long id;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
+   @NotBlank(message = "Name cannot be blank")
    private String name;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
+   @NotBlank(message = "Description cannot be blank")
    private String description;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
+   @DecimalMin(value = "0.01", message = "Price must be greater than or equal to 0.01")
    private BigDecimal price;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)

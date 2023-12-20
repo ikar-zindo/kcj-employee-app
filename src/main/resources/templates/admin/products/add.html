@@ -67,7 +67,7 @@
 						<div class="col-12">
 							<label class="form-label">Product name</label>
 							<div class="input-group has-validation">
-								<input type="text" name="name" placeholder="Enter product name" class="form-control">
+								<input type="text" name="name" placeholder="Enter product name" class="form-control" required>
 								<div class="invalid-feedback">
 									Your product name is required.
 								</div>
@@ -75,9 +75,9 @@
 						</div>
 
 						<div class="col-sm-6">
-							<label class="form-label">Price</label>
-							<input type="number" name="price" placeholder="Enter the price of the product" class="form-control"
-									 step="any">
+							<label class="form-label" for="price">Price</label>
+							<input type="number" id="price" name="price" step="0.01"
+									 placeholder="Enter the price of the product" class="form-control" required>
 							<div class="invalid-feedback">
 								Valid price is required.
 							</div>
@@ -94,8 +94,9 @@
 
 						<div class="col-12">
 							<label class="form-label">Description <span class="text-body-secondary">(Optional)</span></label>
-							<textarea name="description" placeholder="Enter product description" class="form-control"
-										 step="any"></textarea>
+							<textarea name="description" placeholder="Enter product description" class="form-control">
+
+							</textarea>
 						</div>
 
 						<div class="col-md-5">
@@ -121,6 +122,16 @@
 
 					<button type="submit" class="w-100 btn btn-primary btn-lg">Add product</button>
 				</form>
+
+<!--				<form th:action="/add" th:object="${product}" method="post">-->
+<!--					&lt;!&ndash; Your form fields here &ndash;&gt;-->
+<!--					<input type="text" th:field="*{name}" />-->
+<!--					<input type="text" th:field="*{description}" />-->
+<!--					<input type="text" th:field="*{price}" />-->
+<!--					&lt;!&ndash; Other fields &ndash;&gt;-->
+
+<!--					<button type="submit">Submit</button>-->
+<!--				</form>-->
 			</div>
 
 
