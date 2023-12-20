@@ -9,7 +9,7 @@ SET time_zone = "+01:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 
-CREATE DATABASE IF NOT EXISTS `k-curry-jib` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE IF NOT EXISTS `k-curry-jib` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `k-curry-jib`;
 
 --
@@ -67,7 +67,7 @@ CREATE TABLE `order` (
   employee_id BIGINT,
   order_date DATETIME,
   delivery_address VARCHAR(255),
-  total_amount DECIMAL(10, 2),
+  total_amount DECIMAL(8, 2),
   order_status VARCHAR(50)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
@@ -80,7 +80,7 @@ CREATE TABLE `order_product` (
   order_id BIGINT,
   product_id BIGINT,
   quantity INT,
-  total DECIMAL(10, 2),
+  total DECIMAL(8, 2),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
@@ -92,7 +92,7 @@ CREATE TABLE `product` (
   product_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(123),
   description TEXT,
-  price DECIMAL(10, 2),
+  price DECIMAL(8, 2),
   restaurant_id BIGINT,
   image_url VARCHAR(600),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -123,7 +123,7 @@ CREATE TABLE `review` (
   review_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   restaurant_id BIGINT,
   customer_id BIGINT,
-  rating DECIMAL(3, 2),
+  rating DECIMAL(5, 2),
   comment TEXT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
@@ -315,16 +315,16 @@ INSERT INTO `cart` (`customer_id`) VALUES
 --
 
 INSERT INTO `employee` (`last_name`, `first_name`,  `email`, `nickname`, `password`, `phone_number`, `role`, `restaurant_id`) VALUES
-    ('Davolio', 'Nancy', 'nancy@mail.com', 'nancy', 'qwerty123', '+49123456789', 'USER', 1),
-    ('Fuller', 'Andrew', 'andrew@mail.com', 'andrew', 'qwerty123', '+49123456789', 'USER', 1),
-    ('Leverling', 'Janet', 'janet@mail.com', 'janet', 'qwerty123', '+49123456789', 'USER', 1),
-    ('Peacock', 'Margaret', 'margaret@mail.com', 'margaret', 'qwerty123', '+49123456789', 'USER', 1),
-    ('Buchanan', 'Steven', 'steven@mail.com', 'steven', 'qwerty123', '+49123456789', 'USER', 1),
-    ('Suyama', 'Michael', 'michael@mail.com', 'michael', 'qwerty123', '+49123456789', 'MANAGER', 1),
-    ('King', 'Robert', 'robert@mail.com', 'robert', 'qwerty123', '+49123456789', 'MANAGER', 1),
-    ('Callahan', 'Laura', 'laura@mail.com', 'laura', 'qwerty123', '+49123456789', 'ADMIN', 1),
-    ('Dodsworth', 'Anne', 'anne@mail.com', 'anne', 'qwerty123', '+49123456789', 'DRIVER', 1),
-    ('West', 'Adam', 'adam@mail.com', 'adam', 'qwerty123', '+49123456789', 'DRIVER', 1);
+    ('Davolio', 'Nancy', 'davolio@mail.com', 'nancy', 'qwerty123', '+49123456789', 'USER', 1),
+    ('Fuller', 'Andrew', 'fuller@mail.com', 'andrew', 'qwerty123', '+49123456789', 'USER', 1),
+    ('Leverling', 'Janet', 'leverling@mail.com', 'janet', 'qwerty123', '+49123456789', 'USER', 1),
+    ('Peacock', 'Margaret', 'peacock@mail.com', 'margaret', 'qwerty123', '+49123456789', 'USER', 1),
+    ('Buchanan', 'Steven', 'buchanan@mail.com', 'steven', 'qwerty123', '+49123456789', 'USER', 1),
+    ('Suyama', 'Michael', 'suyama@mail.com', 'michael', 'qwerty123', '+49123456789', 'MANAGER', 1),
+    ('King', 'Robert', 'king@mail.com', 'robert', 'qwerty123', '+49123456789', 'MANAGER', 1),
+    ('Callahan', 'Laura', 'callahan@mail.com', 'laura', 'qwerty123', '+49123456789', 'ADMIN', 1),
+    ('Dodsworth', 'Anne', 'dodsworth@mail.com', 'anne', 'qwerty123', '+49123456789', 'DRIVER', 1),
+    ('West', 'Adam', 'west@mail.com', 'adam', 'qwerty123', '+49123456789', 'DRIVER', 1);
 
 --
 -- Dumping data for table `product`

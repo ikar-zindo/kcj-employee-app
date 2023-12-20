@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 
 public class ProductDto {
@@ -124,5 +125,18 @@ public class ProductDto {
 
    public void setOrderProductsDto(List<OrderProductDto> orderProductsDto) {
       this.orderProductsDto = orderProductsDto;
+   }
+
+   @Override
+   public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      ProductDto that = (ProductDto) o;
+      return isAvailable == that.isAvailable && Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(description, that.description) && Objects.equals(price, that.price) && Objects.equals(imageUrl, that.imageUrl) && Objects.equals(createdAt, that.createdAt) && Objects.equals(restaurantDto, that.restaurantDto) && Objects.equals(cartProductsDto, that.cartProductsDto) && Objects.equals(orderProductsDto, that.orderProductsDto);
+   }
+
+   @Override
+   public int hashCode() {
+      return Objects.hash(id, name, description, price, imageUrl, createdAt, isAvailable, restaurantDto, cartProductsDto, orderProductsDto);
    }
 }

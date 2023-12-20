@@ -34,7 +34,7 @@ public class Order {
    @Column(name = "delivery_address")
    private String deliveryAddress;
 
-   @Column(name = "total_amount")
+   @Column(name = "total_amount", precision = 8, scale = 2)
    private BigDecimal totalAmount;
 
    @Column(name = "order_status")

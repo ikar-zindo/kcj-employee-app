@@ -21,7 +21,7 @@ public class ReviewController {
 
    @GetMapping
    public String getRestaurantsWithReviews(Model model) {
-      List<RestaurantDto> restaurantsWithReviews = service.getAll();
+      List<RestaurantDto> restaurantsWithReviews = service.showWithComments();
       model.addAttribute("restaurants", restaurantsWithReviews);
       return "admin/reviews/all"; // Имя HTML-файла (без расширения) для отображения
    }

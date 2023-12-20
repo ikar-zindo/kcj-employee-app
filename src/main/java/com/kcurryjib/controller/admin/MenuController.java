@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/admin/menu")
@@ -19,7 +20,7 @@ public class MenuController {
 
    @GetMapping
    public String getAll(Model model) {
-      List<ProductDto> productsDto = service.getAll();
+      List<ProductDto> productsDto = service.getAvailableProducts();
 
       model.addAttribute("products", productsDto);
 

@@ -23,6 +23,12 @@ public class RestaurantService {
    public List<RestaurantDto> getAll() {
       List<Restaurant> restaurants = new ArrayList<>(restaurantRepository.findAll());
 
+      return MapperUtil.convertlist(restaurants, restaurantMapper::convertToRestaurantDto);
+   }
+
+   public List<RestaurantDto> showWithComments() {
+      List<Restaurant> restaurants = new ArrayList<>(restaurantRepository.findAll());
+
       return MapperUtil.convertlist(restaurants, restaurantMapper::showCustomersWithComments);
    }
 
@@ -30,5 +36,12 @@ public class RestaurantService {
       List<Restaurant> restaurants = new ArrayList<>(restaurantRepository.findAll());
 
       return MapperUtil.convertlist(restaurants, restaurantMapper::fullEmployeeReview);
+   }
+
+   public RestaurantDto getById(Long id) {
+      Restaurant restaurant = restaurantRepository.findById(id).orElse(null);
+      RestaurantDto restaurantDto = MapperUtil.convertlist(List.of(restaurant), restaurantMapper::convertToRestaurantDto).get(0);
+
+      return restaurantDto;
    }
 }

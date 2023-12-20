@@ -23,7 +23,7 @@ public class Review {
    @JoinColumn(name = "customer_id")
    private Customer customer;
 
-   @Column(name = "rating")
+   @Column(name = "rating", precision = 5, scale = 2)
    private BigDecimal rating;
 
    @Column(name = "comment")

@@ -18,7 +18,7 @@ public class OrderProduct {
    @Column(name = "quantity")
    private int quantity;
 
-   @Column(name = "total")
+   @Column(name = "total", precision = 8, scale = 2)
    private BigDecimal total;
 
    @Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
