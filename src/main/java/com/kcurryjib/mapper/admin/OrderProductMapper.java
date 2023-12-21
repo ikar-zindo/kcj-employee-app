@@ -19,7 +19,6 @@ public class OrderProductMapper {
    private ProductMapper productMapper;
 
    // convert to DTO
-
    public OrderProductDto convertToOrderProductDto(OrderProduct orderProduct) {
       OrderProductDto orderProductDto = mapper.map(orderProduct, OrderProductDto.class);
 

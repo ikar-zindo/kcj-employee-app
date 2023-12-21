@@ -24,6 +24,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/admin/products")
+//@SessionAttributes("editProduct")
 public class ProductController {
 
    @Autowired
@@ -32,8 +33,6 @@ public class ProductController {
    @Autowired
    private RestaurantService restaurantService;
 
-   @Autowired
-   private Validator validator;
 
    // READ
    @GetMapping
@@ -54,14 +53,15 @@ public class ProductController {
    }
 
    // CREATE
-      /**
-       * old version
-       */
+
+   /**
+    * old version
+    */
 
 
    // CREATE
    @GetMapping("/add")
-   public String addProductForm(@ModelAttribute ("product") ProductDto productDto,
+   public String addProductForm(@ModelAttribute("product") ProductDto productDto,
                                 Model model) throws ProductException {
 
 
@@ -69,69 +69,59 @@ public class ProductController {
 
 //      Iterable<RestaurantDto> restaurantsDto = restaurantService.getAll();
 
-      model.addAttribute("product", productDto);
+//      model.addAttribute("product", productDto);
       model.addAttribute("restaurants", restaurantService.getAll());
 
       return "/admin/products/add";
    }
 
    // CREATE
+   @PostMapping("/add")
+   public String addProduct(@RequestParam @Valid String name,
+                            @RequestParam @Valid String description,
+                            @RequestParam @Valid BigDecimal price,
+                            @RequestParam String imageUrl,
+                            @RequestParam(name = "available", required = false,
+                                    defaultValue = "false") boolean available,
+                            @RequestParam Long restaurantId,
+                            Model model) throws ProductException {
+
+      ProductDto productDto = new ProductDto();
+
+      productDto.setName(name);
+      productDto.setDescription(description);
+      productDto.setPrice(price);
+      productDto.setImageUrl(imageUrl);
+      productDto.setAvailable(available);
+      productDto.setRestaurantDto(restaurantService.getById(restaurantId));
+
+      service.addProduct(productDto);
+
+      return "redirect:/admin/products";
+   }
+
+   // CREATE
 //   @PostMapping("/add")
-//   public String addProduct(@RequestParam @Valid String name,
-//                            @RequestParam @Valid String description,
-//                            @RequestParam @Valid BigDecimal price,
-//                            @RequestParam String imageUrl,
-//                            @RequestParam(name = "available", required = false,
-//                                    defaultValue = "false") boolean available,
+//   public String addProduct(@ModelAttribute("product") ProductDto productDto,
 //                            @RequestParam Long restaurantId,
 //                            Model model) throws ProductException {
 //
-//      ProductDto productDto = new ProductDto();
 //
-//      productDto.setName(name);
-//      productDto.setDescription(description);
-//      productDto.setPrice(price);
-//      productDto.setImageUrl(imageUrl);
-//      productDto.setAvailable(available);
+//      model.addAttribute("product", productDto);
+//      model.addAttribute("restaurants", restaurantService.getAll());
+//
+//
+////      productDto.setName(productDto.getName());
+////      productDto.setDescription(productDto.getDescription());
+////      productDto.setPrice(productDto.getPrice());
+////      productDto.setImageUrl(productDto.getImageUrl());
+////      productDto.setAvailable(productDto.isAvailable());
 //      productDto.setRestaurantDto(restaurantService.getById(restaurantId));
 //
-//      Set<ConstraintViolation<ProductDto>> violations = validator.validate(productDto);
-//      if (!violations.isEmpty()) {
-//         // Обработка ошибок валидации
-//         return "/admin/products/add"; // Здесь вы можете указать представление для отображения ошибок
-//      }
-//
+//      // Остальной код, если валидация прошла успешно
 //      service.addProduct(productDto);
-//
 //      return "redirect:/admin/products";
 //   }
-
-   // CREATE
-   @PostMapping("/add")
-   public String addProduct(@ModelAttribute ("product") @Valid ProductDto productDto,
-                            @RequestParam Long restaurantId,
-                            BindingResult result,
-                            Model model) throws ProductException {
-
-      if (result.hasErrors()) {
-
-         model.addAttribute("product", productDto);
-         model.addAttribute("restaurants", restaurantService.getAll());
-
-         return "/admin/products/add";
-      }
-
-//      productDto.setName(productDto.getName());
-//      productDto.setDescription(productDto.getDescription());
-//      productDto.setPrice(productDto.getPrice());
-//      productDto.setImageUrl(productDto.getImageUrl());
-//      productDto.setAvailable(productDto.isAvailable());
-//      productDto.setRestaurantDto(restaurantService.getById(restaurantId));
-
-      // Остальной код, если валидация прошла успешно
-      service.addProduct(productDto);
-      return "redirect:/admin/products";
-   }
 
    // UPDATE
    @GetMapping("/{id}/edit")

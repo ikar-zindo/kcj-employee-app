@@ -92,13 +92,13 @@ public class ProductService {
                   return productMapper.convertToProductDto(productResponse);
 
                } else {
-                  throw new ProductException("Could not create a client in the database");
+                  throw new ProductException("Could not create a product in the database");
                }
             } else {
-               throw new ProductException(String.format("No restaurant found with Id=%d. I can't create a client!", restaurantDto.getId()));
+               throw new ProductException(String.format("No restaurant found with Id=%d. I can't create a product!", restaurantDto.getId()));
             }
          } else {
-            throw new ProductException("The ID of the associated restaurant is missing. I can't create a client!");
+            throw new ProductException("The ID of the associated restaurant is missing. I can't create a product!");
          }
       } else {
          throw new ProductException("Error processing received request body!");
@@ -162,13 +162,13 @@ public class ProductService {
             if (productResponse != null) {
                return productMapper.convertToProductDto(productResponse);
             } else {
-               throw new ProductException(String.format("Failed to delete client in database with Id=%d!", id));
+               throw new ProductException(String.format("Failed to delete product in database with Id=%d!", id));
             }
          } else {
-            throw new ProductException(String.format("Client not found in the database with Id=%d!", id));
+            throw new ProductException(String.format("Product not found in the database with Id=%d!", id));
          }
       } else {
-         throw new ProductException("The ID of the client to be deleted is missing!");
+         throw new ProductException("The ID of the product to be deleted is missing!");
       }
 
 

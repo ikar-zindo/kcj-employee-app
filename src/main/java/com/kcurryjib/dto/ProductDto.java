@@ -18,15 +18,15 @@ public class ProductDto {
    private Long id;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @NotBlank(message = "Name cannot be blank")
+//   @NotBlank(message = "Name cannot be blank")
    private String name;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
 //   @NotBlank(message = "Description cannot be blank")
    private String description;
 
-   @NotNull(message = "Price is required")
-   @DecimalMin(value = "0.01", message = "Price must be greater than or equal to 0.01")
+//   @NotNull(message = "Price is required")
+//   @DecimalMin(value = "0.01", message = "Price must be greater than or equal to 0.01")
    private BigDecimal price;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
