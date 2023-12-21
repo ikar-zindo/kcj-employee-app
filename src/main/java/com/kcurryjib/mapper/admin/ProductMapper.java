@@ -22,16 +22,16 @@ public class ProductMapper {
       return mapper.map(product, ProductDto.class);
    }
 
+   public RestaurantDto showRestaurantDetails(Restaurant restaurant) {
+      return mapper.map(restaurant, RestaurantDto.class);
+   }
+
    public ProductDto showProductDetails(Product product) {
       ProductDto productDto = mapper.map(product, ProductDto.class);
 
       productDto.setRestaurantDto(showRestaurantDetails(product.getRestaurant()));
 
       return productDto;
-   }
-
-   public RestaurantDto showRestaurantDetails(Restaurant restaurant) {
-      return mapper.map(restaurant, RestaurantDto.class);
    }
 
    public List<ProductDto> convertToProductsDto(List<Product> products) {

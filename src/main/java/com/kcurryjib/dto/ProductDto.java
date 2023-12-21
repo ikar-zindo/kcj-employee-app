@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -21,10 +22,10 @@ public class ProductDto {
    private String name;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @NotBlank(message = "Description cannot be blank")
+//   @NotBlank(message = "Description cannot be blank")
    private String description;
 
-   @JsonInclude(JsonInclude.Include.NON_NULL)
+   @NotNull(message = "Price is required")
    @DecimalMin(value = "0.01", message = "Price must be greater than or equal to 0.01")
    private BigDecimal price;
 

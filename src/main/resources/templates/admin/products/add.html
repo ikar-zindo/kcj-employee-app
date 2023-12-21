@@ -28,9 +28,12 @@
 
 	<!-- Custom styles for this template -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+
 	<!-- Custom styles for this template -->
 	<link rel="stylesheet" th:href="@{/assets/css/style.css}"/>
 	<link rel="stylesheet" th:href="@{/assets/dist/css/dashboard.css}"/>
+
+
 </head>
 
 <body>
@@ -61,35 +64,63 @@
 
 			<div class="col-md-7 col-lg-8">
 				<h4 class="mb-3">Add product</h4>
-				<form class="needs-validation was-validated" action="/admin/products/add" method="post">
+
+				<div th:if="${errorMessages != null}">
+					<ul>
+						<li th:each="error : ${errorMessages}" th:text="${error}"></li>
+					</ul>
+				</div>
+
+				<form th:object="${product}" id="productForm" class="needs-validation was-validated"
+						th:action="@{/admin/products/add}" method="post" novalidate>
 					<div class="row g-3">
 
+						<!--						Name-->
 						<div class="col-12">
 							<label class="form-label">Product name</label>
 							<div class="input-group has-validation">
-								<input type="text" name="name" placeholder="Enter product name" class="form-control" required>
-								<div class="invalid-feedback">
-									Your product name is required.
+								<!--								<input type="text" name="name" placeholder="Enter product name" class="form-control">-->
+								<!--								<div class="invalid-feedback">-->
+								<!--									Your product name is required.-->
+								<!--								</div>-->
+
+
+								<!--								with validation-->
+								<div class="input-group has-validation">
+									<input type="text" th:field="*{name}" class="form-control" required/>
+									<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="invalid-feedback"></div>
 								</div>
 							</div>
 						</div>
 
+						<!--						Price-->
 						<div class="col-sm-6">
-							<label class="form-label" for="price">Price</label>
-							<input type="number" id="price" name="price" step="0.01"
-									 placeholder="Enter the price of the product" class="form-control" required>
-							<div class="invalid-feedback">
-								Valid price is required.
+							<!--							<label class="form-label" for="price">Price</label>-->
+							<!--							<input type="number" id="price" name="price" step="0.01"-->
+							<!--									 placeholder="Enter the price of the product" class="form-control" required>-->
+							<!--							<div class="invalid-feedback">-->
+							<!--								Valid price is required.-->
+							<!--							</div>-->
+
+							<!--								with validation-->
+							<label class="form-label">Price</label>
+							<div class="input-group has-validation">
+								<input type="text" th:field="*{price}" class="form-control" required/>
+								<div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="invalid-feedback"></div>
 							</div>
 						</div>
 
+						<!--						Image-->
 						<div class="col-sm-6">
 							<label class="form-label">Image</label>
-							<input type="text" name="imageUrl" placeholder="Enter the URL of the product" class="form-control"
-									 step="any">
-							<div class="invalid-feedback">
-								Add image to the product
-							</div>
+														<input type="text" name="imageUrl" placeholder="Enter the URL of the product" class="form-control"
+																 step="any">
+
+							<!--								with validation-->
+<!--							<div class="input-group has-validation">-->
+<!--								<input type="text" th:field="*{imageUrl}" class="form-control" required/>-->
+<!--								<div th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}" class="invalid-feedback"></div>-->
+<!--							</div>-->
 						</div>
 
 						<div class="col-12">
@@ -97,12 +128,19 @@
 							<textarea name="description" placeholder="Enter product description" class="form-control">
 
 							</textarea>
+
+							<!--								with validation-->
+<!--							<textarea name="description" placeholder="Enter product description" class="form-control" th:field="*{description}"></textarea>-->
+<!--							<div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="invalid-feedback"></div>-->
+
 						</div>
 
+						<!--						Restaurant-->
 						<div class="col-md-5">
 							<label class="form-label">Restaurant</label>
 							<select class="form-select" name="restaurantId">
-								<option th:each="restaurant : ${restaurants}" th:text="${restaurant.name}" th:value="${restaurant.id}"/>
+								<option th:each="restaurant : ${restaurants}" th:text="${restaurant.name}"
+										  th:value="${restaurant.id}"/>
 							</select>
 							<div class="invalid-feedback">
 								Please select a valid category.
@@ -113,6 +151,7 @@
 
 					<hr class="my-4">
 
+					<!--					Available-->
 					<div class="form-check">
 						<input type="checkbox" class="form-check-input" id="availableCheckbox" name="available" checked>
 						<label class="form-check-label" for="availableCheckbox">Available</label>
@@ -120,18 +159,25 @@
 
 					<hr class="my-4">
 
+					<!--					Button-->
 					<button type="submit" class="w-100 btn btn-primary btn-lg">Add product</button>
 				</form>
 
-<!--				<form th:action="/add" th:object="${product}" method="post">-->
-<!--					&lt;!&ndash; Your form fields here &ndash;&gt;-->
-<!--					<input type="text" th:field="*{name}" />-->
-<!--					<input type="text" th:field="*{description}" />-->
-<!--					<input type="text" th:field="*{price}" />-->
-<!--					&lt;!&ndash; Other fields &ndash;&gt;-->
+				<!--				<form th:action="/admin/products/add" th:object="${product}" method="post">-->
+				<!--					&lt;!&ndash; Your form fields here &ndash;&gt;-->
+				<!--					<input type="text" th:field="*{name}" />-->
+				<!--					<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>-->
 
-<!--					<button type="submit">Submit</button>-->
-<!--				</form>-->
+				<!--					<input type="text" th:field="*{description}" />-->
+				<!--					<span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>-->
+
+				<!--					<input type="text" th:field="*{price}" />-->
+				<!--					<span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>-->
+
+				<!--					&lt;!&ndash; Other fields &ndash;&gt;-->
+
+				<!--					<button type="submit">Submit</button>-->
+				<!--				</form>-->
 			</div>
 
 
@@ -140,6 +186,8 @@
 		</main>
 	</div>
 </div>
+
+
 <script type="text/javascript" th:src="@{/assets/dist/js/bootstrap.bundle.min.js}"
 		  integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		  crossorigin="anonymous"></script>
@@ -150,6 +198,52 @@
 		  integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp"
 		  crossorigin="anonymous"></script>
 <script type="text/javascript" th:src="@{/assets/dist/css/dashboard.css}"></script>
-</body>
 
+
+<!-- jQuery-->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#productForm').submit(function (event) {
+            event.preventDefault(); // Предотвращаем отправку формы по умолчанию
+
+            var formData = $(this).serialize(); // Получаем данные формы
+
+            $.ajax({
+                type: 'POST',
+                url: '/admin/products/add',
+                data: formData,
+                success: function (response) {
+                    // Обработка успешного ответа от сервера
+                    window.location.href = "/admin/products"; // Перенаправление на другую страницу после успешного добавления продукта
+                },
+                error: function (xhr, status, error) {
+                    // Обработка ошибки запроса
+                    var errorMessage = xhr.responseText; // Получаем текст ошибки из ответа сервера
+                    alert(errorMessage); // Отображаем сообщение об ошибке пользователю (можно заменить на всплывающее окно)
+                }
+            });
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const priceInput = document.getElementById('productPrice');
+        const priceError = document.getElementById('priceError');
+
+        const errorMessage = /* Здесь можно передать сообщение об ошибке с сервера, при необходимости */;
+
+        priceInput.addEventListener('mouseover', function () {
+            if (errorMessage) {
+                priceError.textContent = errorMessage;
+                priceError.style.display = 'block';
+            }
+        });
+
+        priceInput.addEventListener('mouseout', function () {
+            priceError.style.display = 'none';
+        });
+    });
+</script>
+
+</body>
 </html>

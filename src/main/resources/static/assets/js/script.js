@@ -1,4 +1,4 @@
-// Пример использования AJAX с jQuery для отправки POST-запроса без обновления страницы
+// AJAX с jQuery для отправки POST-запроса без обновления страницы
 
 // При нажатии на кнопку "Добавить в корзину"
 $('#addToCartBtn').click(function () {
@@ -43,3 +43,4 @@ document.getElementById("deleteForm").addEventListener("submit", function (event
         console.error('Произошла ошибка:', error);
     });
 });
+

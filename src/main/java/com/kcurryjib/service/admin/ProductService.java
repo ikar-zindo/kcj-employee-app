@@ -30,7 +30,7 @@ public class ProductService {
 
    //   @Autowired
    public ProductService(ProductRepository productRepository, RestaurantRepository restaurantRepository,
-                         ProductMapper productMapper) throws ProductException{
+                         ProductMapper productMapper) throws ProductException {
 
       this.productRepository = productRepository;
       this.restaurantRepository = restaurantRepository;
@@ -149,12 +149,38 @@ public class ProductService {
 
    //DELETE
    public ProductDto deleteProduct(Long id) throws ProductException {
-      Product product = productRepository.findById(id)
-              .orElseThrow(() -> new ProductException(
-                      String.format("The product was not found in the database with Id=%d!", id)));
 
-      product.setAvailable(false);
-      product = productRepository.save(product);
-      return productMapper.convertToProductDto(product);
+      if (id != null) {
+         Optional<Product> productOptional = productRepository.findById(id);
+
+         if (productOptional.isPresent()) {
+            Product product = productOptional.get();
+            product.setAvailable(false);
+
+            Product productResponse = productRepository.save(product);
+
+            if (productResponse != null) {
+               return productMapper.convertToProductDto(productResponse);
+            } else {
+               throw new ProductException(String.format("Failed to delete client in database with Id=%d!", id));
+            }
+         } else {
+            throw new ProductException(String.format("Client not found in the database with Id=%d!", id));
+         }
+      } else {
+         throw new ProductException("The ID of the client to be deleted is missing!");
+      }
+
+
+      /**
+       * old version
+       */
+//      Product product = productRepository.findById(id)
+//              .orElseThrow(() -> new ProductException(
+//                      String.format("The product was not found in the database with Id=%d!", id)));
+//
+//      product.setAvailable(false);
+//      product = productRepository.save(product);
+//      return productMapper.convertToProductDto(product);
    }
 }
