@@ -2,14 +2,15 @@ package com.kcurryjib.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 
 
 public class ProductDto {
@@ -18,15 +19,18 @@ public class ProductDto {
    private Long id;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-//   @NotBlank(message = "Name cannot be blank")
+   @NotBlank(message = "{validation.product.name}")
+   @Length(max = 25, message = "{validation.product.name.length}")
    private String name;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-//   @NotBlank(message = "Description cannot be blank")
+   @NotBlank(message = "{validation.product.description.notnull}")
+   @Length(max = 1000, message = "{validation.product.description.length}")
    private String description;
 
-//   @NotNull(message = "Price is required")
-//   @DecimalMin(value = "0.01", message = "Price must be greater than or equal to 0.01")
+   @NotNull(message = "{validation.product.price.notnull}")
+   @DecimalMin(value = "0.01", message = "{validation.product.price}")
+   @DecimalMax(value = "10000", message = "{validation.product.price.value}")
    private BigDecimal price;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -38,8 +42,9 @@ public class ProductDto {
    @JsonInclude(JsonInclude.Include.NON_NULL)
    private boolean isAvailable;
 
-   @JsonInclude(JsonInclude.Include.NON_NULL)
+//   @JsonInclude(JsonInclude.Include.NON_NULL)
    @JsonProperty("restaurant")
+   @NotNull(message = "{validation.product.restaurant.notnull}")
    private RestaurantDto restaurantDto;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -131,18 +136,5 @@ public class ProductDto {
 
    public void setOrderProductsDto(List<OrderProductDto> orderProductsDto) {
       this.orderProductsDto = orderProductsDto;
-   }
-
-   @Override
-   public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
-      ProductDto that = (ProductDto) o;
-      return isAvailable == that.isAvailable && Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(description, that.description) && Objects.equals(price, that.price) && Objects.equals(imageUrl, that.imageUrl) && Objects.equals(createdAt, that.createdAt) && Objects.equals(restaurantDto, that.restaurantDto) && Objects.equals(cartProductsDto, that.cartProductsDto) && Objects.equals(orderProductsDto, that.orderProductsDto);
-   }
-
-   @Override
-   public int hashCode() {
-      return Objects.hash(id, name, description, price, imageUrl, createdAt, isAvailable, restaurantDto, cartProductsDto, orderProductsDto);
    }
 }

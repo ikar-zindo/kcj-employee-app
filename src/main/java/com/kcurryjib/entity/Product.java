@@ -1,7 +1,9 @@
 package com.kcurryjib.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -23,6 +25,9 @@ public class Product {
    private String description;
 
    @Column(name = "price", precision = 8, scale = 2)
+   @NotNull(message = "{validation.product.price.notnull}")
+   @DecimalMin(value = "0.01", message = "{validation.product.price}")
+   @DecimalMax(value = "10000", message = "{validation.product.price.value}")
    private BigDecimal price;
 
    @Column(name = "image_url")

@@ -24,12 +24,12 @@ USE `k-curry-jib`;
 
 CREATE TABLE `customer` (
   customer_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  first_name VARCHAR(255),
-  last_name VARCHAR(255),
-  email VARCHAR(255),
-  password VARCHAR(255),
+  first_name VARCHAR(60),
+  last_name VARCHAR(60),
+  email VARCHAR(60),
+  password VARCHAR(120),
   phone_number VARCHAR(20),
-  address VARCHAR(255),
+  address VARCHAR(120),
   postal_code VARCHAR(5),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   is_blocked BOOL DEFAULT FALSE
@@ -66,9 +66,9 @@ CREATE TABLE `order` (
   restaurant_id BIGINT,
   employee_id BIGINT,
   order_date DATETIME,
-  delivery_address VARCHAR(255),
+  delivery_address VARCHAR(60),
   total_amount DECIMAL(8, 2),
-  order_status VARCHAR(50)
+  order_status VARCHAR(20)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 --
@@ -90,11 +90,11 @@ CREATE TABLE `order_product` (
 
 CREATE TABLE `product` (
   product_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(123),
+  name VARCHAR(60),
   description TEXT,
   price DECIMAL(8, 2),
   restaurant_id BIGINT,
-  image_url VARCHAR(600),
+  image_url VARCHAR(200),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   is_available BOOL DEFAULT TRUE
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
@@ -105,13 +105,13 @@ CREATE TABLE `product` (
 
 CREATE TABLE `restaurant` (
   restaurant_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255),
-  address VARCHAR(255),
+  name VARCHAR(60),
+  address VARCHAR(120),
   phone_number VARCHAR(20),
-  opening_hours VARCHAR(255),
-  cuisine_type VARCHAR(100),
+  opening_hours VARCHAR(20),
+  cuisine_type VARCHAR(20),
   description TEXT,
-  social_media_links VARCHAR(255),
+  social_media_links VARCHAR(200),
   is_open BOOL DEFAULT TRUE
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
@@ -134,11 +134,11 @@ CREATE TABLE `review` (
 
 CREATE TABLE `employee` (
   employee_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  first_name VARCHAR(64),
-  last_name VARCHAR(64),
-  email VARCHAR(123),
-  nickname VARCHAR(64),
-  password VARCHAR(123),
+  first_name VARCHAR(30),
+  last_name VARCHAR(30),
+  email VARCHAR(120),
+  nickname VARCHAR(60),
+  password VARCHAR(120),
   phone_number VARCHAR(20),
   role ENUM('USER', 'MANAGER', 'ADMIN', 'DEALER', 'DRIVER'),
   restaurant_id BIGINT,
