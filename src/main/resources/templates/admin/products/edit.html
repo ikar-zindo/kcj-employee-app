@@ -57,147 +57,93 @@
 			</div>
 		</div>
 
+
 		<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
 			<div class="col-md-7 col-lg-8">
-
-				<h2>Product edit</h2>
-
-				<!--				old version-->
-				<!--				<div th:each="product : ${product}">-->
-				<!--					<form method="post">-->
-				<!--						<div class="row g-3">-->
-
-				<!--							<div class="col-12">-->
-				<!--								<label class="form-label">Product name</label>-->
-				<!--								<div class="input-group has-validation">-->
-				<!--									<input type="text" th:value="${product.name}" name="name" placeholder="Enter product name"-->
-				<!--											 class="form-control">-->
-
-				<!--									<div class="invalid-feedback">-->
-				<!--										Your product name is required.-->
-				<!--									</div>-->
-				<!--								</div>-->
-				<!--							</div>-->
-
-				<!--							<div class="col-sm-6">-->
-				<!--								<label class="form-label">Price</label>-->
-				<!--								<input type="number" th:value="${product.price}" name="price"-->
-				<!--										 placeholder="Enter the price of the product" class="form-control" step="any">-->
-				<!--								<div class="invalid-feedback">-->
-				<!--									Valid price is required.-->
-				<!--								</div>-->
-				<!--							</div>-->
-
-				<!--							<div class="col-12">-->
-				<!--								<label class="form-label">Description<span-->
-				<!--										  class="text-body-secondary">(Optional)</span></label>-->
-				<!--								<textarea name="description" placeholder="Enter product description" class="form-control" step="any"-->
-				<!--											 th:text="${product.description}"/>-->
-				<!--							</div>-->
-
-				<!--							<div class="col-12">-->
-				<!--								<label class="form-label">ImageUrl<span-->
-				<!--										  class="text-body-secondary">(Optional)</span></label>-->
-				<!--								<textarea name="imageUrl" placeholder="Enter product description" class="form-control" step="any"-->
-				<!--											 th:text="${product.imageUrl}"/>-->
-				<!--							</div>-->
-
-				<!--							<div class="col-md-7">-->
-				<!--								<label class="form-label">Restaurant</label>-->
-				<!--								<select class="form-select" name="restaurantId">-->
-				<!--									<option th:each="restaurant : ${restaurants}" th:text="${restaurant.name}"-->
-				<!--											  th:value="${restaurant.id}" th:selected="${restaurant.name}"></option>-->
-				<!--								</select>-->
-				<!--								<div class="invalid-feedback">-->
-				<!--									Please provide a valid supplier.-->
-				<!--								</div>-->
-				<!--							</div>-->
-
-				<!--						</div>-->
-
-				<!--						<hr class="my-4">-->
-
-				<!--						<div class="form-check">-->
-				<!--							<input type="checkbox" class="form-check-input" id="availableCheckbox" name="available" th:checked="${product.available}">-->
-				<!--							<label class="form-check-label" for="availableCheckbox">Available</label>-->
-				<!--						</div>-->
+				<h4 class="mb-3">Edit product</h4>
 
 
-				<!--						<hr class="my-4">-->
+				<form class="needs-validation"
+						th:method="POST"
+						th:action="@{/admin/products/{id}/edit(id=${product.id})}"
+						th:object="${product}"
+						novalidate>
+					<div class="row g-3">
 
-				<!--						<button type="submit" class="w-100 btn btn-success btn-lg">Confirm</button>-->
-				<!--					</form>-->
-				<!--				</div>-->
+						<input type="hidden" th:field="*{id}" id="id"/><br/>
+						<input type="hidden" th:field="*{imageUrl}" id="imageUrl"/><br/>
 
-
-				<section >
-					<div th:text="${product.name}"></div>
-
-					<container >
-						<div>
-							<img width="308px" height="308px" th:src="@{/images/products/1.jpg}"/>
+						<div class="col-4">
+							<img width="100px" height="100px" th:src="'/images/products/' + ${product.imageUrl}"/>
+							<div class="text-danger" th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}"></div>
 						</div>
 
-						<div class="pizza_edit_body">
-							<form th:method="POST" th:action="@{/admin/products/create}" th:object="${product}" class="form"
-									style="margin-top: -42pt">
-
-								<input type="hidden" th:field="*{id}" id="id"/><br/>
-								<input type="hidden" th:field="*{imageUrl}" id="imageUrl"/><br/>
-
-								<label for="name">Name</label>
-								<input class="input_pizza" th:field="*{name}" id="name"/><br/>
-								<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
-
-								<label for="description">description</label>
-								<input class="input_pizza" th:field="*{description}" id="description"/><br/>
-								<div th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
-
-								<label for="price">Price</label>
-								<input class="input_pizza" th:field="*{price}" id="price"/><br/>
-								<div th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
-
-								<div class="form-check">
-									<input type="checkbox" class="form-check-input" id="available" name="available"
-											 th:checked="*{available}">
-									<label class="form-check-label" for="available">Available</label>
-								</div>
-
-								<input type="hidden" th:field="*{restaurantDto.id}" id="restaurantId"/>
-
-								<!-- ... (other form fields) ... -->
-
-								<div>
-									<label for="restaurantDto">Cafe</label>
-									<select class="input_pizza" style="width: 230px" id="restaurantDto" name="restaurantId">
-										<option th:each="restaurant : ${restaurants}"
-												  th:value="${restaurant.id}"
-												  th:text="${restaurant.name}">
-										</option>
-									</select>
-								</div>
-
-
-								<div class="pizza_btn">
-									<button type="submit" class="pizza_btn_style pizza_btn_left">Submit</button>
-								</div>
-							</form>
-							<div style="margin-top: -61px">
-								<form th:action="@{/admin/products}" th:method="GET">
-									<button href="/pizzas" class="pizza_btn_style">Back</button>
-								</form>
-							</div>
+						<div class="col-7">
+							<h3 th:text="${product.name}"/>
 						</div>
-					</container>
-				</section>
 
+						<div class="col-12">
+							<label for="name" class="form-label">Product name</label>
+							<input type="text" placeholder="Enter product name" class="form-control"
+									 th:field="*{name}"
+									 id="name"
+									 th:value="${product.name}"/>
+							<div class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+						</div>
+
+						<div class="col-6">
+							<label class="form-label" for="price">Price</label>
+							<input type="number" step="0.01" placeholder="Enter the price of the product" class="form-control"
+									 th:field="*{price}"
+									 id="price"/>
+							<div class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
+						</div>
+
+						<input type="hidden" th:field="*{restaurantDto.id}" id="restaurantId"/>
+
+						<div class="col-6">
+							<label for="restaurantDto" class="form-label">Restaurant</label>
+							<select class="form-select" id="restaurantDto" name="restaurantId">
+								<option th:each="restaurant : ${restaurants}"
+										  th:value="${restaurant.id}"
+										  th:text="${restaurant.name}"
+										  th:selected="${restaurant.name}">
+								</option>
+							</select>
+							<div class="text-danger" th:if="${#fields.hasErrors('restaurantDto')}"
+								  th:errors="*{restaurantDto}"></div>
+						</div>
+
+						<div class="col-12">
+							<label for="description"
+									 class="form-label">Description<span class="text-body-secondary">(Optional)</span></label>
+							<input placeholder="Enter product description" class="form-control"
+									 th:field="*{description}"
+									 id="description" th:value="${product.description}"/>
+							<div class="text-danger" th:if="${#fields.hasErrors('description')}"
+								  th:errors="*{description}"></div>
+						</div>
+
+					</div>
+
+					<hr class="my-4">
+
+					<div class="form-check">
+						<input type="checkbox" class="form-check-input" id="available" name="available" th:checked="${product.available}"/>
+						<label class="form-check-label" for="available">Available</label>
+						<div class="text-danger" th:if="${#fields.hasErrors('available')}"
+							  th:errors="*{available}"></div>
+					</div>
+
+					<hr class="my-4">
+
+					<button class="w-100 btn btn-success btn-lg">Confirm</button>
+				</form>
+
+				<foot th:insert="~{/blocks/footer :: footer}"></foot>
 
 			</div>
-
-
-			<foot th:insert="~{/blocks/footer :: footer}"></foot>
-
 		</main>
 	</div>
 </div>
@@ -211,6 +157,10 @@
 		  integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp"
 		  crossorigin="anonymous"></script>
 <script type="text/javascript" th:src="@{/assets/dist/css/dashboard.css}"></script>
+
+
+
+
 </body>
 
 </html>

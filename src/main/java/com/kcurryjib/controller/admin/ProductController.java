@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Controller
@@ -49,18 +48,11 @@ public class ProductController {
    }
 
    // CREATE
+   @GetMapping(value = "/add")
+   public String addProduct(@ModelAttribute("product") ProductDto productDto,
+                            Model model) {
 
-
-   /**
-    * old version
-    */
-
-
-   // CREATE
-   @GetMapping(value = "add")
-   public String addProduct(@ModelAttribute("product") ProductDto productDto, Model model) {
-
-      productDto.setImageUrl("/images/products/1.jpg");
+      productDto.setImageUrl("1.jpg");
       productDto.setName("new product");
       model.addAttribute("restaurants", restaurantService.getAll());
 
@@ -68,7 +60,7 @@ public class ProductController {
    }
 
    // CREATE
-   @PostMapping(value = "add")
+   @PostMapping(value = "/add")
    public String createProduct(@ModelAttribute("product") @Valid ProductDto productDto,
                                BindingResult result,
                                @RequestParam(name = "restaurantId") Long restaurantId,
@@ -87,77 +79,44 @@ public class ProductController {
       return "redirect:/admin/products";
    }
 
-   /**
-    * old version
-    */
-//    CREATE
-//   @PostMapping("/add")
-//   public String addProduct(@RequestParam @Valid String name,
-//                            @RequestParam @Valid String description,
-//                            @RequestParam @Valid BigDecimal price,
-//                            @RequestParam String imageUrl,
-//                            @RequestParam(name = "available", required = false,
-//                                    defaultValue = "false") boolean available,
-//                            @RequestParam Long restaurantId,
-//                            Model model) throws ProductException {
-//
-//      ProductDto productDto = new ProductDto();
-//
-//      productDto.setName(name);
-//      productDto.setDescription(description);
-//      productDto.setPrice(price);
-//      productDto.setImageUrl(imageUrl);
-//      productDto.setAvailable(available);
-//      productDto.setRestaurantDto(restaurantService.getById(restaurantId));
-//
-//      service.addProduct(productDto);
-//
-//      return "redirect:/admin/products";
-//   }
+   // UPDATE
+   @GetMapping(value = "/{id}/edit")
+   public String editProduct(@PathVariable(value = "id") Long id,
+//                             @ModelAttribute("product") ProductDto productDto,
+                             Model model) throws ProductException {
+
+      ProductDto productDto = service.getProductById(id);
+
+      if (productDto == null) {
+         return "redirect:/admin/products";
+      }
+
+      model.addAttribute("product", productDto);
+      model.addAttribute("restaurants", restaurantService.getAll());
+
+      return "/admin/products/edit";
+   }
 
    // UPDATE
-//   @GetMapping("/{id}/edit")
-//   public String editProduct(@PathVariable(value = "id") Long id, Model model) throws ProductException {
-//      if (service.getProductById(id) == null) {
-//         return "redirect:/admin/products";
-//      }
-//
-//      ProductDto productDto = service.getProductById(id);
-//      Iterable<RestaurantDto> restaurantsDto = restaurantService.getAll();
-//
-//      model.addAttribute("product", productDto);
-//      model.addAttribute("restaurants", restaurantsDto);
-//
-//      return "/admin/products/edit";
-//   }
-//
-//   // UPDATE
-//   @PostMapping("/{id}/edit")
-//   public String updateProduct(@PathVariable(value = "id") Long id,
-//                               @RequestParam String name,
-//                               @RequestParam String description,
-//                               @RequestParam BigDecimal price,
-//                               @RequestParam String imageUrl,
-//                               @RequestParam(name = "available", required = false,
-//                                       defaultValue = "false") boolean available,
-//                               @RequestParam Long restaurantId,
-//                               Model model) throws ProductException {
-//
-//      ProductDto productDto = service.getProductById(id);
-//
-//      productDto.setName(name);
-//      productDto.setDescription(description);
-//      productDto.setPrice(price);
-//      productDto.setImageUrl(imageUrl);
-//      productDto.setAvailable(available);
-//      productDto.setRestaurantDto(restaurantService.getById(restaurantId));
-//
-//      service.updateProduct(productDto);
-//
-//      model.addAttribute("product", productDto);
-//
-//      return "redirect:/admin/products/{id}";
-//   }
+   @PostMapping(value = "/{id}/edit")
+   public String updateProduct(@ModelAttribute("product") @Valid ProductDto productDto,
+                               BindingResult result,
+                               @RequestParam(name = "restaurantId") Long restaurantId,
+                               Model model) {
+
+      RestaurantDto restaurantDto = restaurantService.getById(restaurantId);
+
+      productDto.setRestaurantDto(restaurantDto);
+
+      if (result.hasErrors()) {
+         model.addAttribute("product", productDto);
+         model.addAttribute("restaurants", restaurantService.getAll());
+         return "admin/products/edit";
+      }
+
+      service.updateProduct(productDto);
+      return "redirect:/admin/products";
+   }
 
    // DELETE
    @DeleteMapping("/{id}")

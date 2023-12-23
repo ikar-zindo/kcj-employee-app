@@ -73,6 +73,10 @@ public class ProductService {
    // CREATE
    public ProductDto addProduct(ProductDto productDto) throws ProductException {
 
+      if (productDto.getName() == null) {
+         productDto.setName("new product");
+      }
+
       if (productDto != null && productDto.getId() == null) {
          RestaurantDto restaurantDto = productDto.getRestaurantDto();
 
@@ -103,15 +107,14 @@ public class ProductService {
       } else {
          throw new ProductException("Error processing received request body!");
       }
-      /**
-       * old version
-       */
-//      return productMapper.convertToProductDto(
-//              productRepository.save(productMapper.convertToProduct(productDto)));
    }
 
    // UPDATE
    public ProductDto updateProduct(ProductDto productDto) throws ProductException {
+
+      if (productDto.getName() == null) {
+         productDto.setName("new product");
+      }
 
       if (productDto.getId() != null) {
          Optional<Product> productOptional = productRepository.findById(productDto.getId());
@@ -155,7 +158,7 @@ public class ProductService {
 
          if (productOptional.isPresent()) {
             Product product = productOptional.get();
-            product.setAvailable(false);
+            product.setAvailable(false); // isAvailable = false;
 
             Product productResponse = productRepository.save(product);
 
@@ -170,17 +173,5 @@ public class ProductService {
       } else {
          throw new ProductException("The ID of the product to be deleted is missing!");
       }
-
-
-      /**
-       * old version
-       */
-//      Product product = productRepository.findById(id)
-//              .orElseThrow(() -> new ProductException(
-//                      String.format("The product was not found in the database with Id=%d!", id)));
-//
-//      product.setAvailable(false);
-//      product = productRepository.save(product);
-//      return productMapper.convertToProductDto(product);
    }
 }
