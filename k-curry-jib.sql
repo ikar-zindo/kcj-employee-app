@@ -140,7 +140,7 @@ CREATE TABLE `employee` (
   nickname VARCHAR(60),
   password VARCHAR(120),
   phone_number VARCHAR(20),
-  role ENUM('USER', 'MANAGER', 'ADMIN', 'DEALER', 'DRIVER'),
+  role ENUM('ROLE_USER', 'ROLE_MANAGER', 'ROLE_ADMIN', 'ROLE_DEALER', 'ROLE_DRIVER'),
   restaurant_id BIGINT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   is_active BOOL DEFAULT TRUE
@@ -315,16 +315,16 @@ INSERT INTO `cart` (`customer_id`) VALUES
 --
 
 INSERT INTO `employee` (`last_name`, `first_name`,  `email`, `nickname`, `password`, `phone_number`, `role`, `restaurant_id`) VALUES
-    ('Davolio', 'Nancy', 'davolio@mail.com', 'nancy', 'qwerty123', '+49123456789', 'USER', 1),
-    ('Fuller', 'Andrew', 'fuller@mail.com', 'andrew', 'qwerty123', '+49123456789', 'USER', 1),
-    ('Leverling', 'Janet', 'leverling@mail.com', 'janet', 'qwerty123', '+49123456789', 'USER', 1),
-    ('Peacock', 'Margaret', 'peacock@mail.com', 'margaret', 'qwerty123', '+49123456789', 'USER', 1),
-    ('Buchanan', 'Steven', 'buchanan@mail.com', 'steven', 'qwerty123', '+49123456789', 'USER', 1),
-    ('Suyama', 'Michael', 'suyama@mail.com', 'michael', 'qwerty123', '+49123456789', 'MANAGER', 1),
-    ('King', 'Robert', 'king@mail.com', 'robert', 'qwerty123', '+49123456789', 'MANAGER', 1),
-    ('Callahan', 'Laura', 'callahan@mail.com', 'laura', 'qwerty123', '+49123456789', 'ADMIN', 1),
-    ('Dodsworth', 'Anne', 'dodsworth@mail.com', 'anne', 'qwerty123', '+49123456789', 'DRIVER', 1),
-    ('West', 'Adam', 'west@mail.com', 'adam', 'qwerty123', '+49123456789', 'DRIVER', 1);
+    ('Davolio', 'Nancy', 'davolio@mail.com', 'nancy', 'qwerty123', '+49123456789', 'ROLE_USER', 1),
+    ('Fuller', 'Andrew', 'fuller@mail.com', 'andrew', 'qwerty123', '+49123456789', 'ROLE_USER', 1),
+    ('Leverling', 'Janet', 'leverling@mail.com', 'janet', 'qwerty123', '+49123456789', 'ROLE_USER', 1),
+    ('Peacock', 'Margaret', 'peacock@mail.com', 'margaret', 'qwerty123', '+49123456789', 'ROLE_USER', 1),
+    ('Buchanan', 'Steven', 'buchanan@mail.com', 'steven', 'qwerty123', '+49123456789', 'ROLE_USER', 1),
+    ('Suyama', 'Michael', 'suyama@mail.com', 'michael', 'qwerty123', '+49123456789', 'ROLE_MANAGER', 1),
+    ('King', 'Robert', 'king@mail.com', 'robert', 'qwerty123', '+49123456789', 'ROLE_MANAGER', 1),
+    ('Callahan', 'Laura', 'callahan@mail.com', 'laura', 'qwerty123', '+49123456789', 'ROLE_ADMIN', 1),
+    ('Dodsworth', 'Anne', 'dodsworth@mail.com', 'anne', 'qwerty123', '+49123456789', 'ROLE_DRIVER', 1),
+    ('West', 'Adam', 'west@mail.com', 'adam', 'qwerty123', '+49123456789', 'ROLE_DRIVER', 1);
 
 --
 -- Dumping data for table `product`

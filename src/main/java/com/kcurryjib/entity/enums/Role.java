@@ -2,9 +2,9 @@ package com.kcurryjib.entity.enums;
 
 public enum Role {
 
-   USER,
-   MANAGER,
-   ADMIN,
-   DEALER,
-   DRIVER
+   ROLE_USER,
+   ROLE_MANAGER,
+   ROLE_ADMIN,
+   ROLE_DEALER,
+   ROLE_DRIVER
 }
