@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kcurryjib.entity.enums.Role;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Pattern;
+import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,9 +17,11 @@ public class EmployeeDto {
    private Long id;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
+   @Length(max = 30, message = "{validation.employee.name.length}")
    private String firstName;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
+   @Length(max = 30, message = "{validation.employee.name.length}")
    private String lastName;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -25,15 +29,18 @@ public class EmployeeDto {
    private String email;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
+   @Length(max = 60, message = "{validation.employee.nickname.length}")
    private String nickname;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
    private Role role;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
+   @Length(max = 120, message = "{validation.employee.password.length}")
    private String password;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
+   @Pattern(regexp = "\\\\+49\\\\d{10}", message = "{validation.employee.phoneNumber.length}")
    private String phoneNumber;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)

@@ -16,16 +16,9 @@ public class EmployeeMapper {
    @Autowired
    private ModelMapper mapper;
 
-   @Autowired
-   private OrderMapper orderMapper;
-
    // convert to DTO
    public EmployeeDto convertToEmployeeDto(Employee employee) {
-      EmployeeDto employeeDto = mapper.map(employee, EmployeeDto.class);
-
-      employeeDto.setOrdersDto(orderMapper.convertToOrdersDto(employee.getOrders()));
-
-      return employeeDto;
+      return mapper.map(employee, EmployeeDto.class);
    }
 
    public List<EmployeeDto> convertToEmployeesDto(List<Employee> employees) {
@@ -36,9 +29,7 @@ public class EmployeeMapper {
 
    // convert to entity
    public Employee convertToEmployee(EmployeeDto employeeDto) {
-      Employee employee = mapper.map(employeeDto, Employee.class);
-
-      return employee;
+      return mapper.map(employeeDto, Employee.class);
    }
 
    public List<Employee> convertToEmployees(List<EmployeeDto> employeesDto) {

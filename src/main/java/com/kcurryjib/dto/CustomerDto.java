@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
+import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,26 +16,31 @@ public class CustomerDto {
    private Long id;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
+   @Length(max = 60, message = "{validation.customer.name.length}")
    private String firstName;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
+   @Length(max = 60, message = "{validation.customer.name.length}")
    private String lastName;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
    @Email(message = "Invalid email")
+   @Length(max = 60, message = "{validation.customer.email.length}")
    private String email;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
+   @Length(max = 120, message = "{validation.customer.password.length}")
    private String password;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @Pattern(regexp = "\\\\+49\\\\d{10}", message = "Invalid phone number")
+   @Pattern(regexp = "\\\\+49\\\\d{10}", message = "{validation.customer.phoneNumber.length}")
    private String phoneNumber;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
    private String address;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
+   @Length(max = 5, message = "{validation.customer.postalCode.length}")
    private String postalCode;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)

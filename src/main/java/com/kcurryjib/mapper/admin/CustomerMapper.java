@@ -15,9 +15,6 @@ public class CustomerMapper {
    @Autowired
    private ModelMapper mapper;
 
-
-
-
    // convert to DTO
    public CustomerDto convertToCustomerDto(Customer customer) {
       CustomerDto customerDto = mapper.map(customer, CustomerDto.class);

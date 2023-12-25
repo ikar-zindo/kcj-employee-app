@@ -15,9 +15,6 @@ public class ReviewMapper {
    @Autowired
    private ModelMapper mapper;
 
-//   @Autowired
-   private RestaurantMapper restaurantMapper;
-
    @Autowired
    private CustomerMapper customerMapper;
 
@@ -31,7 +28,6 @@ public class ReviewMapper {
 
       reviewDto.setCustomerDto(customerMapper.convertToCustomerDto(review.getCustomer()));
 
-
       return reviewDto;
    }
 
@@ -43,9 +39,7 @@ public class ReviewMapper {
 
    // convert to entity
    public Review convertToReview(ReviewDto reviewDto) {
-      Review review = mapper.map(reviewDto, Review.class);
-
-      return review;
+      return mapper.map(reviewDto, Review.class);
    }
 
    public List<Review> convertToReviews(List<ReviewDto> reviewsDto) {
