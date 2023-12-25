@@ -48,12 +48,6 @@ public class RestaurantService {
       return MapperUtil.convertlist(restaurants, restaurantMapper::convertToRestaurantDto);
    }
 
-   // READ
-   public List<RestaurantDto> showWithComments() throws RestaurantException {
-      List<Restaurant> restaurants = new ArrayList<>(restaurantRepository.findAll());
-
-      return MapperUtil.convertlist(restaurants, restaurantMapper::showCustomersWithComments);
-   }
 
    // READ
    public List<RestaurantDto> fullInfo() throws RestaurantException {
@@ -76,6 +70,24 @@ public class RestaurantService {
 
       return restaurantDto;
    }
+
+   // READ
+   public RestaurantDto showWithComments(Long id) throws RestaurantException {
+      Optional<Restaurant> restaurantOptional = restaurantRepository.findById(id);
+      RestaurantDto restaurantDto = null;
+
+      if (restaurantOptional.isPresent()) {
+         restaurantDto = MapperUtil.convertlist(List.of(restaurantOptional.get()), restaurantMapper::showCustomersWithComments).get(0);
+      }
+
+
+
+//      Restaurant restaurant = restaurantRepository.findById(id).orElse(null);
+//      RestaurantDto restaurantDto = MapperUtil.convertlist(List.of(restaurant), restaurantMapper::convertToRestaurantDto).get(0);
+
+      return restaurantDto;
+   }
+
 
    // CREATE
    public RestaurantDto addRestaurant(RestaurantDto restaurantDto) throws RestaurantException {

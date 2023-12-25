@@ -17,7 +17,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("admin/restaurants")
-//@SessionAttributes("editProducts")
+@SessionAttributes("editRestaurants")
 public class RestaurantController {
 
    private final RestaurantService service;
@@ -52,8 +52,9 @@ public class RestaurantController {
    public String getRestaurantById(@PathVariable Long id,
                                    Model model) throws RestaurantException {
 
-      RestaurantDto restaurant = service.getById(id);
-      model.addAttribute("restaurant", restaurant);
+      RestaurantDto restaurantDto = service.showWithComments(id);
+      model.addAttribute("restaurant", restaurantDto);
+      model.addAttribute("reviews", restaurantDto.getReviewsDto());
 
       return "/admin/restaurants/info";
    }
