@@ -32,7 +32,6 @@
 	<link rel="stylesheet" th:href="@{/assets/css/style.css}"/>
 	<link rel="stylesheet" th:href="@{/assets/dist/css/dashboard.css}"/>
 </head>
-
 <body>
 
 <!--Themes-2-->
@@ -57,34 +56,28 @@
 			</div>
 		</div>
 
-
 		<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
 			<div class="col-md-7 col-lg-8">
-				<h4 class="mb-3">Edit product</h4>
+				<h4 class="mb-3">Edit restaurant</h4>
 
 
 				<form class="needs-validation"
 						th:method="POST"
-						th:action="@{/admin/products/{id}/edit(id=${product.id})}"
-						th:object="${product}"
+						th:action="@{/admin/restaurants/{id}/edit(id=${restaurant.id})}"
+						th:object="${restaurant}"
 						novalidate>
 					<div class="row g-3">
 
 						<input type="hidden" th:field="*{id}" id="id"/><br/>
-						<input type="hidden" th:field="*{imageUrl}" id="imageUrl"/><br/>
 
-						<div class="col-4">
-							<img width="100px" height="100px" th:src="'/images/products/' + ${product.imageUrl}"/>
-							<div class="text-danger" th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}"></div>
-						</div>
 
 						<div class="col-7">
-							<h3 th:text="${product.name}"/>
+							<h3 th:text="*{name}"/>
 						</div>
 
 						<div class="col-12">
-							<label for="name" class="form-label">Product name</label>
+							<label for="name" class="form-label">Restaurant name</label>
 							<input type="text" placeholder="Enter product name" class="form-control"
 									 th:field="*{name}"
 									 id="name"
@@ -92,51 +85,79 @@
 							<div class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
 						</div>
 
-						<div class="col-6">
-							<label class="form-label" for="price">Price</label>
-							<input type="number" min="0.01" step="0.01" placeholder="Enter the price of the product" class="form-control"
-									 th:field="*{price}"
-									 id="price"/>
-							<div class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
+						<div class="col-12">
+							<label for="address" class="form-label">address</label>
+							<input placeholder="Enter restaurant address" class="form-control"
+									 th:field="*{address}"
+									 id="address"
+									 th:value="*{address}"/>
+							<div class="text-danger" th:if="${#fields.hasErrors('address')}"
+								  th:errors="*{address}"></div>
 						</div>
 
-						<input type="hidden" th:field="*{restaurantDto.id}" id="restaurantId"/>
-
-						<div class="col-6">
-							<label for="restaurantDto" class="form-label">Restaurant</label>
-							<select class="form-select" id="restaurantDto" name="restaurantId">
-								<option th:each="restaurant : ${restaurants}"
-										  th:value="${restaurant.id}"
-										  th:text="${restaurant.name}"
-										  th:selected="${restaurant.name}">
-								</option>
-							</select>
-							<div class="text-danger"
-								  th:if="${#fields.hasErrors('restaurantDto')}"
-								  th:errors="*{restaurantDto}"></div>
-						</div>
 
 						<div class="col-12">
-							<label for="description"
-									 class="form-label">Description<span class="text-body-secondary">(Optional)</span></label>
-							<input placeholder="Enter product description" class="form-control"
+							<label for="phoneNumber" class="form-label">phoneNumber</label>
+							<input placeholder="Enter restaurant phoneNumber" class="form-control"
+									 th:field="*{phoneNumber}"
+									 id="phoneNumber"
+									 th:value="*{phoneNumber}"/>
+							<div class="text-danger" th:if="${#fields.hasErrors('phoneNumber')}"
+								  th:errors="*{phoneNumber}"></div>
+						</div>
+
+
+						<div class="col-12">
+							<label for="openingHours" class="form-label">openingHours</label>
+							<input placeholder="Enter restaurant openingHours" class="form-control"
+									 th:field="*{openingHours}"
+									 id="openingHours"
+									 th:value="*{openingHours}"/>
+							<div class="text-danger" th:if="${#fields.hasErrors('openingHours')}"
+								  th:errors="*{openingHours}"></div>
+						</div>
+
+
+						<div class="col-12">
+							<label for="cuisineType" class="form-label">cuisineType</label>
+							<input placeholder="Enter restaurant cuisineType" class="form-control"
+									 th:field="*{cuisineType}"
+									 id="cuisineType"
+									 th:value="*{cuisineType}"/>
+							<div class="text-danger" th:if="${#fields.hasErrors('cuisineType')}"
+								  th:errors="*{cuisineType}"></div>
+						</div>
+
+
+						<div class="col-12">
+							<label for="description" class="form-label">Description</label>
+							<input placeholder="Enter restaurant description" class="form-control"
 									 th:field="*{description}"
-									 id="description" th:value="${product.description}"/>
+									 id="description"
+									 th:value="*{description}"/>
 							<div class="text-danger" th:if="${#fields.hasErrors('description')}"
 								  th:errors="*{description}"></div>
 						</div>
 
+
+						<div class="col-12">
+							<label for="socialMediaLinks" class="form-label">socialMediaLinks</label>
+							<input placeholder="Enter restaurant socialMediaLinks" class="form-control"
+									 th:field="*{socialMediaLinks}"
+									 id="socialMediaLinks"
+									 th:value="*{socialMediaLinks}"/>
+							<div class="text-danger" th:if="${#fields.hasErrors('socialMediaLinks')}"
+								  th:errors="*{socialMediaLinks}"></div>
+						</div>
 					</div>
 
-					<hr class="my-4">
-
 					<div class="form-check">
-						<input type="checkbox" class="form-check-input" id="available" name="available"
-								 th:checked="${product.available}"/>
-						<label class="form-check-label" for="available">Available</label>
+						<input type="checkbox" class="form-check-input" id="open" name="open"
+								 th:checked="*{open}"/>
+						<label class="form-check-label" for="open">open</label>
 						<div class="text-danger"
-							  th:if="${#fields.hasErrors('available')}"
-							  th:errors="*{available}"></div>
+							  th:if="${#fields.hasErrors('open')}"
+							  th:errors="*{open}"></div>
 					</div>
 
 					<hr class="my-4">
@@ -150,7 +171,6 @@
 		</main>
 	</div>
 </div>
-
 <script type="text/javascript" th:src="@{/assets/dist/js/bootstrap.bundle.min.js}"
 		  integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		  crossorigin="anonymous"></script>
@@ -161,7 +181,6 @@
 		  integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp"
 		  crossorigin="anonymous"></script>
 <script type="text/javascript" th:src="@{/assets/dist/css/dashboard.css}"></script>
-
 </body>
 
 </html>

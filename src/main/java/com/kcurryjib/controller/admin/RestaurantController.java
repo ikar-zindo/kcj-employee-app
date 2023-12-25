@@ -59,68 +59,68 @@ public class RestaurantController {
    }
 
    // CREATE
-//   @GetMapping(value = "/add")
-//   public String addRestaurant(@ModelAttribute("restaurant") RestaurantDto restaurantDto,
-//                            Model model) throws RestaurantException {
-//
-//      restaurantDto.setName("new restaurant");
-//
-//      return "admin/restaurants/add";
-//   }
-//
-//   // CREATE
-//   @PostMapping(value = "/add")
-//   public String createRestaurant(@ModelAttribute("product") @Valid RestaurantDto restaurantDto,
-//                               BindingResult result,
-//                               Model model) throws RestaurantException {
-//
-//
-//      if (result.hasErrors()) {
-//         model.addAttribute("restaurant", restaurantDto);
-//         return "admin/restaurants/add";
-//      }
-//
-//      service.addRestaurant(restaurantDto);
-//      return "redirect:/admin/restaurants";
-//   }
-//
-//   // UPDATE
-//   @GetMapping(value = "/{id}/edit")
-//   public String editRestaurant(@PathVariable(value = "id") Long id,
-//                             Model model) throws RestaurantException {
-//
-//      RestaurantDto restaurantDto = service.getById(id);
-//
-//      if (restaurantDto == null) {
-//         return "redirect:/admin/restaurants";
-//      }
-//
-//      model.addAttribute("restaurant", restaurantDto);
-//
-//      return "/admin/restaurants/edit";
-//   }
-//
-//   // UPDATE
-//   @PostMapping(value = "/{id}/edit")
-//   public String updateRestaurant(@ModelAttribute("product") @Valid RestaurantDto restaurantDto,
-//                               BindingResult result,
-//                               Model model) throws RestaurantException {
-//
-//
-//
-//      if (result.hasErrors()) {
-//         model.addAttribute("restaurant", restaurantDto);
-//         return "admin/restaurants/edit";
-//      }
-//
-//      service.updateRestaurant(restaurantDto);
-//      return "redirect:/admin/restaurants";
-//   }
-//
-//   // DELETE
-//   @DeleteMapping("/{id}")
-//   public String deleteRestaurant(@PathVariable Long id) throws RestaurantException {
-//      service.deleteRestaurant(id);
-//      return "redirect:/admin/restaurants";
-//   }
+   @GetMapping(value = "/add")
+   public String addRestaurant(@ModelAttribute("restaurant") RestaurantDto restaurantDto,
+                            Model model) throws RestaurantException {
+
+      restaurantDto.setName("new restaurant");
+
+      return "admin/restaurants/add";
+   }
+
+   // CREATE
+   @PostMapping(value = "/add")
+   public String createRestaurant(@ModelAttribute("restaurant") @Valid RestaurantDto restaurantDto,
+                               BindingResult result,
+                               Model model) throws RestaurantException {
+
+
+      if (result.hasErrors()) {
+         model.addAttribute("restaurant", restaurantDto);
+         return "admin/restaurants/add";
+      }
+
+      service.addRestaurant(restaurantDto);
+      return "redirect:/admin/restaurants";
+   }
+
+   // UPDATE
+   @GetMapping(value = "/{id}/edit")
+   public String editRestaurant(@PathVariable(value = "id") Long id,
+                             Model model) throws RestaurantException {
+
+      RestaurantDto restaurantDto = service.getById(id);
+
+      if (restaurantDto == null) {
+         return "redirect:/admin/restaurants";
+      }
+
+      model.addAttribute("restaurant", restaurantDto);
+
+      return "/admin/restaurants/edit";
+   }
+
+   // UPDATE
+   @PostMapping(value = "/{id}/edit")
+   public String updateRestaurant(@ModelAttribute("product") @Valid RestaurantDto restaurantDto,
+                               BindingResult result,
+                               Model model) throws RestaurantException {
+
+
+
+      if (result.hasErrors()) {
+         model.addAttribute("restaurant", restaurantDto);
+         return "admin/restaurants/edit";
+      }
+
+      service.updateRestaurant(restaurantDto);
+      return "redirect:/admin/restaurants";
+   }
+
+   // DELETE
+   @DeleteMapping("/{id}")
+   public String deleteRestaurant(@PathVariable Long id) throws RestaurantException {
+      service.deleteRestaurant(id);
+      return "redirect:/admin/restaurants";
+   }
 }

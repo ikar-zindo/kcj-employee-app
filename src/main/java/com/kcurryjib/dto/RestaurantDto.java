@@ -22,13 +22,16 @@ public class RestaurantDto {
    private String address;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @Pattern(regexp = "\\\\+49\\\\d{10}", message = "{validation.restaurant.phoneNumber.length}")
+//   @Pattern(regexp = "\\\\+49\\\\d{10}", message = "{validation.restaurant.phoneNumber.length}")
+   @Length(max = 20, message = "Max length is 20")
    private String phoneNumber;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
+   @Length(max = 30, message = "Max length is 30")
    private String openingHours;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
+   @Length(max = 30, message = "Max length is 30")
    private String cuisineType;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)

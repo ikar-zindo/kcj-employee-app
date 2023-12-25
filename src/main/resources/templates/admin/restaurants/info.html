@@ -65,34 +65,43 @@
 				<div th:each="restaurant : ${restaurant}" class="alert alert-info mt-2">
 					<!--							<img src="http://dummyimage.com/248.400x80.125" />-->
 					<div class="card-body">
-						<h1 class="text-warning" th:text="${restaurant}"/>
-						<p><span class="text-danger">Description: </span><span th:text="${restaurant.description}"/></p>
-						<p><span class="text-danger">Add time: </span><span th:text="${restaurant.createdAt}"/></p>
-						<p><span class="text-danger">Available: </span><span th:text="${restaurant.available}"/></p>
-						<p><span class="text-danger">Restaurant: </span><span th:text="${restaurant.restaurantDto.name}"/></p>
+						<h1 class="text-warning" th:text="${restaurant.name}"/>
+
+						<p><span class="text-danger">address: </span><span th:text="${restaurant.address}"/></p>
+						<p><span class="text-danger">phoneNumber: </span><span th:text="${restaurant.phoneNumber}"/></p>
+						<p><span class="text-danger">openingHours: </span><span th:text="${restaurant.openingHours}"/></p>
+						<p><span class="text-danger">cuisineType: </span><span th:text="${restaurant.cuisineType}"/></p>
+						<p><span class="text-danger">description: </span><span th:text="${restaurant.description}"/></p>
+						<p><span class="text-danger">socialMediaLinks: </span><span th:text="${restaurant.socialMediaLinks}"/>
+						</p>
+						<p><span class="text-danger">isOpen: </span><span th:text="${restaurant.isOpen}"/></p>
+
 						<div class="d-flex justify-content-between align-items-center">
 							<div class="btn-group">
-								<a th:href="'/admin/products/' + ${restaurant.id} + '/edit'"
+								<a th:href="'/admin/restaurants/' + ${restaurant.id} + '/edit'"
 									class="btn btn-sm btn-outline-secondary">Edit</a>
-
-
-								<form id="deleteForm" data-id="${product.id}" th:action="'/admin/products/' + ${restaurant.id}"
-										method="post">
-									<input type="hidden" name="_method" value="DELETE">
-									<button onclick="deleteProduct(${product.id}); return false;"
-											  class="btn btn-sm btn-outline-secondary text-danger">
-
-										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-											  class="bi bi-trash3" viewBox="0 0 16 16">
-											<path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-										</svg>
-									</button>
-								</form>
-
 							</div>
-							<p th:text="'Price: ' + |${restaurant.price}| + ' €'" class="text-body-secondary"/>
+							<p th:text="'address: ' + |${restaurant.address}| + ' €'" class="text-body-secondary"/>
 						</div>
 					</div>
+				</div>
+			</div>
+
+			<!--Reviews-->
+			<div class="my-3 p-3 bg-body rounded shadow-sm">
+				<h6 class="border-bottom pb-2 mb-0">Reviews</h6>
+				<div class="d-flex text-body-secondary pt-3">
+					<svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"
+						  xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32"
+						  preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
+						<rect width="100%" height="100%" fill="#007bff"></rect>
+						<text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text>
+					</svg>
+					<p class="pb-3 mb-0 small lh-sm border-bottom">
+						<strong class="d-block text-gray-dark">@username</strong>
+						Some representative placeholder content, with some information about this user. Imagine this being
+						some sort of status update, perhaps?
+					</p>
 				</div>
 			</div>
 
