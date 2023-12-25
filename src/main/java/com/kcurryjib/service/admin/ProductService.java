@@ -123,6 +123,7 @@ public class ProductService {
 
          if (productOptional.isPresent()) {
             Product product = productOptional.get();
+
             product.setName(productDto.getName());
             product.setDescription(productDto.getDescription());
             product.setPrice(productDto.getPrice());

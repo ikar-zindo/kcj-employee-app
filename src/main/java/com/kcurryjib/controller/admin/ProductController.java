@@ -119,7 +119,7 @@ public class ProductController {
    }
 
    // DELETE
-   @DeleteMapping("/{id}")
+   @PostMapping("/{id}/remove")
    public String deleteProduct(@PathVariable Long id) throws ProductException {
       service.deleteProduct(id);
       return "redirect:/admin/products";
