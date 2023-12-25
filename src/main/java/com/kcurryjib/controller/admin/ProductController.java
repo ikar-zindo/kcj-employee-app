@@ -31,7 +31,7 @@ public class ProductController {
 
    // READ
    @GetMapping
-   public String getAllProducts(Model model) {
+   public String getAllProducts(Model model) throws ProductException {
       List<ProductDto> productsDto = service.getAll();
 
       model.addAttribute("products", productsDto);
@@ -41,16 +41,19 @@ public class ProductController {
 
    // READ
    @GetMapping("/{id}")
-   public String getProductById(@PathVariable Long id, Model model) {
-      ProductDto product = service.getProductById(id);
-      model.addAttribute("product", product);
+   public String getProductById(@PathVariable Long id,
+                                Model model) throws ProductException {
+      ProductDto productDto = service.getProductById(id);
+
+      model.addAttribute("product", productDto);
+
       return "/admin/products/info";
    }
 
    // CREATE
    @GetMapping(value = "/add")
    public String addProduct(@ModelAttribute("product") ProductDto productDto,
-                            Model model) {
+                            Model model) throws ProductException {
 
       productDto.setImageUrl("1.jpg");
       productDto.setName("new product");
@@ -72,6 +75,7 @@ public class ProductController {
       if (result.hasErrors()) {
          model.addAttribute("product", productDto);
          model.addAttribute("restaurants", restaurantService.getAll());
+
          return "admin/products/add";
       }
 

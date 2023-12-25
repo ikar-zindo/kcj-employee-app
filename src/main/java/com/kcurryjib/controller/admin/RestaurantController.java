@@ -107,8 +107,6 @@ public class RestaurantController {
                                BindingResult result,
                                Model model) throws RestaurantException {
 
-
-
       if (result.hasErrors()) {
          model.addAttribute("restaurant", restaurantDto);
          return "admin/restaurants/edit";

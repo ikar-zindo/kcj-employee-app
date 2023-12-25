@@ -64,7 +64,8 @@ public class ProductService {
       ProductDto productDto = null;
 
       if (productOptional.isPresent()) {
-         productDto = MapperUtil.convertlist(List.of(productOptional.get()), productMapper::showProductDetails).get(0);
+         productDto = MapperUtil.convertlist(
+                 List.of(productOptional.get()), productMapper::showProductDetails).get(0);
       }
 
       return productDto;
@@ -165,6 +166,7 @@ public class ProductService {
 
             if (productResponse != null) {
                return productMapper.convertToProductDto(productResponse);
+
             } else {
                throw new ProductException(String.format("Failed to delete product in database with Id=%d!", id));
             }

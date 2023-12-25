@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" class="h-100" data-bs-theme="auto">
 <head>
 	<script type="text/javascript" th:src="@{/assets/js/color-modes.js}"></script>
-	<title>Dashboard</title>
+	<title>Add product</title>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta charset="utf-8">
@@ -30,9 +30,8 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
 	<!-- Custom styles for this template -->
 	<link rel="stylesheet" th:href="@{/assets/css/style.css}"/>
-	<link th:href="@{/assets/dist/css/dashboard.css}" rel="stylesheet"/>
+	<link rel="stylesheet" th:href="@{/assets/dist/css/dashboard.css}"/>
 </head>
-
 <body>
 
 <!--Themes-2-->
@@ -59,58 +58,82 @@
 
 		<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
-			<div class="container">
+			<div class="col-md-7 col-lg-8">
+				<h4 class="mb-3">Add comment</h4>
 
-				<!--Item-->
-				<div th:each="restaurant : ${restaurant}" class="alert alert-info mt-2">
-					<!--							<img src="http://dummyimage.com/248.400x80.125" />-->
-					<div class="card-body">
-						<h1 class="text-warning" th:text="${restaurant.name}"/>
 
-						<p><span class="text-danger">address: </span><span th:text="${restaurant.address}"/></p>
-						<p><span class="text-danger">phoneNumber: </span><span th:text="${restaurant.phoneNumber}"/></p>
-						<p><span class="text-danger">openingHours: </span><span th:text="${restaurant.openingHours}"/></p>
-						<p><span class="text-danger">cuisineType: </span><span th:text="${restaurant.cuisineType}"/></p>
-						<p><span class="text-danger">description: </span><span th:text="${restaurant.description}"/></p>
-						<p><span class="text-danger">socialMediaLinks: </span><span th:text="${restaurant.socialMediaLinks}"/>
-						</p>
-						<p><span class="text-danger">isOpen: </span><span th:text="${restaurant.isOpen}"/></p>
+				<form class="needs-validation"
+						th:method="POST"
+						th:action="@{/admin/reviews/add}"
+						th:object="${review}"
+						novalidate>
+					<div class="row g-3">
 
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group">
-								<a th:href="'/admin/restaurants/' + ${restaurant.id} + '/edit'"
-									class="btn btn-sm btn-outline-secondary">Edit</a>
-							</div>
-							<p th:text="'address: ' + |${restaurant.address}|" class="text-body-secondary"/>
+						<input type="hidden" th:field="*{id}" id="id"/>
+
+						<div class="col-7">
+							<h3 th:text="${review.id}"/>
+						</div>
+
+
+						<div class="col-12">
+							<label for="comment" class="form-label">Comment</label>
+							<input type="text" placeholder="Enter your comment" class="form-control"
+									 th:field="*{comment}"
+									 id="comment"/>
+							<div class="text-danger" th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></div>
+						</div>
+
+
+						<div class="col-12">
+							<label for="rating" class="form-label">Rating</label>
+							<input type="number" placeholder="Enter rating" class="form-control"
+									 th:field="*{rating}"
+									 id="rating"
+									 max="5"
+									 min="1"
+									 step="1"/>
+							<div class="text-danger" th:if="${#fields.hasErrors('rating')}" th:errors="*{rating}"></div>
+						</div>
+
+
+						<input type="hidden" th:field="*{restaurantDto.id}" id="restaurantId"/>
+
+						<div class="col-6">
+							<label for="restaurantDto" class="form-label">Restaurant</label>
+							<select class="form-select" id="restaurantDto" name="restaurantId">
+								<option th:each="restaurant : ${restaurants}"
+										  th:value="${restaurant.id}"
+										  th:text="${restaurant.name}">
+								</option>
+							</select>
+							<div class="text-danger" th:if="${#fields.hasErrors('restaurantDto')}"
+								  th:errors="*{restaurantDto}"></div>
+						</div>
+
+						<input type="hidden" th:field="*{customerDto.id}" id="customerId"/>
+
+						<div class="col-6">
+							<label for="customerDto" class="form-label">Customer</label>
+							<select class="form-select" id="customerDto" name="customerId">
+								<option th:each="customer : ${customers}"
+										  th:value="${customer.id}"
+										  th:text="${customer.lastName}">
+								</option>
+							</select>
+							<div class="text-danger" th:if="${#fields.hasErrors('customerDto')}"
+								  th:errors="*{customerDto}"></div>
 						</div>
 					</div>
-				</div>
+
+					<hr class="my-4">
+
+					<button class="w-100 btn btn-primary btn-lg">Add comment</button>
+				</form>
+
+				<foot th:insert="~{/blocks/footer :: footer}"></foot>
+
 			</div>
-
-			<!--Reviews-->
-			<div th:each="review : ${reviews}" class="d-flex text-body-secondary pt-3">
-				<svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"
-					  xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32"
-					  preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-					<rect width="100%" height="100%" fill="#007bff"></rect>
-					<text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text>
-				</svg>
-				<div class="pb-3 mb-0 small lh-sm border-bottom w-100">
-					<div class="d-flex justify-content-between">
-						<div>
-							<strong th:text="|${review.customerDto.firstName}| + ' ' + |${review.customerDto.lastName}|"
-									  class="d-block text-gray-dark"/>
-							<span th:text="${review.rating}"/>
-						</div>
-						<p class="d-block text-gray-dark" th:text="${review.createdAt}"></p>
-					</div>
-					<span class="d-block" th:text="${review.comment}"/>
-				</div>
-			</div>
-
-
-			<foot th:insert="~{/blocks/footer :: footer}"></foot>
-
 		</main>
 	</div>
 </div>
@@ -124,9 +147,6 @@
 		  integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp"
 		  crossorigin="anonymous"></script>
 <script type="text/javascript" th:src="@{/assets/dist/css/dashboard.css}"></script>
-
-
-
 </body>
 
 </html>

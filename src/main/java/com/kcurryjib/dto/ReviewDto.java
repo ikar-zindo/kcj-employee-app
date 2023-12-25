@@ -2,6 +2,10 @@ package com.kcurryjib.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -21,9 +25,13 @@ public class ReviewDto {
    private CustomerDto customerDto;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
+   @NotNull(message = "{validation.review.rating.notnull}")
+   @DecimalMin(value = "1", message = "{validation.review.rating.max}")
+   @DecimalMax(value = "5", message = "{validation.review.rating.min}")
    private BigDecimal rating;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
+   @NotEmpty(message = "{validation.review.comment.isEmpty}")
    private String comment;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)

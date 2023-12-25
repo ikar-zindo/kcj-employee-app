@@ -18,6 +18,9 @@ public class ReviewMapper {
    @Autowired
    private CustomerMapper customerMapper;
 
+//   @Autowired
+//   private RestaurantMapper restaurantMapper;
+
    // convert to DTO
    public ReviewDto convertToReviewDto(Review review) {
       return mapper.map(review, ReviewDto.class);
@@ -26,7 +29,9 @@ public class ReviewMapper {
    public ReviewDto showReviewDtoWithCustomer(Review review) {
       ReviewDto reviewDto = mapper.map(review, ReviewDto.class);
 
-      reviewDto.setCustomerDto(customerMapper.convertToCustomerDto(review.getCustomer()));
+
+//      reviewDto.setRestaurantDto(restaurantMapper.convertToRestaurantDto(review.getRestaurant()));
+      reviewDto.setCustomerDto(customerMapper.shortCustomerDto(review.getCustomer()));
 
       return reviewDto;
    }
