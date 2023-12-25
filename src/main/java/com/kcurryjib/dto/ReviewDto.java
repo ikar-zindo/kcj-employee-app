@@ -26,8 +26,8 @@ public class ReviewDto {
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
    @NotNull(message = "{validation.review.rating.notnull}")
-   @DecimalMin(value = "1", message = "{validation.review.rating.max}")
-   @DecimalMax(value = "5", message = "{validation.review.rating.min}")
+   @DecimalMin(value = "1", message = "{validation.review.rating.min}")
+   @DecimalMax(value = "5", message = "{validation.review.rating.max}")
    private BigDecimal rating;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)

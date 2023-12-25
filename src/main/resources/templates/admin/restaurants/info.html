@@ -72,6 +72,7 @@
 						<p><span class="text-danger">openingHours: </span><span th:text="${restaurant.openingHours}"/></p>
 						<p><span class="text-danger">cuisineType: </span><span th:text="${restaurant.cuisineType}"/></p>
 						<p><span class="text-danger">description: </span><span th:text="${restaurant.description}"/></p>
+						<p><span class="text-danger">address: </span><span th:text="${restaurant.address}"/></p>
 						<p><span class="text-danger">socialMediaLinks: </span><span th:text="${restaurant.socialMediaLinks}"/>
 						</p>
 						<p><span class="text-danger">isOpen: </span><span th:text="${restaurant.isOpen}"/></p>
@@ -81,11 +82,14 @@
 								<a th:href="'/admin/restaurants/' + ${restaurant.id} + '/edit'"
 									class="btn btn-sm btn-outline-secondary">Edit</a>
 							</div>
-							<p th:text="'address: ' + |${restaurant.address}|" class="text-body-secondary"/>
+							<p th:text="'rating: ' + |${avgRating}|" class="text-body-secondary"/>
 						</div>
 					</div>
 				</div>
 			</div>
+
+			<p th:text="'total: ' + |${countComments}|" class="text-body-secondary"/>
+
 
 			<!--Reviews-->
 			<div th:each="review : ${reviews}" class="d-flex text-body-secondary pt-3">

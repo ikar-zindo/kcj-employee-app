@@ -19,30 +19,35 @@ public class ProductRestController {
 
    @GetMapping
    public ResponseEntity<List<ProductDto>> getProducts() {
+
       List<ProductDto> products = service.getAll();
       return new ResponseEntity<>(products, HttpStatus.OK);
    }
 
    @GetMapping("/{id}")
    public ResponseEntity<ProductDto> getProductId(@PathVariable Long id) {
+
       ProductDto product = service.getProductById(id);
       return new ResponseEntity<>(product, HttpStatus.OK);
    }
 
    @PostMapping
    public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto) throws ProductException {
+
       ProductDto product = service.addProduct(productDto);
       return new ResponseEntity<>(product, HttpStatus.OK);
    }
 
    @PutMapping
    public ResponseEntity<ProductDto> updateProduct(@RequestBody ProductDto productDto) throws ProductException {
+
       ProductDto product = service.addProduct(productDto);
       return new ResponseEntity<>(product, HttpStatus.OK);
    }
 
    @DeleteMapping("/{id}")
    public ResponseEntity deleteProduct(@PathVariable Long id) throws ProductException {
+
       service.deleteProduct(id);
       return ResponseEntity.ok().build();
    }

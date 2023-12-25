@@ -15,10 +15,13 @@ import com.kcurryjib.repo.RestaurantRepository;
 import com.kcurryjib.repo.ReviewRepository;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ReviewService {
@@ -162,4 +165,6 @@ public class ReviewService {
          throw new ReviewException("The ID of the review to be deleted is missing!");
       }
    }
+
+
 }

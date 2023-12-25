@@ -2,6 +2,7 @@ package com.kcurryjib.service.admin;
 
 import com.kcurryjib.config.MapperUtil;
 import com.kcurryjib.dto.RestaurantDto;
+import com.kcurryjib.dto.ReviewDto;
 import com.kcurryjib.entity.Restaurant;
 import com.kcurryjib.exceptions.ProductException;
 import com.kcurryjib.exceptions.RestaurantException;
@@ -12,6 +13,8 @@ import com.kcurryjib.repo.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -29,16 +32,20 @@ public class RestaurantService {
 
    private ReviewRepository reviewRepository;
 
+   private ReviewService reviewService;
+
    @Autowired
    public RestaurantService(RestaurantRepository restaurantRepository,
                             RestaurantMapper restaurantMapper,
                             EmployeeRepository employeeRepository,
-                            ReviewRepository reviewRepository) {
+                            ReviewRepository reviewRepository,
+                            ReviewService reviewService) {
 
       this.restaurantRepository = restaurantRepository;
       this.restaurantMapper = restaurantMapper;
       this.employeeRepository = employeeRepository;
       this.reviewRepository = reviewRepository;
+      this.reviewService = reviewService;
    }
 
    // READ
@@ -65,9 +72,6 @@ public class RestaurantService {
          restaurantDto = MapperUtil.convertlist(List.of(restaurantOptional.get()), restaurantMapper::convertToRestaurantDto).get(0);
       }
 
-//      Restaurant restaurant = restaurantRepository.findById(id).orElse(null);
-//      RestaurantDto restaurantDto = MapperUtil.convertlist(List.of(restaurant), restaurantMapper::convertToRestaurantDto).get(0);
-
       return restaurantDto;
    }
 
@@ -80,11 +84,6 @@ public class RestaurantService {
          restaurantDto = MapperUtil.convertlist(
                  List.of(restaurantOptional.get()), restaurantMapper::showCustomersWithComments).get(0);
       }
-
-
-
-//      Restaurant restaurant = restaurantRepository.findById(id).orElse(null);
-//      RestaurantDto restaurantDto = MapperUtil.convertlist(List.of(restaurant), restaurantMapper::convertToRestaurantDto).get(0);
 
       return restaurantDto;
    }
@@ -178,5 +177,27 @@ public class RestaurantService {
       } else {
          throw new ProductException("The ID of the restaurant to be deleted is missing!");
       }
+   }
+
+   // Aggregation
+   public int getNumberOfReviewsByRestaurantId(Long id) {
+      RestaurantDto restaurantDto = getById(id);
+      if (restaurantDto != null && restaurantDto.getReviewsDto() != null) {
+         return restaurantDto.getReviewsDto().size();
+      }
+      return 0;
+   }
+
+   public BigDecimal getAverageRatingByRestaurantId(Long id) {
+      RestaurantDto restaurantDto = getById(id);
+      if (restaurantDto != null && restaurantDto.getReviewsDto() != null && !restaurantDto.getReviewsDto().isEmpty()) {
+         BigDecimal sum = BigDecimal.ZERO;
+         for (ReviewDto review : restaurantDto.getReviewsDto()) {
+            BigDecimal rating = review.getRating();
+            sum = sum.add(rating);
+         }
+         return sum.divide(BigDecimal.valueOf(restaurantDto.getReviewsDto().size()), 1, RoundingMode.HALF_UP);
+      }
+      return BigDecimal.ZERO;
    }
 }

@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 
@@ -171,4 +173,25 @@ public class RestaurantDto {
    public void setEmployeesDto(List<EmployeeDto> employeesDto) {
       this.employeesDto = employeesDto;
    }
+
+//   public int getNumberOfReviews() {
+//      if (reviewsDto != null) {
+//         return reviewsDto.size();
+//      } else {
+//         return 0;
+//      }
+//   }
+//
+//   public BigDecimal getAverageRating() {
+//      if (reviewsDto != null && !reviewsDto.isEmpty()) {
+//         BigDecimal sum = BigDecimal.ZERO;
+//         for (ReviewDto review : reviewsDto) {
+//            BigDecimal rating = review.getRating();
+//            sum = sum.add(rating);
+//         }
+//         return sum.divide(BigDecimal.valueOf(reviewsDto.size()), 2, RoundingMode.HALF_UP);
+//      } else {
+//         return BigDecimal.ZERO;
+//      }
+//   }
 }

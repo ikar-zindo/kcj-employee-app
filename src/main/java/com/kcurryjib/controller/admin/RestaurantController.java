@@ -1,6 +1,7 @@
 package com.kcurryjib.controller.admin;
 
 import com.kcurryjib.dto.RestaurantDto;
+import com.kcurryjib.dto.ReviewDto;
 import com.kcurryjib.exceptions.ProductException;
 import com.kcurryjib.exceptions.RestaurantException;
 import com.kcurryjib.service.admin.EmployeeService;
@@ -13,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Controller
@@ -53,8 +55,14 @@ public class RestaurantController {
                                    Model model) throws RestaurantException {
 
       RestaurantDto restaurantDto = service.showWithComments(id);
+      List<ReviewDto> reviewsDto = restaurantDto.getReviewsDto();
+      int countComments = service.getNumberOfReviewsByRestaurantId(id);
+      BigDecimal avgRating = service.getAverageRatingByRestaurantId(id);
+
       model.addAttribute("restaurant", restaurantDto);
-      model.addAttribute("reviews", restaurantDto.getReviewsDto());
+      model.addAttribute("countComments", countComments);
+      model.addAttribute("avgRating", avgRating);
+      model.addAttribute("reviews", reviewsDto);
 
       return "/admin/restaurants/info";
    }
