@@ -9,6 +9,7 @@ import com.kcurryjib.exceptions.ProductException;
 import com.kcurryjib.mapper.admin.ProductMapper;
 import com.kcurryjib.repo.ProductRepository;
 import com.kcurryjib.repo.RestaurantRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -28,7 +29,7 @@ public class ProductService {
 
    private ProductMapper productMapper;
 
-   //   @Autowired
+//   @Autowired
    public ProductService(ProductRepository productRepository, RestaurantRepository restaurantRepository,
                          ProductMapper productMapper) throws ProductException {
 
@@ -46,7 +47,9 @@ public class ProductService {
 
    // READ
    public List<ProductDto> getAvailableProducts() throws ProductException {
-      List<Product> products = new ArrayList<>(productRepository.findAll()).stream().filter(Product::isAvailable).collect(Collectors.toList());
+      List<Product> products = new ArrayList<>(productRepository.findAll()).stream()
+              .filter(Product::isAvailable)
+              .collect(Collectors.toList());
 
       return MapperUtil.convertlist(products, productMapper::showProductDetails);
    }
@@ -59,13 +62,21 @@ public class ProductService {
    }
 
    // READ
-   public ProductDto getProductById(Long id) {
-      Optional<Product> productOptional = productRepository.findById(id);
+   public ProductDto getProductById(Long id) throws ProductException {
       ProductDto productDto = null;
 
-      if (productOptional.isPresent()) {
-         productDto = MapperUtil.convertlist(
-                 List.of(productOptional.get()), productMapper::showProductDetails).get(0);
+      if (id != null) {
+         Optional<Product> productOptional = productRepository.findById(id);
+
+         if (productOptional.isPresent()) {
+            productDto = MapperUtil.convertlist(
+                    List.of(productOptional.get()), productMapper::showProductDetails).get(0);
+         } else {
+            throw new ProductException(
+                    String.format("Product not found in database with Id=%d", id));
+         }
+      } else {
+         throw new ProductException("There is no product ID to search for!");
       }
 
       return productDto;
@@ -73,10 +84,6 @@ public class ProductService {
 
    // CREATE
    public ProductDto addProduct(ProductDto productDto) throws ProductException {
-
-      if (productDto.getName() == null) {
-         productDto.setName("new product");
-      }
 
       if (productDto != null && productDto.getId() == null) {
          RestaurantDto restaurantDto = productDto.getRestaurantDto();
@@ -100,7 +107,8 @@ public class ProductService {
                   throw new ProductException("Could not create a product in the database");
                }
             } else {
-               throw new ProductException(String.format("No restaurant found with Id=%d. I can't create a product!", restaurantDto.getId()));
+               throw new ProductException(
+                       String.format("No restaurant found with Id=%d. I can't create a product!", restaurantDto.getId()));
             }
          } else {
             throw new ProductException("The ID of the associated restaurant is missing. I can't create a product!");
@@ -168,10 +176,12 @@ public class ProductService {
                return productMapper.convertToProductDto(productResponse);
 
             } else {
-               throw new ProductException(String.format("Failed to delete product in database with Id=%d!", id));
+               throw new ProductException(
+                       String.format("Failed to delete product in database with Id=%d!", id));
             }
          } else {
-            throw new ProductException(String.format("Product not found in the database with Id=%d!", id));
+            throw new ProductException(
+                    String.format("Product not found in the database with Id=%d!", id));
          }
       } else {
          throw new ProductException("The ID of the product to be deleted is missing!");

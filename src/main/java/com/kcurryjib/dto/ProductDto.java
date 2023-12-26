@@ -2,6 +2,7 @@ package com.kcurryjib.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.kcurryjib.entity.Product;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
@@ -58,6 +59,7 @@ public class ProductDto {
    public ProductDto() {
    }
 
+   // Getters & Setters
    public Long getId() {
       return id;
    }
@@ -136,5 +138,50 @@ public class ProductDto {
 
    public void setOrderProductsDto(List<OrderProductDto> orderProductsDto) {
       this.orderProductsDto = orderProductsDto;
+   }
+
+   // Builder
+   public static class Builder {
+      private ProductDto productDto = new ProductDto();
+
+      public Builder id(Long id) {
+         productDto.id = id;
+         return this;
+      }
+      public Builder name(String name) {
+         productDto.name = name;
+         return this;
+      }
+      public Builder description(String description) {
+         productDto.description = description;
+         return this;
+      }
+      public Builder price(BigDecimal price) {
+         productDto.price = price;
+         return this;
+      }
+      public Builder imageUrl(String imageUrl) {
+         productDto.imageUrl = imageUrl;
+         return this;
+      }
+      public Builder createdAt(LocalDateTime createdAt) {
+         productDto.createdAt = createdAt;
+         return this;
+      }
+      public Builder isAvailable(Boolean isAvailable) {
+         productDto.isAvailable = isAvailable;
+         return this;
+      }
+      public Builder restaurantDto() {
+         return this;
+      }
+
+      public ProductDto build() {
+         return productDto;
+      }
+   }
+
+   public static Builder builder() {
+      return new Builder();
    }
 }

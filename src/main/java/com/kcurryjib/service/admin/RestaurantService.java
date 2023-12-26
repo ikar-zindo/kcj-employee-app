@@ -6,6 +6,7 @@ import com.kcurryjib.dto.ReviewDto;
 import com.kcurryjib.entity.Restaurant;
 import com.kcurryjib.exceptions.ProductException;
 import com.kcurryjib.exceptions.RestaurantException;
+import com.kcurryjib.exceptions.ReviewException;
 import com.kcurryjib.mapper.admin.RestaurantMapper;
 import com.kcurryjib.repo.EmployeeRepository;
 import com.kcurryjib.repo.RestaurantRepository;
@@ -22,10 +23,8 @@ import java.util.Optional;
 @Service
 public class RestaurantService {
 
-   //   @Autowired
    private RestaurantRepository restaurantRepository;
 
-   //   @Autowired
    private RestaurantMapper restaurantMapper;
 
    private EmployeeRepository employeeRepository;
@@ -180,24 +179,35 @@ public class RestaurantService {
    }
 
    // Aggregation
-   public int getNumberOfReviewsByRestaurantId(Long id) {
-      RestaurantDto restaurantDto = getById(id);
+   public int getNumberOfReviewsByRestaurantId(Long id) throws ReviewException {
+      RestaurantDto restaurantDto = showWithComments(id);
+
       if (restaurantDto != null && restaurantDto.getReviewsDto() != null) {
          return restaurantDto.getReviewsDto().size();
       }
       return 0;
    }
 
-   public BigDecimal getAverageRatingByRestaurantId(Long id) {
-      RestaurantDto restaurantDto = getById(id);
+   public BigDecimal getAverageRatingByRestaurantId(Long id) throws ReviewException {
+      RestaurantDto restaurantDto = showWithComments(id);
+
       if (restaurantDto != null && restaurantDto.getReviewsDto() != null && !restaurantDto.getReviewsDto().isEmpty()) {
          BigDecimal sum = BigDecimal.ZERO;
+         int numberOfReviews = restaurantDto.getReviewsDto().size(); // save the number of reviews
+
          for (ReviewDto review : restaurantDto.getReviewsDto()) {
             BigDecimal rating = review.getRating();
-            sum = sum.add(rating);
+
+            if (rating != null) { // check that the rating is not null
+               sum = sum.add(rating);
+            }
          }
-         return sum.divide(BigDecimal.valueOf(restaurantDto.getReviewsDto().size()), 1, RoundingMode.HALF_UP);
+
+         if (numberOfReviews != 0) { // check that the number of reviews is not equal to avoid division by zero
+            return sum.divide(BigDecimal.valueOf(numberOfReviews), 1, RoundingMode.HALF_UP);
+         }
       }
+
       return BigDecimal.ZERO;
    }
 }

@@ -2,6 +2,7 @@ package com.kcurryjib.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.kcurryjib.entity.Restaurant;
 import jakarta.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
 
@@ -174,24 +175,53 @@ public class RestaurantDto {
       this.employeesDto = employeesDto;
    }
 
-//   public int getNumberOfReviews() {
-//      if (reviewsDto != null) {
-//         return reviewsDto.size();
-//      } else {
-//         return 0;
-//      }
-//   }
-//
-//   public BigDecimal getAverageRating() {
-//      if (reviewsDto != null && !reviewsDto.isEmpty()) {
-//         BigDecimal sum = BigDecimal.ZERO;
-//         for (ReviewDto review : reviewsDto) {
-//            BigDecimal rating = review.getRating();
-//            sum = sum.add(rating);
-//         }
-//         return sum.divide(BigDecimal.valueOf(reviewsDto.size()), 2, RoundingMode.HALF_UP);
-//      } else {
-//         return BigDecimal.ZERO;
-//      }
-//   }
+   // Builder
+   public static class Builder {
+      private RestaurantDto restaurantDto = new RestaurantDto();
+
+      public Builder id(Long id) {
+         restaurantDto.id = id;
+         return this;
+      }
+      public Builder name(String name) {
+         restaurantDto.name = name;
+         return this;
+      }
+      public Builder address(String address) {
+         restaurantDto.address = address;
+         return this;
+      }
+      public Builder phoneNumber(String phoneNumber) {
+         restaurantDto.phoneNumber = phoneNumber;
+         return this;
+      }
+      public Builder openingHours(String openingHours) {
+         restaurantDto.openingHours = openingHours;
+         return this;
+      }
+      public Builder cuisineType(String cuisineType) {
+         restaurantDto.cuisineType = cuisineType;
+         return this;
+      }
+      public Builder description(String description) {
+         restaurantDto.description = description;
+         return this;
+      }
+      public Builder socialMediaLinks(String socialMediaLinks) {
+         restaurantDto.socialMediaLinks = socialMediaLinks;
+         return this;
+      }
+      public Builder isOpen(Boolean isOpen) {
+         restaurantDto.isOpen = isOpen;
+         return this;
+      }
+
+      public RestaurantDto build() {
+         return restaurantDto;
+      }
+   }
+
+   public static Builder builder() {
+      return new Builder();
+   }
 }

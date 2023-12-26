@@ -3,7 +3,6 @@ package com.kcurryjib.entity;
 import jakarta.persistence.*;
 
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "restaurant")
@@ -36,7 +35,7 @@ public class Restaurant {
    private String socialMediaLinks;
 
    @Column(name = "is_open")
-   private boolean isOpen;
+   private Boolean isOpen;
 
    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
    private List<Product> products;
@@ -117,11 +116,11 @@ public class Restaurant {
       this.socialMediaLinks = socialMediaLinks;
    }
 
-   public boolean isOpen() {
+   public Boolean isOpen() {
       return isOpen;
    }
 
-   public void setOpen(boolean open) {
+   public void setOpen(Boolean open) {
       isOpen = open;
    }
 
@@ -157,4 +156,53 @@ public class Restaurant {
       this.employees = employees;
    }
 
+   // Builder
+   public static class Builder {
+      private Restaurant restaurant = new Restaurant();
+
+      public Builder id(Long id) {
+         restaurant.id = id;
+         return this;
+      }
+      public Builder name(String name) {
+         restaurant.name = name;
+         return this;
+      }
+      public Builder address(String address) {
+         restaurant.address = address;
+         return this;
+      }
+      public Builder phoneNumber(String phoneNumber) {
+         restaurant.phoneNumber = phoneNumber;
+         return this;
+      }
+      public Builder openingHours(String openingHours) {
+         restaurant.openingHours = openingHours;
+         return this;
+      }
+      public Builder cuisineType(String cuisineType) {
+         restaurant.cuisineType = cuisineType;
+         return this;
+      }
+      public Builder description(String description) {
+         restaurant.description = description;
+         return this;
+      }
+      public Builder socialMediaLinks(String socialMediaLinks) {
+         restaurant.socialMediaLinks = socialMediaLinks;
+         return this;
+      }
+      public Builder isOpen(Boolean isOpen) {
+         restaurant.isOpen = isOpen;
+         return this;
+      }
+
+      public Restaurant build() {
+         return restaurant;
+      }
+   }
+
+   public static Builder builder() {
+      return new Builder();
+   }
 }

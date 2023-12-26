@@ -37,7 +37,7 @@ public class Product {
    private LocalDateTime createdAt;
 
    @Column(name = "is_available")
-   private boolean isAvailable;
+   private Boolean isAvailable;
 
    @ManyToOne(fetch = FetchType.LAZY)
    @JoinColumn(name = "restaurant_id")
@@ -52,6 +52,7 @@ public class Product {
    public Product() {
    }
 
+   // Getters & Setters
    public Long getId() {
       return id;
    }
@@ -100,11 +101,11 @@ public class Product {
       this.createdAt = createdAt;
    }
 
-   public boolean isAvailable() {
+   public Boolean isAvailable() {
       return isAvailable;
    }
 
-   public void setAvailable(boolean available) {
+   public void setAvailable(Boolean available) {
       isAvailable = available;
    }
 
@@ -131,4 +132,50 @@ public class Product {
    public void setOrderProducts(List<OrderProduct> orderProducts) {
       this.orderProducts = orderProducts;
    }
+
+   // Builder
+   public static class Builder {
+      private Product product = new Product();
+
+      public Builder id(Long id) {
+         product.id = id;
+         return this;
+      }
+      public Builder name(String name) {
+         product.name = name;
+         return this;
+      }
+      public Builder description(String description) {
+         product.description = description;
+         return this;
+      }
+      public Builder price(BigDecimal price) {
+         product.price = price;
+         return this;
+      }
+      public Builder imageUrl(String imageUrl) {
+         product.imageUrl = imageUrl;
+         return this;
+      }
+      public Builder createdAt(LocalDateTime createdAt) {
+         product.createdAt = createdAt;
+         return this;
+      }
+      public Builder isAvailable(Boolean isAvailable) {
+         product.isAvailable = isAvailable;
+         return this;
+      }
+      public Builder restaurant() {
+         return this;
+      }
+
+      public Product build() {
+         return product;
+      }
+   }
+
+   public static Builder builder() {
+      return new Builder();
+   }
 }
+
