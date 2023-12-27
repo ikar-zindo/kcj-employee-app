@@ -2,7 +2,6 @@ package com.kcurryjib.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.kcurryjib.entity.Product;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
@@ -12,6 +11,7 @@ import org.hibernate.validator.constraints.Length;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 
 public class ProductDto {
@@ -183,5 +183,45 @@ public class ProductDto {
 
    public static Builder builder() {
       return new Builder();
+   }
+
+   // Equals
+   @Override
+   public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      ProductDto that = (ProductDto) o;
+      return isAvailable == that.isAvailable && Objects.equals(id, that.id) &&
+              Objects.equals(name, that.name) && Objects.equals(description, that.description) &&
+              Objects.equals(price, that.price) && Objects.equals(imageUrl, that.imageUrl) &&
+              Objects.equals(createdAt, that.createdAt) && Objects.equals(restaurantDto, that.restaurantDto) &&
+              Objects.equals(cartProductsDto, that.cartProductsDto) &&
+              Objects.equals(orderProductsDto, that.orderProductsDto);
+   }
+
+   // HashCode
+   @Override
+   public int hashCode() {
+      return Objects.hash(id, name, description, price,
+              imageUrl, createdAt, isAvailable, restaurantDto,
+              cartProductsDto, orderProductsDto);
+   }
+
+
+   // ToString
+   @Override
+   public String toString() {
+      return "ProductDto{" +
+              "id=" + id +
+              ", name='" + name + '\'' +
+              ", description='" + description + '\'' +
+              ", price=" + price +
+              ", imageUrl='" + imageUrl + '\'' +
+              ", createdAt=" + createdAt +
+              ", isAvailable=" + isAvailable +
+              ", restaurantDto=" + restaurantDto +
+              ", cartProductsDto=" + cartProductsDto +
+              ", orderProductsDto=" + orderProductsDto +
+              '}';
    }
 }

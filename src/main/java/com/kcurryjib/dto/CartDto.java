@@ -6,6 +6,7 @@ import com.kcurryjib.entity.CartProduct;
 import com.kcurryjib.entity.Customer;
 
 import java.util.List;
+import java.util.Objects;
 
 public class CartDto {
    @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -44,5 +45,28 @@ public class CartDto {
 
    public void setCartProductsDto(List<CartProductDto> cartProductsDto) {
       this.cartProductsDto = cartProductsDto;
+   }
+
+   @Override
+   public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      CartDto cartDto = (CartDto) o;
+      return Objects.equals(id, cartDto.id) && Objects.equals(customerDto, cartDto.customerDto) &&
+              Objects.equals(cartProductsDto, cartDto.cartProductsDto);
+   }
+
+   @Override
+   public int hashCode() {
+      return Objects.hash(id, customerDto, cartProductsDto);
+   }
+
+   @Override
+   public String toString() {
+      return "CartDto{" +
+              "id=" + id +
+              ", customerDto=" + customerDto +
+              ", cartProductsDto=" + cartProductsDto +
+              '}';
    }
 }

@@ -13,6 +13,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.modelmapper.ModelMapper;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -35,6 +36,9 @@ public class ProductServiceTest {
 
    @Mock
    private ProductMapper productMapperMock;
+
+   @Mock
+   private ModelMapper mapper;
 
    @InjectMocks
    private ProductService productServiceTest;
@@ -85,7 +89,9 @@ public class ProductServiceTest {
       when(productRepositoryMock.findById(anyLong())).thenReturn(Optional.of(expectedProduct));
       when(productMapperMock.convertToProductDto(any(Product.class))).thenReturn(expectedProductDto);
 
+
       ProductDto returnProductDto  = productServiceTest.getProductById(1L);
       assertEquals(expectedProductDto, returnProductDto);
+//      assertEquals(expectedProductDto.getId(), returnProductDto.getId());
    }
 }
