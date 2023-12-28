@@ -94,10 +94,13 @@
 
 						<div class="col-6">
 							<label class="form-label" for="price">Price</label>
-							<input type="number" min="0.01" step="0.01" placeholder="Enter the price of the product" class="form-control"
+							<input type="number" min="0.01" step="0.01" class="form-control"
+									 placeholder="Enter the price of the product"
 									 th:field="*{price}"
 									 id="price"/>
-							<div class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
+							<div class="text-danger"
+								  th:if="${#fields.hasErrors('price')}"
+								  th:errors="*{price}"></div>
 						</div>
 
 						<input type="hidden" th:field="*{restaurantDto.id}" id="restaurantId"/>
@@ -108,7 +111,7 @@
 								<option th:each="restaurant : ${restaurants}"
 										  th:value="${restaurant.id}"
 										  th:text="${restaurant.name}"
-										  th:selected="${restaurant.name}">
+										  th:selected="${restaurant.id == product.restaurantDto.id}">
 								</option>
 							</select>
 							<div class="text-danger"
@@ -121,8 +124,10 @@
 									 class="form-label">Description<span class="text-body-secondary">(Optional)</span></label>
 							<input placeholder="Enter product description" class="form-control"
 									 th:field="*{description}"
-									 id="description" th:value="${product.description}"/>
-							<div class="text-danger" th:if="${#fields.hasErrors('description')}"
+									 id="description"
+									 th:value="${product.description}"/>
+							<div class="text-danger"
+								  th:if="${#fields.hasErrors('description')}"
 								  th:errors="*{description}"></div>
 						</div>
 

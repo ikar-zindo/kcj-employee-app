@@ -7,21 +7,18 @@ import com.kcurryjib.dto.ReviewDto;
 import com.kcurryjib.entity.Customer;
 import com.kcurryjib.entity.Restaurant;
 import com.kcurryjib.entity.Review;
-import com.kcurryjib.exceptions.ProductException;
-import com.kcurryjib.exceptions.ReviewException;
+import com.kcurryjib.exception.exceptionsList.ProductException;
+import com.kcurryjib.exception.exceptionsList.ReviewException;
 import com.kcurryjib.mapper.admin.ReviewMapper;
 import com.kcurryjib.repo.CustomerRepository;
 import com.kcurryjib.repo.RestaurantRepository;
 import com.kcurryjib.repo.ReviewRepository;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class ReviewService {

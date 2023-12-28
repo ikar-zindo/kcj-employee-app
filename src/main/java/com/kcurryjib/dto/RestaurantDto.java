@@ -2,12 +2,9 @@ package com.kcurryjib.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.kcurryjib.entity.Restaurant;
-import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Length;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.List;
 
 
@@ -17,32 +14,34 @@ public class RestaurantDto {
    private Long id;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @Length(max = 30, message = "{validation.restaurant.name.length}")
+   @NotBlank(message = "{validation.length.empty}")
+   @Length(max = 30, message = "{validation.length.max.30}")
    private String name;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @Length(max = 30, message = "{validation.restaurant.address.length}")
+   @NotBlank(message = "{validation.length.empty}")
+   @Length(max = 30, message = "{validation.length.max.30}")
    private String address;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
 //   @Pattern(regexp = "\\\\+49\\\\d{10}", message = "{validation.restaurant.phoneNumber.length}")
-   @Length(max = 20, message = "Max length is 20")
+   @Length(max = 20, message = "{validation.length.max.20}")
    private String phoneNumber;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @Length(max = 30, message = "Max length is 30")
+   @Length(max = 30, message = "{validation.length.max.30}")
    private String openingHours;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @Length(max = 30, message = "Max length is 30")
+   @Length(max = 30, message = "{validation.length.max.30}")
    private String cuisineType;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @Length(max = 1000, message = "{validation.restaurant.description.length}")
+   @Length(max = 1000, message = "{validation.length.max.1000}")
    private String description;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @Length(max = 200, message = "{validation.restaurant.socialMediaLinks.length}")
+   @Length(max = 200, message = "{validation.length.max.200}")
    private String socialMediaLinks;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -223,5 +222,25 @@ public class RestaurantDto {
 
    public static Builder builder() {
       return new Builder();
+   }
+
+   // toString
+   @Override
+   public String toString() {
+      return "RestaurantDto{" +
+              "id=" + id +
+              ", name='" + name + '\'' +
+              ", address='" + address + '\'' +
+              ", phoneNumber='" + phoneNumber + '\'' +
+              ", openingHours='" + openingHours + '\'' +
+              ", cuisineType='" + cuisineType + '\'' +
+              ", description='" + description + '\'' +
+              ", socialMediaLinks='" + socialMediaLinks + '\'' +
+              ", isOpen=" + isOpen +
+              ", productsDto=" + productsDto +
+              ", reviewsDto=" + reviewsDto +
+              ", ordersDto=" + ordersDto +
+              ", employeesDto=" + employeesDto +
+              '}';
    }
 }

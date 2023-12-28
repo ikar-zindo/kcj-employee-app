@@ -17,11 +17,11 @@ public class EmployeeDto {
    private Long id;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @Length(max = 30, message = "{validation.employee.name.length}")
+   @Length(max = 30, message = "{validation.length.max.30}")
    private String firstName;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @Length(max = 30, message = "{validation.employee.name.length}")
+   @Length(max = 30, message = "{validation.length.max.30}")
    private String lastName;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -29,18 +29,18 @@ public class EmployeeDto {
    private String email;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @Length(max = 60, message = "{validation.employee.nickname.length}")
+   @Length(max = 60, message = "{validation.length.max.60}")
    private String nickname;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
    private Role role;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @Length(max = 120, message = "{validation.employee.password.length}")
+   @Length(max = 120, message = "{validation.length.max.120}")
    private String password;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @Pattern(regexp = "\\\\+49\\\\d{10}", message = "{validation.employee.phoneNumber.length}")
+   @Pattern(regexp = "\\\\+49\\\\d{10}", message = "{validation.length.max.10}")
    private String phoneNumber;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)

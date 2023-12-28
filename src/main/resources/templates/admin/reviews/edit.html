@@ -106,7 +106,8 @@
 							<select class="form-select" id="restaurantDto" name="restaurantId">
 								<option th:each="restaurant : ${restaurants}"
 										  th:value="${restaurant.id}"
-										  th:text="${restaurant.name}">
+										  th:selected="${restaurant.id == review.restaurantDto.id}">
+
 								</option>
 							</select>
 							<div class="text-danger" th:if="${#fields.hasErrors('restaurantDto')}"
@@ -120,7 +121,9 @@
 							<select class="form-select" id="customerDto" name="customerId">
 								<option th:each="customer : ${customers}"
 										  th:value="${customer.id}"
-										  th:text="${customer.lastName}">
+										  th:text="${customer.lastName}"
+										  th:selected="${customer.id == review.customerDto.id}">
+
 								</option>
 							</select>
 							<div class="text-danger" th:if="${#fields.hasErrors('customerDto')}"

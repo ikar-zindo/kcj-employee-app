@@ -2,8 +2,7 @@ package com.kcurryjib.controller.admin;
 
 import com.kcurryjib.dto.RestaurantDto;
 import com.kcurryjib.dto.ReviewDto;
-import com.kcurryjib.exceptions.ProductException;
-import com.kcurryjib.exceptions.RestaurantException;
+import com.kcurryjib.exception.exceptionsList.RestaurantException;
 import com.kcurryjib.service.admin.EmployeeService;
 import com.kcurryjib.service.admin.RestaurantService;
 import com.kcurryjib.service.admin.ReviewService;
@@ -84,10 +83,10 @@ public class RestaurantController {
                                Model model) throws RestaurantException {
 
 
-      if (result.hasErrors()) {
-         model.addAttribute("restaurant", restaurantDto);
-         return "admin/restaurants/add";
-      }
+//      if (result.hasErrors()) {
+//         model.addAttribute("restaurant", restaurantDto);
+//         return "admin/restaurants/add";
+//      }
 
       service.addRestaurant(restaurantDto);
       return "redirect:/admin/restaurants";

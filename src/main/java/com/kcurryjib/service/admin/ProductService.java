@@ -5,11 +5,14 @@ import com.kcurryjib.dto.ProductDto;
 import com.kcurryjib.dto.RestaurantDto;
 import com.kcurryjib.entity.Product;
 import com.kcurryjib.entity.Restaurant;
-import com.kcurryjib.exceptions.ProductException;
+import com.kcurryjib.exception.exceptionsList.ProductException;
 import com.kcurryjib.mapper.admin.ProductMapper;
 import com.kcurryjib.repo.ProductRepository;
 import com.kcurryjib.repo.RestaurantRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -23,13 +26,15 @@ public class ProductService {
 //   @Autowired
 //   private ModelMapper modelMapper;
 
+   private final Logger LOGGER = LogManager.getLogger(ProductService.class);
+
    private ProductRepository productRepository;
 
    private RestaurantRepository restaurantRepository;
 
    private ProductMapper productMapper;
 
-//   @Autowired
+   //   @Autowired
    public ProductService(ProductRepository productRepository, RestaurantRepository restaurantRepository,
                          ProductMapper productMapper) throws ProductException {
 
@@ -63,6 +68,10 @@ public class ProductService {
 
    // READ
    public ProductDto getProductById(Long id) throws ProductException {
+      LOGGER.log(Level.INFO, "Requested product id={}", id);
+      LOGGER.log(Level.WARN, "Requested product id={}", id);
+      LOGGER.log(Level.ERROR, "Requested product id={}", id);
+
       ProductDto productDto = null;
 
       if (id != null) {
@@ -187,4 +196,6 @@ public class ProductService {
          throw new ProductException("The ID of the product to be deleted is missing!");
       }
    }
+
+   // Aggregation
 }

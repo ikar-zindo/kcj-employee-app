@@ -16,31 +16,31 @@ public class CustomerDto {
    private Long id;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @Length(max = 60, message = "{validation.customer.name.length}")
+   @Length(max = 60, message = "{validation.length.max.60}")
    private String firstName;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @Length(max = 60, message = "{validation.customer.name.length}")
+   @Length(max = 60, message = "{validation.length.max.60}")
    private String lastName;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
    @Email(message = "Invalid email")
-   @Length(max = 60, message = "{validation.customer.email.length}")
+   @Length(max = 60, message = "{validation.length.max.60}")
    private String email;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @Length(max = 120, message = "{validation.customer.password.length}")
+   @Length(max = 120, message = "{validation.length.max.120}")
    private String password;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @Pattern(regexp = "\\\\+49\\\\d{10}", message = "{validation.customer.phoneNumber.length}")
+   @Pattern(regexp = "\\\\+49\\\\d{10}", message = "{validation.length.max.10}")
    private String phoneNumber;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
    private String address;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @Length(max = 5, message = "{validation.customer.postalCode.length}")
+   @Length(max = 5, message = "{validation.length.max.5}")
    private String postalCode;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)

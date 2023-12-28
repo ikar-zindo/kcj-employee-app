@@ -4,13 +4,15 @@ import com.kcurryjib.config.MapperUtil;
 import com.kcurryjib.dto.RestaurantDto;
 import com.kcurryjib.dto.ReviewDto;
 import com.kcurryjib.entity.Restaurant;
-import com.kcurryjib.exceptions.ProductException;
-import com.kcurryjib.exceptions.RestaurantException;
-import com.kcurryjib.exceptions.ReviewException;
+import com.kcurryjib.exception.exceptionsList.ProductException;
+import com.kcurryjib.exception.exceptionsList.RestaurantException;
+import com.kcurryjib.exception.exceptionsList.ReviewException;
 import com.kcurryjib.mapper.admin.RestaurantMapper;
 import com.kcurryjib.repo.EmployeeRepository;
 import com.kcurryjib.repo.RestaurantRepository;
 import com.kcurryjib.repo.ReviewRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -68,7 +70,8 @@ public class RestaurantService {
       RestaurantDto restaurantDto = null;
 
       if (restaurantOptional.isPresent()) {
-         restaurantDto = MapperUtil.convertlist(List.of(restaurantOptional.get()), restaurantMapper::convertToRestaurantDto).get(0);
+         restaurantDto = MapperUtil.convertlist(
+                 List.of(restaurantOptional.get()), restaurantMapper::convertToRestaurantDto).get(0);
       }
 
       return restaurantDto;
@@ -103,20 +106,18 @@ public class RestaurantService {
 
          if (idResponse != null && idResponse > 0) {
             return restaurantMapper.convertToRestaurantDto(restaurantResponse);
+
          } else {
             throw new RestaurantException("Could not create a restaurant in the database");
          }
       } else {
          throw new RestaurantException("Error processing received request body!");
       }
+
    }
 
    // UPDATE
    public RestaurantDto updateRestaurant(RestaurantDto restaurantDto) throws RestaurantException {
-
-      if (restaurantDto.getName() == null) {
-         restaurantDto.setName("new restaurant");
-      }
 
       if (restaurantDto.getId() != null) {
          Optional<Restaurant> restaurantOptional = restaurantRepository.findById(restaurantDto.getId());
@@ -168,10 +169,14 @@ public class RestaurantService {
             if (restaurantResponse != null) {
                return restaurantMapper.convertToRestaurantDto(restaurantResponse);
             } else {
-               throw new ProductException(String.format("Failed to delete restaurant in database with Id=%d!", id));
+               throw new ProductException(
+                       String.format("Failed to delete restaurant in database with Id=%d!",
+                               id));
             }
          } else {
-            throw new ProductException(String.format("Restaurant not found in the database with Id=%d!", id));
+            throw new ProductException(
+                    String.format("Restaurant not found in the database with Id=%d!",
+                            id));
          }
       } else {
          throw new ProductException("The ID of the restaurant to be deleted is missing!");
@@ -191,7 +196,9 @@ public class RestaurantService {
    public BigDecimal getAverageRatingByRestaurantId(Long id) throws ReviewException {
       RestaurantDto restaurantDto = showWithComments(id);
 
-      if (restaurantDto != null && restaurantDto.getReviewsDto() != null && !restaurantDto.getReviewsDto().isEmpty()) {
+      if (restaurantDto != null && restaurantDto.getReviewsDto() != null &&
+              !restaurantDto.getReviewsDto().isEmpty()) {
+
          BigDecimal sum = BigDecimal.ZERO;
          int numberOfReviews = restaurantDto.getReviewsDto().size(); // save the number of reviews
 

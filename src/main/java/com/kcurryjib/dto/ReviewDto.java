@@ -25,13 +25,13 @@ public class ReviewDto {
    private CustomerDto customerDto;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @NotNull(message = "{validation.review.rating.notnull}")
+   @NotNull(message = "{validation.value.null}")
    @DecimalMin(value = "1", message = "{validation.review.rating.min}")
    @DecimalMax(value = "5", message = "{validation.review.rating.max}")
    private BigDecimal rating;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @NotEmpty(message = "{validation.review.comment.isEmpty}")
+   @NotEmpty(message = "{validation.length.empty}")
    private String comment;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)

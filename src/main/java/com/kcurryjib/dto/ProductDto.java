@@ -20,16 +20,16 @@ public class ProductDto {
    private Long id;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @NotBlank(message = "{validation.product.name}")
-   @Length(max = 25, message = "{validation.product.name.length}")
+   @NotBlank(message = "{validation.length.empty}")
+   @Length(max = 25, message = "{validation.length.max.25}")
    private String name;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @NotBlank(message = "{validation.product.description.notnull}")
-   @Length(max = 1000, message = "{validation.product.description.length}")
+   @NotNull(message = "{validation.value.null}")
+   @Length(max = 1000, message = "{validation.length.max.1000}")
    private String description;
 
-   @NotNull(message = "{validation.product.price.notnull}")
+   @NotNull(message = "{validation.value.null}")
    @DecimalMin(value = "0.01", message = "{validation.product.price}")
    @DecimalMax(value = "10000", message = "{validation.product.price.value}")
    private BigDecimal price;
@@ -45,7 +45,7 @@ public class ProductDto {
 
 //   @JsonInclude(JsonInclude.Include.NON_NULL)
    @JsonProperty("restaurant")
-   @NotNull(message = "{validation.product.restaurant.notnull}")
+   @NotNull(message = "{validation.value.null}")
    private RestaurantDto restaurantDto;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
