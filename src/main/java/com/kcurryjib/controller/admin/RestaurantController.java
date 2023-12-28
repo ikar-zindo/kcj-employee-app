@@ -83,10 +83,10 @@ public class RestaurantController {
                                Model model) throws RestaurantException {
 
 
-//      if (result.hasErrors()) {
-//         model.addAttribute("restaurant", restaurantDto);
-//         return "admin/restaurants/add";
-//      }
+      if (result.hasErrors()) {
+         model.addAttribute("restaurant", restaurantDto);
+         return "admin/restaurants/add";
+      }
 
       service.addRestaurant(restaurantDto);
       return "redirect:/admin/restaurants";
