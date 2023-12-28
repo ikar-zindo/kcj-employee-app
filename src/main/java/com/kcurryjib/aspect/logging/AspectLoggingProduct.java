@@ -40,7 +40,7 @@ public class AspectLoggingProduct {
    }
 
    /**
-    * LOGGER for admin.service.ProductService.addProduct()
+    * LOGGER for admin.service.ProductService.updateProduct()
     */
    @Pointcut("execution(* com.kcurryjib.service.admin.ProductService.updateProduct(..))")
    public void updateProduct() {
@@ -76,7 +76,7 @@ public class AspectLoggingProduct {
    @AfterReturning("deleteProduct()")
    public void afterDeleteProduct(JoinPoint joinPoint) {
       Object[] args = joinPoint.getArgs();
-      LOGGER.info("Added new product with parameter {}", args[0]);
+      LOGGER.warn("Delete product with parameter {}", args);
    }
 
    /**
