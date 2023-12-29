@@ -81,7 +81,9 @@
 							<input type="text" placeholder="Enter your comment" class="form-control"
 									 th:field="*{comment}"
 									 id="comment"/>
-							<div class="text-danger" th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></div>
+							<div class="text-danger"
+								  th:if="${#fields.hasErrors('comment')}"
+								  th:errors="*{comment}"></div>
 						</div>
 
 
@@ -93,7 +95,9 @@
 									 max="5"
 									 min="1"
 									 step="1"/>
-							<div class="text-danger" th:if="${#fields.hasErrors('rating')}" th:errors="*{rating}"></div>
+							<div class="text-danger"
+								  th:if="${#fields.hasErrors('rating')}"
+								  th:errors="*{rating}"></div>
 						</div>
 
 
@@ -107,7 +111,8 @@
 										  th:text="${restaurant.name}">
 								</option>
 							</select>
-							<div class="text-danger" th:if="${#fields.hasErrors('restaurantDto')}"
+							<div class="text-danger"
+								  th:if="${#fields.hasErrors('restaurantDto')}"
 								  th:errors="*{restaurantDto}"></div>
 						</div>
 
@@ -121,7 +126,8 @@
 										  th:text="${customer.lastName}">
 								</option>
 							</select>
-							<div class="text-danger" th:if="${#fields.hasErrors('customerDto')}"
+							<div class="text-danger"
+								  th:if="${#fields.hasErrors('customerDto')}"
 								  th:errors="*{customerDto}"></div>
 						</div>
 					</div>
