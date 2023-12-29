@@ -3,7 +3,7 @@ package com.kcurryjib.service.admin;
 import com.kcurryjib.dto.ProductDto;
 import com.kcurryjib.entity.Product;
 import com.kcurryjib.entity.Restaurant;
-import com.kcurryjib.exception.exceptionsList.ProductException;
+import com.kcurryjib.exception.list.ProductException;
 import com.kcurryjib.mapper.admin.ProductMapper;
 import com.kcurryjib.repo.ProductRepository;
 import com.kcurryjib.repo.RestaurantRepository;

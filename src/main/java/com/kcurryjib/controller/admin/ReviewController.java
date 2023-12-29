@@ -3,7 +3,7 @@ package com.kcurryjib.controller.admin;
 import com.kcurryjib.dto.CustomerDto;
 import com.kcurryjib.dto.RestaurantDto;
 import com.kcurryjib.dto.ReviewDto;
-import com.kcurryjib.exception.exceptionsList.ReviewException;
+import com.kcurryjib.exception.list.ReviewException;
 import com.kcurryjib.service.admin.CustomerService;
 import com.kcurryjib.service.admin.RestaurantService;
 import com.kcurryjib.service.admin.ReviewService;

@@ -1,7 +1,7 @@
 package com.kcurryjib.controller.admin;
 
 import com.kcurryjib.dto.ProductDto;
-import com.kcurryjib.exception.exceptionsList.ProductException;
+import com.kcurryjib.exception.list.ProductException;
 import com.kcurryjib.service.admin.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

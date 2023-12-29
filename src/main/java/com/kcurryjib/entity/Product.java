@@ -25,9 +25,9 @@ public class Product {
    private String description;
 
    @Column(name = "price", precision = 8, scale = 2)
-   @NotNull(message = "{validation.value.null}")
-   @DecimalMin(value = "0.01", message = "{validation.product.price}")
-   @DecimalMax(value = "10000", message = "{validation.product.price.value}")
+//   @NotNull(message = "{validation.value.null}")
+//   @DecimalMin(value = "0.01", message = "{validation.product.price}")
+//   @DecimalMax(value = "10000", message = "{validation.product.price.value}")
    private BigDecimal price;
 
    @Column(name = "image_url")

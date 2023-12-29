@@ -2,7 +2,7 @@ package com.kcurryjib.controller.admin;
 
 import com.kcurryjib.dto.ProductDto;
 import com.kcurryjib.dto.RestaurantDto;
-import com.kcurryjib.exception.exceptionsList.ProductException;
+import com.kcurryjib.exception.list.ProductException;
 import com.kcurryjib.service.admin.ProductService;
 import com.kcurryjib.service.admin.RestaurantService;
 import jakarta.validation.Valid;
