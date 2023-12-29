@@ -1,6 +1,7 @@
 package com.kcurryjib.entity;
 
 
+import com.kcurryjib.entity.enums.OrderStatus;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -37,8 +38,9 @@ public class Order {
    @Column(name = "total_amount", precision = 8, scale = 2)
    private BigDecimal totalAmount;
 
+   @Enumerated(EnumType.STRING)
    @Column(name = "order_status")
-   private String orderStatus;
+   private OrderStatus orderStatus;
 
    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
    private List<OrderProduct> orderProducts;
@@ -102,11 +104,11 @@ public class Order {
       this.totalAmount = totalAmount;
    }
 
-   public String getOrderStatus() {
+   public OrderStatus getOrderStatus() {
       return orderStatus;
    }
 
-   public void setOrderStatus(String orderStatus) {
+   public void setOrderStatus(OrderStatus orderStatus) {
       this.orderStatus = orderStatus;
    }
 

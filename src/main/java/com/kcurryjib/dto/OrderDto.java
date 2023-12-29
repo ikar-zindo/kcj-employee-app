@@ -2,6 +2,7 @@ package com.kcurryjib.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.kcurryjib.entity.enums.OrderStatus;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -35,7 +36,7 @@ public class OrderDto {
    private BigDecimal totalAmount;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   private String orderStatus;
+   private OrderStatus orderStatus;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
    @JsonProperty("orderProducts")
@@ -100,11 +101,11 @@ public class OrderDto {
       this.totalAmount = totalAmount;
    }
 
-   public String getOrderStatus() {
+   public OrderStatus getOrderStatus() {
       return orderStatus;
    }
 
-   public void setOrderStatus(String orderStatus) {
+   public void setOrderStatus(OrderStatus orderStatus) {
       this.orderStatus = orderStatus;
    }
 
