@@ -68,7 +68,7 @@ CREATE TABLE `order` (
   order_date DATETIME,
   delivery_address VARCHAR(60),
   total_amount DECIMAL(8, 2),
-  order_status VARCHAR(20)
+  order_status ENUM('CREATED', 'PROCESSING', 'COMPLETED', 'CANCELLED')
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 --
@@ -330,27 +330,27 @@ INSERT INTO `employee` (`last_name`, `first_name`,  `email`, `nickname`, `passwo
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`name`, `description`,  `price`, `restaurant_id`) VALUES
-    ('Chicken Curry', 'Fried chicken with vegetables and rice in medium spicy curry sauce', 14, 1),
-    ('Bibimbap', 'Beef with rice, vegetables, seaweed, fried egg and chilli paste', 12, 1),
-    ('Samgyupsal', 'Bacon for grill, lettuce, garlic, soy bean Samjang paste and leek salad', 40, 1),
-    ('KimChi', 'Korean fermented dish of seasoned vegetables, known for its tangy, spicy taste', 4, 1),
-    ('KimChi Zige', 'Spicy soup with kimchi, bacon, tofu & vegetables', 13, 1),
-    ('Ozingo Kampungi', 'Fried battered squids in spicy-and-sweet sauce and vegetables', 18, 1),
-    ('Ramen', 'Soup with noodles, beef or pork, egg, katsuobushi, vegetables and leek', 10, 1),
-    ('Haemul Ramen', 'Spicy noodle soup with seafood, vegetables and egg', 7, 1),
-    ('Miso  Shiru', 'Soybean soup with tofu, seaweed', 5, 1),
-    ('Haemul Bokkum', 'Fried seawood with vegetables', 15, 1),
-    ('Ori Teriyaki', 'Grilled duck with vegetables in sweet teriyaki sauce', 18, 1),
-    ('Kampungi', 'Medium spicy chicken breast with vegetables', 10, 1),
-    ('Chiken Teriyaki', 'Fried chicken leg with grilled vegetables in sweet teriyaki sauce', 8, 1),
-    ('Yaki Tori', 'Chicken shashliks (2 pieces) in sweet sauce, fries', 6, 1),
-    ('Yaki Gyoza', 'Fried dumplings with vegetable filling', 8, 1),
-    ('Ebi Tempura', 'Fried shrimps coated in tempura, fries', 16, 1),
-    ('Dubu Yache Bokkum', 'Fried tofu with vegetables in soya sauce', 9, 1),
-    ('Yukhoe', 'Beef tartar, garlic, onion, sesame oil', 20, 1),
-    ('Bulgogi Zungshik', 'Beef & vehetables in sweet sauce on the hot plate, rice', 13, 1),
-    ('Osam Bokum', 'Fried squids, pork and vegetables in spicy gochujang sauce', 28, 1);
+INSERT INTO `product` (`name`, `description`,  `price`, `restaurant_id`, `image_url`) VALUES
+    ('Chicken Curry', 'Fried chicken with vegetables and rice in medium spicy curry sauce', 14, 1, '1.jpg'),
+    ('Bibimbap', 'Beef with rice, vegetables, seaweed, fried egg and chilli paste', 12, 1, '1.jpg'),
+    ('Samgyupsal', 'Bacon for grill, lettuce, garlic, soy bean Samjang paste and leek salad', 40, 1, '1.jpg'),
+    ('KimChi', 'Korean fermented dish of seasoned vegetables, known for its tangy, spicy taste', 4, 1, '1.jpg'),
+    ('KimChi Zige', 'Spicy soup with kimchi, bacon, tofu & vegetables', 13, 1, '1.jpg'),
+    ('Ozingo Kampungi', 'Fried battered squids in spicy-and-sweet sauce and vegetables', 18, 1, '1.jpg'),
+    ('Ramen', 'Soup with noodles, beef or pork, egg, katsuobushi, vegetables and leek', 10, 1, '1.jpg'),
+    ('Haemul Ramen', 'Spicy noodle soup with seafood, vegetables and egg', 7, 1, '1.jpg'),
+    ('Miso  Shiru', 'Soybean soup with tofu, seaweed', 5, 1, '1.jpg'),
+    ('Haemul Bokkum', 'Fried seawood with vegetables', 15, 1, '1.jpg'),
+    ('Ori Teriyaki', 'Grilled duck with vegetables in sweet teriyaki sauce', 18, 1, '1.jpg'),
+    ('Kampungi', 'Medium spicy chicken breast with vegetables', 10, 1, '1.jpg'),
+    ('Chiken Teriyaki', 'Fried chicken leg with grilled vegetables in sweet teriyaki sauce', 8, 1, '1.jpg'),
+    ('Yaki Tori', 'Chicken shashliks (2 pieces) in sweet sauce, fries', 6, 1, '1.jpg'),
+    ('Yaki Gyoza', 'Fried dumplings with vegetable filling', 8, 1, '1.jpg'),
+    ('Ebi Tempura', 'Fried shrimps coated in tempura, fries', 16, 1, '1.jpg'),
+    ('Dubu Yache Bokkum', 'Fried tofu with vegetables in soya sauce', 9, 1, '1.jpg'),
+    ('Yukhoe', 'Beef tartar, garlic, onion, sesame oil', 20, 1, '1.jpg'),
+    ('Bulgogi Zungshik', 'Beef & vehetables in sweet sauce on the hot plate, rice', 13, 1, '1.jpg'),
+    ('Osam Bokum', 'Fried squids, pork and vegetables in spicy gochujang sauce', 28, 1, '1.jpg');
 
 COMMIT;
 
