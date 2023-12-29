@@ -9,10 +9,8 @@ import com.kcurryjib.exception.list.ProductException;
 import com.kcurryjib.mapper.admin.ProductMapper;
 import com.kcurryjib.repo.ProductRepository;
 import com.kcurryjib.repo.RestaurantRepository;
-
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -25,8 +23,6 @@ import java.util.stream.Collectors;
 public class ProductService {
 //   @Autowired
 //   private ModelMapper modelMapper;
-
-   private final Logger LOGGER = LogManager.getLogger(ProductService.class);
 
    private ProductRepository productRepository;
 
@@ -68,10 +64,6 @@ public class ProductService {
 
    // READ
    public ProductDto getProductById(Long id) throws ProductException {
-      LOGGER.log(Level.INFO, "Requested product id={}", id);
-      LOGGER.log(Level.WARN, "Requested product id={}", id);
-      LOGGER.log(Level.ERROR, "Requested product id={}", id);
-
       ProductDto productDto = null;
 
       if (id != null) {
