@@ -1,23 +1,21 @@
 package com.kcurryjib.entity.enums;
 
-import org.springframework.security.core.GrantedAuthority;
+public enum Role /*implements GrantedAuthority*/ {
 
-public enum Role implements GrantedAuthority {
+   ROLE_USER,
+   ROLE_MANAGER,
+   ROLE_ADMIN,
+   ROLE_DEALER,
+   ROLE_DRIVER
 
-   USER("USER"),
-   MANAGER("MANAGER"),
-   ADMIN("ADMIN"),
-   DEALER("DEALER"),
-   DRIVER("DRIVER");
-
-   private final String value;
-
-   Role(String value) {
-      this.value = value;
-   }
-
-   @Override
-   public String getAuthority() {
-      return value;
-   }
+//   private final String value;
+//
+//   Role(String value) {
+//      this.value = value;
+//   }
+//
+//   @Override
+//   public String getAuthority() {
+//      return value;
+//   }
 }

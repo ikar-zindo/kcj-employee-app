@@ -2,21 +2,14 @@ package com.kcurryjib.entity;
 
 import com.kcurryjib.entity.enums.Role;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "employee")
-public class Employee implements UserDetails {
+public class Employee {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +25,7 @@ public class Employee implements UserDetails {
 //   @Pattern(regexp = "[A-Z][a-z]{1,49}", message = "a string should start with a capital letter (rest lowercase) and contain at least two letters")
    private String lastName;
 
-//   @Email(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$", message = "Email is not valid")
+   //   @Email(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$", message = "Email is not valid")
    @Column(name = "email")
    private String email;
 
@@ -46,7 +39,7 @@ public class Employee implements UserDetails {
    @Column(name = "password")
    private String password;
 
-//   @NotBlank(message = "Phone cant be empty")
+   //   @NotBlank(message = "Phone cant be empty")
 //   @Pattern(regexp = "\\+\\d{8,15}", message = "Phone is not valid")
    @Column(name = "phone_number")
    private String phoneNumber;
@@ -68,7 +61,6 @@ public class Employee implements UserDetails {
    }
 
    // Getters & Setters
-
    public Long getId() {
       return id;
    }
@@ -117,6 +109,10 @@ public class Employee implements UserDetails {
       this.role = role;
    }
 
+   public String getPassword() {
+      return password;
+   }
+
    public void setPassword(String password) {
       this.password = password;
    }
@@ -159,42 +155,6 @@ public class Employee implements UserDetails {
 
    public void setOrders(List<Order> orders) {
       this.orders = orders;
-   }
-
-   // Override methods UserDetails
-   @Override
-   public Collection<? extends GrantedAuthority> getAuthorities() {
-      return Collections.singleton(role);
-   }
-
-   @Override
-   public String getPassword() {
-      return password;
-   }
-
-   @Override
-   public String getUsername() {
-      return nickname;
-   }
-
-   @Override
-   public boolean isAccountNonExpired() {
-      return true;
-   }
-
-   @Override
-   public boolean isAccountNonLocked() {
-      return true;
-   }
-
-   @Override
-   public boolean isCredentialsNonExpired() {
-      return true;
-   }
-
-   @Override
-   public boolean isEnabled() {
-      return true;
    }
 
    @Override
