@@ -75,7 +75,7 @@ public class ProductServiceTest {
               .id(1L)
               .name("TestName")
               .address("TestAddress")
-              .phoneNumber("+49123456789")
+              .phoneNumber("+490000000")
               .openingHours("00:00-00:00")
               .cuisineType("TestCuisineType")
               .description("TestDescription")
@@ -87,7 +87,7 @@ public class ProductServiceTest {
    @Test
    void getProductIdTest() throws ProductException {
       when(productRepositoryMock.findById(anyLong())).thenReturn(Optional.of(expectedProduct));
-      when(productMapperMock.convertToProductDto(any(Product.class))).thenReturn(expectedProductDto);
+      when(productMapperMock.showProductDetails(any(Product.class))).thenReturn(expectedProductDto);
 
 
       ProductDto returnProductDto  = productServiceTest.getProductById(1L);
