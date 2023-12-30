@@ -56,7 +56,9 @@ public class ReviewService {
       ReviewDto reviewDto = null;
 
       if (reviewOptional.isPresent()) {
-         reviewDto = MapperUtil.convertlist(List.of(reviewOptional.get()), reviewMapper::showReviewDtoWithCustomer).get(0);
+         reviewDto = reviewMapper.showReviewDtoWithCustomer(reviewOptional.get());
+//                 MapperUtil.convertlist(
+//                 List.of(reviewOptional.get()), reviewMapper::showReviewDtoWithCustomer).get(0);
       }
 
       return reviewDto;
@@ -162,6 +164,4 @@ public class ReviewService {
          throw new ReviewException("The ID of the review to be deleted is missing!");
       }
    }
-
-
 }

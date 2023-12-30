@@ -23,7 +23,7 @@ public class CustomerService {
    @Autowired
    private CustomerMapper customerMapper;
 
-//   @Autowired
+   //   @Autowired
    private OrderRepository orderRepository;
 
 
@@ -38,8 +38,9 @@ public class CustomerService {
       CustomerDto customerDto = null;
 
       if (customerOptional.isPresent()) {
-         customerDto = MapperUtil.convertlist(
-                 List.of(customerOptional.get()), customerMapper::shortCustomerDto).get(0);
+         customerDto = customerMapper.shortCustomerDto(customerOptional.get());
+//                 MapperUtil.convertlist(
+//                 List.of(customerOptional.get()), customerMapper::shortCustomerDto).get(0);
       }
 
       return customerDto;

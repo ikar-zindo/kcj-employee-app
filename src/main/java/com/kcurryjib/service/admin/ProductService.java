@@ -70,11 +70,12 @@ public class ProductService {
          Optional<Product> productOptional = productRepository.findById(id);
 
          if (productOptional.isPresent()) {
-            productDto = MapperUtil.convertlist(
-                    List.of(productOptional.get()), productMapper::showProductDetails).get(0);
+            productDto = productMapper.showProductDetails(productOptional.get());
+//                    MapperUtil.convertlist(
+//                    List.of(productOptional.get()), productMapper::showProductDetails).get(0);
          } else {
             throw new ProductException(
-                    String.format("Product not found in database with Id=%d", id));
+                    String.format("Product not found in database with id=%d", id));
          }
       } else {
          throw new ProductException("There is no product ID to search for!");

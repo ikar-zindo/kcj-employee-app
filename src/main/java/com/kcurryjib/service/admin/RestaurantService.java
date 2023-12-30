@@ -68,8 +68,9 @@ public class RestaurantService {
       RestaurantDto restaurantDto = null;
 
       if (restaurantOptional.isPresent()) {
-         restaurantDto = MapperUtil.convertlist(
-                 List.of(restaurantOptional.get()), restaurantMapper::convertToRestaurantDto).get(0);
+         restaurantDto = restaurantMapper.convertToRestaurantDto(restaurantOptional.get());
+//                 MapperUtil.convertlist(
+//                 List.of(restaurantOptional.get()), restaurantMapper::convertToRestaurantDto).get(0);
       }
 
       return restaurantDto;
@@ -81,8 +82,9 @@ public class RestaurantService {
       RestaurantDto restaurantDto = null;
 
       if (restaurantOptional.isPresent()) {
-         restaurantDto = MapperUtil.convertlist(
-                 List.of(restaurantOptional.get()), restaurantMapper::showCustomersWithComments).get(0);
+         restaurantDto = restaurantMapper.showCustomersWithComments(restaurantOptional.get());
+//                 MapperUtil.convertlist(
+//                 List.of(restaurantOptional.get()), restaurantMapper::showCustomersWithComments).get(0);
       }
 
       return restaurantDto;
