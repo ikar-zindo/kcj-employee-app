@@ -28,7 +28,7 @@ public class AspectLoggingRestaurant {
    @AfterReturning("addRestaurant()")
    public void afterAddRestaurant(JoinPoint joinPoint) {
       Object[] args = joinPoint.getArgs();
-      LOGGER.info("Added new restaurant with parameter {}", args[0]);
+      LOGGER.info("Add new restaurant with parameter {}", args[0]);
    }
 
    /**
@@ -76,7 +76,7 @@ public class AspectLoggingRestaurant {
    @AfterReturning("deleteRestaurant()")
    public void afterDeleteRestaurant(JoinPoint joinPoint) {
       Object[] args = joinPoint.getArgs();
-      LOGGER.info("Deleted restaurant with parameter {}", args);
+      LOGGER.info("Delete restaurant with parameter {}", args);
    }
 
    /**

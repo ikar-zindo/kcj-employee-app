@@ -28,7 +28,7 @@ public class AspectLoggingProduct {
    @AfterReturning("addProduct()")
    public void afterAddRestaurant(JoinPoint joinPoint) {
       Object[] args = joinPoint.getArgs();
-      LOGGER.info("Added new product with parameter {}", args[0]);
+      LOGGER.info("Add new product with parameter {}", args[0]);
    }
 
    /**
@@ -52,7 +52,7 @@ public class AspectLoggingProduct {
    @AfterReturning("updateProduct()")
    public void afterUpdateProduct(JoinPoint joinPoint) {
       Object[] args = joinPoint.getArgs();
-      LOGGER.info("Added new product with parameter {}", args[0]);
+      LOGGER.info("Update new product with parameter {}", args[0]);
    }
 
    /**

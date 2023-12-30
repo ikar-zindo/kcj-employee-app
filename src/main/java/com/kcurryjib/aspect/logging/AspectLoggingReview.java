@@ -27,7 +27,7 @@ public class AspectLoggingReview {
    @AfterReturning("addReview()")
    public void afterAddRestaurant(JoinPoint joinPoint) {
       Object[] args = joinPoint.getArgs();
-      LOGGER.info("Added new review with parameter {}", args[0]);
+      LOGGER.info("Add new review with parameter {}", args[0]);
    }
 
    /**
@@ -73,7 +73,7 @@ public class AspectLoggingReview {
    @AfterReturning("deleteReview()")
    public void afterDeleteReview(JoinPoint joinPoint) {
       Object[] args = joinPoint.getArgs();
-      LOGGER.warn("Deleted review with parameter {}", args);
+      LOGGER.warn("Delet review with parameter {}", args);
    }
 
    /**
