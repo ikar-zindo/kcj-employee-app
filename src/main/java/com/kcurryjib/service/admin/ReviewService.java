@@ -52,13 +52,20 @@ public class ReviewService {
 
    // READ
    public ReviewDto getById(Long id) throws ReviewException {
-      Optional<Review> reviewOptional = reviewRepository.findById(id);
       ReviewDto reviewDto = null;
 
-      if (reviewOptional.isPresent()) {
-         reviewDto = reviewMapper.showReviewDtoWithCustomer(reviewOptional.get());
-//                 MapperUtil.convertlist(
-//                 List.of(reviewOptional.get()), reviewMapper::showReviewDtoWithCustomer).get(0);
+      if (id != null) {
+         Optional<Review> reviewOptional = reviewRepository.findById(id);
+
+         if (reviewOptional.isPresent()) {
+            reviewDto = reviewMapper.showReviewDtoWithCustomer(reviewOptional.get());
+         } else {
+            throw new ReviewException(
+                    String.format("Review not found in database with id=%d",
+                            id));
+         }
+      } else {
+         throw new ReviewException("There is no review ID to search for!");
       }
 
       return reviewDto;
@@ -114,9 +121,9 @@ public class ReviewService {
          Optional<Review> reviewOptional = reviewRepository.findById(reviewDto.getId());
 
          RestaurantDto restaurantDto = reviewDto.getRestaurantDto();
-         CustomerDto customerDto = reviewDto.getCustomerDto();
-
          Restaurant restaurant = restaurantRepository.findById(restaurantDto.getId()).orElse(null);
+
+         CustomerDto customerDto = reviewDto.getCustomerDto();
          Customer customer = customerRepository.findById(customerDto.getId()).orElse(null);
 
          if (reviewOptional.isPresent()) {
@@ -134,17 +141,17 @@ public class ReviewService {
                return reviewMapper.convertToReviewDto(reviewResponse);
 
             } else {
-               throw new ProductException(
+               throw new ReviewException(
                        String.format("Failed to update the review in the database with Id=%d!",
                                reviewDto.getId()));
             }
          } else {
-            throw new ProductException(
+            throw new ReviewException(
                     String.format("The review was not found in the database with Id=%d!",
                             reviewDto.getId()));
          }
       } else {
-         throw new ProductException("Error processing received body request!");
+         throw new ReviewException("Error processing received body request!");
       }
    }
 
@@ -167,12 +174,12 @@ public class ReviewService {
                                id));
             }
          } else {
-            throw new ReviewException(String.format("Review not found in the database with Id=%d!", id));
+            throw new ReviewException(
+                    String.format("Review not found in the database with Id=%d!",
+                            id));
          }
       } else {
          throw new ReviewException("The ID of the review to be deleted is missing!");
       }
-
-
    }
 }

@@ -70,8 +70,6 @@ public class ProductService {
 
          if (productOptional.isPresent()) {
             productDto = productMapper.showProductDetails(productOptional.get());
-//                    MapperUtil.convertlist(
-//                    List.of(productOptional.get()), productMapper::showProductDetails).get(0);
          } else {
             throw new ProductException(
                     String.format("Product not found in database with id=%d",
@@ -130,6 +128,7 @@ public class ProductService {
 
       if (productDto.getId() != null) {
          Optional<Product> productOptional = productRepository.findById(productDto.getId());
+
          RestaurantDto restaurantDto = productDto.getRestaurantDto();
          Restaurant restaurant = restaurantRepository.findById(restaurantDto.getId()).orElse(null);
 
@@ -141,6 +140,7 @@ public class ProductService {
             product.setPrice(productDto.getPrice());
             product.setImageUrl(productDto.getImageUrl());
             product.setAvailable(productDto.isAvailable());
+
             product.setRestaurant(restaurant);
 
             Product productResponse = productRepository.save(product);

@@ -119,7 +119,6 @@ public class ProductServiceTest {
               .restaurantDto(expectedRestaurantDto)
               .build();
 
-
       // test instance of the product with restaurant
       expectedProductDtoWithRestaurant = ProductDto.builder()
               .id(expectedProduct.getId())
@@ -192,28 +191,28 @@ public class ProductServiceTest {
    }
 
    @Test
-   void createClientExceptionTest() {
+   void createProductExceptionTest() {
       assertThrows(ProductException.class, () -> productServiceTest.addProduct(expectedProductDto));
    }
 
    @Test
-   void getClientIdExceptionTest() {
+   void getProductIdExceptionTest() {
       assertThrows(ProductException.class, () -> productServiceTest.getProductById(null));
    }
 
    @Test
-   void updateClientExceptionTest() {
+   void updateProductExceptionTest() {
       expectedProductDto.setId(null);
       assertThrows(ProductException.class, () -> productServiceTest.updateProduct(expectedProductDto));
    }
 
    @Test
-   void deleteClientExceptionTest() {
+   void deleteProductExceptionTest() {
       assertThrows(ProductException.class, () -> productServiceTest.deleteProduct(null));
    }
 
    @Test
-   void deleteClientExceptionNoSaveTest() {
+   void deleteProductExceptionNoSaveTest() {
       when(productRepositoryMock.findById(anyLong()))
               .thenReturn(Optional.of(expectedProduct));
       when(productRepositoryMock.save(expectedProduct))
@@ -222,7 +221,7 @@ public class ProductServiceTest {
       assertThrows(ProductException.class, () -> productServiceTest.deleteProduct(1L));
    }
    @Test
-   void deleteClientExceptionNoFindClientTest() {
+   void deleteProductExceptionNoFindProductTest() {
       when(productRepositoryMock.findById(anyLong()))
               .thenReturn(Optional.empty());
 

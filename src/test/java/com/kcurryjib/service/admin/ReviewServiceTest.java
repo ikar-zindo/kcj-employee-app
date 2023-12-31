@@ -27,6 +27,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
@@ -97,8 +98,6 @@ public class ReviewServiceTest {
               .socialMediaLinks(expectedRestaurant.getSocialMediaLinks())
               .isOpen(expectedRestaurant.isOpen())
               .build();
-
-
 
       // test instance of the customer
       expectedCustomer = Customer.builder()
@@ -189,7 +188,8 @@ public class ReviewServiceTest {
 
    @Test
    void addProductTest() throws ReviewException {
-      when(restaurantRepositoryMock.findById(anyLong()));
+      when(restaurantRepositoryMock.findById(anyLong()))
+              .thenReturn(Optional.of(expectedRestaurant));
       when(customerRepositoryMock.findById(anyLong()))
               .thenReturn(Optional.of(expectedCustomer));
 
@@ -231,5 +231,44 @@ public class ReviewServiceTest {
       ReviewDto returnReviewDto = reviewServiceTest.deleteReview(1L);
 
       assertEquals(expectedReviewDto, returnReviewDto);
+   }
+
+   @Test
+   void createReviewExceptionTest() {
+      assertThrows(ReviewException.class, () -> reviewServiceTest.addReview(expectedReviewDto));
+   }
+
+   @Test
+   void getReviewIdExceptionTest() {
+      assertThrows(ReviewException.class, () -> reviewServiceTest.getById(null));
+   }
+
+   @Test
+   void updateReviewExceptionTest() {
+      expectedReviewDtoInfo.setId(null);
+      assertThrows(ReviewException.class, () -> reviewServiceTest.updateReview(expectedReviewDtoInfo));
+   }
+
+   @Test
+   void deleteReviewExceptionTest() {
+      assertThrows(ReviewException.class, () -> reviewServiceTest.deleteReview(null));
+   }
+
+   // нет функционала для удаления комментариев
+//   @Test
+//   void deleteReviewExceptionNoSaveTest() {
+//      when(reviewRepositoryMock.findById(anyLong()))
+//              .thenReturn(Optional.of(expectedReview));
+//      when(reviewRepositoryMock.save(expectedReview))
+//              .thenReturn(null);
+//
+//      assertThrows(ReviewException.class, () -> reviewServiceTest.deleteReview(1L));
+//   }
+   @Test
+   void deleteReviewExceptionNoFindReviewTest() {
+      when(reviewRepositoryMock.findById(anyLong()))
+              .thenReturn(Optional.empty());
+
+      assertThrows(ReviewException.class, () -> reviewServiceTest.deleteReview(1L));
    }
 }
