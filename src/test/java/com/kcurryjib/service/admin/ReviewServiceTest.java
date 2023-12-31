@@ -264,6 +264,7 @@ public class ReviewServiceTest {
 //
 //      assertThrows(ReviewException.class, () -> reviewServiceTest.deleteReview(1L));
 //   }
+
    @Test
    void deleteReviewExceptionNoFindReviewTest() {
       when(reviewRepositoryMock.findById(anyLong()))
