@@ -113,7 +113,7 @@ public class ProductService {
                        String.format("No restaurant found with Id=%d. I can't create a product!", restaurantDto.getId()));
             }
          } else {
-            throw new ProductException("The ID of the associated restaurant is missing. I can't create a product!");
+            throw new ProductException("The ID of the associated restaurant is missing. Product has not been created!");
          }
       } else {
          throw new ProductException("Error processing received request body!");

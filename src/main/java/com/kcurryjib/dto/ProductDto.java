@@ -169,7 +169,8 @@ public class ProductDto {
          productDto.isAvailable = isAvailable;
          return this;
       }
-      public Builder restaurantDto() {
+      public Builder restaurantDto(RestaurantDto restaurantDto) {
+         productDto.restaurantDto = restaurantDto;
          return this;
       }
 
