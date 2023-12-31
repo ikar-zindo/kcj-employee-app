@@ -2,6 +2,7 @@ package com.kcurryjib.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.kcurryjib.entity.Review;
 import com.kcurryjib.entity.enums.OrderStatus;
 
 import java.math.BigDecimal;
@@ -115,5 +116,59 @@ public class OrderDto {
 
    public void setOrderProductsDto(List<OrderProductDto> orderProductsDto) {
       this.orderProductsDto = orderProductsDto;
+   }
+
+   // Builder class
+   public static class Builder {
+
+      private OrderDto orderDto = new OrderDto();
+
+      public Builder id(Long id) {
+         orderDto.id = id;
+         return this;
+      }
+
+      public Builder customerDto(CustomerDto customerDto) {
+         orderDto.customerDto = customerDto;
+         return this;
+      }
+
+      public Builder restaurantDto(RestaurantDto restaurantDto) {
+         orderDto.restaurantDto = restaurantDto;
+         return this;
+      }
+
+      public Builder employeeDto(EmployeeDto employeeDto) {
+         orderDto.employeeDto = employeeDto;
+         return this;
+      }
+
+      public Builder orderDate(LocalDateTime orderDate) {
+         orderDto.orderDate = orderDate;
+         return this;
+      }
+
+      public Builder deliveryAddress(String deliveryAddress) {
+         orderDto.deliveryAddress = deliveryAddress;
+         return this;
+      }
+
+      public Builder totalAmount(BigDecimal totalAmount) {
+         orderDto.totalAmount = totalAmount;
+         return this;
+      }
+
+      public Builder orderStatus(OrderStatus orderStatus) {
+         orderDto.orderStatus = orderStatus;
+         return this;
+      }
+
+      public OrderDto build() {
+         return orderDto;
+      }
+   }
+
+   public static Review.Builder builder() {
+      return new Review.Builder();
    }
 }

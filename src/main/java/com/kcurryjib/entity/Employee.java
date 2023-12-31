@@ -193,4 +193,73 @@ public class Employee {
               ", orders=" + orders +
               '}';
    }
+
+   // Builder class
+   public static class Builder {
+
+      private Employee employee = new Employee();
+
+      public Builder id(Long id) {
+         employee.id = id;
+         return this;
+      }
+
+      public Builder firstName(String firstName) {
+         employee.firstName = firstName;
+         return this;
+      }
+
+      public Builder lastName(String lastName) {
+         employee.lastName = lastName;
+         return this;
+      }
+
+      public Builder email(String email) {
+         employee.email = email;
+         return this;
+      }
+
+      public Builder nickname(String nickname) {
+         employee.nickname = nickname;
+         return this;
+      }
+
+      public Builder role(Role role) {
+         employee.role = role;
+         return this;
+      }
+
+      public Builder password(String password) {
+         employee.password = password;
+         return this;
+      }
+
+      public Builder phoneNumber(String phoneNumber) {
+         employee.phoneNumber = phoneNumber;
+         return this;
+      }
+
+      public Builder createdAt(LocalDateTime createdAt) {
+         employee.createdAt = createdAt;
+         return this;
+      }
+
+      public Builder isActive(Boolean isActive) {
+         employee.isActive = isActive;
+         return this;
+      }
+
+      public Builder restaurant(Restaurant restaurant) {
+         employee.restaurant = restaurant;
+         return this;
+      }
+
+      public Employee build() {
+         return employee;
+      }
+   }
+
+   public static Builder builder() {
+      return new Builder();
+   }
 }

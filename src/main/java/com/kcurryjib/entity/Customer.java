@@ -49,7 +49,7 @@ public class Customer {
    private LocalDateTime createdAt;
 
    @Column(name = "is_blocked")
-   private boolean isBlocked;
+   private Boolean isBlocked;
 
    @OneToOne(mappedBy = "customer")
    private Cart cart;
@@ -135,11 +135,11 @@ public class Customer {
       this.createdAt = createdAt;
    }
 
-   public boolean isBlocked() {
+   public Boolean isBlocked() {
       return isBlocked;
    }
 
-   public void setBlocked(boolean blocked) {
+   public void setBlocked(Boolean blocked) {
       isBlocked = blocked;
    }
 
@@ -165,5 +165,60 @@ public class Customer {
 
    public void setReviews(List<Review> reviews) {
       this.reviews = reviews;
+   }
+
+   // Builder class
+   public static class Builder {
+
+      private Customer customer = new Customer();
+
+      public Builder id(Long id) {
+         customer.id = id;
+         return this;
+      }
+      public Builder firstName(String firstName) {
+         customer.firstName = firstName;
+         return this;
+      }
+      public Builder lastName(String lastName) {
+         customer.lastName = lastName;
+         return this;
+      }
+      public Builder email(String email) {
+         customer.email = email;
+         return this;
+      }
+      public Builder password(String password) {
+         customer.password = password;
+         return this;
+      }
+      public Builder phoneNumber(String phoneNumber) {
+         customer.phoneNumber = phoneNumber;
+         return this;
+      }
+      public Builder address(String address) {
+         customer.address = address;
+         return this;
+      }
+      public Builder postalCode(String postalCode) {
+         customer.postalCode = postalCode;
+         return this;
+      }
+      public Builder createdAt(LocalDateTime createdAt) {
+         customer.createdAt = createdAt;
+         return this;
+      }
+      public Builder isBlocked(Boolean isBlocked) {
+         customer.isBlocked = isBlocked;
+         return this;
+      }
+
+      public Customer build() {
+         return customer;
+      }
+   }
+
+   public static Builder builder() {
+      return new Builder();
    }
 }

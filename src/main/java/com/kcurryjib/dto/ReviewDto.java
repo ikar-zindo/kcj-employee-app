@@ -2,7 +2,10 @@ package com.kcurryjib.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -85,5 +88,41 @@ public class ReviewDto {
       this.createdAt = createdAt;
    }
 
+   // Builder class
+   public static class Builder {
+      private ReviewDto reviewDto = new ReviewDto();
 
+      public Builder id(Long id) {
+         reviewDto.id = id;
+         return this;
+      }
+      public Builder restaurantDto(RestaurantDto restaurantDto) {
+         reviewDto.restaurantDto = restaurantDto;
+         return this;
+      }
+      public Builder customerDto(CustomerDto customerDto) {
+         reviewDto.customerDto = customerDto;
+         return this;
+      }
+      public Builder rating(BigDecimal rating) {
+         reviewDto.rating = rating;
+         return this;
+      }
+      public Builder comment(String comment) {
+         reviewDto.comment = comment;
+         return this;
+      }
+      public Builder createdAt(LocalDateTime createdAt) {
+         reviewDto.createdAt = createdAt;
+         return this;
+      }
+
+      public ReviewDto build() {
+         return reviewDto;
+      }
+   }
+
+   public static Builder builder() {
+      return new Builder();
+   }
 }

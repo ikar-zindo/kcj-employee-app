@@ -52,6 +52,7 @@ public class Restaurant {
    public Restaurant() {
    }
 
+   // Getters & Setters
    public Long getId() {
       return id;
    }
@@ -156,7 +157,7 @@ public class Restaurant {
       this.employees = employees;
    }
 
-   // Builder
+   // Builder class
    public static class Builder {
       private Restaurant restaurant = new Restaurant();
 

@@ -1,9 +1,6 @@
 package com.kcurryjib.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.DecimalMax;
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -133,7 +130,7 @@ public class Product {
       this.orderProducts = orderProducts;
    }
 
-   // Builder
+   // Builder class
    public static class Builder {
       private Product product = new Product();
 
@@ -141,31 +138,39 @@ public class Product {
          product.id = id;
          return this;
       }
+
       public Builder name(String name) {
          product.name = name;
          return this;
       }
+
       public Builder description(String description) {
          product.description = description;
          return this;
       }
+
       public Builder price(BigDecimal price) {
          product.price = price;
          return this;
       }
+
       public Builder imageUrl(String imageUrl) {
          product.imageUrl = imageUrl;
          return this;
       }
+
       public Builder createdAt(LocalDateTime createdAt) {
          product.createdAt = createdAt;
          return this;
       }
+
       public Builder isAvailable(Boolean isAvailable) {
          product.isAvailable = isAvailable;
          return this;
       }
-      public Builder restaurant() {
+
+      public Builder restaurant(Restaurant restaurant) {
+         product.restaurant = restaurant;
          return this;
       }
 

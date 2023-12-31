@@ -46,7 +46,7 @@ public class CustomerDto {
    @JsonInclude(JsonInclude.Include.NON_NULL)
    private LocalDateTime createdAt;
 
-   private boolean isBlocked;
+   private Boolean isBlocked;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
    @JsonProperty("cart")
@@ -165,5 +165,69 @@ public class CustomerDto {
 
    public void setReviewsDto(List<ReviewDto> reviewsDto) {
       this.reviewsDto = reviewsDto;
+   }
+
+   // Builder class
+   public static class Builder {
+
+      private CustomerDto customerDto = new CustomerDto();
+
+      public Builder id(Long id) {
+         customerDto.id = id;
+         return this;
+      }
+
+      public Builder firstName(String firstName) {
+         customerDto.firstName = firstName;
+         return this;
+      }
+
+      public Builder lastName(String lastName) {
+         customerDto.lastName = lastName;
+         return this;
+      }
+
+      public Builder email(String email) {
+         customerDto.email = email;
+         return this;
+      }
+
+      public Builder password(String password) {
+         customerDto.password = password;
+         return this;
+      }
+
+      public Builder phoneNumber(String phoneNumber) {
+         customerDto.phoneNumber = phoneNumber;
+         return this;
+      }
+
+      public Builder address(String address) {
+         customerDto.address = address;
+         return this;
+      }
+
+      public Builder postalCode(String postalCode) {
+         customerDto.postalCode = postalCode;
+         return this;
+      }
+
+      public Builder createdAt(LocalDateTime createdAt) {
+         customerDto.createdAt = createdAt;
+         return this;
+      }
+
+      public Builder isBlocked(Boolean isBlocked) {
+         customerDto.isBlocked = isBlocked;
+         return this;
+      }
+
+      public CustomerDto build() {
+         return customerDto;
+      }
+   }
+
+   public static Builder builder() {
+      return new Builder();
    }
 }

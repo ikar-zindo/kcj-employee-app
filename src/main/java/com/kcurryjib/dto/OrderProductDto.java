@@ -2,6 +2,7 @@ package com.kcurryjib.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.kcurryjib.entity.Review;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -78,6 +79,50 @@ public class OrderProductDto {
 
    public void setProductDto(ProductDto productDto) {
       this.productDto = productDto;
+   }
+
+   // Builder class
+   public static class Builder {
+
+      private OrderProductDto orderProductDto = new OrderProductDto();
+
+      public Builder id(Long id) {
+         orderProductDto.id = id;
+         return this;
+      }
+
+      public Builder quantity(int quantity) {
+         orderProductDto.quantity = quantity;
+         return this;
+      }
+
+      public Builder total(BigDecimal total) {
+         orderProductDto.total = total;
+         return this;
+      }
+
+      public Builder cratedAt(LocalDateTime cratedAt) {
+         orderProductDto.cratedAt = cratedAt;
+         return this;
+      }
+
+      public Builder orderDto(OrderDto orderDto) {
+         orderProductDto.orderDto = orderDto;
+         return this;
+      }
+
+      public Builder productDto(ProductDto productDto) {
+         orderProductDto.productDto = productDto;
+         return this;
+      }
+
+      public OrderProductDto build() {
+         return orderProductDto;
+      }
+   }
+
+   public static Review.Builder builder() {
+      return new Review.Builder();
    }
 }
 

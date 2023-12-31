@@ -67,4 +67,43 @@ public class CartProductDto {
    public void setCratedAt(LocalDateTime cratedAt) {
       this.cratedAt = cratedAt;
    }
+
+   // Builder class
+   public static class Builder {
+
+      private CartProductDto cartProductDto = new CartProductDto();
+
+      public Builder id(Long id) {
+         cartProductDto.id = id;
+         return this;
+      }
+
+      public Builder cartDto(CartDto cartDto) {
+         cartProductDto.cartDto = cartDto;
+         return this;
+      }
+
+      public Builder productDto(ProductDto productDto) {
+         cartProductDto.productDto = productDto;
+         return this;
+      }
+
+      public Builder quantity(int quantity) {
+         cartProductDto.quantity = quantity;
+         return this;
+      }
+
+      public Builder cratedAt(LocalDateTime cratedAt) {
+         cartProductDto.cratedAt = cratedAt;
+         return this;
+      }
+
+      public CartProductDto build() {
+         return cartProductDto;
+      }
+   }
+
+   public static Builder builder() {
+      return new Builder();
+   }
 }

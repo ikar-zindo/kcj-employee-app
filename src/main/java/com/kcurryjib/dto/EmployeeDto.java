@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kcurryjib.entity.enums.Role;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
@@ -55,7 +54,7 @@ public class EmployeeDto {
    private LocalDateTime createdAt;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   private boolean isActive;
+   private Boolean isActive;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
    private RestaurantDto restaurantDto;
@@ -139,11 +138,11 @@ public class EmployeeDto {
       this.createdAt = createdAt;
    }
 
-   public boolean isActive() {
+   public Boolean isActive() {
       return isActive;
    }
 
-   public void setActive(boolean active) {
+   public void setActive(Boolean active) {
       isActive = active;
    }
 
@@ -161,5 +160,74 @@ public class EmployeeDto {
 
    public void setOrdersDto(List<OrderDto> ordersDto) {
       this.ordersDto = ordersDto;
+   }
+
+   // Builder class
+   public static class Builder {
+
+      private EmployeeDto employeeDto = new EmployeeDto();
+
+      public Builder id(Long id) {
+         employeeDto.id = id;
+         return this;
+      }
+
+      public Builder firstName(String firstName) {
+         employeeDto.firstName = firstName;
+         return this;
+      }
+
+      public Builder lastName(String lastName) {
+         employeeDto.lastName = lastName;
+         return this;
+      }
+
+      public Builder email(String email) {
+         employeeDto.email = email;
+         return this;
+      }
+
+      public Builder nickname(String nickname) {
+         employeeDto.nickname = nickname;
+         return this;
+      }
+
+      public Builder role(Role role) {
+         employeeDto.role = role;
+         return this;
+      }
+
+      public Builder password(String password) {
+         employeeDto.password = password;
+         return this;
+      }
+
+      public Builder phoneNumber(String phoneNumber) {
+         employeeDto.phoneNumber = phoneNumber;
+         return this;
+      }
+
+      public Builder createdAt(LocalDateTime createdAt) {
+         employeeDto.createdAt = createdAt;
+         return this;
+      }
+
+      public Builder isActive(Boolean isActive) {
+         employeeDto.isActive = isActive;
+         return this;
+      }
+
+      public Builder restaurantDto(RestaurantDto restaurantDto) {
+         employeeDto.restaurantDto = restaurantDto;
+         return this;
+      }
+
+      public EmployeeDto build() {
+         return employeeDto;
+      }
+   }
+
+   public static Builder builder() {
+      return new Builder();
    }
 }

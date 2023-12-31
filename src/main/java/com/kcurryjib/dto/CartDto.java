@@ -2,8 +2,6 @@ package com.kcurryjib.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.kcurryjib.entity.CartProduct;
-import com.kcurryjib.entity.Customer;
 
 import java.util.List;
 import java.util.Objects;
@@ -68,5 +66,29 @@ public class CartDto {
               ", customerDto=" + customerDto +
               ", cartProductsDto=" + cartProductsDto +
               '}';
+   }
+
+   // Builder class
+   public static class Builder {
+
+      private CartDto cartDto = new CartDto();
+
+      public Builder id(Long id) {
+         cartDto.id = id;
+         return this;
+      }
+
+      public Builder customerDto(CustomerDto customerDto) {
+         cartDto.customerDto = customerDto;
+         return this;
+      }
+
+      public CartDto build() {
+         return cartDto;
+      }
+   }
+
+   public static Builder builder() {
+      return new Builder();
    }
 }

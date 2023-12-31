@@ -2,7 +2,10 @@ package com.kcurryjib.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
 import java.math.BigDecimal;
@@ -40,7 +43,7 @@ public class ProductDto {
    @JsonInclude(JsonInclude.Include.NON_NULL)
    private boolean isAvailable;
 
-//   @JsonInclude(JsonInclude.Include.NON_NULL)
+   //   @JsonInclude(JsonInclude.Include.NON_NULL)
    @JsonProperty("restaurant")
    @NotNull(message = "{validation.value.null}")
    private RestaurantDto restaurantDto;
@@ -137,7 +140,7 @@ public class ProductDto {
       this.orderProductsDto = orderProductsDto;
    }
 
-   // Builder
+   // Builder class
    public static class Builder {
       private ProductDto productDto = new ProductDto();
 
@@ -145,30 +148,37 @@ public class ProductDto {
          productDto.id = id;
          return this;
       }
+
       public Builder name(String name) {
          productDto.name = name;
          return this;
       }
+
       public Builder description(String description) {
          productDto.description = description;
          return this;
       }
+
       public Builder price(BigDecimal price) {
          productDto.price = price;
          return this;
       }
+
       public Builder imageUrl(String imageUrl) {
          productDto.imageUrl = imageUrl;
          return this;
       }
+
       public Builder createdAt(LocalDateTime createdAt) {
          productDto.createdAt = createdAt;
          return this;
       }
+
       public Builder isAvailable(Boolean isAvailable) {
          productDto.isAvailable = isAvailable;
          return this;
       }
+
       public Builder restaurantDto(RestaurantDto restaurantDto) {
          productDto.restaurantDto = restaurantDto;
          return this;

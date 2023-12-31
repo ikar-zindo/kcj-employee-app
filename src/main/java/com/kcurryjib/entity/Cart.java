@@ -46,4 +46,28 @@ public class Cart {
    public void setCartProducts(List<CartProduct> cartProducts) {
       this.cartProducts = cartProducts;
    }
+
+   // Builder class
+   public static class Builder {
+
+      private Cart cart = new Cart();
+
+      public Builder id(Long id) {
+         cart.id = id;
+         return this;
+      }
+
+      public Builder customer(Customer customer) {
+         cart.customer = customer;
+         return this;
+      }
+
+      public Cart build() {
+         return cart;
+      }
+   }
+
+   public static Builder builder() {
+      return new Builder();
+   }
 }

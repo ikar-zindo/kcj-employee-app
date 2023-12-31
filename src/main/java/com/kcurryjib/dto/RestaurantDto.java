@@ -182,34 +182,42 @@ public class RestaurantDto {
          restaurantDto.id = id;
          return this;
       }
+
       public Builder name(String name) {
          restaurantDto.name = name;
          return this;
       }
+
       public Builder address(String address) {
          restaurantDto.address = address;
          return this;
       }
+
       public Builder phoneNumber(String phoneNumber) {
          restaurantDto.phoneNumber = phoneNumber;
          return this;
       }
+
       public Builder openingHours(String openingHours) {
          restaurantDto.openingHours = openingHours;
          return this;
       }
+
       public Builder cuisineType(String cuisineType) {
          restaurantDto.cuisineType = cuisineType;
          return this;
       }
+
       public Builder description(String description) {
          restaurantDto.description = description;
          return this;
       }
+
       public Builder socialMediaLinks(String socialMediaLinks) {
          restaurantDto.socialMediaLinks = socialMediaLinks;
          return this;
       }
+
       public Builder isOpen(Boolean isOpen) {
          restaurantDto.isOpen = isOpen;
          return this;

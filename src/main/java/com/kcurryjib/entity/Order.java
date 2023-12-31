@@ -48,6 +48,7 @@ public class Order {
    public Order() {
    }
 
+   // Getters & Setters
    public Long getId() {
       return id;
    }
@@ -118,5 +119,59 @@ public class Order {
 
    public void setOrderProducts(List<OrderProduct> orderProducts) {
       this.orderProducts = orderProducts;
+   }
+
+   // Builder class
+   public static class Builder {
+
+      private Order order = new Order();
+
+      public Builder id(Long id) {
+         order.id = id;
+         return this;
+      }
+
+      public Builder customer(Customer customer) {
+         order.customer = customer;
+         return this;
+      }
+
+      public Builder restaurant(Restaurant restaurant) {
+         order.restaurant = restaurant;
+         return this;
+      }
+
+      public Builder employee(Employee employee) {
+         order.employee = employee;
+         return this;
+      }
+
+      public Builder orderDate(LocalDateTime orderDate) {
+         order.orderDate = orderDate;
+         return this;
+      }
+
+      public Builder deliveryAddress(String deliveryAddress) {
+         order.deliveryAddress = deliveryAddress;
+         return this;
+      }
+
+      public Builder totalAmount(BigDecimal totalAmount) {
+         order.totalAmount = totalAmount;
+         return this;
+      }
+
+      public Builder orderStatus(OrderStatus orderStatus) {
+         order.orderStatus = orderStatus;
+         return this;
+      }
+
+      public Order build() {
+         return order;
+      }
+   }
+
+   public static Builder builder() {
+      return new Builder();
    }
 }
