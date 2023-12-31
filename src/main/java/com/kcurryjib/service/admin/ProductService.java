@@ -9,8 +9,6 @@ import com.kcurryjib.exception.list.ProductException;
 import com.kcurryjib.mapper.admin.ProductMapper;
 import com.kcurryjib.repo.ProductRepository;
 import com.kcurryjib.repo.RestaurantRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -31,7 +29,8 @@ public class ProductService {
    private ProductMapper productMapper;
 
    //   @Autowired
-   public ProductService(ProductRepository productRepository, RestaurantRepository restaurantRepository,
+   public ProductService(ProductRepository productRepository,
+                         RestaurantRepository restaurantRepository,
                          ProductMapper productMapper) throws ProductException {
 
       this.productRepository = productRepository;
@@ -75,7 +74,8 @@ public class ProductService {
 //                    List.of(productOptional.get()), productMapper::showProductDetails).get(0);
          } else {
             throw new ProductException(
-                    String.format("Product not found in database with id=%d", id));
+                    String.format("Product not found in database with id=%d",
+                            id));
          }
       } else {
          throw new ProductException("There is no product ID to search for!");
@@ -110,7 +110,8 @@ public class ProductService {
                }
             } else {
                throw new ProductException(
-                       String.format("No restaurant found with Id=%d. I can't create a product!", restaurantDto.getId()));
+                       String.format("No restaurant found with Id=%d. I can't create a product!",
+                               restaurantDto.getId()));
             }
          } else {
             throw new ProductException("The ID of the associated restaurant is missing. Product has not been created!");
@@ -179,11 +180,13 @@ public class ProductService {
 
             } else {
                throw new ProductException(
-                       String.format("Failed to delete product in database with Id=%d!", id));
+                       String.format("Failed to delete product in database with Id=%d!",
+                               id));
             }
          } else {
             throw new ProductException(
-                    String.format("Product not found in the database with Id=%d!", id));
+                    String.format("Product not found in the database with Id=%d!",
+                            id));
          }
       } else {
          throw new ProductException("The ID of the product to be deleted is missing!");

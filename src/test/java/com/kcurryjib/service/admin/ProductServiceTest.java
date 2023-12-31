@@ -54,40 +54,48 @@ public class ProductServiceTest {
 
    private RestaurantDto expectedRestaurantDto;
 
+   private ProductDto expectedProductWithoutId;
+
+   private ProductDto expectedProductDtoWithRestaurant;
+
    @BeforeEach
    void init() {
+      // test instance of the product
       expectedProduct = Product.builder()
               .id(1L)
-              .name("TestName")
-              .description("TestDescription")
+              .name("Test name")
+              .description("Test description")
               .price(new BigDecimal(1))
               .imageUrl("1.jpg")
               .createdAt(LocalDateTime.now())
               .isAvailable(true)
               .build();
 
+      // test instance of the productDto
       expectedProductDto = ProductDto.builder()
               .id(1L)
-              .name("TestName")
-              .description("TestDescription")
+              .name("Test name")
+              .description("Test description")
               .price(new BigDecimal(1))
               .imageUrl("1.jpg")
               .createdAt(LocalDateTime.now())
               .isAvailable(true)
               .build();
 
+      // test instance of the restaurant
       expectedRestaurant = Restaurant.builder()
               .id(1L)
-              .name("TestName")
-              .address("TestAddress")
+              .name("Test name")
+              .address("Test str., 000")
               .phoneNumber("+490000000")
               .openingHours("00:00-00:00")
-              .cuisineType("TestCuisineType")
-              .description("TestDescription")
+              .cuisineType("Test cuisine type")
+              .description("Test description")
               .socialMediaLinks("test-link.com")
               .isOpen(true)
               .build();
 
+      // test instance of the restaurantDto
       expectedRestaurantDto = RestaurantDto.builder()
               .id(expectedRestaurant.getId())
               .name(expectedRestaurant.getName())
@@ -99,28 +107,9 @@ public class ProductServiceTest {
               .socialMediaLinks(expectedRestaurant.getSocialMediaLinks())
               .isOpen(expectedRestaurant.isOpen())
               .build();
-   }
 
-   @Test
-   void getProductIdTest() throws ProductException {
-      when(productRepositoryMock.findById(anyLong())).thenReturn(Optional.of(expectedProduct));
-      when(productMapperMock.showProductDetails(any(Product.class))).thenReturn(expectedProductDto);
-
-
-      ProductDto returnProductDto  = productServiceTest.getProductById(1L);
-
-      assertEquals(expectedProductDto, returnProductDto);
-   }
-
-   @Test
-   void addProductTest() throws ProductException {
-      when(restaurantRepositoryMock.findById(anyLong())).thenReturn(Optional.of(expectedRestaurant));
-
-      when(productMapperMock.convertToProduct(any(ProductDto.class))).thenReturn(expectedProduct);
-      when(productRepositoryMock.save(expectedProduct)).thenReturn(expectedProduct);
-      when(productMapperMock.convertToProductDto(any(Product.class))).thenReturn(expectedProductDto);
-
-      ProductDto expectedProductWithoutId = ProductDto.builder()
+      // test instance of the product without id
+      expectedProductWithoutId = ProductDto.builder()
               .name(expectedProduct.getName())
               .description(expectedProduct.getDescription())
               .price(expectedProduct.getPrice())
@@ -130,19 +119,9 @@ public class ProductServiceTest {
               .restaurantDto(expectedRestaurantDto)
               .build();
 
-      ProductDto returnProductDto = productServiceTest.addProduct(expectedProductWithoutId);
 
-      assertEquals(expectedProductDto, returnProductDto);
-   }
-
-   @Test
-   @DisplayName("Testing updating product information")
-   void updateProductTest() throws ProductException {
-      when(productRepositoryMock.findById(anyLong())).thenReturn(Optional.of(expectedProduct));
-      when(productRepositoryMock.save(expectedProduct)).thenReturn(expectedProduct);
-      when(productMapperMock.convertToProductDto(any(Product.class))).thenReturn(expectedProductDto);
-
-      ProductDto expectedProductWithRestaurant = ProductDto.builder()
+      // test instance of the product with restaurant
+      expectedProductDtoWithRestaurant = ProductDto.builder()
               .id(expectedProduct.getId())
               .name(expectedProduct.getName())
               .description(expectedProduct.getDescription())
@@ -152,18 +131,60 @@ public class ProductServiceTest {
               .isAvailable(expectedProduct.isAvailable())
               .restaurantDto(expectedRestaurantDto)
               .build();
+   }
 
+   @Test
+   void getProductIdTest() throws ProductException {
+      when(productRepositoryMock.findById(anyLong()))
+              .thenReturn(Optional.of(expectedProduct));
+      when(productMapperMock.showProductDetails(any(Product.class)))
+              .thenReturn(expectedProductDto);
 
-      ProductDto returnProductDto = productServiceTest.updateProduct(expectedProductWithRestaurant);
+      ProductDto returnProductDto  = productServiceTest.getProductById(1L);
+
+      assertEquals(expectedProductDto, returnProductDto);
+   }
+
+   @Test
+   void addProductTest() throws ProductException {
+      when(restaurantRepositoryMock.findById(anyLong()))
+              .thenReturn(Optional.of(expectedRestaurant));
+
+      when(productMapperMock.convertToProduct(any(ProductDto.class)))
+              .thenReturn(expectedProduct);
+      when(productRepositoryMock.save(expectedProduct))
+              .thenReturn(expectedProduct);
+      when(productMapperMock.convertToProductDto(any(Product.class)))
+              .thenReturn(expectedProductDto);
+
+      ProductDto returnProductDto = productServiceTest.addProduct(expectedProductWithoutId);
+
+      assertEquals(expectedProductDto, returnProductDto);
+   }
+
+   @Test
+   @DisplayName("Testing updating product information")
+   void updateProductTest() throws ProductException {
+      when(productRepositoryMock.findById(anyLong()))
+              .thenReturn(Optional.of(expectedProduct));
+      when(productRepositoryMock.save(expectedProduct))
+              .thenReturn(expectedProduct);
+      when(productMapperMock.convertToProductDto(any(Product.class)))
+              .thenReturn(expectedProductDto);
+
+      ProductDto returnProductDto = productServiceTest.updateProduct(expectedProductDtoWithRestaurant);
 
       assertEquals(expectedProductDto, returnProductDto);
    }
 
    @Test
    void deleteProductTest() throws ProductException {
-      when(productRepositoryMock.findById(anyLong())).thenReturn(Optional.of(expectedProduct));
-      when(productRepositoryMock.save(expectedProduct)).thenReturn(expectedProduct);
-      when(productMapperMock.convertToProductDto(any(Product.class))).thenReturn(expectedProductDto);
+      when(productRepositoryMock.findById(anyLong()))
+              .thenReturn(Optional.of(expectedProduct));
+      when(productRepositoryMock.save(expectedProduct))
+              .thenReturn(expectedProduct);
+      when(productMapperMock.convertToProductDto(any(Product.class)))
+              .thenReturn(expectedProductDto);
 
       ProductDto returnProductDto = productServiceTest.deleteProduct(1L);
 
@@ -193,13 +214,18 @@ public class ProductServiceTest {
 
    @Test
    void deleteClientExceptionNoSaveTest() {
-      when(productRepositoryMock.findById(anyLong())).thenReturn(Optional.of(expectedProduct));
-      when(productRepositoryMock.save(expectedProduct)).thenReturn(null);
+      when(productRepositoryMock.findById(anyLong()))
+              .thenReturn(Optional.of(expectedProduct));
+      when(productRepositoryMock.save(expectedProduct))
+              .thenReturn(null);
+
       assertThrows(ProductException.class, () -> productServiceTest.deleteProduct(1L));
    }
    @Test
    void deleteClientExceptionNoFindClientTest() {
-      when(productRepositoryMock.findById(anyLong())).thenReturn(Optional.empty());
+      when(productRepositoryMock.findById(anyLong()))
+              .thenReturn(Optional.empty());
+
       assertThrows(ProductException.class, () -> productServiceTest.deleteProduct(1L));
    }
 }

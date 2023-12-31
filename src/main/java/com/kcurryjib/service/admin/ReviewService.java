@@ -149,19 +149,30 @@ public class ReviewService {
    }
 
    //DELETE
-   public void deleteReview(Long id) throws ReviewException {
+   public ReviewDto deleteReview(Long id) throws ReviewException {
 
       if (id != null) {
          Optional<Review> reviewOptional = reviewRepository.findById(id);
 
          if (reviewOptional.isPresent()) {
+            Review review = reviewOptional.get();
             reviewRepository.deleteById(id);
 
+            if (review != null) {
+               return reviewMapper.convertToReviewDto(review);
+
+            } else {
+               throw new ReviewException(
+                       String.format("Failed to delete review in database with Id=%d!",
+                               id));
+            }
          } else {
             throw new ReviewException(String.format("Review not found in the database with Id=%d!", id));
          }
       } else {
          throw new ReviewException("The ID of the review to be deleted is missing!");
       }
+
+
    }
 }
