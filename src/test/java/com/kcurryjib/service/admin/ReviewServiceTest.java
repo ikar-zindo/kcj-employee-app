@@ -30,6 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -73,7 +74,7 @@ public class ReviewServiceTest {
    void init() {
       LocalDateTime localDateTime = LocalDateTime.now();
 
-       // test instance of the restaurant
+      // test instance of the restaurant
       expectedRestaurant = Restaurant.builder()
               .id(1L)
               .name("TestName")
@@ -115,16 +116,16 @@ public class ReviewServiceTest {
 
       // test instance of the customerDto
       expectedCustomerDto = CustomerDto.builder()
-              .id(1L)
-              .firstName("First")
-              .lastName("Second")
-              .email("test@mail.com")
-              .password("??????????")
-              .phoneNumber("+499999999")
-              .address("Test str., 000")
-              .postalCode("00000")
-              .createdAt(localDateTime)
-              .isBlocked(true)
+              .id(expectedCustomer.getId())
+              .firstName(expectedCustomer.getFirstName())
+              .lastName(expectedCustomer.getLastName())
+              .email(expectedCustomer.getEmail())
+              .password(expectedCustomer.getPassword())
+              .phoneNumber(expectedCustomer.getPhoneNumber())
+              .address(expectedCustomer.getAddress())
+              .postalCode(expectedCustomer.getPostalCode())
+              .createdAt(expectedCustomer.getCreatedAt())
+              .isBlocked(expectedCustomer.isBlocked())
               .build();
 
       // test instance of the review
@@ -146,10 +147,10 @@ public class ReviewServiceTest {
 
       // test instance of the reviewDto
       expectedReviewDto = ReviewDto.builder()
-              .id(1L)
-              .rating(new BigDecimal(5))
-              .comment("Test comment")
-              .createdAt(localDateTime)
+              .id(expectedReview.getId())
+              .rating(expectedReview.getRating())
+              .comment(expectedReview.getComment())
+              .createdAt(expectedReview.getCreatedAt())
               .build();
 
       // test instance of the review with info about restaurant & customer
@@ -162,13 +163,12 @@ public class ReviewServiceTest {
               .restaurant(expectedRestaurant)
               .build();
 
-
       // test instance of the reviewDto with info about restaurant & customer
       expectedReviewDtoInfo = ReviewDto.builder()
-              .id(1L)
-              .rating(new BigDecimal(5))
-              .comment("Test comment")
-              .createdAt(localDateTime)
+              .id(expectedReviewInfo.getId())
+              .rating(expectedReviewInfo.getRating())
+              .comment(expectedReviewInfo.getComment())
+              .createdAt(expectedReviewInfo.getCreatedAt())
               .customerDto(expectedCustomerDto)
               .restaurantDto(expectedRestaurantDto)
               .build();
@@ -181,7 +181,7 @@ public class ReviewServiceTest {
       when(reviewMapperMock.showReviewDtoWithCustomer(any(Review.class)))
               .thenReturn(expectedReviewDto);
 
-      ReviewDto returnReviewDto  = reviewServiceTest.getById(1L);
+      ReviewDto returnReviewDto = reviewServiceTest.getById(1L);
 
       assertEquals(expectedReviewDto, returnReviewDto);
    }
@@ -255,15 +255,15 @@ public class ReviewServiceTest {
    }
 
    // нет функционала для удаления комментариев
-//   @Test
-//   void deleteReviewExceptionNoSaveTest() {
-//      when(reviewRepositoryMock.findById(anyLong()))
-//              .thenReturn(Optional.of(expectedReview));
-//      when(reviewRepositoryMock.save(expectedReview))
-//              .thenReturn(null);
-//
-//      assertThrows(ReviewException.class, () -> reviewServiceTest.deleteReview(1L));
-//   }
+   @Test
+   void deleteReviewExceptionNoSaveTest() {
+      when(reviewRepositoryMock.findById(anyLong()))
+              .thenReturn(Optional.of(expectedReview));
+
+      doNothing().when(reviewRepositoryMock).deleteById(anyLong());
+
+      assertThrows(ReviewException.class, () -> reviewServiceTest.deleteReview(1L));
+   }
 
    @Test
    void deleteReviewExceptionNoFindReviewTest() {

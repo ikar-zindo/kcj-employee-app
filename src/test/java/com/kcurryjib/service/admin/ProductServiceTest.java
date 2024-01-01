@@ -54,7 +54,7 @@ public class ProductServiceTest {
 
    private RestaurantDto expectedRestaurantDto;
 
-   private ProductDto expectedProductWithoutId;
+   private ProductDto expectedProductDtoWithoutId;
 
    private ProductDto expectedProductDtoWithRestaurant;
 
@@ -97,19 +97,19 @@ public class ProductServiceTest {
 
       // test instance of the restaurantDto
       expectedRestaurantDto = RestaurantDto.builder()
-              .id(expectedRestaurant.getId())
-              .name(expectedRestaurant.getName())
-              .address(expectedRestaurant.getAddress())
-              .phoneNumber(expectedRestaurant.getPhoneNumber())
-              .openingHours(expectedRestaurant.getOpeningHours())
-              .cuisineType(expectedRestaurant.getCuisineType())
-              .description(expectedRestaurant.getDescription())
-              .socialMediaLinks(expectedRestaurant.getSocialMediaLinks())
-              .isOpen(expectedRestaurant.isOpen())
+              .id(1L)
+              .name("Test name")
+              .address("Test str., 000")
+              .phoneNumber("+490000000")
+              .openingHours("00:00-00:00")
+              .cuisineType("Test cuisine type")
+              .description("Test description")
+              .socialMediaLinks("test-link.com")
+              .isOpen(true)
               .build();
 
       // test instance of the product without id
-      expectedProductWithoutId = ProductDto.builder()
+      expectedProductDtoWithoutId = ProductDto.builder()
               .name(expectedProduct.getName())
               .description(expectedProduct.getDescription())
               .price(expectedProduct.getPrice())
@@ -156,7 +156,7 @@ public class ProductServiceTest {
       when(productMapperMock.convertToProductDto(any(Product.class)))
               .thenReturn(expectedProductDto);
 
-      ProductDto returnProductDto = productServiceTest.addProduct(expectedProductWithoutId);
+      ProductDto returnProductDto = productServiceTest.addProduct(expectedProductDtoWithoutId);
 
       assertEquals(expectedProductDto, returnProductDto);
    }
@@ -220,6 +220,7 @@ public class ProductServiceTest {
 
       assertThrows(ProductException.class, () -> productServiceTest.deleteProduct(1L));
    }
+
    @Test
    void deleteProductExceptionNoFindProductTest() {
       when(productRepositoryMock.findById(anyLong()))
