@@ -82,7 +82,9 @@
 									 th:field="*{name}"
 									 id="name"
 									 th:value="*{name}"/>
-							<div class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+							<div class="text-danger"
+								  th:if="${#fields.hasErrors('name')}"
+								  th:errors="*{name}"></div>
 						</div>
 
 						<div class="col-12">
@@ -91,7 +93,8 @@
 									 th:field="*{address}"
 									 id="address"
 									 th:value="*{address}"/>
-							<div class="text-danger" th:if="${#fields.hasErrors('address')}"
+							<div class="text-danger"
+								  th:if="${#fields.hasErrors('address')}"
 								  th:errors="*{address}"></div>
 						</div>
 
@@ -102,7 +105,8 @@
 									 th:field="*{phoneNumber}"
 									 id="phoneNumber"
 									 th:value="*{phoneNumber}"/>
-							<div class="text-danger" th:if="${#fields.hasErrors('phoneNumber')}"
+							<div class="text-danger"
+								  th:if="${#fields.hasErrors('phoneNumber')}"
 								  th:errors="*{phoneNumber}"></div>
 						</div>
 
@@ -113,7 +117,8 @@
 									 th:field="*{openingHours}"
 									 id="openingHours"
 									 th:value="*{openingHours}"/>
-							<div class="text-danger" th:if="${#fields.hasErrors('openingHours')}"
+							<div class="text-danger"
+								  th:if="${#fields.hasErrors('openingHours')}"
 								  th:errors="*{openingHours}"></div>
 						</div>
 
@@ -124,7 +129,8 @@
 									 th:field="*{cuisineType}"
 									 id="cuisineType"
 									 th:value="*{cuisineType}"/>
-							<div class="text-danger" th:if="${#fields.hasErrors('cuisineType')}"
+							<div class="text-danger"
+								  th:if="${#fields.hasErrors('cuisineType')}"
 								  th:errors="*{cuisineType}"></div>
 						</div>
 
@@ -135,7 +141,8 @@
 									 th:field="*{description}"
 									 id="description"
 									 th:value="*{description}"/>
-							<div class="text-danger" th:if="${#fields.hasErrors('description')}"
+							<div class="text-danger"
+								  th:if="${#fields.hasErrors('description')}"
 								  th:errors="*{description}"></div>
 						</div>
 
@@ -146,7 +153,8 @@
 									 th:field="*{socialMediaLinks}"
 									 id="socialMediaLinks"
 									 th:value="*{socialMediaLinks}"/>
-							<div class="text-danger" th:if="${#fields.hasErrors('socialMediaLinks')}"
+							<div class="text-danger"
+								  th:if="${#fields.hasErrors('socialMediaLinks')}"
 								  th:errors="*{socialMediaLinks}"></div>
 						</div>
 					</div>

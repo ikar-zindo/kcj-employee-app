@@ -83,19 +83,24 @@
 							<input type="text" placeholder="Enter your comment" class="form-control"
 									 th:field="*{comment}"
 									 id="comment"/>
-							<div class="text-danger" th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></div>
+							<div class="text-danger"
+								  th:if="${#fields.hasErrors('comment')}"
+								  th:errors="*{comment}"></div>
 						</div>
 
 
 						<div class="col-12">
 							<label for="rating" class="form-label">Rating</label>
-							<input type="number" placeholder="Enter rating" class="form-control"
+							<input type="number" class="form-control"
+									 placeholder="Enter rating"
 									 th:field="*{rating}"
 									 id="rating"
 									 max="5"
 									 min="1"
 									 step="1"/>
-							<div class="text-danger" th:if="${#fields.hasErrors('rating')}" th:errors="*{rating}"></div>
+							<div class="text-danger"
+								  th:if="${#fields.hasErrors('rating')}"
+								  th:errors="*{rating}"></div>
 						</div>
 
 
@@ -110,7 +115,8 @@
 
 								</option>
 							</select>
-							<div class="text-danger" th:if="${#fields.hasErrors('restaurantDto')}"
+							<div class="text-danger"
+								  th:if="${#fields.hasErrors('restaurantDto')}"
 								  th:errors="*{restaurantDto}"></div>
 						</div>
 
@@ -126,7 +132,8 @@
 
 								</option>
 							</select>
-							<div class="text-danger" th:if="${#fields.hasErrors('customerDto')}"
+							<div class="text-danger"
+								  th:if="${#fields.hasErrors('customerDto')}"
 								  th:errors="*{customerDto}"></div>
 						</div>
 					</div>

@@ -78,7 +78,8 @@
 
 						<div class="col-12">
 							<label for="comment" class="form-label">Comment</label>
-							<input type="text" placeholder="Enter your comment" class="form-control"
+							<input type="text" class="form-control"
+									 placeholder="Enter your comment"
 									 th:field="*{comment}"
 									 id="comment"/>
 							<div class="text-danger"
@@ -89,7 +90,8 @@
 
 						<div class="col-12">
 							<label for="rating" class="form-label">Rating</label>
-							<input type="number" placeholder="Enter rating" class="form-control"
+							<input type="number" class="form-control"
+									 placeholder="Enter rating"
 									 th:field="*{rating}"
 									 id="rating"
 									 max="5"
@@ -104,7 +106,7 @@
 						<input type="hidden" th:field="*{restaurantDto.id}" id="restaurantId"/>
 
 						<div class="col-6">
-							<label for="restaurantDto" class="form-label">Restaurant</label>
+							<label class="form-label for="restaurantDto"">Restaurant</label>
 							<select class="form-select" id="restaurantDto" name="restaurantId">
 								<option th:each="restaurant : ${restaurants}"
 										  th:value="${restaurant.id}"

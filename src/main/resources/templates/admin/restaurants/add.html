@@ -78,10 +78,13 @@
 
 						<div class="col-12">
 							<label for="name" class="form-label">Restaurant name</label>
-							<input type="text" placeholder="Enter restaurant name" class="form-control"
+							<input type="text" class="form-control"
+									 placeholder="Enter restaurant name"
 									 th:field="*{name}"
 									 id="name"/>
-							<div class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+							<div class="text-danger"
+								  th:if="${#fields.hasErrors('name')}"
+								  th:errors="*{name}"></div>
 						</div>
 
 						<div class="col-12">
@@ -89,7 +92,8 @@
 							<input placeholder="Enter restaurant address" class="form-control"
 									 th:field="*{address}"
 									 id="address"/>
-							<div class="text-danger" th:if="${#fields.hasErrors('address')}"
+							<div class="text-danger"
+								  th:if="${#fields.hasErrors('address')}"
 								  th:errors="*{address}"></div>
 						</div>
 
@@ -99,7 +103,8 @@
 							<input placeholder="Enter restaurant phoneNumber" class="form-control"
 									 th:field="*{phoneNumber}"
 									 id="phoneNumber"/>
-							<div class="text-danger" th:if="${#fields.hasErrors('phoneNumber')}"
+							<div class="text-danger"
+								  th:if="${#fields.hasErrors('phoneNumber')}"
 								  th:errors="*{phoneNumber}"></div>
 						</div>
 
@@ -109,7 +114,8 @@
 							<input placeholder="Enter restaurant openingHours" class="form-control"
 									 th:field="*{openingHours}"
 									 id="openingHours"/>
-							<div class="text-danger" th:if="${#fields.hasErrors('openingHours')}"
+							<div class="text-danger"
+								  th:if="${#fields.hasErrors('openingHours')}"
 								  th:errors="*{openingHours}"></div>
 						</div>
 
@@ -119,7 +125,8 @@
 							<input placeholder="Enter restaurant cuisineType" class="form-control"
 									 th:field="*{cuisineType}"
 									 id="cuisineType"/>
-							<div class="text-danger" th:if="${#fields.hasErrors('cuisineType')}"
+							<div class="text-danger"
+								  th:if="${#fields.hasErrors('cuisineType')}"
 								  th:errors="*{cuisineType}"></div>
 						</div>
 
@@ -129,7 +136,8 @@
 							<input placeholder="Enter restaurant description" class="form-control"
 									 th:field="*{description}"
 									 id="description"/>
-							<div class="text-danger" th:if="${#fields.hasErrors('description')}"
+							<div class="text-danger"
+								  th:if="${#fields.hasErrors('description')}"
 								  th:errors="*{description}"></div>
 						</div>
 
@@ -139,7 +147,8 @@
 							<input placeholder="Enter restaurant socialMediaLinks" class="form-control"
 									 th:field="*{socialMediaLinks}"
 									 id="socialMediaLinks"/>
-							<div class="text-danger" th:if="${#fields.hasErrors('socialMediaLinks')}"
+							<div class="text-danger"
+								  th:if="${#fields.hasErrors('socialMediaLinks')}"
 								  th:errors="*{socialMediaLinks}"></div>
 						</div>
 					</div>
@@ -147,7 +156,8 @@
 					<div class="form-check">
 						<input type="checkbox" class="form-check-input" id="open" name="open" checked/>
 						<label class="form-check-label" for="open">open</label>
-						<div class="text-danger" th:if="${#fields.hasErrors('open')}"
+						<div class="text-danger"
+							  th:if="${#fields.hasErrors('open')}"
 							  th:errors="*{open}"></div>
 					</div>
 
