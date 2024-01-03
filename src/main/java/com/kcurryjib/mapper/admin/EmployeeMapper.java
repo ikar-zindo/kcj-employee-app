@@ -21,17 +21,18 @@ public class EmployeeMapper {
    public EmployeeDto convertToEmployeeDto(Employee employee) {
       return mapper.map(employee, EmployeeDto.class);
    }
+
+   // restaurant convert to restaurantDto
+   public RestaurantDto showRestaurantDetails(Restaurant restaurant) {
+      return mapper.map(restaurant, RestaurantDto.class);
+   }
+
    public EmployeeDto convertToEmployeeDtoWithRestaurantDto(Employee employee) {
       EmployeeDto employeeDto = mapper.map(employee, EmployeeDto.class);
 
-      employeeDto.setRestaurantDto(convertToRestaurantDto(employee.getRestaurant()));
+      employeeDto.setRestaurantDto(showRestaurantDetails(employee.getRestaurant()));
 
       return employeeDto;
-   }
-
-   // restaurant convert to restaurantDto
-   public RestaurantDto convertToRestaurantDto(Restaurant restaurant) {
-      return mapper.map(restaurant, RestaurantDto.class);
    }
 
    public List<EmployeeDto> convertToEmployeesDto(List<Employee> employees) {

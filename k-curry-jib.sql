@@ -158,14 +158,14 @@ CREATE TABLE `employee` (
 
 ALTER TABLE `cart`
   ADD KEY `customer_id` (`customer_id`);
-  
+
 --
 -- Indexes for table `cart-product`
 --
 
 ALTER TABLE `cart_product`
   ADD KEY `product_id` (`product_id`);
-  
+
 --
 -- Indexes for table `order`
 --
@@ -196,7 +196,7 @@ ALTER TABLE `product`
 ALTER TABLE `review`
   ADD KEY `restaurant_id` (`restaurant_id`),
   ADD KEY `customer_id` (`customer_id`);
-  
+
 --
 -- Indexes for table `employee`
 --
@@ -211,17 +211,24 @@ ALTER TABLE `employee`
 --
 
 --
+-- Constraints for table `customer`
+--
+
+ALTER TABLE `customer`
+    ADD CONSTRAINT unique_nickname UNIQUE (email);
+
+--
 -- Constraints for table `cart`
 --
 
 ALTER TABLE `cart`
   ADD CONSTRAINT `cart_fk_customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`);
-  
+
 --
 -- Constraints for table `cart_product`
 --
 
-ALTER TABLE `cart_product` 
+ALTER TABLE `cart_product`
 	ADD CONSTRAINT `cart_product_fk_cart` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`cart_id`),
 	ADD CONSTRAINT `cart_product_fk_product` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`);
 
@@ -233,12 +240,12 @@ ALTER TABLE `order`
   ADD CONSTRAINT `order_fk_customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`),
   ADD CONSTRAINT `order_fk_restaurant` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`restaurant_id`),
   ADD CONSTRAINT `order_fk_employee` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`employee_id`);
-  
+
 --
 -- Constraints for table `order_details`
 --
 
-ALTER TABLE `order_product` 
+ALTER TABLE `order_product`
 	ADD CONSTRAINT `order_product_fk_order` FOREIGN KEY (`order_id`) REFERENCES `order` (`order_id`),
 	ADD CONSTRAINT `order_product_fk_product` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`);
 
@@ -249,7 +256,7 @@ ALTER TABLE `order_product`
 ALTER TABLE `product`
 	ADD CONSTRAINT `product_fk_category` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`restaurant_id`),
 	ADD CONSTRAINT `product_fk_restaurant` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`restaurant_id`);
-	
+
 --
 -- Constraints for table `review`
 --
@@ -263,7 +270,8 @@ ALTER TABLE `review`
 --
 
 ALTER TABLE `employee`
-    ADD CONSTRAINT `employee_fk_restaurant` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`restaurant_id`);
+    ADD CONSTRAINT `employee_fk_restaurant` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`restaurant_id`),
+    ADD CONSTRAINT unique_nickname UNIQUE (nickname);
 	
 -- --------------------------------------------------------
 
@@ -315,16 +323,16 @@ INSERT INTO `cart` (`customer_id`) VALUES
 --
 
 INSERT INTO `employee` (`last_name`, `first_name`,  `email`, `nickname`, `password`, `phone_number`, `role`, `restaurant_id`) VALUES
-    ('Davolio', 'Nancy', 'davolio@mail.com', 'nancy', 'qwerty123', '+49123456789', 'ROLE_USER', 1),
-    ('Fuller', 'Andrew', 'fuller@mail.com', 'andrew', 'qwerty123', '+49123456789', 'ROLE_USER', 1),
-    ('Leverling', 'Janet', 'leverling@mail.com', 'janet', 'qwerty123', '+49123456789', 'ROLE_USER', 1),
-    ('Peacock', 'Margaret', 'peacock@mail.com', 'margaret', 'qwerty123', '+49123456789', 'ROLE_USER', 1),
-    ('Buchanan', 'Steven', 'buchanan@mail.com', 'steven', 'qwerty123', '+49123456789', 'ROLE_USER', 1),
-    ('Suyama', 'Michael', 'suyama@mail.com', 'michael', 'qwerty123', '+49123456789', 'ROLE_MANAGER', 1),
-    ('King', 'Robert', 'king@mail.com', 'robert', 'qwerty123', '+49123456789', 'ROLE_MANAGER', 1),
-    ('Callahan', 'Laura', 'callahan@mail.com', 'laura', 'qwerty123', '+49123456789', 'ROLE_ADMIN', 1),
-    ('Dodsworth', 'Anne', 'dodsworth@mail.com', 'anne', 'qwerty123', '+49123456789', 'ROLE_DRIVER', 1),
-    ('West', 'Adam', 'west@mail.com', 'adam', 'qwerty123', '+49123456789', 'ROLE_DRIVER', 1);
+    ('Davolio', 'Nancy', 'davolio@mail.com', 'user', '$2a$10$OebBU653Mokfh/uRVu9CCexVAN3LBrkHpAtHZP6iMdZj8JmldwNqW', '+49123456789', 'ROLE_USER', 1),
+    ('Fuller', 'Andrew', 'fuller@mail.com', 'andrew', '$2a$10$rmQi5Z5O1HzHsV.6lM8.D..6gAf5vWQPtYwnlNzwWbfq4Ww8ZMDV.', '+49123456789', 'ROLE_USER', 1),
+    ('Leverling', 'Janet', 'leverling@mail.com', 'janet', '$2a$10$T4Ti17zkvQMube2OlAcuNepOKNp6QE8vDFk18p51ZwbHNk1jbyOoy', '+49123456789', 'ROLE_USER', 1),
+    ('Peacock', 'Margaret', 'peacock@mail.com', 'margaret', '$2a$10$T4Ti17zkvQMube2OlAcuNepOKNp6QE8vDFk18p51ZwbHNk1jbyOoy', '+49123456789', 'ROLE_USER', 1),
+    ('Buchanan', 'Steven', 'buchanan@mail.com', 'steven', '$2a$10$T4Ti17zkvQMube2OlAcuNepOKNp6QE8vDFk18p51ZwbHNk1jbyOoy', '+49123456789', 'ROLE_USER', 1),
+    ('Suyama', 'Michael', 'suyama@mail.com', 'manager', '$2a$10$OebBU653Mokfh/uRVu9CCexVAN3LBrkHpAtHZP6iMdZj8JmldwNqW', '+49123456789', 'ROLE_MANAGER', 1),
+    ('King', 'Robert', 'king@mail.com', 'robert', '$2a$10$OebBU653Mokfh/uRVu9CCexVAN3LBrkHpAtHZP6iMdZj8JmldwNqW', '+49123456789', 'ROLE_MANAGER', 1),
+    ('Callahan', 'Laura', 'callahan@mail.com', 'admin', '$2a$10$OebBU653Mokfh/uRVu9CCexVAN3LBrkHpAtHZP6iMdZj8JmldwNqW', '+49123456789', 'ROLE_ADMIN', 1),
+    ('Dodsworth', 'Anne', 'dodsworth@mail.com', 'anne', '$2a$10$rmQi5Z5O1HzHsV.6lM8.D..6gAf5vWQPtYwnlNzwWbfq4Ww8ZMDV.', '+49123456789', 'ROLE_DRIVER', 1),
+    ('West', 'Adam', 'west@mail.com', 'driver', '$2a$10$rmQi5Z5O1HzHsV.6lM8.D..6gAf5vWQPtYwnlNzwWbfq4Ww8ZMDV.', '+49123456789', 'ROLE_DRIVER', 1);
 
 --
 -- Dumping data for table `product`

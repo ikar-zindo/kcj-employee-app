@@ -2,20 +2,23 @@ package com.kcurryjib.entity;
 
 import com.kcurryjib.entity.enums.Role;
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "employee")
-public class Employee {
+public class Employee implements UserDetails {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    @Column(name = "employee_id")
    private Long id;
-
 
    @Column(name = "first_name")
 //   @Pattern(regexp = "[A-Z][a-z]{1,49}", message = "a string should start with a capital letter (rest lowercase) and contain at least two letters")
@@ -29,8 +32,8 @@ public class Employee {
    @Column(name = "email")
    private String email;
 
-   @Column(name = "nickname")
-   private String nickname;
+   @Column(name = "nickname", unique = true)
+   private String username;
 
    @Enumerated(EnumType.STRING)
    @Column(name = "role")
@@ -61,6 +64,7 @@ public class Employee {
    }
 
    // Getters & Setters
+
    public Long getId() {
       return id;
    }
@@ -93,12 +97,33 @@ public class Employee {
       this.email = email;
    }
 
-   public String getNickname() {
-      return nickname;
+   @Override
+   public String getUsername() {
+      return username;
    }
 
-   public void setNickname(String nickname) {
-      this.nickname = nickname;
+   @Override
+   public boolean isAccountNonExpired() {
+      return true;
+   }
+
+   @Override
+   public boolean isAccountNonLocked() {
+      return true;
+   }
+
+   @Override
+   public boolean isCredentialsNonExpired() {
+      return true;
+   }
+
+   @Override
+   public boolean isEnabled() {
+      return true;
+   }
+
+   public void setUsername(String username) {
+      this.username = username;
    }
 
    public Role getRole() {
@@ -109,6 +134,14 @@ public class Employee {
       this.role = role;
    }
 
+   @Override
+   public Collection<? extends GrantedAuthority> getAuthorities() {
+      return AuthorityUtils.createAuthorityList(
+//              String.valueOf(role.getAuthority()));
+              String.valueOf(this.role));
+   }
+
+   @Override
    public String getPassword() {
       return password;
    }
@@ -157,6 +190,8 @@ public class Employee {
       this.orders = orders;
    }
 
+   // Equals & HashCode
+
    @Override
    public boolean equals(Object o) {
       if (this == o) return true;
@@ -164,7 +199,7 @@ public class Employee {
       Employee employee = (Employee) o;
       return Objects.equals(id, employee.id) && Objects.equals(firstName, employee.firstName) &&
               Objects.equals(lastName, employee.lastName) && Objects.equals(email, employee.email) &&
-              Objects.equals(nickname, employee.nickname) && role == employee.role &&
+              Objects.equals(username, employee.username) && role == employee.role &&
               Objects.equals(password, employee.password) && Objects.equals(phoneNumber, employee.phoneNumber) &&
               Objects.equals(createdAt, employee.createdAt) && Objects.equals(isActive, employee.isActive) &&
               Objects.equals(restaurant, employee.restaurant) && Objects.equals(orders, employee.orders);
@@ -172,10 +207,11 @@ public class Employee {
 
    @Override
    public int hashCode() {
-      return Objects.hash(id, firstName, lastName, email, nickname, role, password,
+      return Objects.hash(id, firstName, lastName, email, username, role, password,
               phoneNumber, createdAt, isActive, restaurant, orders);
    }
 
+   // ToString
    @Override
    public String toString() {
       return "Employee{" +
@@ -183,7 +219,7 @@ public class Employee {
               ", firstName='" + firstName + '\'' +
               ", lastName='" + lastName + '\'' +
               ", email='" + email + '\'' +
-              ", nickname='" + nickname + '\'' +
+              ", username='" + username + '\'' +
               ", role=" + role +
               ", password='" + password + '\'' +
               ", phoneNumber='" + phoneNumber + '\'' +
@@ -219,8 +255,8 @@ public class Employee {
          return this;
       }
 
-      public Builder nickname(String nickname) {
-         employee.nickname = nickname;
+      public Builder username(String username) {
+         employee.username = username;
          return this;
       }
 
