@@ -1,8 +1,9 @@
 package com.kcurryjib.mapper.admin;
 
 import com.kcurryjib.dto.EmployeeDto;
+import com.kcurryjib.dto.RestaurantDto;
 import com.kcurryjib.entity.Employee;
-import com.kcurryjib.entity.Order;
+import com.kcurryjib.entity.Restaurant;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,6 +21,18 @@ public class EmployeeMapper {
    public EmployeeDto convertToEmployeeDto(Employee employee) {
       return mapper.map(employee, EmployeeDto.class);
    }
+   public EmployeeDto convertToEmployeeDtoWithRestaurantDto(Employee employee) {
+      EmployeeDto employeeDto = mapper.map(employee, EmployeeDto.class);
+
+      employeeDto.setRestaurantDto(convertToRestaurantDto(employee.getRestaurant()));
+
+      return employeeDto;
+   }
+
+   // restaurant convert to restaurantDto
+   public RestaurantDto convertToRestaurantDto(Restaurant restaurant) {
+      return mapper.map(restaurant, RestaurantDto.class);
+   }
 
    public List<EmployeeDto> convertToEmployeesDto(List<Employee> employees) {
       return employees.stream()
@@ -31,10 +44,22 @@ public class EmployeeMapper {
    public Employee convertToEmployee(EmployeeDto employeeDto) {
       return mapper.map(employeeDto, Employee.class);
    }
+   public Employee convertToEmployeeWithRestaurant(EmployeeDto employeeDto) {
+      Employee employee = mapper.map(employeeDto, Employee.class);
 
-   public List<Employee> convertToEmployees(List<EmployeeDto> employeesDto) {
+      employee.setRestaurant(convertToRestaurant(employeeDto.getRestaurantDto()));
+
+      return employee;
+   }
+
+   // restaurant convert to restaurantDto
+   public Restaurant convertToRestaurant(RestaurantDto restaurantDto) {
+      return mapper.map(restaurantDto, Restaurant.class);
+   }
+
+   public List<Employee> convertToEmployee(List<EmployeeDto> employeesDto) {
       return employeesDto.stream()
-              .map(this::convertToEmployee)
+              .map(this::convertToEmployeeWithRestaurant)
               .collect(Collectors.toList());
    }
 }

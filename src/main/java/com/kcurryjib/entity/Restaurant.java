@@ -3,6 +3,7 @@ package com.kcurryjib.entity;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "restaurant")
@@ -205,5 +206,44 @@ public class Restaurant {
 
    public static Builder builder() {
       return new Builder();
+   }
+
+   @Override
+   public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      Restaurant that = (Restaurant) o;
+      return Objects.equals(id, that.id) && Objects.equals(name, that.name) &&
+              Objects.equals(address, that.address) && Objects.equals(phoneNumber, that.phoneNumber) &&
+              Objects.equals(openingHours, that.openingHours) && Objects.equals(cuisineType, that.cuisineType) &&
+              Objects.equals(description, that.description) &&
+              Objects.equals(socialMediaLinks, that.socialMediaLinks) && Objects.equals(isOpen, that.isOpen) &&
+              Objects.equals(products, that.products) && Objects.equals(reviews, that.reviews) &&
+              Objects.equals(orders, that.orders) && Objects.equals(employees, that.employees);
+   }
+
+   @Override
+   public int hashCode() {
+      return Objects.hash(id, name, address, phoneNumber, openingHours, cuisineType,
+              description, socialMediaLinks, isOpen, products, reviews, orders, employees);
+   }
+
+   @Override
+   public String toString() {
+      return "Restaurant{" +
+              "id=" + id +
+              ", name='" + name + '\'' +
+              ", address='" + address + '\'' +
+              ", phoneNumber='" + phoneNumber + '\'' +
+              ", openingHours='" + openingHours + '\'' +
+              ", cuisineType='" + cuisineType + '\'' +
+              ", description='" + description + '\'' +
+              ", socialMediaLinks='" + socialMediaLinks + '\'' +
+              ", isOpen=" + isOpen +
+              ", products=" + products +
+              ", reviews=" + reviews +
+              ", orders=" + orders +
+              ", employees=" + employees +
+              '}';
    }
 }

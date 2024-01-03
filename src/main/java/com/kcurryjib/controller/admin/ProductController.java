@@ -59,7 +59,7 @@ public class ProductController {
       productDto.setName("new product");
       model.addAttribute("restaurants", restaurantService.getAll());
 
-      return "admin/products/add";
+      return "/admin/products/add";
    }
 
    // CREATE
@@ -76,7 +76,7 @@ public class ProductController {
          model.addAttribute("product", productDto);
          model.addAttribute("restaurants", restaurantService.getAll());
 
-         return "admin/products/add";
+         return "/admin/products/add";
       }
 
       service.addProduct(productDto);
@@ -115,7 +115,7 @@ public class ProductController {
       if (result.hasErrors()) {
          model.addAttribute("product", productDto);
          model.addAttribute("restaurants", restaurantService.getAll());
-         return "admin/products/edit";
+         return "/admin/products/edit";
       }
 
       service.updateProduct(productDto);

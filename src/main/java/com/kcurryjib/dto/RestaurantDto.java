@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Length;
 
 import java.util.List;
+import java.util.Objects;
 
 
 public class RestaurantDto {
@@ -250,5 +251,26 @@ public class RestaurantDto {
               ", ordersDto=" + ordersDto +
               ", employeesDto=" + employeesDto +
               '}';
+   }
+
+   // Equals & HashCode
+   @Override
+   public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      RestaurantDto that = (RestaurantDto) o;
+      return isOpen == that.isOpen && Objects.equals(id, that.id) && Objects.equals(name, that.name) &&
+              Objects.equals(address, that.address) && Objects.equals(phoneNumber, that.phoneNumber) &&
+              Objects.equals(openingHours, that.openingHours) && Objects.equals(cuisineType, that.cuisineType) &&
+              Objects.equals(description, that.description) &&
+              Objects.equals(socialMediaLinks, that.socialMediaLinks) &&
+              Objects.equals(productsDto, that.productsDto) && Objects.equals(reviewsDto, that.reviewsDto) &&
+              Objects.equals(ordersDto, that.ordersDto) && Objects.equals(employeesDto, that.employeesDto);
+   }
+
+   @Override
+   public int hashCode() {
+      return Objects.hash(id, name, address, phoneNumber, openingHours, cuisineType, description,
+              socialMediaLinks, isOpen, productsDto, reviewsDto, ordersDto, employeesDto);
    }
 }

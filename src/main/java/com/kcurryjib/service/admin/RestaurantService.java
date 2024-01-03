@@ -64,14 +64,23 @@ public class RestaurantService {
 
    // READ
    public RestaurantDto getById(Long id) throws RestaurantException {
-      Optional<Restaurant> restaurantOptional = restaurantRepository.findById(id);
       RestaurantDto restaurantDto = null;
 
-      if (restaurantOptional.isPresent()) {
-         restaurantDto = restaurantMapper.convertToRestaurantDto(restaurantOptional.get());
-//                 MapperUtil.convertlist(
-//                 List.of(restaurantOptional.get()), restaurantMapper::convertToRestaurantDto).get(0);
+      if (id != null) {
+         Optional<Restaurant> restaurantOptional = restaurantRepository.findById(id);
+
+         if (restaurantOptional.isPresent()) {
+            restaurantDto = restaurantMapper.convertToRestaurantDto(restaurantOptional.get());
+
+         } else {
+            throw new RestaurantException(
+                    String.format("Restaurant not found in database with id=%d",
+                            id));
+         }
+      } else {
+         throw new RestaurantException("There is no restaurant ID to search for!");
       }
+
 
       return restaurantDto;
    }
@@ -83,19 +92,18 @@ public class RestaurantService {
 
       if (restaurantOptional.isPresent()) {
          restaurantDto = restaurantMapper.showCustomersWithComments(restaurantOptional.get());
-//                 MapperUtil.convertlist(
-//                 List.of(restaurantOptional.get()), restaurantMapper::showCustomersWithComments).get(0);
       }
 
       return restaurantDto;
    }
 
-
    // CREATE
    public RestaurantDto addRestaurant(RestaurantDto restaurantDto) throws RestaurantException {
 
-      if (restaurantDto.getName() == null) {
-         restaurantDto.setName("new restaurant");
+      if (restaurantDto == null) {
+//         restaurantDto.setName("new restaurant");
+
+         throw new RestaurantException("Received null request body for restaurant creation");
       }
 
       if (restaurantDto != null && restaurantDto.getId() == null) {
@@ -113,7 +121,6 @@ public class RestaurantService {
       } else {
          throw new RestaurantException("Error processing received request body!");
       }
-
    }
 
    // UPDATE
@@ -140,17 +147,17 @@ public class RestaurantService {
                return restaurantMapper.convertToRestaurantDto(restaurantResponse);
 
             } else {
-               throw new ProductException(
+               throw new RestaurantException(
                        String.format("Failed to update the restaurant in the database with Id=%d!",
                                restaurantDto.getId()));
             }
          } else {
-            throw new ProductException(
+            throw new RestaurantException(
                     String.format("The restaurant was not found in the database with Id=%d!",
                             restaurantDto.getId()));
          }
       } else {
-         throw new ProductException("Error processing received body request!");
+         throw new RestaurantException("Error processing received body request!");
       }
    }
 
@@ -168,23 +175,24 @@ public class RestaurantService {
 
             if (restaurantResponse != null) {
                return restaurantMapper.convertToRestaurantDto(restaurantResponse);
+
             } else {
-               throw new ProductException(
+               throw new RestaurantException(
                        String.format("Failed to delete restaurant in database with Id=%d!",
                                id));
             }
          } else {
-            throw new ProductException(
+            throw new RestaurantException(
                     String.format("Restaurant not found in the database with Id=%d!",
                             id));
          }
       } else {
-         throw new ProductException("The ID of the restaurant to be deleted is missing!");
+         throw new RestaurantException("The ID of the restaurant to be deleted is missing!");
       }
    }
 
    // Aggregation
-   public int getNumberOfReviewsByRestaurantId(Long id) throws ReviewException {
+   public int getNumberOfReviewsByRestaurantId(Long id) throws RestaurantException {
       RestaurantDto restaurantDto = showWithComments(id);
 
       if (restaurantDto != null && restaurantDto.getReviewsDto() != null) {
@@ -193,7 +201,7 @@ public class RestaurantService {
       return 0;
    }
 
-   public BigDecimal getAverageRatingByRestaurantId(Long id) throws ReviewException {
+   public BigDecimal getAverageRatingByRestaurantId(Long id) throws RestaurantException {
       RestaurantDto restaurantDto = showWithComments(id);
 
       if (restaurantDto != null && restaurantDto.getReviewsDto() != null &&
