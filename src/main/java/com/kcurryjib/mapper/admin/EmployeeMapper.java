@@ -22,12 +22,11 @@ public class EmployeeMapper {
       return mapper.map(employee, EmployeeDto.class);
    }
 
-   // restaurant convert to restaurantDto
    public RestaurantDto showRestaurantDetails(Restaurant restaurant) {
       return mapper.map(restaurant, RestaurantDto.class);
    }
 
-   public EmployeeDto convertToEmployeeDtoWithRestaurantDto(Employee employee) {
+   public EmployeeDto showEmployeeWithRestaurant(Employee employee) {
       EmployeeDto employeeDto = mapper.map(employee, EmployeeDto.class);
 
       employeeDto.setRestaurantDto(showRestaurantDetails(employee.getRestaurant()));
@@ -45,22 +44,10 @@ public class EmployeeMapper {
    public Employee convertToEmployee(EmployeeDto employeeDto) {
       return mapper.map(employeeDto, Employee.class);
    }
-   public Employee convertToEmployeeWithRestaurant(EmployeeDto employeeDto) {
-      Employee employee = mapper.map(employeeDto, Employee.class);
 
-      employee.setRestaurant(convertToRestaurant(employeeDto.getRestaurantDto()));
-
-      return employee;
-   }
-
-   // restaurant convert to restaurantDto
-   public Restaurant convertToRestaurant(RestaurantDto restaurantDto) {
-      return mapper.map(restaurantDto, Restaurant.class);
-   }
-
-   public List<Employee> convertToEmployee(List<EmployeeDto> employeesDto) {
+   public List<Employee> convertToEmployees(List<EmployeeDto> employeesDto) {
       return employeesDto.stream()
-              .map(this::convertToEmployeeWithRestaurant)
+              .map(this::convertToEmployee)
               .collect(Collectors.toList());
    }
 }

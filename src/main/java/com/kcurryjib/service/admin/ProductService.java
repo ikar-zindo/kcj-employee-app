@@ -49,7 +49,7 @@ public class ProductService {
    // READ
    public List<ProductDto> getAvailableProducts() throws ProductException {
       List<Product> products = new ArrayList<>(productRepository.findAll()).stream()
-              .filter(Product::isAvailable)
+              .filter(Product::getAvailable)
               .sorted(Comparator.comparing(Product::getCreatedAt).reversed())
               .collect(Collectors.toList());
 

@@ -27,11 +27,14 @@ public class SecurityConfig {
               .csrf(AbstractHttpConfigurer::disable)
               .authorizeHttpRequests(
                       x -> x
-                              .requestMatchers(HttpMethod.GET, "/employees/all").permitAll()
-                              .requestMatchers(HttpMethod.GET, "/admin/menu").permitAll()
-                              .requestMatchers(HttpMethod.GET, "/admin/products/rest").permitAll()
-                              .requestMatchers(HttpMethod.GET, "/employees/name").hasAnyRole("ADMIN", "USER")
-                              .requestMatchers(HttpMethod.POST, "/employees/save").hasRole("ADMIN")
+                              .requestMatchers(HttpMethod.GET, "/admin").permitAll()
+                              .requestMatchers(HttpMethod.GET, "/employees").permitAll()
+//                              .requestMatchers(HttpMethod.GET, "/employees/all").permitAll()
+//                              .requestMatchers(HttpMethod.GET, "/admin/menu").permitAll()
+//                              .requestMatchers(HttpMethod.GET, "/admin/rest/dashboard").permitAll()
+//                              .requestMatchers(HttpMethod.GET, "/admin/products/rest").permitAll()
+//                              .requestMatchers(HttpMethod.GET, "/employees/name").hasAnyRole("ADMIN", "USER")
+//                              .requestMatchers(HttpMethod.POST, "/employees/save").hasRole("ADMIN")
                               .anyRequest().authenticated())
               .httpBasic(Customizer.withDefaults());
 

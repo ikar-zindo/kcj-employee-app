@@ -22,9 +22,6 @@ public class Product {
    private String description;
 
    @Column(name = "price", precision = 8, scale = 2)
-//   @NotNull(message = "{validation.value.null}")
-//   @DecimalMin(value = "0.01", message = "{validation.product.price}")
-//   @DecimalMax(value = "10000", message = "{validation.product.price.value}")
    private BigDecimal price;
 
    @Column(name = "image_url")
@@ -86,8 +83,8 @@ public class Product {
       return imageUrl;
    }
 
-   public void setImageUrl(String imgUrl) {
-      this.imageUrl = imgUrl;
+   public void setImageUrl(String imageUrl) {
+      this.imageUrl = imageUrl;
    }
 
    public LocalDateTime getCreatedAt() {
@@ -98,7 +95,7 @@ public class Product {
       this.createdAt = createdAt;
    }
 
-   public Boolean isAvailable() {
+   public Boolean getAvailable() {
       return isAvailable;
    }
 

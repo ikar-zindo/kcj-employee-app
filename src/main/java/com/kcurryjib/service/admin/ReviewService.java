@@ -59,6 +59,7 @@ public class ReviewService {
 
          if (reviewOptional.isPresent()) {
             reviewDto = reviewMapper.showReviewDtoWithCustomer(reviewOptional.get());
+
          } else {
             throw new ReviewException(
                     String.format("Review not found in database with id=%d",

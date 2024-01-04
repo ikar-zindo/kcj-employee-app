@@ -118,7 +118,7 @@ public class Restaurant {
       this.socialMediaLinks = socialMediaLinks;
    }
 
-   public Boolean isOpen() {
+   public Boolean getOpen() {
       return isOpen;
    }
 

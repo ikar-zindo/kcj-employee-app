@@ -24,7 +24,9 @@ public class ProductController {
    private final RestaurantService restaurantService;
 
    @Autowired
-   public ProductController(ProductService service, RestaurantService restaurantService) {
+   public ProductController(ProductService service,
+                            RestaurantService restaurantService) {
+
       this.service = service;
       this.restaurantService = restaurantService;
    }

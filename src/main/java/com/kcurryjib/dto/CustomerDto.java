@@ -46,6 +46,7 @@ public class CustomerDto {
    @JsonInclude(JsonInclude.Include.NON_NULL)
    private LocalDateTime createdAt;
 
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private Boolean isBlocked;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -63,6 +64,7 @@ public class CustomerDto {
    public CustomerDto() {
    }
 
+   // Getters && Setters
    public Long getId() {
       return id;
    }
@@ -135,11 +137,11 @@ public class CustomerDto {
       this.createdAt = createdAt;
    }
 
-   public boolean isBlocked() {
+   public Boolean getBlocked() {
       return isBlocked;
    }
 
-   public void setBlocked(boolean blocked) {
+   public void setBlocked(Boolean blocked) {
       isBlocked = blocked;
    }
 

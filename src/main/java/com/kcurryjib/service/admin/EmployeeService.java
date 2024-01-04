@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,19 +26,19 @@ public class EmployeeService implements UserDetailsService {
 
    private EmployeeMapper employeeMapper;
 
-//   private RestaurantRepository restaurantRepository;
+   private RestaurantRepository restaurantRepository;
 
    private BCryptPasswordEncoder encoder;
 
    @Autowired
    public EmployeeService(EmployeeRepository employeeRepository,
                           EmployeeMapper employeeMapper,
-//                          RestaurantRepository restaurantRepository,
+                          RestaurantRepository restaurantRepository,
                           BCryptPasswordEncoder encoder) {
 
       this.employeeRepository = employeeRepository;
       this.employeeMapper = employeeMapper;
-//      this.restaurantRepository = restaurantRepository;
+      this.restaurantRepository = restaurantRepository;
       this.encoder = encoder;
    }
 
@@ -45,10 +46,10 @@ public class EmployeeService implements UserDetailsService {
    public List<EmployeeDto> getAll() throws EmployeeException {
       List<Employee> employees = new ArrayList<>(employeeRepository.findAll());
 
-      return MapperUtil.convertlist(employees, employeeMapper::convertToEmployeeDtoWithRestaurantDto);
+      return MapperUtil.convertlist(employees, employeeMapper::showEmployeeWithRestaurant);
    }
 
-   //READ
+//   READ
    public List<Employee> getAllEntity() {
       List<Employee> employees = new ArrayList<>(employeeRepository.findAll());
 
@@ -57,7 +58,7 @@ public class EmployeeService implements UserDetailsService {
 
    @Override
    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-      UserDetails employee = employeeRepository.findByUsername(username); // Исправить на findByUsername
+      UserDetails employee = employeeRepository.findByUsername(username);
 
       if (employee == null) {
          throw new UsernameNotFoundException("Employee not found!");
@@ -73,10 +74,9 @@ public class EmployeeService implements UserDetailsService {
          return null;
       }
 
-      Role role = Role.ROLE_USER;
-
-      employee.setRole(role);
+      employee.setRole(Role.ROLE_USER);
       employee.setPassword(encoder.encode(employee.getPassword()));
+      employee.setCreatedAt(LocalDateTime.now());
 
       return employeeRepository.save(employee);
    }
