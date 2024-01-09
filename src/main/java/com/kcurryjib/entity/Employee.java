@@ -2,13 +2,17 @@ package com.kcurryjib.entity;
 
 import com.kcurryjib.entity.enums.Role;
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Table(name = "employee")
-public class Employee /*implements UserDetails*/ {
+public class Employee implements UserDetails {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -90,6 +94,33 @@ public class Employee /*implements UserDetails*/ {
       return username;
    }
 
+   @Override
+   public Collection<? extends GrantedAuthority> getAuthorities() {
+      return AuthorityUtils.createAuthorityList(
+//              String.valueOf(role.getAuthority()));
+              String.valueOf(this.role));
+   }
+
+   @Override
+   public boolean isAccountNonExpired() {
+      return true;
+   }
+
+   @Override
+   public boolean isAccountNonLocked() {
+      return true;
+   }
+
+   @Override
+   public boolean isCredentialsNonExpired() {
+      return true;
+   }
+
+   @Override
+   public boolean isEnabled() {
+      return true;
+   }
+
    public void setUsername(String username) {
       this.username = username;
    }
@@ -149,16 +180,6 @@ public class Employee /*implements UserDetails*/ {
    public void setOrders(List<Order> orders) {
       this.orders = orders;
    }
-
-
-//   @Override
-//   public Collection<? extends GrantedAuthority> getAuthorities() {
-//      return AuthorityUtils.createAuthorityList(
-////              String.valueOf(role.getAuthority()));
-//              String.valueOf(this.role));
-//   }
-
-
 
    // Equals & HashCode
 //   @Override
