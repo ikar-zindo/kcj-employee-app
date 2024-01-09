@@ -24,18 +24,15 @@ public class EmployeeService /*implements UserDetailsService*/ {
 
    private RestaurantRepository restaurantRepository;
 
-//   private BCryptPasswordEncoder encoder;
 
    @Autowired
    public EmployeeService(EmployeeRepository employeeRepository,
                           EmployeeMapper employeeMapper,
-                          RestaurantRepository restaurantRepository
-                          /*BCryptPasswordEncoder encoder*/) {
+                          RestaurantRepository restaurantRepository) {
 
       this.employeeRepository = employeeRepository;
       this.employeeMapper = employeeMapper;
       this.restaurantRepository = restaurantRepository;
-//      this.encoder = encoder;
    }
 
    //READ
@@ -51,29 +48,4 @@ public class EmployeeService /*implements UserDetailsService*/ {
 
       return employees;
    }
-
-//   @Override
-//   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//      UserDetails employee = employeeRepository.findByUsername(username);
-//
-//      if (employee == null) {
-//         throw new UsernameNotFoundException("Employee not found!");
-//      }
-//
-//      return employee;
-//   }
-
-//   public Employee save(Employee employee) {
-//      Employee foundEmployee = (Employee) employeeRepository.findByUsername(employee.getUsername());
-//
-//      if (foundEmployee != null) {
-//         return null;
-//      }
-//
-//      employee.setRole(Role.ROLE_USER);
-//      employee.setPassword(encoder.encode(employee.getPassword()));
-//      employee.setCreatedAt(LocalDateTime.now());
-//
-//      return employeeRepository.save(employee);
-//   }
 }

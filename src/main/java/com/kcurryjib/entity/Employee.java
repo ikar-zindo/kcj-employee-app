@@ -150,16 +150,6 @@ public class Employee /*implements UserDetails*/ {
       this.orders = orders;
    }
 
-
-//   @Override
-//   public Collection<? extends GrantedAuthority> getAuthorities() {
-//      return AuthorityUtils.createAuthorityList(
-////              String.valueOf(role.getAuthority()));
-//              String.valueOf(this.role));
-//   }
-
-
-
    // Equals & HashCode
 //   @Override
 //   public boolean equals(Object o) {
