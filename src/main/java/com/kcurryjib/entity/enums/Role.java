@@ -1,8 +1,7 @@
 package com.kcurryjib.entity.enums;
 
-import org.springframework.security.core.GrantedAuthority;
 
-public enum Role implements GrantedAuthority {
+public enum Role /*implements GrantedAuthority*/ {
 
    ROLE_ADMIN("ROLE_ADMIN"),
    ROLE_MANAGER("ROLE_MANAGER"),
@@ -18,8 +17,8 @@ public enum Role implements GrantedAuthority {
       this.value = value;
    }
 
-   @Override
-   public String getAuthority() {
-      return value;
-   }
+//   @Override
+//   public String getAuthority() {
+//      return value;
+//   }
 }

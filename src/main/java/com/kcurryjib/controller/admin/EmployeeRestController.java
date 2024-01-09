@@ -7,8 +7,6 @@ import com.kcurryjib.service.admin.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,14 +27,14 @@ public class EmployeeRestController {
    }
 
     // ALL ROlES
-   @GetMapping("/name/{username}")
-   public UserDetails getByUsername(@PathVariable String username) {
-      return service.loadUserByUsername(username);
-   }
+//   @GetMapping("/name/{username}")
+//   public UserDetails getByUsername(@PathVariable String username) {
+//      return service.loadUserByUsername(username);
+//   }
 
    // ONLY ROLE_ADMIN
-   @PostMapping("/save")
-   public Employee save(@RequestBody Employee employee) {
-      return service.save(employee);
-   }
+//   @PostMapping("/save")
+//   public Employee save(@RequestBody Employee employee) {
+//      return service.save(employee);
+//   }
 }
