@@ -19,10 +19,21 @@ public class EmployeeMapper {
 
    // convert to DTO
    public EmployeeDto convertToEmployeeDto(Employee employee) {
-      return mapper.map(employee, EmployeeDto.class);
+      mapper.typeMap(Employee.class, EmployeeDto.class)
+              .addMappings(m -> m.skip(EmployeeDto::setPassword));
+
+      EmployeeDto employeeDto = mapper.map(employee, EmployeeDto.class);
+
+      return employeeDto;
    }
 
    public RestaurantDto showRestaurantDetails(Restaurant restaurant) {
+      mapper.typeMap(Restaurant.class, RestaurantDto.class)
+              .addMappings(m -> m.skip(RestaurantDto::setOrdersDto))
+              .addMappings(m -> m.skip(RestaurantDto::setReviewsDto))
+              .addMappings(m -> m.skip(RestaurantDto::setEmployeesDto))
+              .addMappings(m -> m.skip(RestaurantDto::setProductsDto));
+
       return mapper.map(restaurant, RestaurantDto.class);
    }
 

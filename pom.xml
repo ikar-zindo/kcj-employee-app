@@ -49,28 +49,28 @@
 		</dependency>
 
 		<!--Security-->
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.boot</groupId>-->
-<!--			<artifactId>spring-boot-starter-security</artifactId>-->
-<!--		</dependency>-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
 
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.security</groupId>-->
-<!--			<artifactId>spring-security-test</artifactId>-->
-<!--			<scope>test</scope>-->
-<!--		</dependency>-->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 
-		<!--		<dependency>-->
-		<!--			<groupId>org.liquibase</groupId>-->
-		<!--			<artifactId>liquibase-core</artifactId>-->
-		<!--		</dependency>-->
+<!--				<dependency>-->
+<!--					<groupId>org.liquibase</groupId>-->
+<!--					<artifactId>liquibase-core</artifactId>-->
+<!--				</dependency>-->
 
-		<!--				<dependency>-->
-		<!--					<groupId>org.projectlombok</groupId>-->
-		<!--					<artifactId>lombok</artifactId>-->
-		<!--					<version>1.18.28</version>-->
-		<!--					<scope>provided</scope>-->
-		<!--				</dependency>-->
+<!--						<dependency>-->
+<!--							<groupId>org.projectlombok</groupId>-->
+<!--							<artifactId>lombok</artifactId>-->
+<!--							<version>1.18.28</version>-->
+<!--							<scope>provided</scope>-->
+<!--						</dependency>-->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
