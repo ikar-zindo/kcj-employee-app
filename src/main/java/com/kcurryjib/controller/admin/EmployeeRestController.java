@@ -28,7 +28,7 @@ public class EmployeeRestController {
       return new ResponseEntity<>(employees, HttpStatus.OK);
    }
 
-   // ALL ROlES
+    // ALL ROlES
    @GetMapping("/name/{username}")
    public UserDetails getByUsername(@PathVariable String username) {
       return service.loadUserByUsername(username);
