@@ -1,6 +1,8 @@
 package com.kcurryjib.mapper.admin;
 
+import com.kcurryjib.dto.RestaurantDto;
 import com.kcurryjib.dto.ReviewDto;
+import com.kcurryjib.entity.Restaurant;
 import com.kcurryjib.entity.Review;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +28,15 @@ public class ReviewMapper {
       return mapper.map(review, ReviewDto.class);
    }
 
+   public RestaurantDto showRestaurantDetails(Restaurant restaurant) {
+      return mapper.map(restaurant, RestaurantDto.class);
+   }
+
    public ReviewDto showReviewDtoWithCustomer(Review review) {
       ReviewDto reviewDto = mapper.map(review, ReviewDto.class);
 
-
-//      reviewDto.setRestaurantDto(restaurantMapper.convertToRestaurantDto(review.getRestaurant()));
-      reviewDto.setCustomerDto(customerMapper.shortCustomerDto(review.getCustomer()));
+//      reviewDto.setRestaurantDto(showRestaurantDetails(review.getRestaurant()));
+      reviewDto.setCustomerDto(customerMapper.convertToCustomerDto(review.getCustomer()));
 
       return reviewDto;
    }

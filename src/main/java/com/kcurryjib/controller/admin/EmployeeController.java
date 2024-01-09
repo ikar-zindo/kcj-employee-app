@@ -1,6 +1,7 @@
 package com.kcurryjib.controller.admin;
 
 import com.kcurryjib.dto.EmployeeDto;
+import com.kcurryjib.exception.list.EmployeeException;
 import com.kcurryjib.service.admin.EmployeeService;
 import com.kcurryjib.service.admin.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class EmployeeController {
 
    // READ
    @GetMapping()
-   public String getAllEmployees(Model model) {
+   public String getAllEmployees(Model model) throws EmployeeException {
       List<EmployeeDto> employeesDto = service.getAll();
 
       model.addAttribute("employees", employeesDto);

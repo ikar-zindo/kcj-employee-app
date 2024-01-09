@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -48,7 +49,8 @@ public class ProductService {
    // READ
    public List<ProductDto> getAvailableProducts() throws ProductException {
       List<Product> products = new ArrayList<>(productRepository.findAll()).stream()
-              .filter(Product::isAvailable)
+              .filter(Product::getAvailable)
+              .sorted(Comparator.comparing(Product::getCreatedAt).reversed())
               .collect(Collectors.toList());
 
       return MapperUtil.convertlist(products, productMapper::showProductDetails);

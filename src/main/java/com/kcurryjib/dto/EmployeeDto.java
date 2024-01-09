@@ -10,6 +10,7 @@ import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 
 public class EmployeeDto {
@@ -35,7 +36,7 @@ public class EmployeeDto {
    @JsonInclude(JsonInclude.Include.NON_NULL)
    @NotEmpty(message = "{validation.length.empty}")
    @Length(max = 60, message = "{validation.length.max.60}")
-   private String nickname;
+   private String username;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
    private Role role;
@@ -98,12 +99,12 @@ public class EmployeeDto {
       this.email = email;
    }
 
-   public String getNickname() {
-      return nickname;
+   public String getUsername() {
+      return username;
    }
 
-   public void setNickname(String nickname) {
-      this.nickname = nickname;
+   public void setUsername(String username) {
+      this.username = username;
    }
 
    public Role getRole() {
@@ -138,7 +139,7 @@ public class EmployeeDto {
       this.createdAt = createdAt;
    }
 
-   public Boolean isActive() {
+   public Boolean getActive() {
       return isActive;
    }
 
@@ -188,7 +189,7 @@ public class EmployeeDto {
       }
 
       public Builder nickname(String nickname) {
-         employeeDto.nickname = nickname;
+         employeeDto.username = nickname;
          return this;
       }
 
@@ -229,5 +230,44 @@ public class EmployeeDto {
 
    public static Builder builder() {
       return new Builder();
+   }
+
+   // Equals & HashCode
+   @Override
+   public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      EmployeeDto that = (EmployeeDto) o;
+      return Objects.equals(id, that.id) && Objects.equals(firstName, that.firstName) &&
+              Objects.equals(lastName, that.lastName) && Objects.equals(email, that.email) &&
+              Objects.equals(username, that.username) && role == that.role &&
+              Objects.equals(password, that.password) && Objects.equals(phoneNumber, that.phoneNumber) &&
+              Objects.equals(createdAt, that.createdAt) && Objects.equals(isActive, that.isActive) &&
+              Objects.equals(restaurantDto, that.restaurantDto) && Objects.equals(ordersDto, that.ordersDto);
+   }
+
+   @Override
+   public int hashCode() {
+      return Objects.hash(id, firstName, lastName, email, username, role, password,
+              phoneNumber, createdAt, isActive, restaurantDto, ordersDto);
+   }
+
+   // ToString
+   @Override
+   public String toString() {
+      return "EmployeeDto{" +
+              "id=" + id +
+              ", firstName='" + firstName + '\'' +
+              ", lastName='" + lastName + '\'' +
+              ", email='" + email + '\'' +
+              ", nickname='" + username + '\'' +
+              ", role=" + role +
+              ", password='" + password + '\'' +
+              ", phoneNumber='" + phoneNumber + '\'' +
+              ", createdAt=" + createdAt +
+              ", isActive=" + isActive +
+              ", restaurantDto=" + restaurantDto +
+              ", ordersDto=" + ordersDto +
+              '}';
    }
 }

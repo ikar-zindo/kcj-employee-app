@@ -50,7 +50,7 @@ public class AspectLoggingReview {
    @AfterReturning("updateReview()")
    public void afterUpdateReview(JoinPoint joinPoint) {
       Object[] args = joinPoint.getArgs();
-      LOGGER.info("Update review  with parameter {}", args[0]);
+      LOGGER.info("Update review with parameter {}", args[0]);
    }
 
    /**

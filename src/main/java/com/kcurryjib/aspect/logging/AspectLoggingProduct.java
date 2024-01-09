@@ -52,7 +52,7 @@ public class AspectLoggingProduct {
    @AfterReturning("updateProduct()")
    public void afterUpdateProduct(JoinPoint joinPoint) {
       Object[] args = joinPoint.getArgs();
-      LOGGER.info("Update new product with parameter {}", args[0]);
+      LOGGER.info("Update product with parameter {}", args[0]);
    }
 
    /**

@@ -84,6 +84,7 @@
 						<th scope="col">name</th>
 						<th scope="col">phoneNumber</th>
 						<th scope="col">restaurantDto</th>
+						<th scope="col">role</th>
 						<th scope="col">createdAt</th>
 						<th scope="col"></th>
 						<th scope="col"></th>
@@ -95,7 +96,8 @@
 							<td th:text="${employee.id}"/>
 							<td th:text="|${employee.firstName}| + ' ' + |${employee.lastName}|"/>
 							<td th:text="${employee.phoneNumber}"/>
-							<td th:text="${employee.restaurantDto.name}"/>
+<!--							<td th:text="${employee.restaurantDto.name}"/>-->
+							<td th:text="${employee.role}"/>
 							<td th:text="${employee.createdAt}"/>
 
 							<td>

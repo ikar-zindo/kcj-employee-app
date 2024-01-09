@@ -5,32 +5,27 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "employee")
-public class Employee {
+public class Employee /*implements UserDetails*/ {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    @Column(name = "employee_id")
    private Long id;
 
-
    @Column(name = "first_name")
-//   @Pattern(regexp = "[A-Z][a-z]{1,49}", message = "a string should start with a capital letter (rest lowercase) and contain at least two letters")
    private String firstName;
 
    @Column(name = "last_name")
-//   @Pattern(regexp = "[A-Z][a-z]{1,49}", message = "a string should start with a capital letter (rest lowercase) and contain at least two letters")
    private String lastName;
 
-   //   @Email(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$", message = "Email is not valid")
    @Column(name = "email")
    private String email;
 
-   @Column(name = "nickname")
-   private String nickname;
+   @Column(name = "nickname", unique = true)
+   private String username;
 
    @Enumerated(EnumType.STRING)
    @Column(name = "role")
@@ -39,8 +34,6 @@ public class Employee {
    @Column(name = "password")
    private String password;
 
-   //   @NotBlank(message = "Phone cant be empty")
-//   @Pattern(regexp = "\\+\\d{8,15}", message = "Phone is not valid")
    @Column(name = "phone_number")
    private String phoneNumber;
 
@@ -93,12 +86,12 @@ public class Employee {
       this.email = email;
    }
 
-   public String getNickname() {
-      return nickname;
+   public String getUsername() {
+      return username;
    }
 
-   public void setNickname(String nickname) {
-      this.nickname = nickname;
+   public void setUsername(String username) {
+      this.username = username;
    }
 
    public Role getRole() {
@@ -157,42 +150,54 @@ public class Employee {
       this.orders = orders;
    }
 
-   @Override
-   public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
-      Employee employee = (Employee) o;
-      return Objects.equals(id, employee.id) && Objects.equals(firstName, employee.firstName) &&
-              Objects.equals(lastName, employee.lastName) && Objects.equals(email, employee.email) &&
-              Objects.equals(nickname, employee.nickname) && role == employee.role &&
-              Objects.equals(password, employee.password) && Objects.equals(phoneNumber, employee.phoneNumber) &&
-              Objects.equals(createdAt, employee.createdAt) && Objects.equals(isActive, employee.isActive) &&
-              Objects.equals(restaurant, employee.restaurant) && Objects.equals(orders, employee.orders);
-   }
 
-   @Override
-   public int hashCode() {
-      return Objects.hash(id, firstName, lastName, email, nickname, role, password,
-              phoneNumber, createdAt, isActive, restaurant, orders);
-   }
+//   @Override
+//   public Collection<? extends GrantedAuthority> getAuthorities() {
+//      return AuthorityUtils.createAuthorityList(
+////              String.valueOf(role.getAuthority()));
+//              String.valueOf(this.role));
+//   }
 
-   @Override
-   public String toString() {
-      return "Employee{" +
-              "id=" + id +
-              ", firstName='" + firstName + '\'' +
-              ", lastName='" + lastName + '\'' +
-              ", email='" + email + '\'' +
-              ", nickname='" + nickname + '\'' +
-              ", role=" + role +
-              ", password='" + password + '\'' +
-              ", phoneNumber='" + phoneNumber + '\'' +
-              ", createdAt=" + createdAt +
-              ", isActive=" + isActive +
-              ", restaurant=" + restaurant +
-              ", orders=" + orders +
-              '}';
-   }
+
+
+   // Equals & HashCode
+//   @Override
+//   public boolean equals(Object o) {
+//      if (this == o) return true;
+//      if (o == null || getClass() != o.getClass()) return false;
+//      Employee employee = (Employee) o;
+//      return Objects.equals(id, employee.id) && Objects.equals(firstName, employee.firstName) &&
+//              Objects.equals(lastName, employee.lastName) && Objects.equals(email, employee.email) &&
+//              Objects.equals(username, employee.username) && role == employee.role &&
+//              Objects.equals(password, employee.password) && Objects.equals(phoneNumber, employee.phoneNumber) &&
+//              Objects.equals(createdAt, employee.createdAt) && Objects.equals(isActive, employee.isActive) &&
+//              Objects.equals(restaurant, employee.restaurant) && Objects.equals(orders, employee.orders);
+//   }
+//
+//   @Override
+//   public int hashCode() {
+//      return Objects.hash(id, firstName, lastName, email, username, role, password,
+//              phoneNumber, createdAt, isActive, restaurant, orders);
+//   }
+
+   // ToString
+//   @Override
+//   public String toString() {
+//      return "Employee{" +
+//              "id=" + id +
+//              ", firstName='" + firstName + '\'' +
+//              ", lastName='" + lastName + '\'' +
+//              ", email='" + email + '\'' +
+//              ", username='" + username + '\'' +
+//              ", role=" + role +
+//              ", password='" + password + '\'' +
+//              ", phoneNumber='" + phoneNumber + '\'' +
+//              ", createdAt=" + createdAt +
+//              ", isActive=" + isActive +
+//              ", restaurant=" + restaurant +
+//              ", orders=" + orders +
+//              '}';
+//   }
 
    // Builder class
    public static class Builder {
@@ -219,8 +224,8 @@ public class Employee {
          return this;
       }
 
-      public Builder nickname(String nickname) {
-         employee.nickname = nickname;
+      public Builder username(String username) {
+         employee.username = username;
          return this;
       }
 
