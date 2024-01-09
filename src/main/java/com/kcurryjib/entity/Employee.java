@@ -2,13 +2,17 @@ package com.kcurryjib.entity;
 
 import com.kcurryjib.entity.enums.Role;
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Table(name = "employee")
-public class Employee /*implements UserDetails*/ {
+public class Employee implements UserDetails {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,6 +58,7 @@ public class Employee /*implements UserDetails*/ {
    }
 
    // Getters & Setters
+
    public Long getId() {
       return id;
    }
@@ -86,8 +91,29 @@ public class Employee /*implements UserDetails*/ {
       this.email = email;
    }
 
+   @Override
    public String getUsername() {
       return username;
+   }
+
+   @Override
+   public boolean isAccountNonExpired() {
+      return false;
+   }
+
+   @Override
+   public boolean isAccountNonLocked() {
+      return false;
+   }
+
+   @Override
+   public boolean isCredentialsNonExpired() {
+      return false;
+   }
+
+   @Override
+   public boolean isEnabled() {
+      return false;
    }
 
    public void setUsername(String username) {
@@ -102,6 +128,15 @@ public class Employee /*implements UserDetails*/ {
       this.role = role;
    }
 
+   @Override
+   public Collection<? extends GrantedAuthority> getAuthorities() {
+      return AuthorityUtils.createAuthorityList(
+//              String.valueOf(role.getAuthority()));
+              String.valueOf(this.role));
+   }
+
+
+   @Override
    public String getPassword() {
       return password;
    }
@@ -149,15 +184,6 @@ public class Employee /*implements UserDetails*/ {
    public void setOrders(List<Order> orders) {
       this.orders = orders;
    }
-
-
-//   @Override
-//   public Collection<? extends GrantedAuthority> getAuthorities() {
-//      return AuthorityUtils.createAuthorityList(
-////              String.valueOf(role.getAuthority()));
-//              String.valueOf(this.role));
-//   }
-
 
 
    // Equals & HashCode
