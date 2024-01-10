@@ -2,6 +2,8 @@ package com.kcurryjib.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.kcurryjib.entity.Customer;
+import com.kcurryjib.entity.enums.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
@@ -29,6 +31,11 @@ public class CustomerDto {
    private String email;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
+   @Email(message = "Invalid username")
+   @Length(max = 60, message = "{validation.length.max.60}")
+   private String username;
+
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    @Length(max = 120, message = "{validation.length.max.120}")
    private String password;
 
@@ -45,6 +52,9 @@ public class CustomerDto {
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
    private LocalDateTime createdAt;
+
+   @JsonInclude(JsonInclude.Include.NON_NULL)
+   private Role role;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
    private Boolean isBlocked;
@@ -97,6 +107,14 @@ public class CustomerDto {
       this.email = email;
    }
 
+   public String getUsername() {
+      return username;
+   }
+
+   public void setUsername(String username) {
+      this.username = username;
+   }
+
    public String getPassword() {
       return password;
    }
@@ -135,6 +153,14 @@ public class CustomerDto {
 
    public void setCreatedAt(LocalDateTime createdAt) {
       this.createdAt = createdAt;
+   }
+
+   public Role getRole() {
+      return role;
+   }
+
+   public void setRole(Role role) {
+      this.role = role;
    }
 
    public Boolean getBlocked() {
@@ -221,6 +247,16 @@ public class CustomerDto {
 
       public Builder isBlocked(Boolean isBlocked) {
          customerDto.isBlocked = isBlocked;
+         return this;
+      }
+
+      public Builder role(Role role) {
+         customerDto.role = role;
+         return this;
+      }
+
+      public Builder username(String username) {
+         customerDto.username = username;
          return this;
       }
 

@@ -1,16 +1,15 @@
 package com.kcurryjib.entity;
 
+import com.kcurryjib.entity.enums.Role;
+import com.kcurryjib.security.User;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
 @Table(name = "customer")
-public class Customer {
+public class Customer extends User {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +27,9 @@ public class Customer {
 //   @Email(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$", message = "Email is not valid")
    @Column(name = "email")
    private String email;
+
+   @Column(name = "username")
+   private String username;
 
    @Column(name = "password")
    private String password;
@@ -48,6 +50,10 @@ public class Customer {
    @Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
    private LocalDateTime createdAt;
 
+   @Enumerated(EnumType.STRING)
+   @Column(name = "role")
+   private Role role;
+
    @Column(name = "is_blocked")
    private Boolean isBlocked;
 
@@ -60,13 +66,17 @@ public class Customer {
    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
    private List<Review> reviews;
 
+
    public Customer() {
    }
 
+   // Getters & Setters
+   @Override
    public Long getId() {
       return id;
    }
 
+   @Override
    public void setId(Long id) {
       this.id = id;
    }
@@ -95,10 +105,22 @@ public class Customer {
       this.email = email;
    }
 
+   @Override
+   public String getUsername() {
+      return username;
+   }
+
+   @Override
+   public void setUsername(String username) {
+      this.username = username;
+   }
+
+   @Override
    public String getPassword() {
       return password;
    }
 
+   @Override
    public void setPassword(String password) {
       this.password = password;
    }
@@ -135,7 +157,17 @@ public class Customer {
       this.createdAt = createdAt;
    }
 
-   public Boolean isBlocked() {
+   @Override
+   public Role getRole() {
+      return role;
+   }
+
+   @Override
+   public void setRole(Role role) {
+      this.role = role;
+   }
+
+   public Boolean getBlocked() {
       return isBlocked;
    }
 
@@ -185,7 +217,7 @@ public class Customer {
          return this;
       }
       public Builder email(String email) {
-         customer.email = email;
+         customer.username = email;
          return this;
       }
       public Builder password(String password) {
@@ -210,6 +242,16 @@ public class Customer {
       }
       public Builder isBlocked(Boolean isBlocked) {
          customer.isBlocked = isBlocked;
+         return this;
+      }
+
+      public Builder role(Role role) {
+         customer.role = role;
+         return this;
+      }
+
+      public Builder username(String username) {
+         customer.username = username;
          return this;
       }
 
