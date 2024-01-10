@@ -23,11 +23,11 @@ public class ProductService {
 //   @Autowired
 //   private ModelMapper modelMapper;
 
-   private ProductRepository productRepository;
+   private final ProductRepository productRepository;
 
-   private RestaurantRepository restaurantRepository;
+   private final RestaurantRepository restaurantRepository;
 
-   private ProductMapper productMapper;
+   private final ProductMapper productMapper;
 
    //   @Autowired
    public ProductService(ProductRepository productRepository,
@@ -72,6 +72,7 @@ public class ProductService {
 
          if (productOptional.isPresent()) {
             productDto = productMapper.showProductDetails(productOptional.get());
+
          } else {
             throw new ProductException(
                     String.format("Product not found in database with id=%d",

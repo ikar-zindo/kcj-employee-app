@@ -97,7 +97,7 @@ public class ReviewServiceTest {
               .cuisineType(expectedRestaurant.getCuisineType())
               .description(expectedRestaurant.getDescription())
               .socialMediaLinks(expectedRestaurant.getSocialMediaLinks())
-              .isOpen(expectedRestaurant.isOpen())
+              .isOpen(expectedRestaurant.getOpen())
               .build();
 
       // test instance of the customer

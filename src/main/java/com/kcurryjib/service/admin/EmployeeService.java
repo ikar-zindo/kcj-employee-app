@@ -28,16 +28,13 @@ public class EmployeeService implements UserDetailsService {
 
    private RestaurantRepository restaurantRepository;
 
-
    private BCryptPasswordEncoder encoder;
-
 
    @Autowired
    public EmployeeService(EmployeeRepository employeeRepository,
                           EmployeeMapper employeeMapper,
                           RestaurantRepository restaurantRepository,
                           BCryptPasswordEncoder encoder) {
-
 
       this.employeeRepository = employeeRepository;
       this.employeeMapper = employeeMapper;

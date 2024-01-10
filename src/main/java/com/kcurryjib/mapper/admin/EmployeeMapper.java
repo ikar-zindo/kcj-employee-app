@@ -19,12 +19,7 @@ public class EmployeeMapper {
 
    // convert to DTO
    public EmployeeDto convertToEmployeeDto(Employee employee) {
-      mapper.typeMap(Employee.class, EmployeeDto.class)
-              .addMappings(m -> m.skip(EmployeeDto::setPassword));
-
-      EmployeeDto employeeDto = mapper.map(employee, EmployeeDto.class);
-
-      return employeeDto;
+      return mapper.map(employee, EmployeeDto.class);
    }
 
    public RestaurantDto showRestaurantDetails(Restaurant restaurant) {
@@ -38,6 +33,10 @@ public class EmployeeMapper {
    }
 
    public EmployeeDto showEmployeeWithRestaurant(Employee employee) {
+      mapper.typeMap(Employee.class, EmployeeDto.class)
+              .addMappings(m -> m.skip(EmployeeDto::setPassword))
+              .addMappings(m -> m.skip(EmployeeDto::setCreatedAt));
+
       EmployeeDto employeeDto = mapper.map(employee, EmployeeDto.class);
 
       employeeDto.setRestaurantDto(showRestaurantDetails(employee.getRestaurant()));
