@@ -27,11 +27,13 @@ CREATE TABLE `customer` (
   first_name VARCHAR(60),
   last_name VARCHAR(60),
   email VARCHAR(60),
+  username VARCHAR(60),
   password VARCHAR(120),
   phone_number VARCHAR(20),
   address VARCHAR(120),
   postal_code VARCHAR(5),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  role ENUM('ROLE_CUSTOMER'),
   is_blocked BOOL DEFAULT FALSE
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
@@ -290,17 +292,17 @@ INSERT INTO `restaurant` (`name`, `address`, `phone_number`, `opening_hours`, `c
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`first_name`, `last_name`, `email`, `password`, `phone_number`, `address`, `postal_code`) VALUES
-    ('Maria', 'Anders',	'maria@mailcom', '1qaz2wsx', '+49123456789', 'Obere Str. 57', '12209'),
-    ('Ana', 'Trujillo',	'ana@mailcom', '1qaz2wsx', '+49123456789', 'Minerstrasse 33', '10115'),
-    ('Antonio', 'Moreno', 'antonio@mailcom', '1qaz2wsx', '+49123456789', 'Alexanderplatz 3', '10178'),
-    ('Thomas', 'Hardy',	'thomas@mailcom', '1qaz2wsx', '+49123456789', 'Friedrichstrasse 123', '10117'),
-    ('Christina', 'Berglund', 'christina@mailcom', '1qaz2wsx', '+49123456789', 'Karl-Liebknecht-Strasse 29', '10178'),
-    ('Hanna', 'Moos', 'hanna@mailcom', '1qaz2wsx', '+49123456789', 'Potsdamer Platz 1', '10785'),
-    ('Frederique', 'Citeaux', 'frederique@mailcom', '1qaz2wsx', '+49123456789', 'Stralauer Strasse 34', '10243'),
-    ('Martin', 'Sommer', 'martin@mailcom', '1qaz2wsx', '+49123456789', 'Lichtenberger Strasse 11', '10179'),
-    ('Laurence', 'Lebihans', 'laurence@mailcom', '1qaz2wsx', '+49123456789', 'Charlottenstrasse 22', '10117'),
-    ('Elizabeth', 'Lincoln', 'elizabeth@mailcom', '1qaz2wsx', '+49123456789', 'Pariser Platz 7', '10117');
+INSERT INTO `customer` (`first_name`, `last_name`, `email`, `username`, `password`, `phone_number`, `address`, `postal_code`, `role`) VALUES
+    ('Maria', 'Anders',	'maria@mailcom', '1qaz2wsx', 'maria', '+49123456789', 'Obere Str. 57', '12209', 'ROLE_CUSTOMER'),
+    ('Ana', 'Trujillo',	'ana@mailcom', '1qaz2wsx', 'ana', '+49123456789', 'Minerstrasse 33', '10115', 'ROLE_CUSTOMER'),
+    ('Antonio', 'Moreno', 'antonio@mailcom', '1qaz2wsx', 'antonio', '+49123456789', 'Alexanderplatz 3', '10178', 'ROLE_CUSTOMER'),
+    ('Thomas', 'Hardy',	'thomas@mailcom', '1qaz2wsx', 'thomas', '+49123456789', 'Friedrichstrasse 123', '10117', 'ROLE_CUSTOMER'),
+    ('Christina', 'Berglund', 'christina@mailcom', '1qaz2wsx', 'christina', '+49123456789', 'Karl-Liebknecht-Strasse 29', '10178', 'ROLE_CUSTOMER'),
+    ('Hanna', 'Moos', 'hanna@mailcom', '1qaz2wsx', 'hanna', '+49123456789', 'Potsdamer Platz 1', '10785', 'ROLE_CUSTOMER'),
+    ('Frederique', 'Citeaux', 'frederique@mailcom', '1qaz2wsx', 'frederique', '+49123456789', 'Stralauer Strasse 34', '10243', 'ROLE_CUSTOMER'),
+    ('Martin', 'Sommer', 'martin@mailcom', '1qaz2wsx', 'martin', '+49123456789', 'Lichtenberger Strasse 11', '10179', 'ROLE_CUSTOMER'),
+    ('Laurence', 'Lebihans', 'laurence@mailcom', '1qaz2wsx', 'laurence', '+49123456789', 'Charlottenstrasse 22', '10117', 'ROLE_CUSTOMER'),
+    ('Elizabeth', 'Lincoln', 'elizabeth@mailcom', '1qaz2wsx', 'elizabeth', '+49123456789', 'Pariser Platz 7', '10117', 'ROLE_CUSTOMER');
 
 --
 -- Dumping data for table `cart`
