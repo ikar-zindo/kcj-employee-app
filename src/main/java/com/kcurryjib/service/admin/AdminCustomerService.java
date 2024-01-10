@@ -6,7 +6,6 @@ import com.kcurryjib.entity.Customer;
 import com.kcurryjib.mapper.admin.CustomerMapper;
 import com.kcurryjib.repo.CustomerRepository;
 import com.kcurryjib.repo.OrderRepository;
-import com.kcurryjib.repo.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CustomerService {
+public class AdminCustomerService {
 
    @Autowired
    private CustomerRepository customerRepository;

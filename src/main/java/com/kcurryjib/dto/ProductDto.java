@@ -43,7 +43,7 @@ public class ProductDto {
    @JsonInclude(JsonInclude.Include.NON_NULL)
    private boolean isAvailable;
 
-   //   @JsonInclude(JsonInclude.Include.NON_NULL)
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    @JsonProperty("restaurant")
    @NotNull(message = "{validation.value.null}")
    private RestaurantDto restaurantDto;
