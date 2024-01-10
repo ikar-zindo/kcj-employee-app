@@ -8,5 +8,4 @@ import org.springframework.security.core.userdetails.UserDetails;
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
    UserDetails findByUsername(String username);
-
 }

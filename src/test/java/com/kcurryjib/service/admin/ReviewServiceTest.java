@@ -1,14 +1,11 @@
 package com.kcurryjib.service.admin;
 
 import com.kcurryjib.dto.CustomerDto;
-import com.kcurryjib.dto.ProductDto;
 import com.kcurryjib.dto.RestaurantDto;
 import com.kcurryjib.dto.ReviewDto;
 import com.kcurryjib.entity.Customer;
-import com.kcurryjib.entity.Product;
 import com.kcurryjib.entity.Restaurant;
 import com.kcurryjib.entity.Review;
-import com.kcurryjib.exception.list.ProductException;
 import com.kcurryjib.exception.list.ReviewException;
 import com.kcurryjib.mapper.admin.ReviewMapper;
 import com.kcurryjib.repo.CustomerRepository;
@@ -119,13 +116,13 @@ public class ReviewServiceTest {
               .id(expectedCustomer.getId())
               .firstName(expectedCustomer.getFirstName())
               .lastName(expectedCustomer.getLastName())
-              .email(expectedCustomer.getEmail())
+              .email(expectedCustomer.getUsername())
               .password(expectedCustomer.getPassword())
               .phoneNumber(expectedCustomer.getPhoneNumber())
               .address(expectedCustomer.getAddress())
               .postalCode(expectedCustomer.getPostalCode())
               .createdAt(expectedCustomer.getCreatedAt())
-              .isBlocked(expectedCustomer.isBlocked())
+              .isBlocked(expectedCustomer.getBlocked())
               .build();
 
       // test instance of the review
