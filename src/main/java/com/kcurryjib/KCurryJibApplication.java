@@ -16,9 +16,8 @@ public class KCurryJibApplication {
 		SpringApplication.run(KCurryJibApplication.class, args);
 	}
 
-
    @PostConstruct
    public void logApplicationStarted() { // logging START APPLICATION
-      LOGGER.info("============================== START APPLICATION ==============================");
+      LOGGER.info("============================ START APPLICATION ============================");
    }
 }

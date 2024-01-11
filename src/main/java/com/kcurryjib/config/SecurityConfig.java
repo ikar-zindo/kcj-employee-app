@@ -45,29 +45,30 @@ public class SecurityConfig {
               .sessionManagement(manager -> manager
                       .sessionCreationPolicy(STATELESS))
               .logout(
-                      (logout) -> logout
+                      logout -> logout
                               .logoutUrl("/logout")
                               .permitAll()
 //                              .logoutSuccessUrl("/")
               )
               .authorizeHttpRequests(
                       requests -> requests
-                              .requestMatchers("/auth/login",
+                              .requestMatchers(
+                                      "/**",
+                                      "/auth/login",
                                       "/auth/token",
                                       "/swagger-ui.html",
                                       "/api/v1/auth/**",
                                       "/v3/api-docs/**",
                                       "/swagger-ui/**",
                                       "/images/**",
-                                      "/assets/**",
-                                      "/**"
+                                      "/assets/**"
                               )
                               .permitAll()
                               .anyRequest()
                               .authenticated()
               )
               .formLogin(
-                      (form) -> form
+                      login -> login
                               .loginPage("/login")
                               .defaultSuccessUrl("/") // URL перенаправления по умолчанию
                               .successHandler((request, response, authentication) -> {

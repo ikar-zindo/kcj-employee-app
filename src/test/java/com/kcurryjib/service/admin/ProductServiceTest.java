@@ -115,7 +115,7 @@ public class ProductServiceTest {
               .price(expectedProduct.getPrice())
               .imageUrl(expectedProduct.getImageUrl())
               .createdAt(expectedProduct.getCreatedAt())
-              .isAvailable(expectedProduct.isAvailable())
+              .isAvailable(expectedProduct.getAvailable())
               .restaurantDto(expectedRestaurantDto)
               .build();
 
@@ -127,7 +127,7 @@ public class ProductServiceTest {
               .price(expectedProduct.getPrice())
               .imageUrl(expectedProduct.getImageUrl())
               .createdAt(expectedProduct.getCreatedAt())
-              .isAvailable(expectedProduct.isAvailable())
+              .isAvailable(expectedProduct.getAvailable())
               .restaurantDto(expectedRestaurantDto)
               .build();
    }
