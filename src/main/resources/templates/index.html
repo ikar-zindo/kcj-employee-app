@@ -46,7 +46,7 @@
 
 <main class="container">
 
-	<div class="mt-4 bg-body-tertiary p-5 rounded">
+	<div class="mt-4 bg-body-tertiary p-5 rounded customer-bg-img">
 		<h1>Be a customer</h1>
 		<p class="lead">Try yourself as a client. Browse the range of products.
 			Order food. Complete the transaction.</p>
@@ -55,7 +55,7 @@
 			role="button">View menu</a>
 	</div>
 
-	<div class="mt-4 bg-body-tertiary p-5 rounded">
+	<div class="mt-4 bg-body-tertiary p-5 rounded manager-bg-img">
 		<h1>Be a employee</h1>
 		<p class="lead">Take over the responsibilities of an employee and track paid customer orders.</p>
 		<a class="btn btn-lg btn-primary"
@@ -64,13 +64,18 @@
 	</div>
 
 	<div class="mt-4 bg-body-tertiary p-5 rounded">
-		<h1>Be a admin</h1>
-		<p class="lead">The administrator can update the product range.
-			Block foods and restaurants. Register new employees.</p>
-		<a class="btn btn-lg btn-primary"
-			th:href="@{/admin/products}"
-			role="button">Try role</a>
+		<div class="admin-bg-img">
+			<h1>Be a admin</h1>
+			<p class="lead">The administrator can update the product range.
+				Block foods and restaurants. Register new employees.</p>
+			<a class="btn btn-lg btn-primary"
+				th:href="@{/admin/products}"
+				role="button">Try role</a>
+		</div>
+
 	</div>
+
+	<div style="width: 100px; height: 100px" class="admin-bg-img"></div>
 </main>
 
 <script type="text/javascript" th:src="@{/assets/dist/js/bootstrap.bundle.min.js}"

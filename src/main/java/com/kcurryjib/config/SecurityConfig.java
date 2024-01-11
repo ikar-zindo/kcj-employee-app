@@ -8,9 +8,14 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import java.util.Collection;
 
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
@@ -27,52 +32,58 @@ public class SecurityConfig {
    }
 
    @Bean
-   public BCryptPasswordEncoder bCryptPasswordEncoder() {
+   public PasswordEncoder bCryptPasswordEncoder() {
       return new BCryptPasswordEncoder();
    }
 
 // todo: !!! нужно правильно реализовать  securityFilterChain !!!
 
-//   @Bean
-//   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//      http // configuration of available methods
-//              .csrf(AbstractHttpConfigurer::disable)
-//              .sessionManagement(x -> x.sessionCreationPolicy(STATELESS))
-//              .logout(
-//                      (logout) -> logout
-//                              .logoutUrl("/logout")
-//                              .permitAll()
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      return http
+              .csrf(AbstractHttpConfigurer::disable)
+              .sessionManagement(manager -> manager
+                      .sessionCreationPolicy(STATELESS))
+              .logout(
+                      (logout) -> logout
+                              .logoutUrl("/logout")
+                              .permitAll()
 //                              .logoutSuccessUrl("/")
-//              )
-//              .authorizeHttpRequests(
-//                      (requests) -> requests
-//                              .requestMatchers(
-//                                      "/**",
-//                                      "/assets/**",
-//                                      "/images/**",
-//                                      "/error"
-//                              )
-//                              .permitAll()
-////                              .requestMatchers("/admin/**").hasAnyRole("ADMIN", "USER")
-////                              .requestMatchers("/**").permitAll()
-////                              .requestMatchers(HttpMethod.GET, "/admin/**").hasRole("ADMIN")
-////                              .requestMatchers(HttpMethod.GET, "/admin/**").permitAll()
-////                              .requestMatchers(HttpMethod.GET, "/employees/**").permitAll()
-////                              .requestMatchers(HttpMethod.GET, "/employees/all").permitAll()
-////                              .requestMatchers(HttpMethod.GET, "/admin/menu").permitAll()
-////                              .requestMatchers(HttpMethod.GET, "/admin/rest/dashboard").permitAll()
-////                              .requestMatchers(HttpMethod.GET, "/admin/products/rest").permitAll()
-////                              .requestMatchers(HttpMethod.GET, "/employees/name").hasAnyRole("ADMIN", "USER")
-////                              .requestMatchers(HttpMethod.POST, "/rest/customer/**").hasRole("CUSTOMER")
-//                              .anyRequest()
-//                              .authenticated()
-//              )
-//              .formLogin(
-//                      (form) -> form
-//                              .loginPage("/login")
-//                              .permitAll());
-//              .httpBasic(Customizer.withDefaults());
-//
-//      return http.build();
-//   }
+              )
+              .authorizeHttpRequests(
+                      requests -> requests
+                              .requestMatchers("/auth/login",
+                                      "/auth/token",
+                                      "/swagger-ui.html",
+                                      "/api/v1/auth/**",
+                                      "/v3/api-docs/**",
+                                      "/swagger-ui/**",
+                                      "/images/**",
+                                      "/assets/**",
+                                      "/**"
+                              )
+                              .permitAll()
+                              .anyRequest()
+                              .authenticated()
+              )
+              .formLogin(
+                      (form) -> form
+                              .loginPage("/login")
+                              .defaultSuccessUrl("/") // URL перенаправления по умолчанию
+                              .successHandler((request, response, authentication) -> {
+                                 // Получаем роли пользователя
+                                 Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+
+                                 // Перенаправляем в зависимости от ролей
+                                 if (authorities.stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"))) {
+                                    response.sendRedirect("/admin/products");
+                                 } else if (authorities.stream().anyMatch(r -> r.getAuthority().equals("ROLE_MANAGER"))) {
+                                    response.sendRedirect("/admin/employees");
+                                 } else {
+                                    response.sendRedirect("/");
+                                 }
+                              })
+                              .permitAll()
+              ).build();
+   }
 }

@@ -1995,3 +1995,110 @@ This generated password is for development use only. Your security configuration
 2023-12-29T09:10:00.878+01:00  INFO 11888 --- ${sys:LOGGED_APPLICATION_NAME}[SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2023-12-29T09:10:00.883+01:00  INFO 11888 --- ${sys:LOGGED_APPLICATION_NAME}[SpringApplicationShutdownHook] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown initiated...
 2023-12-29T09:10:00.894+01:00  INFO 11888 --- ${sys:LOGGED_APPLICATION_NAME}[SpringApplicationShutdownHook] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown completed.
+2024-01-11T12:41:35.320+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[restartedMain] c.k.KCurryJibApplication                 : Starting KCurryJibApplication using Java 21.0.1 with PID 26856 (E:\projects\k-curry-jib\target\classes started by plagi in E:\projects\k-curry-jib)
+2024-01-11T12:41:35.330+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[restartedMain] c.k.KCurryJibApplication                 : No active profile set, falling back to 1 default profile: "default"
+2024-01-11T12:41:35.387+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-01-11T12:41:35.388+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-01-11T12:41:36.289+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-11T12:41:36.374+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 78 ms. Found 9 JPA repository interfaces.
+2024-01-11T12:41:37.136+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[restartedMain] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port 8888 (http)
+2024-01-11T12:41:37.146+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[restartedMain] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2024-01-11T12:41:37.147+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[restartedMain] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2024-01-11T12:41:37.199+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[restartedMain] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2024-01-11T12:41:37.200+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1811 ms
+2024-01-11T12:41:37.289+01:00 ERROR 26856 --- ${sys:LOGGED_APPLICATION_NAME}[restartedMain] o.a.c.s.StandardManager                  : Exception loading sessions from persistent storage
+
+java.lang.IllegalStateException: Could not identify any active SessionFactory having UUID 6ed1a040-663b-4ac4-96a0-c26ba89a5d92
+	at org.hibernate.proxy.pojo.bytebuddy.SerializableProxy.retrieveMatchingSessionFactory(SerializableProxy.java:127) ~[hibernate-core-6.3.1.Final.jar:6.3.1.Final]
+	at org.hibernate.proxy.pojo.bytebuddy.SerializableProxy.readResolve(SerializableProxy.java:113) ~[hibernate-core-6.3.1.Final.jar:6.3.1.Final]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[?:?]
+	at java.base/java.io.ObjectStreamClass.invokeReadResolve(ObjectStreamClass.java:1192) ~[?:?]
+	at java.base/java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:2293) ~[?:?]
+	at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1762) ~[?:?]
+	at java.base/java.io.ObjectInputStream$FieldValues.<init>(ObjectInputStream.java:2618) ~[?:?]
+	at java.base/java.io.ObjectInputStream.readSerialData(ObjectInputStream.java:2469) ~[?:?]
+	at java.base/java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:2284) ~[?:?]
+	at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1762) ~[?:?]
+	at java.base/java.io.ObjectInputStream$FieldValues.<init>(ObjectInputStream.java:2618) ~[?:?]
+	at java.base/java.io.ObjectInputStream.readSerialData(ObjectInputStream.java:2469) ~[?:?]
+	at java.base/java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:2284) ~[?:?]
+	at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1762) ~[?:?]
+	at java.base/java.io.ObjectInputStream$FieldValues.<init>(ObjectInputStream.java:2618) ~[?:?]
+	at java.base/java.io.ObjectInputStream.readSerialData(ObjectInputStream.java:2469) ~[?:?]
+	at java.base/java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:2284) ~[?:?]
+	at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1762) ~[?:?]
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:540) ~[?:?]
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:498) ~[?:?]
+	at org.apache.catalina.session.StandardSession.doReadObject(StandardSession.java:1415) ~[tomcat-embed-core-10.1.16.jar:10.1.16]
+	at org.apache.catalina.session.StandardSession.readObjectData(StandardSession.java:985) ~[tomcat-embed-core-10.1.16.jar:10.1.16]
+	at org.apache.catalina.session.StandardManager.doLoad(StandardManager.java:210) ~[tomcat-embed-core-10.1.16.jar:10.1.16]
+	at org.apache.catalina.session.StandardManager.load(StandardManager.java:156) ~[tomcat-embed-core-10.1.16.jar:10.1.16]
+	at org.apache.catalina.session.StandardManager.startInternal(StandardManager.java:346) [tomcat-embed-core-10.1.16.jar:10.1.16]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) [tomcat-embed-core-10.1.16.jar:10.1.16]
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4877) [tomcat-embed-core-10.1.16.jar:10.1.16]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) [tomcat-embed-core-10.1.16.jar:10.1.16]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1332) [tomcat-embed-core-10.1.16.jar:10.1.16]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1322) [tomcat-embed-core-10.1.16.jar:10.1.16]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) [?:?]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) [tomcat-embed-core-10.1.16.jar:10.1.16]
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145) [?:?]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:866) [tomcat-embed-core-10.1.16.jar:10.1.16]
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:845) [tomcat-embed-core-10.1.16.jar:10.1.16]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) [tomcat-embed-core-10.1.16.jar:10.1.16]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1332) [tomcat-embed-core-10.1.16.jar:10.1.16]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1322) [tomcat-embed-core-10.1.16.jar:10.1.16]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317) [?:?]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) [tomcat-embed-core-10.1.16.jar:10.1.16]
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145) [?:?]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:866) [tomcat-embed-core-10.1.16.jar:10.1.16]
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:240) [tomcat-embed-core-10.1.16.jar:10.1.16]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) [tomcat-embed-core-10.1.16.jar:10.1.16]
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:433) [tomcat-embed-core-10.1.16.jar:10.1.16]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) [tomcat-embed-core-10.1.16.jar:10.1.16]
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:917) [tomcat-embed-core-10.1.16.jar:10.1.16]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171) [tomcat-embed-core-10.1.16.jar:10.1.16]
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:488) [tomcat-embed-core-10.1.16.jar:10.1.16]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:123) [spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:104) [spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:501) [spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:218) [spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:188) [spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:162) [spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:610) [spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) [spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753) [spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:455) [spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:323) [spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1342) [spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1331) [spring-boot-3.2.0.jar:3.2.0]
+	at com.kcurryjib.KCurryJibApplication.main(KCurryJibApplication.java:16) [classes/:?]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[?:?]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) [spring-boot-devtools-3.2.0.jar:3.2.0]
+
+2024-01-11T12:41:37.426+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[restartedMain] o.h.j.i.u.LogHelper                      : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-11T12:41:37.479+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[restartedMain] o.h.Version                              : HHH000412: Hibernate ORM core version 6.3.1.Final
+2024-01-11T12:41:37.517+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[restartedMain] o.h.c.i.RegionFactoryInitiator           : HHH000026: Second-level cache disabled
+2024-01-11T12:41:37.721+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-11T12:41:37.745+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[restartedMain] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2024-01-11T12:41:38.042+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[restartedMain] c.z.h.p.HikariPool                       : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7880ba6
+2024-01-11T12:41:38.044+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[restartedMain] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2024-01-11T12:41:39.170+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-01-11T12:41:39.172+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-11T12:41:39.181+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[restartedMain] c.k.KCurryJibApplication                 : ============================== START APPLICATION ==============================
+2024-01-11T12:41:39.815+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[restartedMain] o.s.d.j.r.q.QueryEnhancerFactory         : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-01-11T12:41:39.987+01:00  WARN 26856 --- ${sys:LOGGED_APPLICATION_NAME}[restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-01-11T12:41:40.136+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2024-01-11T12:41:40.329+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[restartedMain] o.s.s.w.DefaultSecurityFilterChain       : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@52c8a1f3, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@47842b1a, org.springframework.security.web.context.SecurityContextHolderFilter@27a74b57, org.springframework.security.web.header.HeaderWriterFilter@3dbafa08, org.springframework.web.filter.CorsFilter@5a507ddc, org.springframework.security.web.csrf.CsrfFilter@16612a2c, org.springframework.security.web.authentication.logout.LogoutFilter@14130d40, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@584ba057, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@406a01a9, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@3976c190, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@1db01f21, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@73da565c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@10755b7e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2ea63874, org.springframework.security.web.access.ExceptionTranslationFilter@7be86780, org.springframework.security.web.access.intercept.AuthorizationFilter@4b099321]
+2024-01-11T12:41:40.848+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-01-11T12:41:40.893+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[restartedMain] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port 8888 (http) with context path ''
+2024-01-11T12:41:40.901+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[restartedMain] c.k.KCurryJibApplication                 : Started KCurryJibApplication in 6.112 seconds (process running for 7.109)
+2024-01-11T12:44:44.610+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[http-nio-8888-exec-1] o.a.c.c.C.[.[.[/]                        : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-01-11T12:44:44.611+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[http-nio-8888-exec-1] o.s.w.s.DispatcherServlet                : Initializing Servlet 'dispatcherServlet'
+2024-01-11T12:44:44.615+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[http-nio-8888-exec-1] o.s.w.s.DispatcherServlet                : Completed initialization in 4 ms
+2024-01-11T12:44:44.643+01:00  WARN 26856 --- ${sys:LOGGED_APPLICATION_NAME}[http-nio-8888-exec-1] o.s.w.s.h.HandlerMappingIntrospector     : Cache miss for REQUEST dispatch to '/admin/products/add' (previous null). Performing CorsConfiguration lookup. This is logged once only at WARN level, and every time at TRACE.
+2024-01-11T12:44:56.701+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[http-nio-8888-exec-7] c.k.a.l.AspectLoggingProduct             : Add new product with parameter ProductDto{id=null, name='new product', description='4', price=4, imageUrl='1.jpg', createdAt=null, isAvailable=true, restaurantDto=RestaurantDto{id=1, name='K-Curry Jib', address='Alexanderplaz 1, 10178', phoneNumber='+49123456789', openingHours='12:00 - 22:00', cuisineType='Asian food', description='', socialMediaLinks='social-media-link.com', isOpen=true, productsDto=null, reviewsDto=null, ordersDto=null, employeesDto=null}, cartProductsDto=null, orderProductsDto=null}
+2024-01-11T13:17:58.296+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-01-11T13:17:58.301+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[SpringApplicationShutdownHook] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown initiated...
+2024-01-11T13:17:58.309+01:00  INFO 26856 --- ${sys:LOGGED_APPLICATION_NAME}[SpringApplicationShutdownHook] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown completed.

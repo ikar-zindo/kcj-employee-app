@@ -79,3 +79,19 @@
     width: 100px;
     height: 100px;
 }
+
+.admin-bg-img {
+    background-image: url('images/admin.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.manager-bg-img {
+    background-image: url('images/manager.png');
+    background-size: cover;
+    background-position: center;
+}
+.customer-bg-img {
+    background-image: url('images/customer.jpg');
+    background-size: cover;
+    background-position: center;
+}

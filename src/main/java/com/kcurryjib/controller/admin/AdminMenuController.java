@@ -19,7 +19,7 @@ public class AdminMenuController {
    private ProductService service;
 
    @GetMapping
-   @PreAuthorize("hasRole('ROLE_MANAGER')")
+//   @PreAuthorize("hasRole('ROLE_CUSTOMER')")
    public String getAll(Model model) {
       List<ProductDto> productsDto = service.getAvailableProducts();
 

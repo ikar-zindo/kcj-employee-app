@@ -26,7 +26,7 @@ public class ProductRestController {
    }
 
    @GetMapping("/{id}")
-   @PreAuthorize("hasRole('ROLE_ADMIN')")
+//   @PreAuthorize("hasRole('ROLE_ADMIN')")
    public ResponseEntity<ProductDto> getProductId(@PathVariable Long id) {
 
       ProductDto product = service.getProductById(id);

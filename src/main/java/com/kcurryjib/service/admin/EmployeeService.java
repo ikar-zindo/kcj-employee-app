@@ -3,6 +3,7 @@ package com.kcurryjib.service.admin;
 import com.kcurryjib.config.MapperUtil;
 import com.kcurryjib.dto.EmployeeDto;
 import com.kcurryjib.entity.Employee;
+import com.kcurryjib.entity.enums.Role;
 import com.kcurryjib.exception.list.EmployeeException;
 import com.kcurryjib.mapper.admin.EmployeeMapper;
 import com.kcurryjib.repo.EmployeeRepository;
@@ -11,9 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,12 +28,13 @@ public class EmployeeService implements UserDetailsService {
 
    private RestaurantRepository restaurantRepository;
 
-//   private BCryptPasswordEncoder encoder;
+//   @Autowired
+   private PasswordEncoder encoder;
 
    @Autowired
    public EmployeeService(EmployeeRepository employeeRepository,
                           EmployeeMapper employeeMapper,
-//                          BCryptPasswordEncoder encoder,
+//                          PasswordEncoder encoder,
                           RestaurantRepository restaurantRepository) {
 
       this.employeeRepository = employeeRepository;
@@ -65,17 +68,17 @@ public class EmployeeService implements UserDetailsService {
       return employee;
    }
 
-//   public Employee save(Employee employee) {
-//      Employee foundEmployee = (Employee) employeeRepository.findByUsername(employee.getUsername());
-//
-//      if (foundEmployee != null) {
-//         return null;
-//      }
-//
-//      employee.setRole(Role.ROLE_USER);
-//      employee.setPassword(encoder.encode(employee.getPassword()));
-//      employee.setCreatedAt(LocalDateTime.now());
-//
-//      return employeeRepository.save(employee);
-//   }
+   public Employee save(Employee employee) {
+      Employee foundEmployee = (Employee) employeeRepository.findByUsername(employee.getUsername());
+
+      if (foundEmployee != null) {
+         return null;
+      }
+
+      employee.setRole(Role.ROLE_USER);
+      employee.setPassword(encoder.encode(employee.getPassword()));
+      employee.setCreatedAt(LocalDateTime.now());
+
+      return employeeRepository.save(employee);
+   }
 }

@@ -32,7 +32,7 @@ public class MenuController {
    }
 
    @GetMapping
-   @PreAuthorize("hasRole('ROLE_USER')")
+//   @PreAuthorize("hasRole('ROLE_USER')")
    public String getAll(Model model) {
       List<ProductDto> productsDto = service.getAvailableProducts();
 

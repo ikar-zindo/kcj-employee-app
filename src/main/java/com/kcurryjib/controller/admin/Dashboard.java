@@ -24,7 +24,7 @@ public class Dashboard {
    private RestaurantService service;
 
    @GetMapping("/dashboard")
-   @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')")
+//   @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')")
    public String fullEmployeeReview(Model model) {
       List<RestaurantDto> restaurantsDto = service.fullInfo();
       model.addAttribute("restaurants", restaurantsDto);
