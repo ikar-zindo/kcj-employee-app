@@ -3,7 +3,6 @@ package com.kcurryjib.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -20,51 +19,60 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @EnableMethodSecurity
 public class SecurityConfig {
 
+   private final UserDetailsService userDetailsService;
+
+   @Autowired
+   public SecurityConfig(UserDetailsService userDetailsService) {
+      this.userDetailsService = userDetailsService;
+   }
+
    @Bean
    public BCryptPasswordEncoder bCryptPasswordEncoder() {
       return new BCryptPasswordEncoder();
    }
 
-   @Bean
-   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-      http // configuration of available methods
-              .csrf(AbstractHttpConfigurer::disable)
-              .sessionManagement(x -> x.sessionCreationPolicy(STATELESS))
-              .logout(
-                      (logout) -> logout
-                              .logoutUrl("/logout")
-                              .permitAll()
-                              .logoutSuccessUrl("/")
-              )
-              .authorizeHttpRequests(
-                      (requests) -> requests
-                              .requestMatchers(
-                                      "/**",
-                                      "/assets/**",
-                                      "/images/**",
-                                      "/error"
-                              )
-                              .permitAll()
-//                              .requestMatchers("/admin/**").hasAnyRole("ADMIN", "USER")
-//                              .requestMatchers("/**").permitAll()
-//                              .requestMatchers(HttpMethod.GET, "/admin/**").hasRole("ADMIN")
-//                              .requestMatchers(HttpMethod.GET, "/admin/**").permitAll()
-//                              .requestMatchers(HttpMethod.GET, "/employees/**").permitAll()
-//                              .requestMatchers(HttpMethod.GET, "/employees/all").permitAll()
-//                              .requestMatchers(HttpMethod.GET, "/admin/menu").permitAll()
-//                              .requestMatchers(HttpMethod.GET, "/admin/rest/dashboard").permitAll()
-//                              .requestMatchers(HttpMethod.GET, "/admin/products/rest").permitAll()
-//                              .requestMatchers(HttpMethod.GET, "/employees/name").hasAnyRole("ADMIN", "USER")
-//                              .requestMatchers(HttpMethod.POST, "/employees/save").hasRole("ADMIN")
-                              .anyRequest()
-                              .authenticated()
-              )
-              .formLogin(
-                      (form) -> form
-                              .loginPage("/login")
-                              .permitAll());
-//              .httpBasic(Customizer.withDefaults());
+// todo: !!! нужно правильно реализовать  securityFilterChain !!!
 
-      return http.build();
-   }
+//   @Bean
+//   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//      http // configuration of available methods
+//              .csrf(AbstractHttpConfigurer::disable)
+//              .sessionManagement(x -> x.sessionCreationPolicy(STATELESS))
+//              .logout(
+//                      (logout) -> logout
+//                              .logoutUrl("/logout")
+//                              .permitAll()
+//                              .logoutSuccessUrl("/")
+//              )
+//              .authorizeHttpRequests(
+//                      (requests) -> requests
+//                              .requestMatchers(
+//                                      "/**",
+//                                      "/assets/**",
+//                                      "/images/**",
+//                                      "/error"
+//                              )
+//                              .permitAll()
+////                              .requestMatchers("/admin/**").hasAnyRole("ADMIN", "USER")
+////                              .requestMatchers("/**").permitAll()
+////                              .requestMatchers(HttpMethod.GET, "/admin/**").hasRole("ADMIN")
+////                              .requestMatchers(HttpMethod.GET, "/admin/**").permitAll()
+////                              .requestMatchers(HttpMethod.GET, "/employees/**").permitAll()
+////                              .requestMatchers(HttpMethod.GET, "/employees/all").permitAll()
+////                              .requestMatchers(HttpMethod.GET, "/admin/menu").permitAll()
+////                              .requestMatchers(HttpMethod.GET, "/admin/rest/dashboard").permitAll()
+////                              .requestMatchers(HttpMethod.GET, "/admin/products/rest").permitAll()
+////                              .requestMatchers(HttpMethod.GET, "/employees/name").hasAnyRole("ADMIN", "USER")
+////                              .requestMatchers(HttpMethod.POST, "/rest/customer/**").hasRole("CUSTOMER")
+//                              .anyRequest()
+//                              .authenticated()
+//              )
+//              .formLogin(
+//                      (form) -> form
+//                              .loginPage("/login")
+//                              .permitAll());
+//              .httpBasic(Customizer.withDefaults());
+//
+//      return http.build();
+//   }
 }

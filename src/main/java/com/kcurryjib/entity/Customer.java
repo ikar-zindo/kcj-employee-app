@@ -3,13 +3,16 @@ package com.kcurryjib.entity;
 import com.kcurryjib.entity.enums.Role;
 import com.kcurryjib.security.User;
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Table(name = "customer")
-public class Customer extends User {
+public class Customer {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -71,12 +74,16 @@ public class Customer extends User {
    }
 
    // Getters & Setters
-   @Override
+//   @Override
+//   public Collection<? extends GrantedAuthority> getAuthorities() {
+//      return AuthorityUtils.createAuthorityList(String.valueOf(this.role));
+//   }
+
+
    public Long getId() {
       return id;
    }
 
-   @Override
    public void setId(Long id) {
       this.id = id;
    }
@@ -105,22 +112,18 @@ public class Customer extends User {
       this.email = email;
    }
 
-   @Override
    public String getUsername() {
       return username;
    }
 
-   @Override
    public void setUsername(String username) {
       this.username = username;
    }
 
-   @Override
    public String getPassword() {
       return password;
    }
 
-   @Override
    public void setPassword(String password) {
       this.password = password;
    }
@@ -157,12 +160,10 @@ public class Customer extends User {
       this.createdAt = createdAt;
    }
 
-   @Override
    public Role getRole() {
       return role;
    }
 
-   @Override
    public void setRole(Role role) {
       this.role = role;
    }

@@ -7,6 +7,7 @@ import com.kcurryjib.service.admin.ProductService;
 import com.kcurryjib.service.admin.RestaurantService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,6 +34,7 @@ public class ProductController {
 
    // READ
    @GetMapping
+   @PreAuthorize("hasRole('ROLE_ADMIN')")
    public String getAllProducts(Model model) throws ProductException {
       List<ProductDto> productsDto = service.getAll();
 
@@ -43,6 +45,7 @@ public class ProductController {
 
    // READ
    @GetMapping("/{id}")
+   @PreAuthorize("hasRole('ROLE_ADMIN')")
    public String getProductById(@PathVariable Long id,
                                 Model model) throws ProductException {
       ProductDto productDto = service.getProductById(id);
@@ -53,6 +56,7 @@ public class ProductController {
    }
 
    // CREATE
+   @PreAuthorize("hasRole('ROLE_ADMIN')")
    @GetMapping(value = "/add")
    public String addProduct(@ModelAttribute("product") ProductDto productDto,
                             Model model) throws ProductException {
@@ -66,6 +70,7 @@ public class ProductController {
 
    // CREATE
    @PostMapping(value = "/add")
+   @PreAuthorize("hasRole('ROLE_ADMIN')")
    public String createProduct(@ModelAttribute("product") @Valid ProductDto productDto,
                                BindingResult result,
                                @RequestParam(name = "restaurantId") Long restaurantId,
@@ -87,6 +92,7 @@ public class ProductController {
 
    // UPDATE
    @GetMapping(value = "/{id}/edit")
+   @PreAuthorize("hasRole('ROLE_ADMIN')")
    public String editProduct(@PathVariable(value = "id") Long id,
 //                             @ModelAttribute("product") ProductDto productDto,
                              Model model) throws ProductException {
@@ -105,6 +111,7 @@ public class ProductController {
 
    // UPDATE
    @PostMapping(value = "/{id}/edit")
+   @PreAuthorize("hasRole('ROLE_ADMIN')")
    public String updateProduct(@ModelAttribute("product") @Valid ProductDto productDto,
                                BindingResult result,
                                @RequestParam(name = "restaurantId") Long restaurantId,
@@ -126,6 +133,7 @@ public class ProductController {
 
    // DELETE
    @PostMapping("/{id}/remove")
+   @PreAuthorize("hasRole('ROLE_ADMIN')")
    public String deleteProduct(@PathVariable Long id) throws ProductException {
       service.deleteProduct(id);
       return "redirect:/admin/products";

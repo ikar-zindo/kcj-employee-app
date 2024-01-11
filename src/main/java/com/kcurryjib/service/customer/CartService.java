@@ -18,6 +18,9 @@ import com.kcurryjib.repo.CustomerRepository;
 import com.kcurryjib.repo.ProductRepository;
 import com.kcurryjib.service.admin.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -100,6 +103,7 @@ public class CartService {
                cartProduct.setCart(customer.getCart());
                cartProduct.setProduct(product);
                cartProduct.setCratedAt(LocalDateTime.now());
+               cartProduct.setQuantity(1);
 
                CartProduct cartProductResponse = cartProductRepository.save(cartProduct);
                Long idResponse = cartProductResponse.getId();

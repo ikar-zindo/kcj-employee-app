@@ -1,6 +1,7 @@
 package com.kcurryjib.entity;
 
 import com.kcurryjib.entity.enums.Role;
+import com.kcurryjib.security.User;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "employee")
-public class Employee implements UserDetails {
+public class Employee extends User {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,6 +59,43 @@ public class Employee implements UserDetails {
    }
 
    // Getters & Setters
+   @Override
+   public Collection<? extends GrantedAuthority> getAuthorities() {
+      return AuthorityUtils.createAuthorityList(
+//              String.valueOf(role.getAuthority()));
+              String.valueOf(this.role));
+   }
+
+   @Override
+   public String getPassword() {
+      return password;
+   }
+
+   @Override
+   public String getUsername() {
+      return username;
+   }
+
+   @Override
+   public boolean isAccountNonExpired() {
+      return true;
+   }
+
+   @Override
+   public boolean isAccountNonLocked() {
+      return true;
+   }
+
+   @Override
+   public boolean isCredentialsNonExpired() {
+      return true;
+   }
+
+   @Override
+   public boolean isEnabled() {
+      return true;
+   }
+
    public Long getId() {
       return id;
    }
@@ -90,37 +128,6 @@ public class Employee implements UserDetails {
       this.email = email;
    }
 
-   public String getUsername() {
-      return username;
-   }
-
-   @Override
-   public Collection<? extends GrantedAuthority> getAuthorities() {
-      return AuthorityUtils.createAuthorityList(
-//              String.valueOf(role.getAuthority()));
-              String.valueOf(this.role));
-   }
-
-   @Override
-   public boolean isAccountNonExpired() {
-      return true;
-   }
-
-   @Override
-   public boolean isAccountNonLocked() {
-      return true;
-   }
-
-   @Override
-   public boolean isCredentialsNonExpired() {
-      return true;
-   }
-
-   @Override
-   public boolean isEnabled() {
-      return true;
-   }
-
    public void setUsername(String username) {
       this.username = username;
    }
@@ -131,10 +138,6 @@ public class Employee implements UserDetails {
 
    public void setRole(Role role) {
       this.role = role;
-   }
-
-   public String getPassword() {
-      return password;
    }
 
    public void setPassword(String password) {

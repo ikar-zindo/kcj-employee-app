@@ -4,6 +4,7 @@ import com.kcurryjib.dto.ProductDto;
 import com.kcurryjib.service.admin.RestaurantService;
 import com.kcurryjib.service.customer.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +32,7 @@ public class MenuController {
    }
 
    @GetMapping
+   @PreAuthorize("hasRole('ROLE_USER')")
    public String getAll(Model model) {
       List<ProductDto> productsDto = service.getAvailableProducts();
 

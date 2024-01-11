@@ -9,6 +9,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,7 +27,9 @@ public class CartController {
       return new ResponseEntity<>(product, HttpStatus.OK);
    }
 
+
    @PostMapping("/{customerId}/add/{productId}")
+//   @PreAuthorize("hasRole('ROLE_CUSTOMER')")
    public ResponseEntity<CartProductDto> addProductToCustomerCart(
            @PathVariable Long customerId,
            @PathVariable Long productId) throws CartException {

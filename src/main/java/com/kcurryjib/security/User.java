@@ -13,7 +13,6 @@ public class User implements UserDetails {
 
 
    private Long id;
-
    private String username;
    private String password;
    private Role role;
@@ -48,7 +47,6 @@ public class User implements UserDetails {
    @Override
    public Collection<? extends GrantedAuthority> getAuthorities() {
       return AuthorityUtils.createAuthorityList(
-//              String.valueOf(role.getAuthority()));
               String.valueOf(this.role));
    }
 
