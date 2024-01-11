@@ -292,7 +292,7 @@ INSERT INTO `restaurant` (`name`, `address`, `phone_number`, `opening_hours`, `c
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`first_name`, `last_name`, `email`, `username`, `password`, `phone_number`, `address`, `postal_code`, `role`) VALUES
+INSERT INTO `customer` (`first_name`, `last_name`, `email`, `password`, `username`, `phone_number`, `address`, `postal_code`, `role`) VALUES
     ('Maria', 'Anders',	'maria@mailcom', '1qaz', 'maria', '+49123456789', 'Obere Str. 57', '12209', 'ROLE_CUSTOMER'),
     ('Ana', 'Trujillo',	'ana@mailcom', '1qaz', 'ana', '+49123456789', 'Minerstrasse 33', '10115', 'ROLE_CUSTOMER'),
     ('Antonio', 'Moreno', 'antonio@mailcom', '1qaz', 'antonio', '+49123456789', 'Alexanderplatz 3', '10178', 'ROLE_CUSTOMER'),
