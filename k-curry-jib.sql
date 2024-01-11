@@ -67,7 +67,7 @@ CREATE TABLE `order` (
   customer_id BIGINT,
   restaurant_id BIGINT,
   employee_id BIGINT,
-  order_date DATETIME,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   delivery_address VARCHAR(60),
   total_amount DECIMAL(8, 2),
   order_status ENUM('CREATED', 'PROCESSING', 'COMPLETED', 'CANCELLED')
