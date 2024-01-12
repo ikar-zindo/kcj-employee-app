@@ -293,16 +293,16 @@ INSERT INTO `restaurant` (`name`, `address`, `phone_number`, `opening_hours`, `c
 --
 
 INSERT INTO `customer` (`first_name`, `last_name`, `email`, `password`, `username`, `phone_number`, `address`, `postal_code`, `role`) VALUES
-    ('Maria', 'Anders',	'maria@mailcom', '1qaz', 'maria', '+49123456789', 'Obere Str. 57', '12209', 'ROLE_CUSTOMER'),
-    ('Ana', 'Trujillo',	'ana@mailcom', '1qaz', 'ana', '+49123456789', 'Minerstrasse 33', '10115', 'ROLE_CUSTOMER'),
-    ('Antonio', 'Moreno', 'antonio@mailcom', '1qaz', 'antonio', '+49123456789', 'Alexanderplatz 3', '10178', 'ROLE_CUSTOMER'),
-    ('Thomas', 'Hardy',	'thomas@mailcom', '1qaz', 'thomas', '+49123456789', 'Friedrichstrasse 123', '10117', 'ROLE_CUSTOMER'),
-    ('Christina', 'Berglund', 'christina@mailcom', '1qaz', 'christina', '+49123456789', 'Karl-Liebknecht-Strasse 29', '10178', 'ROLE_CUSTOMER'),
-    ('Hanna', 'Moos', 'hanna@mailcom', '1qaz', 'hanna', '+49123456789', 'Potsdamer Platz 1', '10785', 'ROLE_CUSTOMER'),
-    ('Frederique', 'Citeaux', 'frederique@mailcom', '1qaz', 'frederique', '+49123456789', 'Stralauer Strasse 34', '10243', 'ROLE_CUSTOMER'),
-    ('Martin', 'Sommer', 'martin@mailcom', '1qaz', 'martin', '+49123456789', 'Lichtenberger Strasse 11', '10179', 'ROLE_CUSTOMER'),
-    ('Laurence', 'Lebihans', 'laurence@mailcom', '1qaz', 'laurence', '+49123456789', 'Charlottenstrasse 22', '10117', 'ROLE_CUSTOMER'),
-    ('Elizabeth', 'Lincoln', 'elizabeth@mailcom', '1qaz', 'elizabeth', '+49123456789', 'Pariser Platz 7', '10117', 'ROLE_CUSTOMER');
+    ('Maria', 'Anders',	'maria@mailcom', '$2a$10$xJCiY3.jw5qjxdggiFGtrOQyyX0P62KAO/uqtbYwiEWBZ1iFTr1mm', 'maria', '+49123456789', 'Obere Str. 57', '12209', 'ROLE_CUSTOMER'),
+    ('Ana', 'Trujillo',	'ana@mailcom', '$2a$10$lKwjA8yqzzackBa2SjUkJOocYJqNy6SP/ntOuh4wnOuxmFcVvQC62', 'ana', '+49123456789', 'Minerstrasse 33', '10115', 'ROLE_CUSTOMER'),
+    ('Antonio', 'Moreno', 'antonio@mailcom', '$2a$10$fBZ/JeO6EOWLfx4CaPDqQe92VWrYJTPl0D0znpMBg1R2hMwp3C.m.', 'antonio', '+49123456789', 'Alexanderplatz 3', '10178', 'ROLE_CUSTOMER'),
+    ('Thomas', 'Hardy',	'thomas@mailcom', '$2a$10$xJCiY3.jw5qjxdggiFGtrOQyyX0P62KAO/uqtbYwiEWBZ1iFTr1mm', 'thomas', '+49123456789', 'Friedrichstrasse 123', '10117', 'ROLE_CUSTOMER'),
+    ('Christina', 'Berglund', 'christina@mailcom', '$2a$10$lKwjA8yqzzackBa2SjUkJOocYJqNy6SP/ntOuh4wnOuxmFcVvQC62', 'christina', '+49123456789', 'Karl-Liebknecht-Strasse 29', '10178', 'ROLE_CUSTOMER'),
+    ('Hanna', 'Moos', 'hanna@mailcom', '$2a$10$fBZ/JeO6EOWLfx4CaPDqQe92VWrYJTPl0D0znpMBg1R2hMwp3C.m.', 'hanna', '+49123456789', 'Potsdamer Platz 1', '10785', 'ROLE_CUSTOMER'),
+    ('Frederique', 'Citeaux', 'frederique@mailcom', '$2a$10$lKwjA8yqzzackBa2SjUkJOocYJqNy6SP/ntOuh4wnOuxmFcVvQC62', 'frederique', '+49123456789', 'Stralauer Strasse 34', '10243', 'ROLE_CUSTOMER'),
+    ('Martin', 'Sommer', 'martin@mailcom', '$2a$10$xJCiY3.jw5qjxdggiFGtrOQyyX0P62KAO/uqtbYwiEWBZ1iFTr1mm', 'martin', '+49123456789', 'Lichtenberger Strasse 11', '10179', 'ROLE_CUSTOMER'),
+    ('Laurence', 'Lebihans', 'laurence@mailcom', '$2a$10$lKwjA8yqzzackBa2SjUkJOocYJqNy6SP/ntOuh4wnOuxmFcVvQC62', 'laurence', '+49123456789', 'Charlottenstrasse 22', '10117', 'ROLE_CUSTOMER'),
+    ('Elizabeth', 'Lincoln', 'elizabeth@mailcom', '$2a$10$fBZ/JeO6EOWLfx4CaPDqQe92VWrYJTPl0D0znpMBg1R2hMwp3C.m.', 'elizabeth', '+49123456789', 'Pariser Platz 7', '10117', 'ROLE_CUSTOMER');
 
 --
 -- Dumping data for table `cart`
