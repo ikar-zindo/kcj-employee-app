@@ -29,7 +29,7 @@
 <!--&lt;!&ndash;        <appender-ref ref="FILE"/>&ndash;&gt;-->
 <!--    </logger>-->
 
-    <logger name="de.telran.bank" additivity="false" level="INFO">
+    <logger name="com.kcurryjib" additivity="false" level="INFO">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="FILE"/>
     </logger>
