@@ -29,7 +29,7 @@ public class Order {
    @JoinColumn(name = "employee_id")
    private Employee employee;
 
-   @Column(name = "order_date", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+   @Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
    private LocalDateTime orderDate;
 
    @Column(name = "delivery_address")

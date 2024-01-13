@@ -1,7 +1,6 @@
 package com.kcurryjib.entity;
 
 import com.kcurryjib.entity.enums.Role;
-import com.kcurryjib.security.User;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -13,7 +12,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "employee")
-public class Employee extends User {
+public class Employee implements UserDetails {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,11 +57,9 @@ public class Employee extends User {
    public Employee() {
    }
 
-   // Getters & Setters
    @Override
    public Collection<? extends GrantedAuthority> getAuthorities() {
       return AuthorityUtils.createAuthorityList(
-//              String.valueOf(role.getAuthority()));
               String.valueOf(this.role));
    }
 
@@ -96,6 +93,7 @@ public class Employee extends User {
       return true;
    }
 
+   // Getters & Setters
    public Long getId() {
       return id;
    }
@@ -183,6 +181,7 @@ public class Employee extends User {
    public void setOrders(List<Order> orders) {
       this.orders = orders;
    }
+
 
    // Equals & HashCode
 //   @Override

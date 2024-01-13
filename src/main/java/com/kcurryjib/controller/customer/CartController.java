@@ -27,7 +27,6 @@ public class CartController {
       return new ResponseEntity<>(product, HttpStatus.OK);
    }
 
-
    @PostMapping("/{customerId}/add/{productId}")
 //   @PreAuthorize("hasRole('ROLE_CUSTOMER')")
    public ResponseEntity<CartProductDto> addProductToCustomerCart(

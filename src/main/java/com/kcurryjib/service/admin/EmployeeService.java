@@ -5,7 +5,7 @@ import com.kcurryjib.dto.EmployeeDto;
 import com.kcurryjib.entity.Employee;
 import com.kcurryjib.entity.enums.Role;
 import com.kcurryjib.exception.list.EmployeeException;
-import com.kcurryjib.mapper.admin.EmployeeMapper;
+import com.kcurryjib.mapper.admin.AdminEmployeeMapper;
 import com.kcurryjib.repo.EmployeeRepository;
 import com.kcurryjib.repo.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class EmployeeService implements UserDetailsService {
 
    private EmployeeRepository employeeRepository;
 
-   private EmployeeMapper employeeMapper;
+   private AdminEmployeeMapper adminEmployeeMapper;
 
    private RestaurantRepository restaurantRepository;
 
@@ -33,12 +33,12 @@ public class EmployeeService implements UserDetailsService {
 
    @Autowired
    public EmployeeService(EmployeeRepository employeeRepository,
-                          EmployeeMapper employeeMapper,
+                          AdminEmployeeMapper adminEmployeeMapper,
 //                          PasswordEncoder encoder,
                           RestaurantRepository restaurantRepository) {
 
       this.employeeRepository = employeeRepository;
-      this.employeeMapper = employeeMapper;
+      this.adminEmployeeMapper = adminEmployeeMapper;
       this.restaurantRepository = restaurantRepository;
 //      this.encoder = encoder;
    }
@@ -47,7 +47,7 @@ public class EmployeeService implements UserDetailsService {
    public List<EmployeeDto> getAll() throws EmployeeException {
       List<Employee> employees = new ArrayList<>(employeeRepository.findAll());
 
-      return MapperUtil.convertlist(employees, employeeMapper::showEmployeeWithRestaurant);
+      return MapperUtil.convertlist(employees, adminEmployeeMapper::showEmployeeWithRestaurant);
    }
 
 //   READ

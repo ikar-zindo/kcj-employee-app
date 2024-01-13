@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Controller
-@RequestMapping("admin/restaurants")
+@RequestMapping("/admin/restaurants")
 @SessionAttributes("editRestaurants")
 public class RestaurantController {
 

@@ -19,7 +19,7 @@ public class RestaurantMapper {
    private ReviewMapper reviewMapper;
 
    @Autowired
-   private EmployeeMapper employeeMapper;
+   private AdminEmployeeMapper adminEmployeeMapper;
 
    // convert to DTO
    public RestaurantDto convertToRestaurantDto(Restaurant restaurant) {
@@ -38,7 +38,7 @@ public class RestaurantMapper {
    public RestaurantDto fullEmployeeReview(Restaurant restaurant) {
       RestaurantDto restaurantDto = convertToRestaurantDto(restaurant);
 
-      restaurantDto.setEmployeesDto(employeeMapper.convertToEmployeesDto(restaurant.getEmployees()));
+      restaurantDto.setEmployeesDto(adminEmployeeMapper.convertToEmployeesDto(restaurant.getEmployees()));
 
       return restaurantDto;
    }
