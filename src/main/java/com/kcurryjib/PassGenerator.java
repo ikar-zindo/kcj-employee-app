@@ -9,7 +9,6 @@ public class PassGenerator {
 
       BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-
       // all customer has pass "1qaz"
       // all employees has pass "qwerty123"
       System.out.println(encoder.encode("1qaz"));
