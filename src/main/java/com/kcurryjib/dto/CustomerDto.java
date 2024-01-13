@@ -195,6 +195,28 @@ public class CustomerDto {
       this.reviewsDto = reviewsDto;
    }
 
+   // ToString
+   @Override
+   public String toString() {
+      return "CustomerDto{" +
+              "id=" + id +
+              ", firstName='" + firstName + '\'' +
+              ", lastName='" + lastName + '\'' +
+              ", email='" + email + '\'' +
+              ", username='" + username + '\'' +
+              ", password='" + password + '\'' +
+              ", phoneNumber='" + phoneNumber + '\'' +
+              ", address='" + address + '\'' +
+              ", postalCode='" + postalCode + '\'' +
+              ", createdAt=" + createdAt +
+              ", role=" + role +
+              ", isBlocked=" + isBlocked +
+              ", cartDto=" + cartDto +
+              ", ordersDto=" + ordersDto +
+              ", reviewsDto=" + reviewsDto +
+              '}';
+   }
+
    // Builder class
    public static class Builder {
 

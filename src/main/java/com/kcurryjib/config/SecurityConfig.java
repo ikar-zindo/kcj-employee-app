@@ -54,6 +54,7 @@ public class SecurityConfig {
                       requests -> requests
                               .requestMatchers(
                                       "/**",
+                                      "/admin/**",
                                       "/auth/login",
                                       "/auth/token",
                                       "/swagger-ui.html",
@@ -70,20 +71,20 @@ public class SecurityConfig {
               .formLogin(
                       login -> login
                               .loginPage("/login")
-                              .defaultSuccessUrl("/") // URL перенаправления по умолчанию
-                              .successHandler((request, response, authentication) -> {
+                              .defaultSuccessUrl("/login") // URL перенаправления по умолчанию
+//                              .successHandler((request, response, authentication) -> {
                                  // Получаем роли пользователя
-                                 Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+//                                 Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 
                                  // Перенаправляем в зависимости от ролей
-                                 if (authorities.stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"))) {
-                                    response.sendRedirect("/admin/products");
-                                 } else if (authorities.stream().anyMatch(r -> r.getAuthority().equals("ROLE_MANAGER"))) {
-                                    response.sendRedirect("/admin/employees");
-                                 } else {
-                                    response.sendRedirect("/");
-                                 }
-                              })
+//                                 if (authorities.stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"))) {
+//                                    response.sendRedirect("/admin/products");
+//                                 } else if (authorities.stream().anyMatch(r -> r.getAuthority().equals("ROLE_MANAGER"))) {
+//                                    response.sendRedirect("/admin/employees");
+//                                 } else {
+//                                    response.sendRedirect("/");
+//                                 }
+//                              })
                               .permitAll()
               ).build();
    }

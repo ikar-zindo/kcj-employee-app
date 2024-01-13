@@ -88,6 +88,19 @@ public class ReviewDto {
       this.createdAt = createdAt;
    }
 
+   // ToString
+   @Override
+   public String toString() {
+      return "ReviewDto{" +
+              "id=" + id +
+              ", restaurantDto=" + restaurantDto +
+              ", customerDto=" + customerDto +
+              ", rating=" + rating +
+              ", comment='" + comment + '\'' +
+              ", createdAt=" + createdAt +
+              '}';
+   }
+
    // Builder class
    public static class Builder {
       private ReviewDto reviewDto = new ReviewDto();

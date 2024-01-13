@@ -1,197 +1,204 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org"
-		xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>
-	<script type="text/javascript" th:src="@{/assets/js/color-modes.js}"></script>
-	<title>Login</title>
-
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="">
-	<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-	<meta name="generator" content="Hugo 0.118.2">
-
-	<!--	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>-->
-
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-			integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-			  integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-			  crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-			  integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-			  crossorigin="anonymous"></script>
-
-	<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sticky-footer-navbar/">
-
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-
-	<link th:href="@{/assets/dist/css/bootstrap.min.css}" rel="stylesheet">
-
-	<!-- Custom styles for this template -->
-	<link rel="stylesheet" th:href="@{/assets/css/style.css}"/>
-
-	<!-- Custom styles for this template -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
-
-	<!-- Custom styles for this template -->
-	<link rel="stylesheet" th:href="@{/assets/dist/css/dashboard.css}"/>
-	<link rel="stylesheet" th:href="@{/assets/css/sign-in.css}"/>
-</head>
-
-<body class="d-flex align-items-center py-4 bg-body-tertiary">
-
-<!--Themes-2-->
-<div th:insert="~{/blocks/themes :: themes-2}"></div>
-
-<!--Main-->
-<main class="form-signin w-100 m-auto">
-
-	<div class="login_title" th:inline="text">Hello,
-		<span th:remove="tag" sec:authentication="name"></span>!
-	</div>
-	<div class="container" th:inline="text">user, manager, admin
-		password = qwerty123
-	</div>
-
-
-	<form th:action="@{login}" method="post">
-		<h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-
-		<div class="form-floating">
-			<input type="name"
-					 class="form-control"
-					 id="username"
-					 name="username"
-					 placeholder="username">
-			<label for="username">Username</label>
-		</div>
-
-		<div class="form-floating">
-			<input type="password"
-					 class="form-control"
-					 id="floatingPassword"
-					 name="password"
-					 placeholder="Password">
-			<label for="floatingPassword">Password</label>
-		</div>
-
-		<div class="form-check text-start my-3">
-			<input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
-			<label class="form-check-label" for="flexCheckDefault">
-				Remember me
-			</label>
-		</div>
-
-		<input class="btn btn-primary w-100 py-2" type="submit" value="Login"/>
-
-		<input th:formaction="@{/logout}"
-				 formmethod="post"
-				 class="btn btn-primary w-100 py-2" type="submit" value="Sign out"/>
-
-	</form>
-
-	<div class="login_error" th:if="${param.error}">
-		Invalid username or password
-	</div>
-
-	<div class="login_error" th:if="${param.logout}">
-		You have been logged out
-	</div>
-
-</main>
-
-
-<script type="text/javascript" th:src="@{/assets/dist/js/bootstrap.bundle.min.js}"
-		  integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-		  crossorigin="anonymous"></script>
-<script type="text/javascript" th:src="@{/assets/dist/js/bootstrap.bundle.min.js}"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js"
-		  integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp"
-		  crossorigin="anonymous"></script>
-<script type="text/javascript" th:src="@{/assets/js/dashboard.js}"></script>
-</body>
-
-</html>
-
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"-->
+<!--<!DOCTYPE HTML>-->
+<!--<html xmlns:th="http://www.thymeleaf.org"-->
 <!--		xmlns:sec="http://www.w3.org/1999/xhtml">-->
-<!--&lt;!&ndash;            xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">&ndash;&gt;-->
 <!--<head>-->
+<!--	<script type="text/javascript" th:src="@{/assets/js/color-modes.js}"></script>-->
 <!--	<title>Login</title>-->
-<!--	<link rel="stylesheet" href="/style.css"/>-->
+
+<!--	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>-->
+<!--	<meta charset="utf-8">-->
+<!--	<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<!--	<meta name="description" content="">-->
+<!--	<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">-->
+<!--	<meta name="generator" content="Hugo 0.118.2">-->
+
+<!--	&lt;!&ndash;	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>&ndash;&gt;-->
+
+<!--	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"-->
+<!--			integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">-->
+<!--	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"-->
+<!--			  integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"-->
+<!--			  crossorigin="anonymous"></script>-->
+<!--	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"-->
+<!--			  integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"-->
+<!--			  crossorigin="anonymous"></script>-->
+
+<!--	<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sticky-footer-navbar/">-->
+
+<!--	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">-->
+
+<!--	<link th:href="@{/assets/dist/css/bootstrap.min.css}" rel="stylesheet">-->
+
+<!--	&lt;!&ndash; Custom styles for this template &ndash;&gt;-->
+<!--	<link rel="stylesheet" th:href="@{/assets/css/style.css}"/>-->
+
+<!--	&lt;!&ndash; Custom styles for this template &ndash;&gt;-->
+<!--	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">-->
+
+<!--	&lt;!&ndash; Custom styles for this template &ndash;&gt;-->
+<!--	<link rel="stylesheet" th:href="@{/assets/dist/css/dashboard.css}"/>-->
+<!--	<link rel="stylesheet" th:href="@{/assets/css/sign-in.css}"/>-->
 <!--</head>-->
-<!--<body>-->
-<!--<header class="header">-->
 
-<!--	<div class="container header-container">-->
-<!--		<a href="" class="header-logo link">Cafe<span class="logo-accent">Pizza</span></a>-->
-<!--		<nav class="header-nav">-->
-<!--			<ul class="header-list list">-->
-<!--				<li class="header-item"><a href="/" class="header-link link current">Home</a></li>-->
-<!--				<li class="header-item"><a th:href="@{/cafes}" class="header-link link">Cafe</a></li>-->
-<!--				<li class="header-item"><a th:href="@{/pizzas}" class="header-link link">Pizza</a></li>-->
-<!--			</ul>-->
-<!--		</nav>-->
+<!--<body class="d-flex align-items-center py-4 bg-body-tertiary">-->
+
+<!--&lt;!&ndash;Themes-2&ndash;&gt;-->
+<!--<div th:insert="~{/blocks/themes :: themes-2}"></div>-->
+
+<!--&lt;!&ndash;Main&ndash;&gt;-->
+<!--<main class="form-signin w-100 m-auto">-->
+
+<!--	<div class="login_title" th:inline="text">Hello,-->
+<!--		<span th:remove="tag" sec:authentication="name"></span>!-->
 <!--	</div>-->
 
-<!--	<div class="login">-->
-<!--		<div class="header-item"><a th:href="@{/login}" class="login">🔑</a></div>-->
+	<div class="container" th:inline="text">
+		<p class="text-info">user, manager, admin</p>
+	</div>
+	<div class="container">
+		<p class="text-info">password = qwerty123</p>
+	</div>
+
+
+<!--	<form th:action="@{login}" method="post">-->
+<!--		<h1 class="h3 mb-3 fw-normal">Please sign in</h1>-->
+
+<!--		<div class="form-floating">-->
+<!--			<input type="name"-->
+<!--					 class="form-control"-->
+<!--					 id="username"-->
+<!--					 name="username"-->
+<!--					 placeholder="username">-->
+<!--			<label for="username">Username</label>-->
+<!--		</div>-->
+
+<!--		<div class="form-floating">-->
+<!--			<input type="password"-->
+<!--					 class="form-control"-->
+<!--					 id="floatingPassword"-->
+<!--					 name="password"-->
+<!--					 placeholder="Password">-->
+<!--			<label for="floatingPassword">Password</label>-->
+<!--		</div>-->
+
+<!--		<div class="form-check text-start my-3">-->
+<!--			<input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">-->
+<!--			<label class="form-check-label" for="flexCheckDefault">-->
+<!--				Remember me-->
+<!--			</label>-->
+<!--		</div>-->
+
+<!--		<input class="btn btn-primary w-100 py-2" type="submit" value="Login"/>-->
+
+<!--		<input th:formaction="@{/logout}"-->
+<!--				 formmethod="post"-->
+<!--				 class="btn btn-primary w-100 py-2 mt-2" type="submit" value="Sign out"/>-->
+
+<!--	</form>-->
+
+<!--	<div class="container mt-2">-->
+<!--		<div class="text-danger" th:if="${param.error}">-->
+<!--			<p class="align-content-center">Invalid username or password</p>-->
+<!--		</div>-->
+
+<!--		<div class="text-danger" th:if="${param.logout}">-->
+<!--			<p class="align-content-center">You have been logged out</p>-->
+<!--		</div>-->
 <!--	</div>-->
-<!--</header>-->
 
-<!--<main>-->
-<!--	<section class="hero">-->
-<!--		<div class="login_title" th:inline="text">Hello,-->
-<!--			<span th:remove="tag" sec:authentication="name"></span>!-->
-<!--		</div>-->
-<!--		<div style="font-size: 24px; text-align: center; color: coral; margin-top: 20px" th:inline="text">user and admin-->
-<!--			password = 1-->
-<!--		</div>-->
-
-<!--		<form style="text-align: center" th:action="@{login}" method="post">-->
-<!--			<h3 style="font-size: 36px; color: yellow; margin-top: 30px; margin-bottom: 15px">Login</h3>-->
-<!--			<div class="login_body">-->
-<!--				<div class="login_input">-->
-<!--					<label> User Name : <input type="text" name="username" class="input_pizza"/> </label>-->
-<!--					<label> Password: <input type="password" name="password" class="input_pizza"/> </label>-->
-<!--				</div>-->
-<!--			</div>-->
-<!--			<div style="display: flex; align-items: center; gap: 40px; justify-content: center">-->
-<!--				<div><input class="login_btn" type="submit" value="Login"/></div>-->
-<!--				&lt;!&ndash;<div>-->
-<!--					 <input formaction="Login" formmethod="post" class="login_btn" type="submit" value="Login"/>&ndash;&gt;-->
-<!--				&lt;!&ndash;</div>&ndash;&gt;-->
-<!--				<div>-->
-<!--					<input th:formaction="@{/logout}" formmethod="post" class="login_btn" type="submit" value="Logout"/>-->
-<!--					&lt;!&ndash;                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>&ndash;&gt;-->
-<!--				</div>-->
-<!--			</div>-->
-<!--		</form>-->
-
-<!--&lt;!&ndash;		            <form style="display: flex; gap: 40px; justify-content: center" th:action="@{/logout}" method="post">&ndash;&gt;-->
-<!--&lt;!&ndash;		                <input type="submit" value="Logout" class="login_btn"/>&ndash;&gt;-->
-<!--&lt;!&ndash;		                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>&ndash;&gt;-->
-<!--&lt;!&ndash;		            </form>&ndash;&gt;-->
-
-<!--		<div class="login_error" th:if="${param.error}">-->
-<!--			Invalid username or password-->
-<!--		</div>-->
-
-<!--		<div class="login_error" th:if="${param.logout}">-->
-<!--			You have been logged out-->
-<!--		</div>-->
-<!--	</section>-->
 <!--</main>-->
 
-<!--<footer class="footer">-->
-<!--	<div class="footer-container">-->
-<!--		<a href="" class="footer-logo link">Cafe<span class="footer-logo-accent">Pizza</span></a>-->
-<!--	</div>-->
-<!--</footer>-->
+
+<!--<script type="text/javascript" th:src="@{/assets/dist/js/bootstrap.bundle.min.js}"-->
+<!--		  integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"-->
+<!--		  crossorigin="anonymous"></script>-->
+<!--<script type="text/javascript" th:src="@{/assets/dist/js/bootstrap.bundle.min.js}"></script>-->
+
+
+<!--<script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js"-->
+<!--		  integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp"-->
+<!--		  crossorigin="anonymous"></script>-->
+<!--<script type="text/javascript" th:src="@{/assets/js/dashboard.js}"></script>-->
 <!--</body>-->
+
 <!--</html>-->
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+		xmlns:sec="http://www.w3.org/1999/xhtml">
+<!--            xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">-->
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+<header class="header">
+
+	<div class="container header-container">
+		<a href="" class="header-logo link">Cafe<span class="logo-accent">Pizza</span></a>
+		<nav class="header-nav">
+			<ul class="header-list list">
+				<li class="header-item"><a href="/" class="header-link link current">Home</a></li>
+				<li class="header-item"><a th:href="@{/cafes}" class="header-link link">Cafe</a></li>
+				<li class="header-item"><a th:href="@{/pizzas}" class="header-link link">Pizza</a></li>
+			</ul>
+		</nav>
+	</div>
+
+	<div class="login">
+		<div class="header-item"><a th:href="@{/login}" class="login">🔑</a></div>
+	</div>
+</header>
+
+<main>
+	<section class="hero">
+		<div class="login_title" th:inline="text">Hello,
+			<span th:remove="tag" sec:authentication="name"></span>!
+		</div>
+		<div style="font-size: 24px; text-align: center; color: coral; margin-top: 20px" th:inline="text">user and admin
+			password = 1
+		</div>
+
+		<form style="text-align: center" th:action="@{login}" method="post">
+			<h3 style="font-size: 36px; color: yellow; margin-top: 30px; margin-bottom: 15px">Login</h3>
+			<div class="login_body">
+				<div class="login_input">
+					<label> User Name : <input type="text" name="username" class="input_pizza"/> </label>
+					<label> Password: <input type="password" name="password" class="input_pizza"/> </label>
+				</div>
+			</div>
+			<div style="display: flex; align-items: center; gap: 40px; justify-content: center">
+				<div><input class="login_btn" type="submit" value="Login"/></div>
+				<!--<div>
+					 <input formaction="Login" formmethod="post" class="login_btn" type="submit" value="Login"/>-->
+				<!--</div>-->
+				<div>
+					<input th:formaction="@{/logout}" formmethod="post" class="login_btn" type="submit" value="Logout"/>
+					<!--                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
+				</div>
+			</div>
+		</form>
+
+		<!--		            <form style="display: flex; gap: 40px; justify-content: center" th:action="@{/logout}" method="post">-->
+		<!--		                <input type="submit" value="Logout" class="login_btn"/>-->
+		<!--		                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
+		<!--		            </form>-->
+
+		<div class="login_error" th:if="${param.error}">
+			Invalid username or password
+		</div>
+
+		<div class="login_error" th:if="${param.logout}">
+			You have been logged out
+		</div>
+	</section>
+</main>
+
+<footer class="footer">
+	<div class="footer-container">
+		<a href="" class="footer-logo link">Cafe<span class="footer-logo-accent">Pizza</span></a>
+	</div>
+</footer>
+</body>
+</html>

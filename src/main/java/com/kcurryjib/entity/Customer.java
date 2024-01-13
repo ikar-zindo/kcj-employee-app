@@ -1,13 +1,9 @@
 package com.kcurryjib.entity;
 
 import com.kcurryjib.entity.enums.Role;
-import com.kcurryjib.security.User;
 import jakarta.persistence.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.List;
 
 @Entity
