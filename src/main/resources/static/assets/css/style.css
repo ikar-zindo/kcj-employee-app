@@ -80,6 +80,10 @@
     height: 100px;
 }
 
+.capitalize {
+    text-transform: capitalize;
+}
+
 .admin-bg-img {
     background-image: url('images/admin.jpg');
     background-size: cover;
