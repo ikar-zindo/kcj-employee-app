@@ -1,10 +1,7 @@
 package com.kcurryjib.service.admin;
 
-import com.kcurryjib.dto.ProductDto;
 import com.kcurryjib.dto.RestaurantDto;
-import com.kcurryjib.entity.Product;
 import com.kcurryjib.entity.Restaurant;
-import com.kcurryjib.exception.list.ProductException;
 import com.kcurryjib.exception.list.RestaurantException;
 import com.kcurryjib.mapper.admin.RestaurantMapper;
 import com.kcurryjib.repo.RestaurantRepository;
@@ -25,7 +22,6 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-
 public class RestaurantServiceTest {
 
    @Mock
