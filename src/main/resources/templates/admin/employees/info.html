@@ -62,55 +62,25 @@
 			<div class="container">
 
 				<!--Item-->
-				<div th:each="restaurant : ${restaurant}" class="alert alert-info mt-2">
+				<div th:each="employee : ${employee}" class="alert alert-info mt-2">
 					<!--							<img src="http://dummyimage.com/248.400x80.125" />-->
 					<div class="card-body">
-						<h1 class="text-warning" th:text="${restaurant.name}"/>
+						<h1 class="text-warning" th:text="|${employee.firstName}| + ' ' + |${employee.lastName}|"/>
 
-						<p><span class="text-danger">address: </span><span th:text="${restaurant.address}"/></p>
-						<p><span class="text-danger">phoneNumber: </span><span th:text="${restaurant.phoneNumber}"/></p>
-						<p><span class="text-danger">openingHours: </span><span th:text="${restaurant.openingHours}"/></p>
-						<p><span class="text-danger">cuisineType: </span><span th:text="${restaurant.cuisineType}"/></p>
-						<p><span class="text-danger">description: </span><span th:text="${restaurant.description}"/></p>
-						<p><span class="text-danger">address: </span><span th:text="${restaurant.address}"/></p>
-						<p><span class="text-danger">socialMediaLinks: </span><span th:text="${restaurant.socialMediaLinks}"/></p>
-						<p><span class="text-danger">isOpen: </span><span th:text="${restaurant.isOpen}"/></p>
+						<p><span class="text-danger">Email: </span><span th:text="${employee.email}"/></p>
+						<p><span class="text-danger">Username: </span><span th:text="${employee.username}"/></p>
+						<p><span class="text-danger">Phone number: </span><span th:text="${employee.phoneNumber}"/></p>
+						<p><span class="text-danger">Active: </span><span th:text="${employee.active}"/></p>
 
 						<div class="d-flex justify-content-between align-items-center">
 							<div class="btn-group">
-								<a th:href="'/admin/restaurants/' + ${restaurant.id} + '/edit'"
+								<a th:href="'/admin/employees/' + ${employee.id} + '/edit'"
 									class="btn btn-sm btn-outline-secondary">Edit</a>
 							</div>
-							<p th:text="'rating: ' + |${avgRating}|" class="text-body-secondary"/>
 						</div>
 					</div>
 				</div>
 			</div>
-
-			<p th:text="'Comments: ' + |${countComments}|" class="text-body-secondary"/>
-
-
-			<!--Reviews-->
-			<div th:each="review : ${reviews}" class="d-flex text-body-secondary pt-3">
-				<svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"
-					  xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32"
-					  preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-					<rect width="100%" height="100%" fill="#007bff"></rect>
-					<text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text>
-				</svg>
-				<div class="pb-3 mb-0 small lh-sm border-bottom w-100">
-					<div class="d-flex justify-content-between">
-						<div>
-							<strong th:text="|${review.customerDto.firstName}| + ' ' + |${review.customerDto.lastName}|"
-									  class="d-block text-gray-dark"/>
-							<span th:text="${review.rating}"/>
-						</div>
-						<p class="d-block text-gray-dark" th:text="${review.createdAt}"></p>
-					</div>
-					<span class="d-block" th:text="${review.comment}"/>
-				</div>
-			</div>
-
 
 			<foot th:insert="~{/blocks/footer :: footer}"></foot>
 
