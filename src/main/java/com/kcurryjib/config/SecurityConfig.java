@@ -36,14 +36,12 @@ public class SecurityConfig {
       return new BCryptPasswordEncoder();
    }
 
-// todo: !!! нужно правильно реализовать  securityFilterChain !!!
-
    @Bean
-   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
       return http
               .csrf(AbstractHttpConfigurer::disable)
-              .sessionManagement(manager -> manager
-                      .sessionCreationPolicy(STATELESS))
+//              .sessionManagement(session -> session
+//                      .sessionCreationPolicy(STATELESS))
               .logout(
                       logout -> logout
                               .logoutUrl("/logout")
@@ -53,8 +51,10 @@ public class SecurityConfig {
               .authorizeHttpRequests(
                       requests -> requests
                               .requestMatchers(
-                                      "/**",
-                                      "/admin/**",
+//                                      "/**",
+//                                      "/admin/**",
+                                      "/",
+                                      "/menu/**",
                                       "/auth/login",
                                       "/auth/token",
                                       "/swagger-ui.html",
@@ -71,12 +71,12 @@ public class SecurityConfig {
               .formLogin(
                       login -> login
                               .loginPage("/login")
-                              .defaultSuccessUrl("/login") // URL перенаправления по умолчанию
+                              .defaultSuccessUrl("/") // URL перенаправления по умолчанию
 //                              .successHandler((request, response, authentication) -> {
-                                 // Получаем роли пользователя
+                              // Получаем роли пользователя
 //                                 Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 
-                                 // Перенаправляем в зависимости от ролей
+                              // Перенаправляем в зависимости от ролей
 //                                 if (authorities.stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"))) {
 //                                    response.sendRedirect("/admin/products");
 //                                 } else if (authorities.stream().anyMatch(r -> r.getAuthority().equals("ROLE_MANAGER"))) {
@@ -86,6 +86,7 @@ public class SecurityConfig {
 //                                 }
 //                              })
                               .permitAll()
-              ).build();
+              )
+              .build();
    }
 }
