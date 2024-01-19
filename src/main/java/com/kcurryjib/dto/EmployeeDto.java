@@ -48,7 +48,7 @@ public class EmployeeDto {
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
    @NotEmpty(message = "{validation.length.empty}")
-   @Pattern(regexp = "\\\\+49\\\\d{10}", message = "{validation.length.max.10}")
+//   @Pattern(regexp = "\\\\+49\\\\d{10}", message = "{validation.length.max.10}")
    private String phoneNumber;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
