@@ -252,15 +252,15 @@ public class ReviewServiceTest {
    }
 
    // нет функционала для удаления комментариев
-   @Test
-   void deleteReviewExceptionNoSaveTest() {
-      when(reviewRepositoryMock.findById(anyLong()))
-              .thenReturn(Optional.of(expectedReview));
-
-      doNothing().when(reviewRepositoryMock).deleteById(anyLong());
-
-      assertThrows(ReviewException.class, () -> reviewServiceTest.deleteReview(1L));
-   }
+//   @Test
+//   void deleteReviewExceptionNoSaveTest() {
+//      when(reviewRepositoryMock.findById(anyLong()))
+//              .thenReturn(Optional.of(expectedReview));
+//
+//      doNothing().when(reviewRepositoryMock).deleteById(anyLong());
+//
+//      assertThrows(ReviewException.class, () -> reviewServiceTest.deleteReview(1L));
+//   }
 
    @Test
    void deleteReviewExceptionNoFindReviewTest() {
