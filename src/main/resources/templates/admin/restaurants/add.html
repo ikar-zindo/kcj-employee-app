@@ -71,10 +71,10 @@
 
 						<input type="hidden" th:field="*{id}" id="id"/><br/>
 
-
 						<div class="col-7">
 							<h3 th:text="*{name}"/>
 						</div>
+
 
 						<div class="col-12">
 							<label for="name" class="form-label">Restaurant name</label>
@@ -87,8 +87,9 @@
 								  th:errors="*{name}"></div>
 						</div>
 
+
 						<div class="col-12">
-							<label for="address" class="form-label">address</label>
+							<label for="address" class="form-label">Address</label>
 							<input placeholder="Enter restaurant address" class="form-control"
 									 th:field="*{address}"
 									 id="address"/>
@@ -99,7 +100,7 @@
 
 
 						<div class="col-12">
-							<label for="phoneNumber" class="form-label">phoneNumber</label>
+							<label for="phoneNumber" class="form-label">Phone number</label>
 							<input placeholder="Enter restaurant phoneNumber" class="form-control"
 									 th:field="*{phoneNumber}"
 									 id="phoneNumber"/>
@@ -110,7 +111,7 @@
 
 
 						<div class="col-12">
-							<label for="openingHours" class="form-label">openingHours</label>
+							<label for="openingHours" class="form-label">Opening hours</label>
 							<input placeholder="Enter restaurant openingHours" class="form-control"
 									 th:field="*{openingHours}"
 									 id="openingHours"/>
@@ -121,7 +122,7 @@
 
 
 						<div class="col-12">
-							<label for="cuisineType" class="form-label">cuisineType</label>
+							<label for="cuisineType" class="form-label">Cuisine type</label>
 							<input placeholder="Enter restaurant cuisineType" class="form-control"
 									 th:field="*{cuisineType}"
 									 id="cuisineType"/>
@@ -143,7 +144,7 @@
 
 
 						<div class="col-12">
-							<label for="socialMediaLinks" class="form-label">socialMediaLinks</label>
+							<label for="socialMediaLinks" class="form-label">Social media links</label>
 							<input placeholder="Enter restaurant socialMediaLinks" class="form-control"
 									 th:field="*{socialMediaLinks}"
 									 id="socialMediaLinks"/>
@@ -153,9 +154,11 @@
 						</div>
 					</div>
 
+					<hr class="my-4">
+
 					<div class="form-check">
 						<input type="checkbox" class="form-check-input" id="open" name="open" checked/>
-						<label class="form-check-label" for="open">open</label>
+						<label class="form-check-label" for="open">Open</label>
 						<div class="text-danger"
 							  th:if="${#fields.hasErrors('open')}"
 							  th:errors="*{open}"></div>
