@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" class="h-100" data-bs-theme="auto">
 <head>
 	<script type="text/javascript" th:src="@{/assets/js/color-modes.js}"></script>
-	<title>Edin restaurant</title>
+	<title>Add product</title>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta charset="utf-8">
@@ -59,121 +59,117 @@
 		<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
 			<div class="col-md-7 col-lg-8">
-				<h4 class="mb-3">Edit restaurant</h4>
+				<h4 class="mb-3">Add employee</h4>
 
 
 				<form class="needs-validation"
 						th:method="POST"
-						th:action="@{/admin/restaurants/{id}/edit(id=${restaurant.id})}"
-						th:object="${restaurant}"
+						th:action="@{/admin/employees/add}"
+						th:object="${employee}"
 						novalidate>
 					<div class="row g-3">
 
 						<input type="hidden" th:field="*{id}" id="id"/><br/>
 
-
 						<div class="col-7">
-							<h3 th:text="*{name}"/>
+							<h3 th:text="|${employee.firstName}| + ' ' + |${employee.lastName}|"/>
 						</div>
 
 						<div class="col-12">
-							<label for="name" class="form-label">Restaurant name</label>
-							<input type="text" placeholder="Enter restaurant name" class="form-control"
-									 th:field="*{name}"
-									 id="name"
-									 th:value="*{name}"/>
+							<label for="firstName" class="form-label">First name</label>
+							<input type="text" class="form-control"
+									 placeholder="First name"
+									 th:field="*{firstName}"
+									 id="firstName"/>
 							<div class="text-danger"
-								  th:if="${#fields.hasErrors('name')}"
-								  th:errors="*{name}"></div>
+								  th:if="${#fields.hasErrors('firstName')}"
+								  th:errors="*{firstName}"></div>
 						</div>
 
 						<div class="col-12">
-							<label for="address" class="form-label">Address</label>
-							<input placeholder="Enter restaurant address" class="form-control"
-									 th:field="*{address}"
-									 id="address"
-									 th:value="*{address}"/>
+							<label for="lastName" class="form-label">Last name</label>
+							<input type="text" class="form-control"
+									 placeholder="Last name"
+									 th:field="*{lastName}"
+									 id="lastName"/>
 							<div class="text-danger"
-								  th:if="${#fields.hasErrors('address')}"
-								  th:errors="*{address}"></div>
+								  th:if="${#fields.hasErrors('lastName')}"
+								  th:errors="*{lastName}"></div>
 						</div>
 
+						<div class="col-12">
+							<label for="username" class="form-label">Username</label>
+							<input type="text" class="form-control"
+									 placeholder="username"
+									 th:field="*{username}"
+									 id="username"/>
+							<div class="text-danger"
+								  th:if="${#fields.hasErrors('username')}"
+								  th:errors="*{username}"></div>
+						</div>
 
 						<div class="col-12">
-							<label for="phoneNumber" class="form-label">Phone humber</label>
-							<input placeholder="Enter restaurant phoneNumber" class="form-control"
+							<label for="phoneNumber" class="form-label">Phone number</label>
+							<input type="text" class="form-control"
+									 placeholder="+00 *** *** ***"
 									 th:field="*{phoneNumber}"
-									 id="phoneNumber"
-									 th:value="*{phoneNumber}"/>
+									 id="phoneNumber"/>
 							<div class="text-danger"
 								  th:if="${#fields.hasErrors('phoneNumber')}"
 								  th:errors="*{phoneNumber}"></div>
 						</div>
 
-
 						<div class="col-12">
-							<label for="openingHours" class="form-label">Opening hours</label>
-							<input placeholder="Enter restaurant openingHours" class="form-control"
-									 th:field="*{openingHours}"
-									 id="openingHours"
-									 th:value="*{openingHours}"/>
+							<label for="email" class="form-label">Email</label>
+							<input type="text" class="form-control"
+									 placeholder="email@mail.com"
+									 th:field="*{email}"
+									 id="email"/>
 							<div class="text-danger"
-								  th:if="${#fields.hasErrors('openingHours')}"
-								  th:errors="*{openingHours}"></div>
+								  th:if="${#fields.hasErrors('email')}"
+								  th:errors="*{email}"></div>
 						</div>
 
-
 						<div class="col-12">
-							<label for="cuisineType" class="form-label">Cuisine type</label>
-							<input placeholder="Enter restaurant cuisineType" class="form-control"
-									 th:field="*{cuisineType}"
-									 id="cuisineType"
-									 th:value="*{cuisineType}"/>
+							<label for="password" class="form-label">Password</label>
+							<input type="password" class="form-control"
+									 th:field="*{password}"
+									 id="password"/>
 							<div class="text-danger"
-								  th:if="${#fields.hasErrors('cuisineType')}"
-								  th:errors="*{cuisineType}"></div>
+								  th:if="${#fields.hasErrors('password')}"
+								  th:errors="*{password}"></div>
 						</div>
 
+						<input type="hidden" id="restaurantId"
+								 th:field="*{restaurantDto.id}"/>
 
-						<div class="col-12">
-							<label for="description" class="form-label">Description</label>
-							<input placeholder="Enter restaurant description" class="form-control"
-									 th:field="*{description}"
-									 id="description"
-									 th:value="*{description}"/>
+						<div class="col-6">
+							<label for="restaurantDto" class="form-label">Restaurant</label>
+							<select class="form-select" id="restaurantDto" name="restaurantId">
+								<option th:each="restaurant : ${restaurants}"
+										  th:value="${restaurant.id}"
+										  th:text="${restaurant.name}">
+								</option>
+							</select>
 							<div class="text-danger"
-								  th:if="${#fields.hasErrors('description')}"
-								  th:errors="*{description}"></div>
-						</div>
-
-
-						<div class="col-12">
-							<label for="socialMediaLinks" class="form-label">Social media links</label>
-							<input placeholder="Enter restaurant socialMediaLinks" class="form-control"
-									 th:field="*{socialMediaLinks}"
-									 id="socialMediaLinks"
-									 th:value="*{socialMediaLinks}"/>
-							<div class="text-danger"
-								  th:if="${#fields.hasErrors('socialMediaLinks')}"
-								  th:errors="*{socialMediaLinks}"></div>
+								  th:if="${#fields.hasErrors('restaurantDto')}"
+								  th:errors="*{restaurantDto}"></div>
 						</div>
 					</div>
-
 
 					<hr class="my-4">
 
 					<div class="form-check">
-						<input type="checkbox" class="form-check-input" id="open" name="open"
-								 th:checked="*{open}"/>
-						<label class="form-check-label" for="open">open</label>
+						<input type="checkbox" class="form-check-input" id="active" name="active" checked/>
+						<label class="form-check-label" for="active">Active</label>
 						<div class="text-danger"
-							  th:if="${#fields.hasErrors('open')}"
-							  th:errors="*{open}"></div>
+							  th:if="${#fields.hasErrors('active')}"
+							  th:errors="*{active}"></div>
 					</div>
 
 					<hr class="my-4">
 
-					<button class="w-100 btn btn-success btn-lg">Confirm</button>
+					<button class="w-100 btn btn-primary btn-lg">Add new employee</button>
 				</form>
 
 				<foot th:insert="~{/blocks/footer :: footer}"></foot>

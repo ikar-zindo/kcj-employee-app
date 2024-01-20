@@ -11,7 +11,7 @@
 	<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 	<meta name="generator" content="Hugo 0.118.2">
 
-	<!--	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>-->
+<!--	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>-->
 
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 			integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -43,8 +43,27 @@
 <!--Themes-2-->
 <div th:insert="~{/blocks/themes :: themes-2}"></div>
 
+<!--Header-dashboard-->
+<div th:insert="~{/blocks/header :: header-customer-guest}"></div>
 
 <main class="container">
+
+	<div class="mt-4 bg-body-tertiary p-5 rounded">
+		<h1>Try role admin</h1>
+		<p class="lead">The administrator can update the product range.
+			Block foods and restaurants. Register new employees.</p>
+		<a class="btn btn-lg btn-primary"
+			th:href="@{/admin/products}"
+			role="button">Be a admin</a>
+	</div>
+
+	<div class="mt-4 bg-body-tertiary p-5 rounded manager-bg-img">
+		<h1>Try role employee</h1>
+		<p class="lead">Take over the responsibilities of an employee and track paid customer orders.</p>
+		<a class="btn btn-lg btn-primary"
+			th:href="@{/admin/dashboard}"
+			role="button">Be a employee</a>
+	</div>
 
 	<div class="mt-4 bg-body-tertiary p-5 rounded customer-bg-img">
 		<h1>Be a customer</h1>
@@ -55,27 +74,8 @@
 			role="button">View menu</a>
 	</div>
 
-	<div class="mt-4 bg-body-tertiary p-5 rounded manager-bg-img">
-		<h1>Be a employee</h1>
-		<p class="lead">Take over the responsibilities of an employee and track paid customer orders.</p>
-		<a class="btn btn-lg btn-primary"
-			th:href="@{/admin/dashboard}"
-			role="button">Try role</a>
-	</div>
-
-	<div class="mt-4 bg-body-tertiary p-5 rounded">
-		<div class="admin-bg-img">
-			<h1>Be a admin</h1>
-			<p class="lead">The administrator can update the product range.
-				Block foods and restaurants. Register new employees.</p>
-			<a class="btn btn-lg btn-primary"
-				th:href="@{/admin/products}"
-				role="button">Try role</a>
-		</div>
-
-	</div>
-
 	<div style="width: 100px; height: 100px" class="admin-bg-img"></div>
+
 </main>
 
 <script type="text/javascript" th:src="@{/assets/dist/js/bootstrap.bundle.min.js}"

@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "employee")
@@ -59,8 +60,7 @@ public class Employee implements UserDetails {
 
    @Override
    public Collection<? extends GrantedAuthority> getAuthorities() {
-      return AuthorityUtils.createAuthorityList(
-              String.valueOf(this.role));
+      return AuthorityUtils.createAuthorityList(String.valueOf(this.role));
    }
 
    @Override
@@ -184,43 +184,43 @@ public class Employee implements UserDetails {
 
 
    // Equals & HashCode
-//   @Override
-//   public boolean equals(Object o) {
-//      if (this == o) return true;
-//      if (o == null || getClass() != o.getClass()) return false;
-//      Employee employee = (Employee) o;
-//      return Objects.equals(id, employee.id) && Objects.equals(firstName, employee.firstName) &&
-//              Objects.equals(lastName, employee.lastName) && Objects.equals(email, employee.email) &&
-//              Objects.equals(username, employee.username) && role == employee.role &&
-//              Objects.equals(password, employee.password) && Objects.equals(phoneNumber, employee.phoneNumber) &&
-//              Objects.equals(createdAt, employee.createdAt) && Objects.equals(isActive, employee.isActive) &&
-//              Objects.equals(restaurant, employee.restaurant) && Objects.equals(orders, employee.orders);
-//   }
-//
-//   @Override
-//   public int hashCode() {
-//      return Objects.hash(id, firstName, lastName, email, username, role, password,
-//              phoneNumber, createdAt, isActive, restaurant, orders);
-//   }
+   @Override
+   public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      Employee employee = (Employee) o;
+      return Objects.equals(id, employee.id) && Objects.equals(firstName, employee.firstName) &&
+              Objects.equals(lastName, employee.lastName) && Objects.equals(email, employee.email) &&
+              Objects.equals(username, employee.username) && role == employee.role &&
+              Objects.equals(password, employee.password) && Objects.equals(phoneNumber, employee.phoneNumber) &&
+              Objects.equals(createdAt, employee.createdAt) && Objects.equals(isActive, employee.isActive) &&
+              Objects.equals(restaurant, employee.restaurant) && Objects.equals(orders, employee.orders);
+   }
+
+   @Override
+   public int hashCode() {
+      return Objects.hash(id, firstName, lastName, email, username, role, password,
+              phoneNumber, createdAt, isActive, restaurant, orders);
+   }
 
    // ToString
-//   @Override
-//   public String toString() {
-//      return "Employee{" +
-//              "id=" + id +
-//              ", firstName='" + firstName + '\'' +
-//              ", lastName='" + lastName + '\'' +
-//              ", email='" + email + '\'' +
-//              ", username='" + username + '\'' +
-//              ", role=" + role +
-//              ", password='" + password + '\'' +
-//              ", phoneNumber='" + phoneNumber + '\'' +
-//              ", createdAt=" + createdAt +
-//              ", isActive=" + isActive +
-//              ", restaurant=" + restaurant +
-//              ", orders=" + orders +
-//              '}';
-//   }
+   @Override
+   public String toString() {
+      return "Employee{" +
+              "id=" + id +
+              ", firstName='" + firstName + '\'' +
+              ", lastName='" + lastName + '\'' +
+              ", email='" + email + '\'' +
+              ", username='" + username + '\'' +
+              ", role=" + role +
+              ", password='" + password + '\'' +
+              ", phoneNumber='" + phoneNumber + '\'' +
+              ", createdAt=" + createdAt +
+              ", isActive=" + isActive +
+              ", restaurant=" + restaurant +
+              ", orders=" + orders +
+              '}';
+   }
 
    // Builder class
    public static class Builder {

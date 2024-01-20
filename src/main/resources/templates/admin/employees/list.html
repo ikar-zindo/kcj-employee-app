@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" class="h-100" data-bs-theme="auto">
+<html xmlns:th="http://www.thymeleaf.org" class="h-100" data-bs-theme="auto"
+		xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 	<script type="text/javascript" th:src="@{/assets/js/color-modes.js}"></script>
 	<title>Employees</title>
@@ -64,7 +65,7 @@
 
 			<h2>Employees</h2>
 
-			<a href="/admin/reviews/add" type="button" class="btn btn-success">
+			<a href="/admin/employees/add" type="button" class="btn btn-success" sec:authorize="hasRole('ROLE_ADMIN')">
 				<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-plus-square"
 					  viewBox="0 0 16 16">
 					<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"></path>
@@ -86,22 +87,24 @@
 						<th scope="col">restaurantDto</th>
 						<th scope="col">role</th>
 						<th scope="col">createdAt</th>
+						<th scope="col">Active</th>
 						<th scope="col"></th>
 						<th scope="col"></th>
 					</tr>
 					</thead>
 					<tbody>
 					<div th:each="employee : ${employees}">
-						<tr>
+						<tr> <!-- todo: не отображается дата создания сотрудника -->
 							<td th:text="${employee.id}"/>
 							<td th:text="|${employee.firstName}| + ' ' + |${employee.lastName}|"/>
 							<td th:text="${employee.phoneNumber}"/>
 							<td th:text="${employee.restaurantDto.name}"/>
 							<td th:text="${employee.role}"/>
 							<td th:text="${employee.createdAt}"/>
+							<td th:text="${employee.active}"/>
 
 							<td>
-								<a th:href="'/admin/reviews/' + ${employee.id}" title="INFO" class="text-info">
+								<a th:href="'/admin/employees/' + ${employee.id}" title="INFO" class="text-info">
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 										  class="bi bi-info-circle text-info" viewBox="0 0 16 16">
 										<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -111,7 +114,7 @@
 							</td>
 
 							<td>
-								<a th:href="'/admin/employee/' + ${employee.id} + '/edit'" title="EDIT" class="text-success">
+								<a th:href="'/admin/employees/' + ${employee.id} + '/edit'" title="EDIT" class="text-success">
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 										  class="bi bi-pencil-square" viewBox="0 0 16 16">
 										<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
