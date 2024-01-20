@@ -25,12 +25,12 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @EnableMethodSecurity
 public class SecurityConfig {
 
-   private final UserDetailsService userDetailsService;
-
-   @Autowired
-   public SecurityConfig(UserDetailsService userDetailsService) {
-      this.userDetailsService = userDetailsService;
-   }
+//   private final UserDetailsService userDetailsService;
+//
+//   @Autowired
+//   public SecurityConfig(UserDetailsService userDetailsService) {
+//      this.userDetailsService = userDetailsService;
+//   }
 
    @Bean
    public PasswordEncoder bCryptPasswordEncoder() {
