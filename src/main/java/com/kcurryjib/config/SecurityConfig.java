@@ -55,6 +55,8 @@ public class SecurityConfig {
 //                                      "/**",
 //                                      "/admin/**",
                                       "/",
+                                      "/rest/employees/**",
+                                      "/rest/orders/**",
                                       "/menu/**",
                                       "/auth/login",
                                       "/auth/token",

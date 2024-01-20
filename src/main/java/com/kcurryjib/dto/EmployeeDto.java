@@ -30,7 +30,7 @@ public class EmployeeDto {
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
    @NotEmpty(message = "{validation.length.empty}")
-   @Email(message = "Invalid email")
+   @Email(message = "{validation.value.email}")
    private String email;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -48,7 +48,7 @@ public class EmployeeDto {
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
    @NotEmpty(message = "{validation.length.empty}")
-//   @Pattern(regexp = "\\\\+49\\\\d{10}", message = "{validation.length.max.10}")
+   @Pattern(regexp = "^\\+\\d{2}\\s\\d{3}\\s\\d{3}\\s\\d{3}$", message = "{validation.value.phoneNumber}")
    private String phoneNumber;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)

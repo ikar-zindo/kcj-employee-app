@@ -15,15 +15,12 @@ public class Customer {
    @Column(name = "customer_id")
    private Long id;
 
-//   @Pattern(regexp = "[A-Z][a-z]{1,49}", message = "a string should start with a capital letter (rest lowercase) and contain at least two letters")
    @Column(name = "first_name")
    private String firstName;
 
-//   @Pattern(regexp = "[A-Z][a-z]{1,49}", message = "a string should start with a capital letter (rest lowercase) and contain at least two letters")
    @Column(name = "last_name")
    private String lastName;
 
-//   @Email(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$", message = "Email is not valid")
    @Column(name = "email")
    private String email;
 
@@ -33,16 +30,12 @@ public class Customer {
    @Column(name = "password")
    private String password;
 
-//   @NotBlank(message = "Phone cant be empty")
-//   @Pattern(regexp = "\\+\\d{8,15}", message = "Phone is not valid")
    @Column(name = "phone_number")
    private String phoneNumber;
 
-//   @NotBlank(message = "Address cant be empty")
    @Column(name = "address")
    private String address;
 
-//   @Pattern(regexp = "^\\d{5}$", message = "Must save 5 digits")
    @Column(name = "postal_code")
    private String postalCode;
 
@@ -65,17 +58,10 @@ public class Customer {
    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
    private List<Review> reviews;
 
-
    public Customer() {
    }
 
    // Getters & Setters
-//   @Override
-//   public Collection<? extends GrantedAuthority> getAuthorities() {
-//      return AuthorityUtils.createAuthorityList(String.valueOf(this.role));
-//   }
-
-
    public Long getId() {
       return id;
    }

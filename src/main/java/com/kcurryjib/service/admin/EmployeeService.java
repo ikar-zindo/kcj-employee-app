@@ -12,6 +12,7 @@ import com.kcurryjib.entity.enums.Role;
 import com.kcurryjib.exception.list.EmployeeException;
 import com.kcurryjib.exception.list.ProductException;
 import com.kcurryjib.mapper.admin.AdminEmployeeMapper;
+import com.kcurryjib.mapper.employee.EmployeeMapper;
 import com.kcurryjib.repo.EmployeeRepository;
 import com.kcurryjib.repo.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,8 @@ public class EmployeeService implements UserDetailsService {
 
    private final AdminEmployeeMapper adminEmployeeMapper;
 
+   private final EmployeeMapper employeeMapper;
+
    private final RestaurantRepository restaurantRepository;
 
    private final PasswordEncoder encoder;
@@ -42,11 +45,13 @@ public class EmployeeService implements UserDetailsService {
    @Autowired
    public EmployeeService(EmployeeRepository employeeRepository,
                           AdminEmployeeMapper adminEmployeeMapper,
+                          EmployeeMapper employeeMapper,
                           PasswordEncoder encoder,
                           RestaurantRepository restaurantRepository) {
 
       this.employeeRepository = employeeRepository;
       this.adminEmployeeMapper = adminEmployeeMapper;
+      this.employeeMapper = employeeMapper;
       this.restaurantRepository = restaurantRepository;
       this.encoder = encoder;
    }
@@ -97,6 +102,20 @@ public class EmployeeService implements UserDetailsService {
       }
 
       return employeeDto;
+   }
+
+   // READ
+   public EmployeeDto getEmployeeWithOrders(Long employeeId) {
+      Optional<Employee> employeeOptional = employeeRepository.findById(employeeId);
+
+      if (employeeOptional.isPresent()) {
+         Employee employee = employeeOptional.get();
+
+         return employeeMapper.showEmployeeWithOrders(employee);
+
+      } else {
+         throw new EmployeeException("Employee not found with id: " + employeeId);
+      }
    }
 
    // CREATE

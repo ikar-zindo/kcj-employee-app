@@ -83,6 +83,8 @@
 					<tr>
 						<th scope="col">#</th>
 						<th scope="col">name</th>
+						<th scope="col">email</th>
+						<th scope="col">nickname</th>
 						<th scope="col">phoneNumber</th>
 						<th scope="col">restaurantDto</th>
 						<th scope="col">role</th>
@@ -94,9 +96,11 @@
 					</thead>
 					<tbody>
 					<div th:each="employee : ${employees}">
-						<tr> <!-- todo: не отображается дата создания сотрудника -->
+						<tr>
 							<td th:text="${employee.id}"/>
 							<td th:text="|${employee.firstName}| + ' ' + |${employee.lastName}|"/>
+							<td th:text="${employee.email}"/>
+							<td th:text="${employee.username}"/>
 							<td th:text="${employee.phoneNumber}"/>
 							<td th:text="${employee.restaurantDto.name}"/>
 							<td th:text="${employee.role}"/>

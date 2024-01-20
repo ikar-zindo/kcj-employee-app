@@ -3,6 +3,7 @@ package com.kcurryjib.controller.admin;
 import com.kcurryjib.dto.EmployeeDto;
 import com.kcurryjib.dto.ProductDto;
 import com.kcurryjib.dto.RestaurantDto;
+import com.kcurryjib.entity.Employee;
 import com.kcurryjib.exception.list.EmployeeException;
 import com.kcurryjib.exception.list.ProductException;
 import com.kcurryjib.service.admin.EmployeeService;
@@ -10,6 +11,9 @@ import com.kcurryjib.service.admin.RestaurantService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -47,13 +51,30 @@ public class AdminEmployeeController {
 
    // READ
    @GetMapping("/{id}")
-   public String getProductById(@PathVariable Long id,
+   public String getEmployeeById(@PathVariable Long id,
                                 Model model) throws EmployeeException {
+
       EmployeeDto employeeDto = service.getEmployeeById(id);
 
       model.addAttribute("employee", employeeDto);
 
       return "/admin/employees/info";
+   }
+
+   // READ
+   @GetMapping("/orders")
+   @PreAuthorize("hasRole('ROLE_USER')")
+   public String getEmployeeOrders(Model model) {
+
+      Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+      String currentPrincipalName = authentication.getName();
+
+      Employee employee = (Employee) service.loadUserByUsername(currentPrincipalName);
+      EmployeeDto employeeDto = service.getEmployeeWithOrders(employee.getId());
+
+      model.addAttribute("employee", employeeDto);
+
+      return "/employee/orders/all";
    }
 
    // CREATE
@@ -70,7 +91,7 @@ public class AdminEmployeeController {
    // CREATE
    @PostMapping(value = "/add")
    @PreAuthorize("hasRole('ROLE_ADMIN')")
-   public String createProduct(@ModelAttribute("employee") @Valid EmployeeDto employeeDto,
+   public String createEmployee(@ModelAttribute("employee") @Valid EmployeeDto employeeDto,
                                BindingResult result,
                                @RequestParam(name = "restaurantId") Long restaurantId,
                                Model model) throws EmployeeException {
@@ -93,7 +114,7 @@ public class AdminEmployeeController {
    @GetMapping(value = "/{id}/edit")
    public String editEmployee(@PathVariable(value = "id") Long id,
 //                             @ModelAttribute("product") ProductDto productDto,
-                             Model model) throws ProductException {
+                             Model model) throws EmployeeException {
 
       EmployeeDto employeeDto = service.getEmployeeById(id);
 
@@ -107,6 +128,7 @@ public class AdminEmployeeController {
       return "/admin/employees/edit";
    }
 
+   // todo: реализовать обновление информации о сотруднике без учёта пароля
    // UPDATE
    @PostMapping(value = "/{id}/edit")
    public String updateEmployee(@ModelAttribute("employee") @Valid EmployeeDto employeeDto,
@@ -121,11 +143,13 @@ public class AdminEmployeeController {
       if (result.hasErrors()) {
          model.addAttribute("employee", employeeDto);
          model.addAttribute("restaurants", restaurantService.getAll());
-         return "/admin/products/edit";
+         return "/admin/employees/edit";
       }
 
+//      employeeDto.setPassword(employeeDto.getPassword());
+
       service.updateEmployee(employeeDto);
-      return "redirect:/admin/products";
+      return "redirect:/admin/employees";
    }
 
    // DELETE
