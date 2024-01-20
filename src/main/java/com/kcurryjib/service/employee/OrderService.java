@@ -58,7 +58,7 @@ public class OrderService {
    public List<EmployeeDto> getAllActiveEmployee() throws EmployeeException {
       List<Employee> employees = new ArrayList<>(employeeRepository.findAll());
 
-      return MapperUtil.convertlist(employees, employeeMapper::convertToEmployeeDto);
+      return MapperUtil.convertlist(employees, employeeMapper::showEmployeeWithOrders);
    }
 
    // READ

@@ -87,8 +87,8 @@
 							<label for="name" class="form-label">Product name</label>
 							<input type="text" placeholder="Enter product name" class="form-control"
 									 th:field="*{name}"
-									 id="name"
-									 th:value="*{name}"/>
+									 th:value="*{name}"
+									 id="name"/>
 							<div class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
 						</div>
 
@@ -124,8 +124,8 @@
 									 class="form-label">Description<span class="text-body-secondary">(Optional)</span></label>
 							<input placeholder="Enter product description" class="form-control"
 									 th:field="*{description}"
-									 id="description"
-									 th:value="${product.description}"/>
+									 th:value="${product.description}"
+									 id="description"/>
 							<div class="text-danger"
 								  th:if="${#fields.hasErrors('description')}"
 								  th:errors="*{description}"></div>

@@ -66,44 +66,79 @@
 
 				<form class="needs-validation"
 						th:method="POST"
-						th:action="@{/admin/products/{id}/edit(id=${product.id})}"
-						th:object="${product}"
+						th:action="@{/admin/employees/{id}/edit(id=${employee.id})}"
+						th:object="${employee}"
 						novalidate>
 					<div class="row g-3">
 
 						<input type="hidden" th:field="*{id}" id="id"/><br/>
-						<input type="hidden" th:field="*{imageUrl}" id="imageUrl"/><br/>
-
-						<div class="col-4">
-							<img width="100px" height="100px" th:src="'/images/products/' + ${product.imageUrl}"/>
-							<div class="text-danger" th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}"></div>
-						</div>
 
 						<div class="col-7">
-							<h3 th:text="${product.name}"/>
-						</div>
-
-						<div class="col-12">
-							<label for="name" class="form-label">Product name</label>
-							<input type="text" placeholder="Enter product name" class="form-control"
-									 th:field="*{name}"
-									 id="name"
-									 th:value="*{name}"/>
-							<div class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+							<h3 th:text="|${employee.firstName}| + ' ' + |${employee.lastName}|"/>
 						</div>
 
 						<div class="col-6">
-							<label class="form-label" for="price">Price</label>
-							<input type="number" min="0.01" step="0.01" class="form-control"
-									 placeholder="Enter the price of the product"
-									 th:field="*{price}"
-									 id="price"/>
+							<label for="firstName" class="form-label">First name</label>
+							<input type="text" class="form-control"
+									 placeholder="First name"
+									 th:field="*{firstName}"
+									 th:value="*{firstName}"
+									 id="firstName"/>
 							<div class="text-danger"
-								  th:if="${#fields.hasErrors('price')}"
-								  th:errors="*{price}"></div>
+								  th:if="${#fields.hasErrors('firstName')}"
+								  th:errors="*{firstName}"></div>
 						</div>
 
-						<input type="hidden" th:field="*{restaurantDto.id}" id="restaurantId"/>
+						<div class="col-6">
+							<label for="lastName" class="form-label">Last name</label>
+							<input type="text" class="form-control"
+									 placeholder="Last name"
+									 th:field="*{lastName}"
+									 th:value="*{lastName}"
+									 id="lastName"/>
+							<div class="text-danger"
+								  th:if="${#fields.hasErrors('lastName')}"
+								  th:errors="*{lastName}"></div>
+						</div>
+
+						<div class="col-6">
+							<label for="username" class="form-label">Username</label>
+							<input type="text" class="form-control"
+									 placeholder="username"
+									 th:field="*{username}"
+									 th:value="*{username}"
+									 id="username"/>
+							<div class="text-danger"
+								  th:if="${#fields.hasErrors('username')}"
+								  th:errors="*{username}"></div>
+						</div>
+
+						<div class="col-6">
+							<label for="phoneNumber" class="form-label">Phone number</label>
+							<input type="text" class="form-control"
+									 placeholder="+00 *** *** ***"
+									 th:field="*{phoneNumber}"
+									 th:value="*{phoneNumber}"
+									 id="phoneNumber"/>
+							<div class="text-danger"
+								  th:if="${#fields.hasErrors('phoneNumber')}"
+								  th:errors="*{phoneNumber}"></div>
+						</div>
+
+						<div class="col-6">
+							<label for="email" class="form-label">Email</label>
+							<input type="text" class="form-control"
+									 placeholder="email@mail.com"
+									 th:field="*{email}"
+									 th:value="*{email}"
+									 id="email"/>
+							<div class="text-danger"
+								  th:if="${#fields.hasErrors('email')}"
+								  th:errors="*{email}"></div>
+						</div>
+
+						<input type="hidden" id="restaurantId"
+								 th:field="*{restaurantDto.id}"/>
 
 						<div class="col-6">
 							<label for="restaurantDto" class="form-label">Restaurant</label>
@@ -111,42 +146,29 @@
 								<option th:each="restaurant : ${restaurants}"
 										  th:value="${restaurant.id}"
 										  th:text="${restaurant.name}"
-										  th:selected="${restaurant.id == product.restaurantDto.id}">
+										  th:selected="${restaurant.id == employee.restaurantDto.id}">
 								</option>
 							</select>
 							<div class="text-danger"
 								  th:if="${#fields.hasErrors('restaurantDto')}"
 								  th:errors="*{restaurantDto}"></div>
 						</div>
-
-						<div class="col-12">
-							<label for="description"
-									 class="form-label">Description<span class="text-body-secondary">(Optional)</span></label>
-							<input placeholder="Enter product description" class="form-control"
-									 th:field="*{description}"
-									 id="description"
-									 th:value="${product.description}"/>
-							<div class="text-danger"
-								  th:if="${#fields.hasErrors('description')}"
-								  th:errors="*{description}"></div>
-						</div>
-
 					</div>
 
 					<hr class="my-4">
 
 					<div class="form-check">
-						<input type="checkbox" class="form-check-input" id="available" name="available"
-								 th:checked="${product.available}"/>
-						<label class="form-check-label" for="available">Available</label>
+						<input type="checkbox" class="form-check-input" id="active" name="active"
+								 th:checked="${employee.active}"/>
+						<label class="form-check-label" for="active">Active</label>
 						<div class="text-danger"
-							  th:if="${#fields.hasErrors('available')}"
-							  th:errors="*{available}"></div>
+							  th:if="${#fields.hasErrors('active')}"
+							  th:errors="*{active}"></div>
 					</div>
 
 					<hr class="my-4">
 
-					<button class="w-100 btn btn-success btn-lg">Confirm</button>
+					<button class="w-100 btn btn-primary btn-lg">Update employee</button>
 				</form>
 
 				<foot th:insert="~{/blocks/footer :: footer}"></foot>

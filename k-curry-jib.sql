@@ -24,12 +24,12 @@ USE `k-curry-jib`;
 
 CREATE TABLE `customer` (
   customer_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  first_name VARCHAR(60),
-  last_name VARCHAR(60),
+  first_name VARCHAR(30),
+  last_name VARCHAR(30),
   email VARCHAR(60),
   username VARCHAR(60),
-  password VARCHAR(120),
-  phone_number VARCHAR(20),
+  password VARCHAR(60),
+  phone_number VARCHAR(15),
   address VARCHAR(120),
   postal_code VARCHAR(5),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -140,7 +140,7 @@ CREATE TABLE `employee` (
   last_name VARCHAR(30),
   email VARCHAR(120),
   nickname VARCHAR(60),
-  password VARCHAR(120),
+  password VARCHAR(60),
   phone_number VARCHAR(20),
   role ENUM('ROLE_USER', 'ROLE_MANAGER', 'ROLE_ADMIN', 'ROLE_DEALER', 'ROLE_DRIVER'),
   restaurant_id BIGINT,
@@ -333,7 +333,7 @@ INSERT INTO `employee` (`last_name`, `first_name`,  `email`, `nickname`, `passwo
     ('Suyama', 'Michael', 'suyama@mail.com', 'manager', '$2a$10$OebBU653Mokfh/uRVu9CCexVAN3LBrkHpAtHZP6iMdZj8JmldwNqW', '+49123456789', 'ROLE_MANAGER', 1),
     ('King', 'Robert', 'king@mail.com', 'robert', '$2a$10$OebBU653Mokfh/uRVu9CCexVAN3LBrkHpAtHZP6iMdZj8JmldwNqW', '+49123456789', 'ROLE_MANAGER', 1),
     ('Callahan', 'Laura', 'callahan@mail.com', 'admin', '$2a$10$OebBU653Mokfh/uRVu9CCexVAN3LBrkHpAtHZP6iMdZj8JmldwNqW', '+49123456789', 'ROLE_ADMIN', 1),
-    ('Dodsworth', 'Anne', 'dodsworth@mail.com', 'anne', '$2a$10$rmQi5Z5O1HzHsV.6lM8.D..6gAf5vWQPtYwnlNzwWbfq4Ww8ZMDV.', '+49123456789', 'ROLE_DRIVER', 1),
+    ('Dodsworth', 'Anne', 'dodsworth@mail.com', 'anne', '$2a$10$rmQi5Z5O1HzHsV.6lM8.D..6gAf5vWQPtYwnlNzwWbfq4Ww8ZMDV.', '+49123456789', 'ROLE_ADMIN', 1),
     ('West', 'Adam', 'west@mail.com', 'driver', '$2a$10$rmQi5Z5O1HzHsV.6lM8.D..6gAf5vWQPtYwnlNzwWbfq4Ww8ZMDV.', '+49123456789', 'ROLE_DRIVER', 1);
 
 --
@@ -361,6 +361,21 @@ INSERT INTO `product` (`name`, `description`,  `price`, `restaurant_id`, `image_
     ('Yukhoe', 'Beef tartar, garlic, onion, sesame oil', 20, 1, '1.jpg'),
     ('Bulgogi Zungshik', 'Beef & vehetables in sweet sauce on the hot plate, rice', 13, 1, '1.jpg'),
     ('Osam Bokum', 'Fried squids, pork and vegetables in spicy gochujang sauce', 28, 1, '1.jpg');
+	
+--
+-- Dumping data for table `order`
+--
+	
+INSERT INTO `order` (`customer_id`, `restaurant_id`, `employee_id`, `delivery_address`, `total_amount`, `order_status`) VALUES 
+	('1', '1', '1', 'Taczaka 2', '14', 'CREATED');
+
+--
+-- Dumping data for table `order_product`
+--
+	
+INSERT INTO `order_product` (`order_id`, `product_id`, `quantity`, `total`) VALUES 
+	('1', '1', '1', '14');
+
 
 COMMIT;
 

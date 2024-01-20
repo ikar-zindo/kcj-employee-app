@@ -1,14 +1,20 @@
 package com.kcurryjib.mapper.admin;
 
 import com.kcurryjib.dto.EmployeeDto;
+import com.kcurryjib.dto.OrderDto;
+import com.kcurryjib.dto.OrderProductDto;
 import com.kcurryjib.dto.RestaurantDto;
 import com.kcurryjib.entity.Employee;
+import com.kcurryjib.entity.Order;
+import com.kcurryjib.entity.OrderProduct;
 import com.kcurryjib.entity.Restaurant;
+import com.kcurryjib.exception.list.EmployeeException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -34,8 +40,7 @@ public class AdminEmployeeMapper {
 
    public EmployeeDto showEmployeeWithRestaurant(Employee employee) {
       mapper.typeMap(Employee.class, EmployeeDto.class)
-              .addMappings(m -> m.skip(EmployeeDto::setPassword))
-              .addMappings(m -> m.skip(EmployeeDto::setCreatedAt));
+              .addMappings(m -> m.skip(EmployeeDto::setPassword));
 
       EmployeeDto employeeDto = mapper.map(employee, EmployeeDto.class);
 

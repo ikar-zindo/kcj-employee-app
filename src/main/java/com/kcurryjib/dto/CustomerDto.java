@@ -2,9 +2,9 @@ package com.kcurryjib.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.kcurryjib.entity.Customer;
 import com.kcurryjib.entity.enums.Role;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
 
@@ -18,35 +18,42 @@ public class CustomerDto {
    private Long id;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @Length(max = 60, message = "{validation.length.max.60}")
+   @NotEmpty(message = "{validation.length.empty}")
+   @Length(max = 30, message = "{validation.length.max.60}")
    private String firstName;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @Length(max = 60, message = "{validation.length.max.60}")
+   @NotEmpty(message = "{validation.length.empty}")
+   @Length(max = 30, message = "{validation.length.max.60}")
    private String lastName;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @Email(message = "Invalid email")
+   @NotEmpty(message = "{validation.length.empty}")
+   @Email(message = "{validation.value.email}")
    @Length(max = 60, message = "{validation.length.max.60}")
    private String email;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @Email(message = "Invalid username")
+   @NotEmpty(message = "{validation.length.empty}")
    @Length(max = 60, message = "{validation.length.max.60}")
    private String username;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @Length(max = 120, message = "{validation.length.max.120}")
+   @NotEmpty(message = "{validation.length.empty}")
+   @Length(max = 60, message = "{validation.length.max.60}")
    private String password;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @Pattern(regexp = "\\\\+49\\\\d{10}", message = "{validation.length.max.10}")
+   @NotEmpty(message = "{validation.length.empty}")
+   @Pattern(regexp = "^\\+\\d{2}\\s\\d{3}\\s\\d{3}\\s\\d{3}$", message = "{validation.value.phoneNumber}")
    private String phoneNumber;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
+   @NotEmpty(message = "{validation.length.empty}")
    private String address;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
+   @NotEmpty(message = "{validation.length.empty}")
    @Length(max = 5, message = "{validation.length.max.5}")
    private String postalCode;
 
