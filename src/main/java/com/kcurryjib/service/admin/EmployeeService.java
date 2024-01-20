@@ -31,14 +31,12 @@ import java.util.Optional;
 @Service
 public class EmployeeService implements UserDetailsService {
 
-   private EmployeeRepository employeeRepository;
+   private final EmployeeRepository employeeRepository;
 
-   private AdminEmployeeMapper adminEmployeeMapper;
+   private final AdminEmployeeMapper adminEmployeeMapper;
 
-   private RestaurantRepository restaurantRepository;
+   private final RestaurantRepository restaurantRepository;
 
-   // todo: инициализация PasswordEncoder
-//   @Autowired
    private final PasswordEncoder encoder;
 
    @Autowired
@@ -50,7 +48,7 @@ public class EmployeeService implements UserDetailsService {
       this.employeeRepository = employeeRepository;
       this.adminEmployeeMapper = adminEmployeeMapper;
       this.restaurantRepository = restaurantRepository;
-      this.encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+      this.encoder = encoder;
    }
 
    //READ
