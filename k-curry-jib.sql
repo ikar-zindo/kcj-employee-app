@@ -367,15 +367,15 @@ INSERT INTO `product` (`name`, `description`,  `price`, `restaurant_id`, `image_
 --
 	
 INSERT INTO `order` (`customer_id`, `restaurant_id`, `employee_id`, `delivery_address`, `total_amount`, `order_status`) VALUES 
-	('1', '1', '1', 'Taczaka 2', '14', 'CREATED');
+	('1', '1', '1', 'Taczaka 2, 61891', '26', 'CREATED');
 
 --
 -- Dumping data for table `order_product`
 --
 	
 INSERT INTO `order_product` (`order_id`, `product_id`, `quantity`, `total`) VALUES 
-	('1', '1', '1', '14');
-
+	('1', '1', '1', '14'),
+    ('1', '2', '1', '12');
 
 COMMIT;
 
