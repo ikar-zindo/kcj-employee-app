@@ -70,7 +70,7 @@
 				<div class="container">
 
 					<!--Item-->
-					<div th:each="order : ${employee.ordersDto}" class="alert alert-info mt-2">
+					<div th:each="order : ${orders}" class="alert alert-info mt-2">
 						<!--							<img src="http://dummyimage.com/248.400x80.125" />-->
 						<div class="card-body">
 <!--							<p><span class="text-danger">Restaurant: </span><span th:text="${order.restaurantDto.name}"/></p>-->
@@ -82,17 +82,34 @@
 							<div class="d-flex justify-content-between mb-1">
 								<p class="m-0"><span class="text-info">Order id: </span><span class="text-warning" th:text="${order.id}"/></p>
 
-								<div class="border rounded border-warning p-2">
-									<p class="m-0"><span class="text-info">Status: </span><span class="text-warning" th:text="${order.orderStatus}"/></p>
+								<span class="text-body-secondary"
+										th:text="${order.orderDate}"></span>
+
+<!--								<div class="border rounded border-warning p-2">-->
+<!--									<p class="m-0">-->
+<!--										<span class="text-info">Status: </span>-->
+<!--										<span class="text-warning"-->
+<!--												th:text="${order.orderStatus}"/></p>-->
+<!--								</div>-->
+
+								<div th:class="'border rounded p-2 border-' + |${order.orderStatus.getColor(order.orderStatus)}|">
+									<p class="m-0">
+										<span class="text-info">Status: </span>
+										<span th:text="${order.orderStatus}"
+												th:class="'text-' + |${order.orderStatus.getColor(order.orderStatus)}|">
+										</span>
+									</p>
 								</div>
+
 							</div>
 
 							<table class="table table-striped table-sm">
 								<thead>
 								<tr>
 									<th scope="col">#</th>
-									<th scope="col">name</th>
-									<th scope="col">price</th>
+									<th scope="col">Product name</th>
+									<th scope="col">Quantity</th>
+									<th scope="col">Price</th>
 								</tr>
 								</thead>
 								<tbody>
@@ -101,6 +118,7 @@
 										<tr>
 											<td th:text="${product.id}"/>
 											<td th:text="${product.name}"/>
+											<td class="text-danger font-weight-bold" th:text="${orderProducts.quantity}"/>
 											<td th:text="${product.price}"/>
 										</tr>
 									</div>
@@ -109,53 +127,45 @@
 								</tbody>
 							</table>
 
+							<div class="d-flex justify-content-between">
 
-<!--							<div class="d-flex justify-content-between align-items-center">-->
-<!--								<div class="btn-group">-->
-<!--									<a th:href="'/admin/products/' + ${product.id} + '/edit'"-->
-<!--										class="btn btn-sm btn-outline-secondary">Edit</a>-->
+								<!--CREATED-->
+								<form th:action="'/employee/orders/' + ${order.id} + '/created'" method="post">
+									<button type="submit"
+											  class="btn btn-sm btn-outline-secondary text-primary">
+										CREATED
+									</button>
+								</form>
 
-<!--									<form th:action="'/admin/products/' + ${product.id} + '/remove'" method="post">-->
-<!--										<button type="submit"-->
-<!--												  class="btn btn-sm btn-outline-secondary text-danger">-->
-<!--											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"-->
-<!--												  class="bi bi-trash3" viewBox="0 0 16 16">-->
-<!--												<path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>-->
-<!--											</svg>-->
-<!--										</button>-->
-<!--									</form>-->
+								<!--PROCESSING-->
+								<form th:action="'/employee/orders/' + ${order.id} + '/processing'" method="post">
+									<button type="submit"
+											  class="btn btn-sm btn-outline-secondary text-warning">
+										PROCESSING
+									</button>
+								</form>
 
-<!--								</div>-->
-								<p th:text="'Total: ' + |${order.totalAmount}| + ' €'" class="text-body-secondary"/>
-<!--							</div>-->
+								<!--COMPLETED-->
+								<form th:action="'/employee/orders/' + ${order.id} + '/completed'" method="post">
+									<button type="submit"
+											  class="btn btn-sm btn-outline-secondary text-success">
+										COMPLETED
+									</button>
+								</form>
+
+								<!--CANCELLED-->
+								<form th:action="'/employee/orders/' + ${order.id} + '/cancelled'" method="post">
+									<button type="submit"
+											  class="btn btn-sm btn-outline-secondary text-danger">
+										CANCELLED
+									</button>
+								</form>
+
+								<p class="text-body-secondary m-0" th:text="'Total: ' + |${order.totalAmount}| + ' €'"/>
+							</div>
 						</div>
 					</div>
 				</div>
-
-
-
-
-
-
-
-<!--				<div class="table-responsive small">-->
-<!--					<table class="table table-striped table-sm">-->
-<!--						<thead>-->
-<!--						<tr>-->
-<!--							<th scope="col">#</th>-->
-<!--							<th scope="col">createdAt</th>-->
-<!--						</tr>-->
-<!--						</thead>-->
-<!--						<tbody>-->
-<!--						<div th:each="order : ${employee.ordersDto}">-->
-<!--							<tr>-->
-<!--								<td th:text="${order.id}"/>-->
-<!--								<td th:text="${order.orderDate}"/>-->
-<!--							</tr>-->
-<!--						</div>-->
-<!--						</tbody>-->
-<!--					</table>-->
-<!--				</div>-->
 			</div>
 
 			<foot th:insert="~{/blocks/footer :: footer}"></foot>

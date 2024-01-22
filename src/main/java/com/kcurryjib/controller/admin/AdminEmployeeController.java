@@ -22,7 +22,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/admin/employees")
 @SessionAttributes("editEmployees")
-@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')")
+@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
 public class AdminEmployeeController {
 
    private final EmployeeService service;
@@ -57,25 +57,6 @@ public class AdminEmployeeController {
       model.addAttribute("employee", employeeDto);
 
       return "/admin/employees/info";
-   }
-
-   // READ
-   @GetMapping("/orders")
-   @PreAuthorize("hasRole('ROLE_USER')")
-   public String getEmployeeOrders(Model model) {
-
-      Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-      String currentPrincipalName = authentication.getName();
-
-      Employee employee = (Employee) service.loadUserByUsername(currentPrincipalName);
-
-      EmployeeDto employeeDto = service.getEmployeeWithOrders(employee.getId());
-      List<OrderDto> ordersDto = employeeDto.getOrdersDto();
-
-      model.addAttribute("employee", employeeDto);
-      model.addAttribute("orders", ordersDto);
-
-      return "/employee/orders/list";
    }
 
    // CREATE
@@ -117,11 +98,11 @@ public class AdminEmployeeController {
    public String editEmployee(@PathVariable(value = "id") Long id,
                              Model model) throws EmployeeException {
 
-      EmployeeDto employeeDto = service.getEmployeeById(id);
-
-      if (employeeDto == null) {
+      if (service.getEmployeeById(id) == null) {
          return "redirect:/admin/employees";
       }
+
+      EmployeeDto employeeDto = service.getEmployeeById(id);
 
       model.addAttribute("employee", employeeDto);
       model.addAttribute("restaurants", restaurantService.getAll());

@@ -53,6 +53,10 @@ public class RestaurantController {
    public String getRestaurantById(@PathVariable Long id,
                                    Model model) throws RestaurantException {
 
+      if (service.getById(id) == null) {
+         return "redirect:/admin/restaurants";
+      }
+
       RestaurantDto restaurantDto = service.showWithComments(id);
       List<ReviewDto> reviewsDto = restaurantDto.getReviewsDto();
       int countComments = service.getNumberOfReviewsByRestaurantId(id);

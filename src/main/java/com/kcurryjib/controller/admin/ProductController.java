@@ -48,6 +48,10 @@ public class ProductController {
    public String getProductById(@PathVariable Long id,
                                 Model model) throws ProductException {
 
+      if (service.getProductById(id) == null) {
+         return "redirect:/admin/products";
+      }
+
       ProductDto productDto = service.getProductById(id);
 
       model.addAttribute("product", productDto);

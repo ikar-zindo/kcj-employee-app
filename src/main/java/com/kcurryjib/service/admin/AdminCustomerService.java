@@ -22,9 +22,6 @@ public class AdminCustomerService {
    @Autowired
    private CustomerMapper customerMapper;
 
-   //   @Autowired
-   private OrderRepository orderRepository;
-
 
    public List<CustomerDto> getAll() {
       List<Customer> customers = new ArrayList<>(customerRepository.findAll());

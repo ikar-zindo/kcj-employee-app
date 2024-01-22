@@ -1,26 +1,19 @@
 package com.kcurryjib.service.admin;
 
 import com.kcurryjib.config.MapperUtil;
-import com.kcurryjib.config.SecurityConfig;
 import com.kcurryjib.dto.EmployeeDto;
-import com.kcurryjib.dto.ProductDto;
 import com.kcurryjib.dto.RestaurantDto;
 import com.kcurryjib.entity.Employee;
-import com.kcurryjib.entity.Product;
 import com.kcurryjib.entity.Restaurant;
 import com.kcurryjib.entity.enums.Role;
 import com.kcurryjib.exception.list.EmployeeException;
-import com.kcurryjib.exception.list.ProductException;
 import com.kcurryjib.mapper.admin.AdminEmployeeMapper;
-import com.kcurryjib.mapper.employee.EmployeeMapper;
 import com.kcurryjib.repo.EmployeeRepository;
 import com.kcurryjib.repo.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -36,8 +29,6 @@ public class EmployeeService implements UserDetailsService {
 
    private final AdminEmployeeMapper adminEmployeeMapper;
 
-   private final EmployeeMapper employeeMapper;
-
    private final RestaurantRepository restaurantRepository;
 
    private final PasswordEncoder encoder;
@@ -45,13 +36,11 @@ public class EmployeeService implements UserDetailsService {
    @Autowired
    public EmployeeService(EmployeeRepository employeeRepository,
                           AdminEmployeeMapper adminEmployeeMapper,
-                          EmployeeMapper employeeMapper,
                           PasswordEncoder encoder,
                           RestaurantRepository restaurantRepository) {
 
       this.employeeRepository = employeeRepository;
       this.adminEmployeeMapper = adminEmployeeMapper;
-      this.employeeMapper = employeeMapper;
       this.restaurantRepository = restaurantRepository;
       this.encoder = encoder;
    }
@@ -102,20 +91,6 @@ public class EmployeeService implements UserDetailsService {
       }
 
       return employeeDto;
-   }
-
-   // READ
-   public EmployeeDto getEmployeeWithOrders(Long employeeId) {
-      Optional<Employee> employeeOptional = employeeRepository.findById(employeeId);
-
-      if (employeeOptional.isPresent()) {
-         Employee employee = employeeOptional.get();
-
-         return employeeMapper.showEmployeeWithOrders(employee);
-
-      } else {
-         throw new EmployeeException("Employee not found with id: " + employeeId);
-      }
    }
 
    // CREATE
