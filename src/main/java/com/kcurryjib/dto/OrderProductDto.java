@@ -6,6 +6,7 @@ import com.kcurryjib.entity.Review;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 
 public class OrderProductDto {
@@ -123,6 +124,37 @@ public class OrderProductDto {
 
    public static Review.Builder builder() {
       return new Review.Builder();
+   }
+
+   // ToString
+
+   @Override
+   public String toString() {
+      return "OrderProductDto{" +
+              "id=" + id +
+              ", quantity=" + quantity +
+              ", total=" + total +
+              ", cratedAt=" + cratedAt +
+              ", orderDto=" + orderDto +
+              ", productDto=" + productDto +
+              '}';
+   }
+
+   // Equals & HashCode
+
+   @Override
+   public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      OrderProductDto that = (OrderProductDto) o;
+      return quantity == that.quantity && Objects.equals(id, that.id) && Objects.equals(total, that.total) &&
+              Objects.equals(cratedAt, that.cratedAt) && Objects.equals(orderDto, that.orderDto) &&
+              Objects.equals(productDto, that.productDto);
+   }
+
+   @Override
+   public int hashCode() {
+      return Objects.hash(id, quantity, total, cratedAt, orderDto, productDto);
    }
 }
 

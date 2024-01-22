@@ -185,7 +185,7 @@ public class ProductServiceTest {
       when(productMapperMock.convertToProductDto(any(Product.class)))
               .thenReturn(expectedProductDto);
 
-      ProductDto returnProductDto = productServiceTest.deleteProduct(1L);
+      ProductDto returnProductDto = productServiceTest.blockProduct(1L);
 
       assertEquals(expectedProductDto, returnProductDto);
    }
@@ -208,7 +208,7 @@ public class ProductServiceTest {
 
    @Test
    void deleteProductExceptionTest() {
-      assertThrows(ProductException.class, () -> productServiceTest.deleteProduct(null));
+      assertThrows(ProductException.class, () -> productServiceTest.blockProduct(null));
    }
 
    @Test
@@ -218,7 +218,7 @@ public class ProductServiceTest {
       when(productRepositoryMock.save(expectedProduct))
               .thenReturn(null);
 
-      assertThrows(ProductException.class, () -> productServiceTest.deleteProduct(1L));
+      assertThrows(ProductException.class, () -> productServiceTest.blockProduct(1L));
    }
 
    @Test
@@ -226,6 +226,6 @@ public class ProductServiceTest {
       when(productRepositoryMock.findById(anyLong()))
               .thenReturn(Optional.empty());
 
-      assertThrows(ProductException.class, () -> productServiceTest.deleteProduct(1L));
+      assertThrows(ProductException.class, () -> productServiceTest.blockProduct(1L));
    }
 }

@@ -6,6 +6,7 @@ import com.kcurryjib.dto.OrderProductDto;
 import com.kcurryjib.entity.Employee;
 import com.kcurryjib.entity.Order;
 import com.kcurryjib.entity.OrderProduct;
+import com.kcurryjib.mapper.admin.CustomerMapper;
 import com.kcurryjib.mapper.admin.ProductMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class EmployeeMapper {
    @Autowired
    private ProductMapper productMapper;
 
+   @Autowired
+   CustomerMapper customerMapper;
+
    // convert to DTO
    public EmployeeDto showEmployeeWithOrders(Employee employee) {
       mapper.typeMap(Employee.class, EmployeeDto.class)
@@ -38,6 +42,7 @@ public class EmployeeMapper {
    public OrderDto convertToOrderDto(Order order) {
       OrderDto orderDto = mapper.map(order, OrderDto.class);
 
+      orderDto.setCustomerDto(customerMapper.customerInfoDelivery(order.getCustomer()));
       orderDto.setOrderProductsDto(convertToOrderProductsDto(order.getOrderProducts()));
 
       return orderDto;

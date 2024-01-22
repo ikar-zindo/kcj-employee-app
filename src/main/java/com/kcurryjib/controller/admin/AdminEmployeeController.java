@@ -1,11 +1,10 @@
 package com.kcurryjib.controller.admin;
 
 import com.kcurryjib.dto.EmployeeDto;
-import com.kcurryjib.dto.ProductDto;
+import com.kcurryjib.dto.OrderDto;
 import com.kcurryjib.dto.RestaurantDto;
 import com.kcurryjib.entity.Employee;
 import com.kcurryjib.exception.list.EmployeeException;
-import com.kcurryjib.exception.list.ProductException;
 import com.kcurryjib.service.admin.EmployeeService;
 import com.kcurryjib.service.admin.RestaurantService;
 import jakarta.validation.Valid;
@@ -13,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -70,11 +68,14 @@ public class AdminEmployeeController {
       String currentPrincipalName = authentication.getName();
 
       Employee employee = (Employee) service.loadUserByUsername(currentPrincipalName);
+
       EmployeeDto employeeDto = service.getEmployeeWithOrders(employee.getId());
+      List<OrderDto> ordersDto = employeeDto.getOrdersDto();
 
       model.addAttribute("employee", employeeDto);
+      model.addAttribute("orders", ordersDto);
 
-      return "/employee/orders/all";
+      return "/employee/orders/list";
    }
 
    // CREATE
@@ -107,13 +108,13 @@ public class AdminEmployeeController {
       }
 
       service.addEmployee(employeeDto);
+
       return "redirect:/admin/employees";
    }
 
    // UPDATE
    @GetMapping(value = "/{id}/edit")
    public String editEmployee(@PathVariable(value = "id") Long id,
-//                             @ModelAttribute("product") ProductDto productDto,
                              Model model) throws EmployeeException {
 
       EmployeeDto employeeDto = service.getEmployeeById(id);
@@ -143,6 +144,7 @@ public class AdminEmployeeController {
       if (result.hasErrors()) {
          model.addAttribute("employee", employeeDto);
          model.addAttribute("restaurants", restaurantService.getAll());
+
          return "/admin/employees/edit";
       }
 
@@ -154,7 +156,7 @@ public class AdminEmployeeController {
 
    // DELETE
    @PostMapping("/{id}/block")
-   public String deleteProduct(@PathVariable Long id) throws EmployeeException {
+   public String blockEmployee(@PathVariable Long id) throws EmployeeException {
       service.blockEmployee(id);
       return "redirect:/admin/employees";
    }

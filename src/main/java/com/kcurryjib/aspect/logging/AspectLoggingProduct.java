@@ -66,7 +66,7 @@ public class AspectLoggingProduct {
    /**
     * LOGGER for admin.service.ProductService.deleteProduct()
     */
-   @Pointcut("execution(* com.kcurryjib.service.admin.ProductService.deleteProduct(..))")
+   @Pointcut("execution(* com.kcurryjib.service.admin.ProductService.blockProduct(..))")
    public void deleteProduct() {
    }
 

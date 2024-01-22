@@ -2,12 +2,12 @@ package com.kcurryjib.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.kcurryjib.entity.Review;
 import com.kcurryjib.entity.enums.OrderStatus;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 
 public class OrderDto {
@@ -168,7 +168,43 @@ public class OrderDto {
       }
    }
 
-   public static Review.Builder builder() {
-      return new Review.Builder();
+   public static Builder builder() {
+      return new Builder();
+   }
+
+   // Equals & HashCode
+   @Override
+   public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      OrderDto orderDto = (OrderDto) o;
+      return Objects.equals(id, orderDto.id) && Objects.equals(customerDto, orderDto.customerDto) &&
+              Objects.equals(restaurantDto, orderDto.restaurantDto) &&
+              Objects.equals(employeeDto, orderDto.employeeDto) && Objects.equals(orderDate, orderDto.orderDate) &&
+              Objects.equals(deliveryAddress, orderDto.deliveryAddress) &&
+              Objects.equals(totalAmount, orderDto.totalAmount) && orderStatus == orderDto.orderStatus &&
+              Objects.equals(orderProductsDto, orderDto.orderProductsDto);
+   }
+
+   @Override
+   public int hashCode() {
+      return Objects.hash(id, customerDto, restaurantDto, employeeDto, orderDate,
+              deliveryAddress, totalAmount, orderStatus, orderProductsDto);
+   }
+
+   // ToString
+   @Override
+   public String toString() {
+      return "OrderDto{" +
+              "id=" + id +
+              ", customerDto=" + customerDto +
+              ", restaurantDto=" + restaurantDto +
+              ", employeeDto=" + employeeDto +
+              ", orderDate=" + orderDate +
+              ", deliveryAddress='" + deliveryAddress + '\'' +
+              ", totalAmount=" + totalAmount +
+              ", orderStatus=" + orderStatus +
+              ", orderProductsDto=" + orderProductsDto +
+              '}';
    }
 }

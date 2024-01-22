@@ -20,8 +20,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
-//   @Autowired
-//   private ModelMapper modelMapper;
 
    private final ProductRepository productRepository;
 
@@ -166,8 +164,8 @@ public class ProductService {
       }
    }
 
-   //DELETE
-   public ProductDto deleteProduct(Long id) throws ProductException {
+   // UPDATE
+   public ProductDto blockProduct(Long id) throws ProductException {
 
       if (id != null) {
          Optional<Product> productOptional = productRepository.findById(id);
@@ -175,6 +173,36 @@ public class ProductService {
          if (productOptional.isPresent()) {
             Product product = productOptional.get();
             product.setAvailable(false); // isAvailable = false;
+
+            Product productResponse = productRepository.save(product);
+
+            if (productResponse != null) {
+               return productMapper.convertToProductDto(productResponse);
+
+            } else {
+               throw new ProductException(
+                       String.format("Failed to delete product in database with Id=%d!",
+                               id));
+            }
+         } else {
+            throw new ProductException(
+                    String.format("Product not found in the database with Id=%d!",
+                            id));
+         }
+      } else {
+         throw new ProductException("The ID of the product to be deleted is missing!");
+      }
+   }
+
+   // UPDATE
+   public ProductDto unblockProduct(Long id) throws ProductException {
+
+      if (id != null) {
+         Optional<Product> productOptional = productRepository.findById(id);
+
+         if (productOptional.isPresent()) {
+            Product product = productOptional.get();
+            product.setAvailable(true); // isAvailable = false;
 
             Product productResponse = productRepository.save(product);
 
