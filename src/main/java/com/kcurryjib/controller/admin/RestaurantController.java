@@ -8,6 +8,7 @@ import com.kcurryjib.service.admin.RestaurantService;
 import com.kcurryjib.service.admin.ReviewService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -72,6 +73,7 @@ public class RestaurantController {
 
    // CREATE
    @GetMapping(value = "/add")
+   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
    public String addRestaurant(@ModelAttribute("restaurant") RestaurantDto restaurantDto,
                             Model model) throws RestaurantException {
 
@@ -82,6 +84,7 @@ public class RestaurantController {
 
    // CREATE
    @PostMapping(value = "/add")
+   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
    public String createRestaurant(@ModelAttribute("restaurant") @Valid RestaurantDto restaurantDto,
                                BindingResult result,
                                Model model) throws RestaurantException {
@@ -98,6 +101,7 @@ public class RestaurantController {
 
    // UPDATE
    @GetMapping(value = "/{id}/edit")
+   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
    public String editRestaurant(@PathVariable(value = "id") Long id,
                              Model model) throws RestaurantException {
 
@@ -114,6 +118,7 @@ public class RestaurantController {
 
    // UPDATE
    @PostMapping(value = "/{id}/edit")
+   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
    public String updateRestaurant(@ModelAttribute("product") @Valid RestaurantDto restaurantDto,
                                BindingResult result,
                                Model model) throws RestaurantException {
@@ -129,6 +134,7 @@ public class RestaurantController {
 
    // DELETE
    @DeleteMapping("/{id}")
+   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
    public String deleteRestaurant(@PathVariable Long id) throws RestaurantException {
       service.deleteRestaurant(id);
       return "redirect:/admin/restaurants";
