@@ -47,9 +47,7 @@ public class OrderController {
       EmployeeDto employeeDto = service.getEmployeeWithOrders(employee.getId());
       List<OrderDto> ordersDto = employeeDto.getOrdersDto();
 
-//      model.addAttribute("employee", employeeDto);
       model.addAttribute("orders", ordersDto);
-      model.addAttribute("color", ordersDto.getFirst().getOrderStatus().getColor(ordersDto.getFirst().getOrderStatus()));
 
       return "/employee/orders/list";
    }

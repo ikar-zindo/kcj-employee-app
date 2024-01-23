@@ -1,8 +1,9 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" class="h-100" data-bs-theme="auto">
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
 	<script type="text/javascript" th:src="@{/assets/js/color-modes.js}"></script>
-	<title>About restaurant</title>
+	<title>Error</title>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta charset="utf-8">
@@ -10,6 +11,8 @@
 	<meta name="description" content="">
 	<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 	<meta name="generator" content="Hugo 0.118.2">
+
+	<!--	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>-->
 
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 			integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -27,11 +30,14 @@
 	<link th:href="@{/assets/dist/css/bootstrap.min.css}" rel="stylesheet">
 
 	<!-- Custom styles for this template -->
+	<link rel="stylesheet" th:href="@{/assets/css/style.css}"/>
+
+	<!-- Custom styles for this template -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
 
 	<!-- Custom styles for this template -->
-	<link rel="stylesheet" th:href="@{/assets/css/style.css}"/>
-	<link th:href="@{/assets/dist/css/dashboard.css}" rel="stylesheet"/>
+	<link rel="stylesheet" th:href="@{/assets/dist/css/dashboard.css}"/>
+	<link rel="stylesheet" th:href="@{/assets/css/sign-in.css}"/>
 </head>
 
 <body>
@@ -40,55 +46,19 @@
 <div th:insert="~{/blocks/themes :: themes-2}"></div>
 
 <!--Header-dashboard-->
-<div th:insert="~{/blocks/header :: header-dashboard}"></div>
+<div th:insert="~{/blocks/header :: header-customer-guest}"></div>
 
-<div class="container-fluid">
-	<div class="row">
+<!--Main-->
+<main class="form-signin w-100 m-auto">
 
-		<!--Sidebar-->
-		<div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
-			<div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu"
-				  aria-labelledby="sidebarMenuLabel">
-				<div class="offcanvas-header">
-					<h5 class="offcanvas-title" id="sidebarMenuLabel">Company name</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu"
-							  aria-label="Close"></button>
-				</div>
-				<div th:insert="~{/blocks/sidebar :: sidebar}"></div>
-			</div>
-		</div>
+	<h1>Error Occurred</h1>
+	<p>Sorry, an error occurred while processing your request. Please try again later.</p>
+	<p>Error details:</p>
 
-		<!--Main-->
-		<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+	<h2 class="text-danger" th:text="${error}"></h2>
 
-			<div class="container">
+</main>
 
-				<!--Item-->
-				<div th:each="employee : ${employee}" class="alert alert-info mt-2">
-					<!--							<img src="http://dummyimage.com/248.400x80.125" />-->
-					<div class="card-body">
-						<h1 class="text-warning" th:text="|${employee.firstName}| + ' ' + |${employee.lastName}|"/>
-
-						<p><span class="text-danger">Email: </span><span th:text="${employee.email}"/></p>
-						<p><span class="text-danger">Username: </span><span th:text="${employee.username}"/></p>
-						<p><span class="text-danger">Phone number: </span><span th:text="${employee.phoneNumber}"/></p>
-						<p><span class="text-danger">Active: </span><span th:text="${employee.active}"/></p>
-
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group">
-								<a th:href="'/admin/employees/' + ${employee.id} + '/edit'"
-									class="btn btn-sm btn-outline-secondary">Edit</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<foot th:insert="~{/blocks/footer :: footer}"></foot>
-
-		</main>
-	</div>
-</div>
 <script type="text/javascript" th:src="@{/assets/dist/js/bootstrap.bundle.min.js}"
 		  integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		  crossorigin="anonymous"></script>
@@ -99,7 +69,7 @@
 		  integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp"
 		  crossorigin="anonymous"></script>
 
-<script type="text/javascript" th:src="@{/assets/dist/css/dashboard.css}"></script>
+<script type="text/javascript" th:src="@{/assets/js/dashboard.js}"></script>
 
 </body>
 

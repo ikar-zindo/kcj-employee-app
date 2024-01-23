@@ -59,7 +59,7 @@ public class RestaurantService {
    public List<RestaurantDto> fullInfo() throws RestaurantException {
       List<Restaurant> restaurants = new ArrayList<>(restaurantRepository.findAll());
 
-      return MapperUtil.convertlist(restaurants, restaurantMapper::fullEmployeeReview);
+      return MapperUtil.convertlist(restaurants, restaurantMapper::convertToRestaurantDto);
    }
 
    // READ

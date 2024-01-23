@@ -1,17 +1,13 @@
 package com.kcurryjib.controller.admin;
 
 import com.kcurryjib.dto.EmployeeDto;
-import com.kcurryjib.dto.OrderDto;
 import com.kcurryjib.dto.RestaurantDto;
-import com.kcurryjib.entity.Employee;
 import com.kcurryjib.exception.list.EmployeeException;
 import com.kcurryjib.service.admin.EmployeeService;
 import com.kcurryjib.service.admin.RestaurantService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,14 +19,14 @@ import java.util.List;
 @RequestMapping("/admin/employees")
 @SessionAttributes("editEmployees")
 @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
-public class AdminEmployeeController {
+public class EmployeeController {
 
    private final EmployeeService service;
 
    private final RestaurantService restaurantService;
 
    @Autowired
-   public AdminEmployeeController(EmployeeService service,
+   public EmployeeController(EmployeeService service,
                                   RestaurantService restaurantService) {
 
       this.service = service;
@@ -95,6 +91,7 @@ public class AdminEmployeeController {
 
    // UPDATE
    @GetMapping(value = "/{id}/edit")
+   @PreAuthorize("hasRole('ROLE_ADMIN')")
    public String editEmployee(@PathVariable(value = "id") Long id,
                              Model model) throws EmployeeException {
 
@@ -113,6 +110,7 @@ public class AdminEmployeeController {
    // todo: реализовать обновление информации о сотруднике без учёта пароля
    // UPDATE
    @PostMapping(value = "/{id}/edit")
+   @PreAuthorize("hasRole('ROLE_ADMIN')")
    public String updateEmployee(@ModelAttribute("employee") @Valid EmployeeDto employeeDto,
                                BindingResult result,
                                @RequestParam(name = "restaurantId") Long restaurantId,

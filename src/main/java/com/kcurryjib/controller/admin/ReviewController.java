@@ -9,6 +9,7 @@ import com.kcurryjib.service.admin.RestaurantService;
 import com.kcurryjib.service.admin.ReviewService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -149,6 +150,7 @@ public class ReviewController {
 
    // DELETE
    @PostMapping("/{id}/remove")
+   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
    public String deleteReview(@PathVariable Long id) throws ReviewException {
       service.deleteReview(id);
       return "redirect:/admin/reviews";

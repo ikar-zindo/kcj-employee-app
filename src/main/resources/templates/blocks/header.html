@@ -1,69 +1,4 @@
-<!--	Header -->
-<div th:fragment="header">
-	<header>
-		<!-- Fixed navbar -->
-		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-			<div class="container-fluid">
-				<a class="navbar-brand text-danger" href="/admin/dashboard">Admin panel!</a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-						  aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarCollapse">
-					<ul class="navbar-nav me-auto mb-2 mb-md-0">
-						<li class="nav-item">
-							<a class="nav-link text-info" href="/product">Products</a>
-						</li>
-						<!--						<li class="nav-item">-->
-						<!--							<a class="nav-link" href="/blog">Blog</a>-->
-						<!--						</li>-->
-						<!--						<li class="nav-item">-->
-						<!--							<a class="nav-link" href="/blog/add">Добавить статью</a>-->
-						<!--						</li>-->
-						<li class="nav-item">
-							<a class="nav-link text-warning" href="/product-1">
-								<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
-									  class="bi bi-database-fill" viewBox="0 0 16 16">
-									<path d="M3.904 1.777C4.978 1.289 6.427 1 8 1s3.022.289 4.096.777C13.125 2.245 14 2.993 14 4s-.875 1.755-1.904 2.223C11.022 6.711 9.573 7 8 7s-3.022-.289-4.096-.777C2.875 5.755 2 5.007 2 4s.875-1.755 1.904-2.223Z"/>
-									<path d="M2 6.161V7c0 1.007.875 1.755 1.904 2.223C4.978 9.71 6.427 10 8 10s3.022-.289 4.096-.777C13.125 8.755 14 8.007 14 7v-.839c-.457.432-1.004.751-1.49.972C11.278 7.693 9.682 8 8 8s-3.278-.307-4.51-.867c-.486-.22-1.033-.54-1.49-.972Z"/>
-									<path d="M2 9.161V10c0 1.007.875 1.755 1.904 2.223C4.978 12.711 6.427 13 8 13s3.022-.289 4.096-.777C13.125 11.755 14 11.007 14 10v-.839c-.457.432-1.004.751-1.49.972-1.232.56-2.828.867-4.51.867s-3.278-.307-4.51-.867c-.486-.22-1.033-.54-1.49-.972Z"/>
-									<path d="M2 12.161V13c0 1.007.875 1.755 1.904 2.223C4.978 15.711 6.427 16 8 16s3.022-.289 4.096-.777C13.125 14.755 14 14.007 14 13v-.839c-.457.432-1.004.751-1.49.972-1.232.56-2.828.867-4.51.867s-3.278-.307-4.51-.867c-.486-.22-1.033-.54-1.49-.972Z"/>
-								</svg>
-							</a>
-						</li>
-						<!--						<li class="nav-item">-->
-						<!--							<a class="nav-link" href="/blog">Blog</a>-->
-						<!--						</li>-->
-						<!--						<li class="nav-item">-->
-						<!--							<a class="nav-link" href="/blog/add">Add title</a>-->
-						<!--						</li>-->
-						<li class="nav-item">
-							<a href="product/add" class="btn btn-success">
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-									  class="bi bi-plus-square-fill" viewBox="0 0 16 16">
-									<path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"></path>
-								</svg>
-								Add new product
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link text-info" href="/">
-								Dashboard
-							</a>
-						</li>
-					</ul>
-					<!--					<form class="d-flex" role="search">-->
-					<!--						<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
-					<!--						<button class="btn btn-outline-success" type="submit">Search</button>-->
-					<!--					</form>-->
-				</div>
-			</div>
-		</nav>
-	</header>
-</div>
-
-
-<!--current-header-->
+<!--header-dashboard-->
 <div th:fragment="header-dashboard"
 	  xmlns:sec="http://www.w3.org/1999/xhtml">
 	<svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -134,12 +69,16 @@
 	<header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
 		<a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white text-danger" href="/admin/dashboard">Admin panel</a>
 
-		<h1 class="text-info mx-auto">Hello,
+		<h4 class="text-info mx-auto">Hello,
 			<span th:remove="tag"
 					sec:authentication="principal.firstName"></span>
 			<span th:remove="tag"
-					sec:authentication="principal.lastName"></span>
-		</h1>
+					sec:authentication="principal.lastName"></span> -
+			<span th:remove="tag"
+					sec:authentication="name"></span>
+			[<span th:remove="tag"
+					sec:authentication="principal.role"></span>]
+		</h4>
 
 		<ul class="navbar-nav flex-row d-md-none">
 			<li class="nav-item text-nowrap">
@@ -167,6 +106,7 @@
 		<!--		</div>-->
 	</header>
 </div>
+
 
 <!-- Header for index.html -->
 <div th:fragment="header-index"
@@ -249,16 +189,16 @@
 <!-- Header for customer guest -->
 <div th:fragment="header-customer-guest"
 	  xmlns:sec="http://www.w3.org/1999/xhtml">
-	<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+	<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between p-3 mb-4 border-bottom">
 
 		<ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
 			<li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
-<!--			<li><a href="#" class="nav-link px-2">Pricing</a></li>-->
+			<li><a href="/admin/dashboard" class="nav-link px-2">Dashboard</a></li>
 <!--			<li><a href="#" class="nav-link px-2">FAQs</a></li>-->
 <!--			<li><a href="#" class="nav-link px-2">About</a></li>-->
 		</ul>
 
-		<h1 class="text-info mx-auto">Hello,
+		<h1 class="text-info mx-auto my-0">Hello,
 			<span th:remove="tag"
 					sec:authentication="principal.firstName"></span>
 			<span th:remove="tag"

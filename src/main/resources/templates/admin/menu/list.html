@@ -46,7 +46,6 @@
 	<div class="row">
 
 		<!--Sidebar-->
-		<!--			<div th:insert="/blocks/sidebar :: sidebar"></div>-->
 		<div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
 			<div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu"
 				  aria-labelledby="sidebarMenuLabel">
@@ -69,18 +68,15 @@
 						<!--Item-->
 						<div th:each="product : ${products}" class="col">
 							<div class="card shadow-sm">
-								<!--							<img src="http://dummyimage.com/248.400x80.125" />-->
 								<div class="card-body">
 									<div class="d-flex gap-2">
 										<div class="fixed-size-div">
-<!--											<img src="http://placehold.it/100x100" alt="">-->
-<!--											 todo: размеры изображения не отображаются корректно -->
+
 											<img width="100px" height="100px" class="fixed-size-div"
 												  th:src="'/images/products/' + ${product.imageUrl}"
 												  th:alt="${product.name}"/>
 										</div>
 										<div>
-<!--											<a th:href="'/user/products/' + ${product.id}"><h3 th:text="${product.name}"/></a>-->
 											<a href="#"><h3 th:text="${product.name}"/></a>
 											<p th:text="${product.description}"/>
 										</div>
@@ -89,7 +85,6 @@
 
 										<div class="btn-group">
 
-<!--											<form th:action="'/user/products/' + ${product.id} + '/add'" method="post">-->
 											<form action="#">
 
 												<button type="submit"
@@ -123,16 +118,19 @@
 		</main>
 	</div>
 </div>
+
 <script type="text/javascript" th:src="@{/assets/dist/js/bootstrap.bundle.min.js}"
 		  integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		  crossorigin="anonymous"></script>
-<script type="text/javascript" th:src="@{/assets/dist/js/bootstrap.bundle.min.js}"></script>
 
+<script type="text/javascript" th:src="@{/assets/dist/js/bootstrap.bundle.min.js}"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js"
 		  integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp"
 		  crossorigin="anonymous"></script>
+
 <script type="text/javascript" th:src="@{/assets/dist/css/dashboard.css}"></script>
+
 </body>
 
 </html>
