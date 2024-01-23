@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 
-//@RestController
 @Controller
 @RequestMapping("/admin")
 public class Dashboard {
@@ -24,17 +23,11 @@ public class Dashboard {
    private RestaurantService service;
 
    @GetMapping("/dashboard")
-//   @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')")
    public String fullEmployeeReview(Model model) {
       List<RestaurantDto> restaurantsDto = service.fullInfo();
-      model.addAttribute("restaurants", restaurantsDto);
-      return "admin/dashboard"; // Имя HTML-файла (без расширения) для отображения
-   }
 
-//   @GetMapping("/rest/dashboard")
-//   public ResponseEntity<List<RestaurantDto>> getAll() {
-//
-//      List<RestaurantDto> restaurantsDto = service.fullInfo();
-//      return new ResponseEntity<>(restaurantsDto, HttpStatus.OK);
-//   }
+      model.addAttribute("restaurants", restaurantsDto);
+
+      return "/admin/dashboard";
+   }
 }
