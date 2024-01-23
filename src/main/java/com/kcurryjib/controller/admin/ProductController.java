@@ -18,7 +18,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/admin/products")
 @SessionAttributes("editProducts")
-@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')")
+@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_USER')")
 public class ProductController {
 
    private final ProductService service;
@@ -47,6 +47,11 @@ public class ProductController {
    @GetMapping("/{id}")
    public String getProductById(@PathVariable Long id,
                                 Model model) throws ProductException {
+
+      if (service.getProductById(id) == null) {
+         return "redirect:/admin/products";
+      }
+
       ProductDto productDto = service.getProductById(id);
 
       model.addAttribute("product", productDto);
@@ -56,7 +61,7 @@ public class ProductController {
 
    // CREATE
    @GetMapping(value = "/add")
-   @PreAuthorize("hasRole('ROLE_ADMIN')")
+   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
    public String addProduct(@ModelAttribute("product") ProductDto productDto,
                             Model model) throws ProductException {
 
@@ -69,7 +74,7 @@ public class ProductController {
 
    // CREATE
    @PostMapping(value = "/add")
-   @PreAuthorize("hasRole('ROLE_ADMIN')")
+   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
    public String createProduct(@ModelAttribute("product") @Valid ProductDto productDto,
                                BindingResult result,
                                @RequestParam(name = "restaurantId") Long restaurantId,
@@ -91,6 +96,7 @@ public class ProductController {
 
    // UPDATE
    @GetMapping(value = "/{id}/edit")
+   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
    public String editProduct(@PathVariable(value = "id") Long id,
 //                             @ModelAttribute("product") ProductDto productDto,
                              Model model) throws ProductException {
@@ -109,6 +115,7 @@ public class ProductController {
 
    // UPDATE
    @PostMapping(value = "/{id}/edit")
+   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_USER')")
    public String updateProduct(@ModelAttribute("product") @Valid ProductDto productDto,
                                BindingResult result,
                                @RequestParam(name = "restaurantId") Long restaurantId,
@@ -128,10 +135,19 @@ public class ProductController {
       return "redirect:/admin/products";
    }
 
-   // DELETE
-   @PostMapping("/{id}/remove")
-   public String deleteProduct(@PathVariable Long id) throws ProductException {
-      service.deleteProduct(id);
+   // UPDATE
+   @PostMapping("/{id}/block")
+//   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_USER')")
+   public String blockProduct(@PathVariable Long id) throws ProductException {
+      service.blockProduct(id);
+      return "redirect:/admin/products";
+   }
+
+   // UPDATE
+   @PostMapping("/{id}/unblock")
+//   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_USER')")
+   public String unblockProduct(@PathVariable Long id) throws ProductException {
+      service.unblockProduct(id);
       return "redirect:/admin/products";
    }
 }

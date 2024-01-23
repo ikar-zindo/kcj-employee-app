@@ -136,7 +136,9 @@
 
 		<h1 class="text-info mx-auto">Hello,
 			<span th:remove="tag"
-					sec:authentication="name"></span>
+					sec:authentication="principal.firstName"></span>
+			<span th:remove="tag"
+					sec:authentication="principal.lastName"></span>
 		</h1>
 
 		<ul class="navbar-nav flex-row d-md-none">
@@ -258,7 +260,9 @@
 
 		<h1 class="text-info mx-auto">Hello,
 			<span th:remove="tag"
-					sec:authentication="name"></span>
+					sec:authentication="principal.firstName"></span>
+			<span th:remove="tag"
+					sec:authentication="principal.lastName"></span>
 		</h1>
 
 		<div class="col-md-3 text-end mr-2">

@@ -52,6 +52,10 @@ public class ReviewController {
    public String getReviewById(@PathVariable Long id,
                                Model model) throws ReviewException {
 
+      if (service.getById(id) == null) {
+         return "redirect:/admin/reviews";
+      }
+
       ReviewDto reviewDto = service.getById(id);
 
       model.addAttribute("review", reviewDto);

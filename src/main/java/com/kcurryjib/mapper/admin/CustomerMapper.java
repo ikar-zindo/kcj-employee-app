@@ -48,6 +48,30 @@ public class CustomerMapper {
       return customerDto;
    }
 
+   public CustomerDto customerInfoDelivery(Customer customer) {
+
+
+//      "id"
+//      "firstName"
+//      "lastName"
+//      "email"
+//      "phoneNumber"
+//      "address"
+//      "postalCode"
+      mapper.typeMap(Customer.class, CustomerDto.class)
+              .addMappings(m -> m.skip(CustomerDto::setPassword))
+              .addMappings(m -> m.skip(CustomerDto::setCreatedAt))
+              .addMappings(m -> m.skip(CustomerDto::setBlocked))
+              .addMappings(m -> m.skip(CustomerDto::setCartDto))
+              .addMappings(m -> m.skip(CustomerDto::setOrdersDto))
+              .addMappings(m -> m.skip(CustomerDto::setReviewsDto));
+
+      CustomerDto customerDto = mapper.map(customer, CustomerDto.class);
+
+      return customerDto;
+   }
+
+
    public List<CustomerDto> convertToCustomersDto(List<Customer> customers) {
       return customers.stream()
               .map(this::convertToCustomerDto)

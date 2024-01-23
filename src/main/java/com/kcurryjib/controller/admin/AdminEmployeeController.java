@@ -1,11 +1,10 @@
 package com.kcurryjib.controller.admin;
 
 import com.kcurryjib.dto.EmployeeDto;
-import com.kcurryjib.dto.ProductDto;
+import com.kcurryjib.dto.OrderDto;
 import com.kcurryjib.dto.RestaurantDto;
 import com.kcurryjib.entity.Employee;
 import com.kcurryjib.exception.list.EmployeeException;
-import com.kcurryjib.exception.list.ProductException;
 import com.kcurryjib.service.admin.EmployeeService;
 import com.kcurryjib.service.admin.RestaurantService;
 import jakarta.validation.Valid;
@@ -13,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,7 +22,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/admin/employees")
 @SessionAttributes("editEmployees")
-@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')")
+@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
 public class AdminEmployeeController {
 
    private final EmployeeService service;
@@ -61,22 +59,6 @@ public class AdminEmployeeController {
       return "/admin/employees/info";
    }
 
-   // READ
-   @GetMapping("/orders")
-   @PreAuthorize("hasRole('ROLE_USER')")
-   public String getEmployeeOrders(Model model) {
-
-      Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-      String currentPrincipalName = authentication.getName();
-
-      Employee employee = (Employee) service.loadUserByUsername(currentPrincipalName);
-      EmployeeDto employeeDto = service.getEmployeeWithOrders(employee.getId());
-
-      model.addAttribute("employee", employeeDto);
-
-      return "/employee/orders/all";
-   }
-
    // CREATE
    @GetMapping(value = "/add")
    @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -107,20 +89,20 @@ public class AdminEmployeeController {
       }
 
       service.addEmployee(employeeDto);
+
       return "redirect:/admin/employees";
    }
 
    // UPDATE
    @GetMapping(value = "/{id}/edit")
    public String editEmployee(@PathVariable(value = "id") Long id,
-//                             @ModelAttribute("product") ProductDto productDto,
                              Model model) throws EmployeeException {
 
-      EmployeeDto employeeDto = service.getEmployeeById(id);
-
-      if (employeeDto == null) {
+      if (service.getEmployeeById(id) == null) {
          return "redirect:/admin/employees";
       }
+
+      EmployeeDto employeeDto = service.getEmployeeById(id);
 
       model.addAttribute("employee", employeeDto);
       model.addAttribute("restaurants", restaurantService.getAll());
@@ -143,6 +125,7 @@ public class AdminEmployeeController {
       if (result.hasErrors()) {
          model.addAttribute("employee", employeeDto);
          model.addAttribute("restaurants", restaurantService.getAll());
+
          return "/admin/employees/edit";
       }
 
@@ -154,7 +137,7 @@ public class AdminEmployeeController {
 
    // DELETE
    @PostMapping("/{id}/block")
-   public String deleteProduct(@PathVariable Long id) throws EmployeeException {
+   public String blockEmployee(@PathVariable Long id) throws EmployeeException {
       service.blockEmployee(id);
       return "redirect:/admin/employees";
    }

@@ -3,15 +3,16 @@ package com.kcurryjib.mapper.employee;
 import com.kcurryjib.dto.EmployeeDto;
 import com.kcurryjib.dto.OrderDto;
 import com.kcurryjib.dto.OrderProductDto;
-import com.kcurryjib.dto.ProductDto;
 import com.kcurryjib.entity.Employee;
 import com.kcurryjib.entity.Order;
 import com.kcurryjib.entity.OrderProduct;
-import com.kcurryjib.entity.Product;
+import com.kcurryjib.mapper.admin.CustomerMapper;
+import com.kcurryjib.mapper.admin.ProductMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,50 +22,52 @@ public class OrderMapper {
    @Autowired
    private ModelMapper mapper;
 
+   @Autowired
+   private ProductMapper productMapper;
+
+   @Autowired
+   CustomerMapper customerMapper;
+
    // convert to DTO
-   public ProductDto convertToProductDto(Product product) {
-      return mapper.map(product, ProductDto.class);
-   }
+   public EmployeeDto showEmployeeWithOrders(Employee employee) {
+      mapper.typeMap(Employee.class, EmployeeDto.class)
+              .addMappings(m -> m.skip(EmployeeDto::setPassword));
 
-   public OrderProductDto convertToOrderProductDto(OrderProduct orderProduct) {
-      OrderProductDto orderProductDto = mapper.map(orderProduct, OrderProductDto.class);
+      EmployeeDto employeeDto = mapper.map(employee, EmployeeDto.class);
 
-      orderProductDto.setProductDto(convertToProductDto(orderProduct.getProduct()));
+      employeeDto.setOrdersDto(convertToOrdersDto(employee.getOrders()));
 
-      return orderProductDto;
+      return employeeDto;
    }
 
    public OrderDto convertToOrderDto(Order order) {
       OrderDto orderDto = mapper.map(order, OrderDto.class);
 
+      orderDto.setCustomerDto(customerMapper.customerInfoDelivery(order.getCustomer()));
       orderDto.setOrderProductsDto(convertToOrderProductsDto(order.getOrderProducts()));
 
       return orderDto;
    }
 
-//   public EmployeeDto convertToEmployeeDto(Employee employee) {
-//      EmployeeDto employeeDto = mapper.map(employee, EmployeeDto.class);
-//
-//      employeeDto.setOrdersDto(convertToOrdersDto(employee.getOrders()));
-//
-//      return employeeDto;
-//   }
-//
-//   public List<EmployeeDto> convertToEmployeesDto(List<Employee> employees) {
-//      return employees.stream()
-//              .map(this::convertToEmployeeDto)
-//              .collect(Collectors.toList());
-//   }
+   public OrderProductDto converToOrderProductDto(OrderProduct orderProduct) {
+      OrderProductDto orderProductDto = mapper.map(orderProduct, OrderProductDto.class);
+
+      orderProductDto.setProductDto(productMapper.convertToProductDto(orderProduct.getProduct()));
+
+      return orderProductDto;
+   }
 
    public List<OrderDto> convertToOrdersDto(List<Order> orders) {
       return orders.stream()
+              .sorted(Comparator.comparing(Order::getOrderDate).reversed())
               .map(this::convertToOrderDto)
               .collect(Collectors.toList());
    }
 
+
    public List<OrderProductDto> convertToOrderProductsDto(List<OrderProduct> orderProducts) {
       return orderProducts.stream()
-              .map(this::convertToOrderProductDto)
+              .map(this::converToOrderProductDto)
               .collect(Collectors.toList());
    }
 }

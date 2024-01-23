@@ -1,71 +1,170 @@
 package com.kcurryjib.service.employee;
 
-import com.kcurryjib.config.MapperUtil;
 import com.kcurryjib.dto.EmployeeDto;
 import com.kcurryjib.dto.OrderDto;
 import com.kcurryjib.entity.Employee;
 import com.kcurryjib.entity.Order;
+import com.kcurryjib.entity.enums.OrderStatus;
 import com.kcurryjib.exception.list.EmployeeException;
-import com.kcurryjib.mapper.employee.EmployeeMapper;
+import com.kcurryjib.exception.list.OrderException;
 import com.kcurryjib.mapper.employee.OrderMapper;
 import com.kcurryjib.repo.EmployeeRepository;
-import com.kcurryjib.repo.OrderProductRepository;
 import com.kcurryjib.repo.OrderRepository;
-import com.kcurryjib.repo.ProductRepository;
-import com.kcurryjib.service.admin.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderService {
 
-   private final EmployeeMapper employeeMapper;
-
-   private final OrderMapper orderMapper;
+   private final EmployeeRepository employeeRepository;
 
    private final OrderRepository orderRepository;
 
-   private final OrderProductRepository orderProductRepository;
-
-   private final ProductRepository productRepository;
-
-   private final EmployeeRepository employeeRepository;
-
-   private final ProductService productService;
+   private final OrderMapper orderMapper;
 
    @Autowired
-   public OrderService(EmployeeMapper employeeMapper,
+   public OrderService(EmployeeRepository employeeRepository,
                        OrderMapper orderMapper,
-                       OrderRepository orderRepository,
-                       OrderProductRepository orderProductRepository,
-                       ProductRepository productRepository,
-                       EmployeeRepository employeeRepository,
-                       ProductService productService) {
+                       OrderRepository orderRepository) throws EmployeeException {
 
-      this.employeeMapper = employeeMapper;
+      this.employeeRepository = employeeRepository;
       this.orderMapper = orderMapper;
       this.orderRepository = orderRepository;
-      this.orderProductRepository = orderProductRepository;
-      this.productRepository = productRepository;
-      this.employeeRepository = employeeRepository;
-      this.productService = productService;
    }
 
    // READ
-   public List<EmployeeDto> getAllActiveEmployee() throws EmployeeException {
-      List<Employee> employees = new ArrayList<>(employeeRepository.findAll());
+   public EmployeeDto getEmployeeWithOrders(Long employeeId) throws EmployeeException {
+      Optional<Employee> employeeOptional = employeeRepository.findById(employeeId);
 
-      return MapperUtil.convertlist(employees, employeeMapper::showEmployeeWithOrders);
+      if (employeeOptional.isPresent()) {
+         Employee employee = employeeOptional.get();
+
+         return orderMapper.showEmployeeWithOrders(employee);
+
+      } else {
+         throw new EmployeeException("Employee not found with id: " + employeeId);
+      }
    }
 
-   // READ
-   public List<OrderDto> getAllOrders() throws EmployeeException {
-      List<Order> orders = new ArrayList<>(orderRepository.findAll());
+   // UPDATE - CREATED
+   public OrderDto createdOrderStatus(Long id) throws OrderException {
 
-      return MapperUtil.convertlist(orders, orderMapper::convertToOrderDto);
+      if (id != null) {
+         Optional<Order> optionalOrder = orderRepository.findById(id);
+
+         if (optionalOrder.isPresent()) {
+            Order order = optionalOrder.get();
+            order.setOrderStatus(OrderStatus.CREATED);
+
+            Order orderResponse = orderRepository.save(order);
+
+            if (orderResponse != null) {
+               return orderMapper.convertToOrderDto(orderResponse);
+
+            } else {
+               throw new OrderException(
+                       String.format("Failed to created order in database with Id=%d!",
+                               id));
+            }
+         } else {
+            throw new OrderException(
+                    String.format("Order not found in the database with Id=%d!",
+                            id));
+         }
+      } else {
+         throw new OrderException("The ID of the order to be created is missing!");
+      }
+   }
+
+   // UPDATE - COMPLETED
+   public OrderDto completedOrderStatus(Long id) throws OrderException {
+
+      if (id != null) {
+         Optional<Order> optionalOrder = orderRepository.findById(id);
+
+         if (optionalOrder.isPresent()) {
+            Order order = optionalOrder.get();
+            order.setOrderStatus(OrderStatus.COMPLETED);
+
+            Order orderResponse = orderRepository.save(order);
+
+            if (orderResponse != null) {
+               return orderMapper.convertToOrderDto(orderResponse);
+
+            } else {
+               throw new OrderException(
+                       String.format("Failed to completed order in database with Id=%d!",
+                               id));
+            }
+         } else {
+            throw new OrderException(
+                    String.format("Order not found in the database with Id=%d!",
+                            id));
+         }
+      } else {
+         throw new OrderException("The ID of the order to be completed is missing!");
+      }
+   }
+
+   // UPDATE - PROCESSING
+   public OrderDto processingOrderStatus(Long id) throws OrderException {
+
+      if (id != null) {
+         Optional<Order> optionalOrder = orderRepository.findById(id);
+
+         if (optionalOrder.isPresent()) {
+            Order order = optionalOrder.get();
+            order.setOrderStatus(OrderStatus.PROCESSING);
+
+            Order orderResponse = orderRepository.save(order);
+
+            if (orderResponse != null) {
+               return orderMapper.convertToOrderDto(orderResponse);
+
+            } else {
+               throw new OrderException(
+                       String.format("Failed to processing order in database with Id=%d!",
+                               id));
+            }
+         } else {
+            throw new OrderException(
+                    String.format("Order not found in the database with Id=%d!",
+                            id));
+         }
+      } else {
+         throw new OrderException("The ID of the order to be processing is missing!");
+      }
+   }
+
+   // UPDATE - CANCELLED
+   public OrderDto cancelledOrderStatus(Long id) throws OrderException {
+
+      if (id != null) {
+         Optional<Order> optionalOrder = orderRepository.findById(id);
+
+         if (optionalOrder.isPresent()) {
+            Order order = optionalOrder.get();
+            order.setOrderStatus(OrderStatus.CANCELLED);
+
+            Order orderResponse = orderRepository.save(order);
+
+            if (orderResponse != null) {
+               return orderMapper.convertToOrderDto(orderResponse);
+
+            } else {
+               throw new OrderException(
+                       String.format("Failed to complete order in database with Id=%d!",
+                               id));
+            }
+         } else {
+            throw new OrderException(
+                    String.format("Order not found in the database with Id=%d!",
+                            id));
+         }
+      } else {
+         throw new OrderException("The ID of the order to be cancelled is missing!");
+      }
    }
 }
-
