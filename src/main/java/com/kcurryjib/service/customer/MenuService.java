@@ -25,7 +25,7 @@ public class MenuService {
 
    private ProductMapper productMapper;
 
-    @Autowired
+   @Autowired
    public MenuService(ProductRepository productRepository,
                       RestaurantRepository restaurantRepository,
                       ProductMapper productMapper) throws ProductException {

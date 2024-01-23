@@ -52,7 +52,7 @@ public class EmployeeService implements UserDetailsService {
       return MapperUtil.convertlist(employees, adminEmployeeMapper::showEmployeeWithRestaurant);
    }
 
-//   READ
+   //   READ
    public List<Employee> getAllEntity() {
       List<Employee> employees = new ArrayList<>(employeeRepository.findAll());
 
@@ -133,7 +133,7 @@ public class EmployeeService implements UserDetailsService {
    }
 
    // CREATE
-   public Employee save(Employee employee) throws EmployeeException{
+   public Employee save(Employee employee) throws EmployeeException {
       Employee foundEmployee = (Employee) employeeRepository.findByUsername(employee.getUsername());
 
       if (foundEmployee != null) {

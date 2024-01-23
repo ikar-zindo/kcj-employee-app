@@ -3,6 +3,7 @@ package com.kcurryjib.controller.employee;
 import com.kcurryjib.dto.EmployeeDto;
 import com.kcurryjib.dto.OrderDto;
 import com.kcurryjib.entity.Employee;
+import com.kcurryjib.exception.list.EmployeeException;
 import com.kcurryjib.exception.list.OrderException;
 import com.kcurryjib.service.admin.EmployeeService;
 import com.kcurryjib.service.employee.OrderService;
@@ -37,7 +38,7 @@ public class OrderController {
    // READ
    @GetMapping()
    @PreAuthorize("hasRole('ROLE_USER')")
-   public String getEmployeeOrders(Model model) {
+   public String getEmployeeOrders(Model model) throws EmployeeException {
 
       Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
       String currentPrincipalName = authentication.getName();

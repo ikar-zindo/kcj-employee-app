@@ -66,9 +66,14 @@ public class SecurityConfig {
 
                                  if (authorities.stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"))) {
                                     response.sendRedirect("/admin/products");
+
                                  } else if (authorities.stream().anyMatch(r -> r.getAuthority().equals("ROLE_MANAGER"))) {
                                     response.sendRedirect("/admin/employees");
-                                 } else {
+
+                                 } else if (authorities.stream().anyMatch(r -> r.getAuthority().equals("ROLE_USER"))) {
+                                    response.sendRedirect("/employee/orders");
+
+                              } else {
                                     response.sendRedirect("/");
                                  }
                               })

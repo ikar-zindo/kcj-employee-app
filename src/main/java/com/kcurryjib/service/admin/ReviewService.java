@@ -7,7 +7,6 @@ import com.kcurryjib.dto.ReviewDto;
 import com.kcurryjib.entity.Customer;
 import com.kcurryjib.entity.Restaurant;
 import com.kcurryjib.entity.Review;
-import com.kcurryjib.exception.list.ProductException;
 import com.kcurryjib.exception.list.ReviewException;
 import com.kcurryjib.mapper.admin.ReviewMapper;
 import com.kcurryjib.repo.CustomerRepository;

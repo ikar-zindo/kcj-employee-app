@@ -1,11 +1,8 @@
 package com.kcurryjib.service.customer;
 
-import com.kcurryjib.config.MapperUtil;
-import com.kcurryjib.dto.CartDto;
 import com.kcurryjib.dto.CartProductDto;
 import com.kcurryjib.dto.CustomerDto;
 import com.kcurryjib.dto.ProductDto;
-import com.kcurryjib.entity.Cart;
 import com.kcurryjib.entity.CartProduct;
 import com.kcurryjib.entity.Customer;
 import com.kcurryjib.entity.Product;
@@ -18,14 +15,9 @@ import com.kcurryjib.repo.CustomerRepository;
 import com.kcurryjib.repo.ProductRepository;
 import com.kcurryjib.service.admin.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Service
