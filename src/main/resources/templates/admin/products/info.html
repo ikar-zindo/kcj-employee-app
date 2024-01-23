@@ -77,7 +77,7 @@
 
 								<!-- !!!COMPLETED!!! оформить правильно DELETE запрос -->
 
-								<form th:action="'/admin/products/' + ${product.id} + '/block'" method="post">
+								<form th:action="'/admin/products/' + ${product.id} + '/block'" th:method="PATCH">
 									<button type="submit"
 											  class="btn btn-sm btn-outline-secondary text-danger">
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

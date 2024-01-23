@@ -1,4 +1,6 @@
-<div th:fragment="sidebar">
+<div th:fragment="sidebar"
+	  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
 	<div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
 		<ul class="nav flex-column">
 
@@ -49,7 +51,21 @@
 
 
 			<li class="nav-item">
-				<a class="nav-link d-flex align-items-center gap-2" href="/employee/orders">
+				<a class="nav-link d-flex align-items-center gap-2" href="/admin/orders"
+					sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')">
+
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
+						<path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
+					</svg>
+					Orders
+				</a>
+			</li>
+
+
+			<li class="nav-item">
+				<a class="nav-link d-flex align-items-center gap-2" href="/employee/orders"
+					sec:authorize="hasRole('ROLE_USER')">
+
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
 						<path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
 					</svg>
@@ -69,7 +85,9 @@
 
 
 			<li class="nav-item">
-				<a class="nav-link d-flex align-items-center gap-2" href="/admin/employees">
+				<a class="nav-link d-flex align-items-center gap-2" href="/admin/employees"
+					sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')">
+
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-bounding-box" viewBox="0 0 16 16">
 						<path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5M.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5"/>
 						<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>

@@ -7,7 +7,7 @@ import com.kcurryjib.entity.Employee;
 import com.kcurryjib.entity.Restaurant;
 import com.kcurryjib.entity.enums.Role;
 import com.kcurryjib.exception.list.EmployeeException;
-import com.kcurryjib.mapper.admin.AdminEmployeeMapper;
+import com.kcurryjib.mapper.admin.EmployeeMapper;
 import com.kcurryjib.repo.EmployeeRepository;
 import com.kcurryjib.repo.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class EmployeeService implements UserDetailsService {
 
    private final EmployeeRepository employeeRepository;
 
-   private final AdminEmployeeMapper adminEmployeeMapper;
+   private final EmployeeMapper employeeMapper;
 
    private final RestaurantRepository restaurantRepository;
 
@@ -35,12 +35,12 @@ public class EmployeeService implements UserDetailsService {
 
    @Autowired
    public EmployeeService(EmployeeRepository employeeRepository,
-                          AdminEmployeeMapper adminEmployeeMapper,
+                          EmployeeMapper employeeMapper,
                           PasswordEncoder encoder,
                           RestaurantRepository restaurantRepository) {
 
       this.employeeRepository = employeeRepository;
-      this.adminEmployeeMapper = adminEmployeeMapper;
+      this.employeeMapper = employeeMapper;
       this.restaurantRepository = restaurantRepository;
       this.encoder = encoder;
    }
@@ -49,7 +49,7 @@ public class EmployeeService implements UserDetailsService {
    public List<EmployeeDto> getAll() throws EmployeeException {
       List<Employee> employees = new ArrayList<>(employeeRepository.findAll());
 
-      return MapperUtil.convertlist(employees, adminEmployeeMapper::showEmployeeWithRestaurant);
+      return MapperUtil.convertlist(employees, employeeMapper::showEmployeeWithRestaurant);
    }
 
    //   READ
@@ -79,7 +79,7 @@ public class EmployeeService implements UserDetailsService {
          Optional<Employee> employeeOptional = employeeRepository.findById(id);
 
          if (employeeOptional.isPresent()) {
-            employeeDto = adminEmployeeMapper.showEmployeeWithRestaurant(employeeOptional.get());
+            employeeDto = employeeMapper.showEmployeeWithRestaurant(employeeOptional.get());
 
          } else {
             throw new EmployeeException(
@@ -103,7 +103,7 @@ public class EmployeeService implements UserDetailsService {
             Restaurant restaurant = restaurantRepository.findById(restaurantDto.getId()).orElse(null);
 
             if (restaurant != null) {
-               Employee employee = adminEmployeeMapper.convertToEmployee(employeeDto);
+               Employee employee = employeeMapper.convertToEmployee(employeeDto);
 
                employee.setRole(Role.ROLE_USER);
                employee.setPassword(encoder.encode(employee.getPassword()));
@@ -114,7 +114,7 @@ public class EmployeeService implements UserDetailsService {
                Long idResponse = employeeResponse.getId();
 
                if (idResponse != null && idResponse > 0) {
-                  return adminEmployeeMapper.convertToEmployeeDto(employeeResponse);
+                  return employeeMapper.convertToEmployeeDto(employeeResponse);
 
                } else {
                   throw new EmployeeException("Could not create a product in the database");
@@ -170,7 +170,7 @@ public class EmployeeService implements UserDetailsService {
             Employee employeeResponse = employeeRepository.save(employee);
 
             if (employeeResponse != null) {
-               return adminEmployeeMapper.convertToEmployeeDto(employeeResponse);
+               return employeeMapper.convertToEmployeeDto(employeeResponse);
 
             } else {
                throw new EmployeeException(
@@ -200,7 +200,7 @@ public class EmployeeService implements UserDetailsService {
             Employee employeeResponse = employeeRepository.save(employee);
 
             if (employeeResponse != null) {
-               return adminEmployeeMapper.convertToEmployeeDto(employeeResponse);
+               return employeeMapper.convertToEmployeeDto(employeeResponse);
 
             } else {
                throw new EmployeeException(
