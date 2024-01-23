@@ -69,12 +69,16 @@
 	<header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
 		<a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white text-danger" href="/admin/dashboard">Admin panel</a>
 
-		<h1 class="text-info mx-auto">Hello,
+		<h4 class="text-info mx-auto">Hello,
 			<span th:remove="tag"
 					sec:authentication="principal.firstName"></span>
 			<span th:remove="tag"
-					sec:authentication="principal.lastName"></span>
-		</h1>
+					sec:authentication="principal.lastName"></span> -
+			<span th:remove="tag"
+					sec:authentication="name"></span>
+			[<span th:remove="tag"
+					sec:authentication="principal.role"></span>]
+		</h4>
 
 		<ul class="navbar-nav flex-row d-md-none">
 			<li class="nav-item text-nowrap">
