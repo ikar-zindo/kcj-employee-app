@@ -325,16 +325,16 @@ INSERT INTO `cart` (`customer_id`) VALUES
 --
 
 INSERT INTO `employee` (`last_name`, `first_name`,  `email`, `nickname`, `password`, `phone_number`, `role`, `restaurant_id`) VALUES
-    ('Davolio', 'Nancy', 'davolio@mail.com', 'user', '$2a$10$OebBU653Mokfh/uRVu9CCexVAN3LBrkHpAtHZP6iMdZj8JmldwNqW', '+49123456789', 'ROLE_USER', 1),
-    ('Fuller', 'Andrew', 'fuller@mail.com', 'andrew', '$2a$10$rmQi5Z5O1HzHsV.6lM8.D..6gAf5vWQPtYwnlNzwWbfq4Ww8ZMDV.', '+49123456789', 'ROLE_USER', 1),
-    ('Leverling', 'Janet', 'leverling@mail.com', 'janet', '$2a$10$T4Ti17zkvQMube2OlAcuNepOKNp6QE8vDFk18p51ZwbHNk1jbyOoy', '+49123456789', 'ROLE_USER', 1),
-    ('Peacock', 'Margaret', 'peacock@mail.com', 'margaret', '$2a$10$T4Ti17zkvQMube2OlAcuNepOKNp6QE8vDFk18p51ZwbHNk1jbyOoy', '+49123456789', 'ROLE_USER', 1),
-    ('Buchanan', 'Steven', 'buchanan@mail.com', 'steven', '$2a$10$T4Ti17zkvQMube2OlAcuNepOKNp6QE8vDFk18p51ZwbHNk1jbyOoy', '+49123456789', 'ROLE_USER', 1),
-    ('Suyama', 'Michael', 'suyama@mail.com', 'manager', '$2a$10$OebBU653Mokfh/uRVu9CCexVAN3LBrkHpAtHZP6iMdZj8JmldwNqW', '+49123456789', 'ROLE_MANAGER', 1),
-    ('King', 'Robert', 'king@mail.com', 'robert', '$2a$10$OebBU653Mokfh/uRVu9CCexVAN3LBrkHpAtHZP6iMdZj8JmldwNqW', '+49123456789', 'ROLE_MANAGER', 1),
-    ('Callahan', 'Laura', 'callahan@mail.com', 'admin', '$2a$10$OebBU653Mokfh/uRVu9CCexVAN3LBrkHpAtHZP6iMdZj8JmldwNqW', '+49123456789', 'ROLE_ADMIN', 1),
-    ('Dodsworth', 'Anne', 'dodsworth@mail.com', 'anne', '$2a$10$rmQi5Z5O1HzHsV.6lM8.D..6gAf5vWQPtYwnlNzwWbfq4Ww8ZMDV.', '+49123456789', 'ROLE_ADMIN', 1),
-    ('West', 'Adam', 'west@mail.com', 'driver', '$2a$10$rmQi5Z5O1HzHsV.6lM8.D..6gAf5vWQPtYwnlNzwWbfq4Ww8ZMDV.', '+49123456789', 'ROLE_DRIVER', 1);
+    ('Davolio', 'Nancy', 'davolio@mail.com', 'user', '$2a$10$OebBU653Mokfh/uRVu9CCexVAN3LBrkHpAtHZP6iMdZj8JmldwNqW', '+49 123 456 789', 'ROLE_USER', 1),
+    ('Fuller', 'Andrew', 'fuller@mail.com', 'andrew', '$2a$10$rmQi5Z5O1HzHsV.6lM8.D..6gAf5vWQPtYwnlNzwWbfq4Ww8ZMDV.', '+49 123 456 789', 'ROLE_USER', 1),
+    ('Leverling', 'Janet', 'leverling@mail.com', 'janet', '$2a$10$T4Ti17zkvQMube2OlAcuNepOKNp6QE8vDFk18p51ZwbHNk1jbyOoy', '+49 123 456 789', 'ROLE_USER', 1),
+    ('Peacock', 'Margaret', 'peacock@mail.com', 'margaret', '$2a$10$T4Ti17zkvQMube2OlAcuNepOKNp6QE8vDFk18p51ZwbHNk1jbyOoy', '+49 123 456 789', 'ROLE_USER', 1),
+    ('Buchanan', 'Steven', 'buchanan@mail.com', 'steven', '$2a$10$T4Ti17zkvQMube2OlAcuNepOKNp6QE8vDFk18p51ZwbHNk1jbyOoy', '+49 123 456 789', 'ROLE_USER', 1),
+    ('Suyama', 'Michael', 'suyama@mail.com', 'manager', '$2a$10$OebBU653Mokfh/uRVu9CCexVAN3LBrkHpAtHZP6iMdZj8JmldwNqW', '+49 123 456 789', 'ROLE_MANAGER', 1),
+    ('King', 'Robert', 'king@mail.com', 'robert', '$2a$10$OebBU653Mokfh/uRVu9CCexVAN3LBrkHpAtHZP6iMdZj8JmldwNqW', '+49 123 456 789', 'ROLE_MANAGER', 1),
+    ('Callahan', 'Laura', 'callahan@mail.com', 'admin', '$2a$10$OebBU653Mokfh/uRVu9CCexVAN3LBrkHpAtHZP6iMdZj8JmldwNqW', '+49 123 456 789', 'ROLE_ADMIN', 1),
+    ('Dodsworth', 'Anne', 'dodsworth@mail.com', 'anne', '$2a$10$rmQi5Z5O1HzHsV.6lM8.D..6gAf5vWQPtYwnlNzwWbfq4Ww8ZMDV.', '+49 123 456 789', 'ROLE_ADMIN', 1),
+    ('West', 'Adam', 'west@mail.com', 'driver', '$2a$10$rmQi5Z5O1HzHsV.6lM8.D..6gAf5vWQPtYwnlNzwWbfq4Ww8ZMDV.', '+49 123 456 789', 'ROLE_DRIVER', 1);
 
 --
 -- Dumping data for table `product`
@@ -367,7 +367,8 @@ INSERT INTO `product` (`name`, `description`,  `price`, `restaurant_id`, `image_
 --
 	
 INSERT INTO `order` (`customer_id`, `restaurant_id`, `employee_id`, `delivery_address`, `total_amount`, `order_status`) VALUES 
-	('1', '1', '1', 'Taczaka 2, 61891', '26', 'CREATED');
+	('1', '1', '1', 'Taczaka 2, 61891', '26', 'CREATED'),
+	('2', '1', '1', 'Limanowskiego 21, 61540', '14', 'CREATED');
 
 --
 -- Dumping data for table `order_product`
@@ -375,7 +376,8 @@ INSERT INTO `order` (`customer_id`, `restaurant_id`, `employee_id`, `delivery_ad
 
 INSERT INTO `order_product` (`order_id`, `product_id`, `quantity`, `total`) VALUES
 	('1', '1', '1', '14'),
-    ('1', '2', '1', '12');
+    ('1', '2', '1', '12'),
+    ('2', '1', '1', '14');
 
 COMMIT;
 

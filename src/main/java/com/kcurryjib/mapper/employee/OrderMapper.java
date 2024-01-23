@@ -12,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -58,6 +59,7 @@ public class OrderMapper {
 
    public List<OrderDto> convertToOrdersDto(List<Order> orders) {
       return orders.stream()
+              .sorted(Comparator.comparing(Order::getOrderDate).reversed())
               .map(this::convertToOrderDto)
               .collect(Collectors.toList());
    }
