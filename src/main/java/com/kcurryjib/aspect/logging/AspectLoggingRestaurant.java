@@ -66,7 +66,7 @@ public class AspectLoggingRestaurant {
    /**
     * LOGGER for admin.service.RestaurantService.deleteRestaurant()
     */
-   @Pointcut("execution(* com.kcurryjib.service.admin.RestaurantService.deleteRestaurant(..))")
+   @Pointcut("execution(* com.kcurryjib.service.admin.RestaurantService.closeRestaurant(..))")
    public void deleteRestaurant() {
    }
 

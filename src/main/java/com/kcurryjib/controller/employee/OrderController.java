@@ -53,28 +53,28 @@ public class OrderController {
    }
 
    // UPDATE - CREATED
-   @PostMapping("/{id}/created")
+   @PatchMapping("/{id}/created")
    public String createdOrder(@PathVariable Long id) throws OrderException {
       service.createdOrderStatus(id);
       return "redirect:/employee/orders";
    }
 
    // UPDATE - COMPLETED
-   @PostMapping("/{id}/completed")
+   @PatchMapping("/{id}/completed")
    public String completedOrder(@PathVariable Long id) throws OrderException {
       service.completedOrderStatus(id);
       return "redirect:/employee/orders";
    }
 
    // UPDATE - PROCESSING
-   @PostMapping("/{id}/processing")
+   @PatchMapping("/{id}/processing")
    public String processingOrder(@PathVariable Long id) throws OrderException {
       service.processingOrderStatus(id);
       return "redirect:/employee/orders";
    }
 
    // UPDATE - PROCESSING
-   @PostMapping("/{id}/cancelled")
+   @PatchMapping("/{id}/cancelled")
    public String cancelledOrder(@PathVariable Long id) throws OrderException {
       service.cancelledOrderStatus(id);
       return "redirect:/employee/orders";

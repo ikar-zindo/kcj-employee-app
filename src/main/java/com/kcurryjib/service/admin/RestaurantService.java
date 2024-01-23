@@ -4,9 +4,7 @@ import com.kcurryjib.config.MapperUtil;
 import com.kcurryjib.dto.RestaurantDto;
 import com.kcurryjib.dto.ReviewDto;
 import com.kcurryjib.entity.Restaurant;
-import com.kcurryjib.exception.list.ProductException;
 import com.kcurryjib.exception.list.RestaurantException;
-import com.kcurryjib.exception.list.ReviewException;
 import com.kcurryjib.mapper.admin.RestaurantMapper;
 import com.kcurryjib.repo.EmployeeRepository;
 import com.kcurryjib.repo.RestaurantRepository;
@@ -162,7 +160,7 @@ public class RestaurantService {
    }
 
    //DELETE
-   public RestaurantDto deleteRestaurant(Long id) throws RestaurantException {
+   public RestaurantDto closeRestaurant(Long id) throws RestaurantException {
 
       if (id != null) {
          Optional<Restaurant> restaurantOptional = restaurantRepository.findById(id);

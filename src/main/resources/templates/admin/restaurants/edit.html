@@ -64,7 +64,7 @@
 				<h4 class="mb-3">Edit restaurant</h4>
 
 				<form class="needs-validation"
-						th:method="POST"
+						th:method="PATCH"
 						th:action="@{/admin/restaurants/{id}/edit(id=${restaurant.id})}"
 						th:object="${restaurant}"
 						novalidate>

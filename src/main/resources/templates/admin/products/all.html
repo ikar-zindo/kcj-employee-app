@@ -132,7 +132,7 @@
 								<td th:text="${product.available}"/>
 
 								<td>
-									<form th:action="'/admin/products/' + ${product.id} + '/unblock'" method="post">
+									<form th:action="'/admin/products/' + ${product.id} + '/unblock'" th:method="PATCH">
 										<button type="submit"
 												  class="btn btn-sm btn-outline-secondary text-success">
 											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
@@ -144,7 +144,7 @@
 								</td>
 
 								<td>
-									<form th:action="'/admin/products/' + ${product.id} + '/block'" method="post">
+									<form th:action="'/admin/products/' + ${product.id} + '/block'" th:method="PATCH">
 										<button type="submit"
 												  class="btn btn-sm btn-outline-secondary text-danger">
 											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

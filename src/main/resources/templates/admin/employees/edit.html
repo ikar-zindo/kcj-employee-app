@@ -65,7 +65,7 @@
 				<h4 class="mb-3">Edit product</h4>
 
 				<form class="needs-validation"
-						th:method="POST"
+						th:method="PATCH"
 						th:action="@{/admin/employees/{id}/edit(id=${employee.id})}"
 						th:object="${employee}"
 						novalidate>

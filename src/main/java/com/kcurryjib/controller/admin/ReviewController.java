@@ -122,7 +122,7 @@ public class ReviewController {
    }
 
    // UPDATE
-   @PostMapping(value = "/{id}/edit")
+   @PatchMapping(value = "/{id}/edit")
    public String updateReview(@ModelAttribute("review") @Valid ReviewDto reviewDto,
                                BindingResult result,
                                @RequestParam(name = "restaurantId") Long restaurantId,
@@ -145,6 +145,7 @@ public class ReviewController {
       }
 
       service.updateReview(reviewDto);
+
       return "redirect:/admin/reviews";
    }
 

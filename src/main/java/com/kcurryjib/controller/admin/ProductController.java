@@ -67,6 +67,7 @@ public class ProductController {
 
       productDto.setImageUrl("1.jpg");
       productDto.setName("new product");
+
       model.addAttribute("restaurants", restaurantService.getAll());
 
       return "/admin/products/add";
@@ -98,12 +99,11 @@ public class ProductController {
    @GetMapping(value = "/{id}/edit")
    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
    public String editProduct(@PathVariable(value = "id") Long id,
-//                             @ModelAttribute("product") ProductDto productDto,
                              Model model) throws ProductException {
 
       ProductDto productDto = service.getProductById(id);
 
-      if (productDto == null) {
+      if (productDto.getId() == null) {
          return "redirect:/admin/products";
       }
 
@@ -114,7 +114,7 @@ public class ProductController {
    }
 
    // UPDATE
-   @PostMapping(value = "/{id}/edit")
+   @PatchMapping(value = "/{id}/edit")
    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_USER')")
    public String updateProduct(@ModelAttribute("product") @Valid ProductDto productDto,
                                BindingResult result,
@@ -136,16 +136,14 @@ public class ProductController {
    }
 
    // UPDATE
-   @PostMapping("/{id}/block")
-//   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_USER')")
+   @PatchMapping("/{id}/block")
    public String blockProduct(@PathVariable Long id) throws ProductException {
       service.blockProduct(id);
       return "redirect:/admin/products";
    }
 
    // UPDATE
-   @PostMapping("/{id}/unblock")
-//   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_USER')")
+   @PatchMapping("/{id}/unblock")
    public String unblockProduct(@PathVariable Long id) throws ProductException {
       service.unblockProduct(id);
       return "redirect:/admin/products";

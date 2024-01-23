@@ -85,7 +85,6 @@ public class EmployeeController {
       }
 
       service.addEmployee(employeeDto);
-
       return "redirect:/admin/employees";
    }
 
@@ -109,7 +108,7 @@ public class EmployeeController {
 
    // todo: реализовать обновление информации о сотруднике без учёта пароля
    // UPDATE
-   @PostMapping(value = "/{id}/edit")
+   @PatchMapping(value = "/{id}/edit")
    @PreAuthorize("hasRole('ROLE_ADMIN')")
    public String updateEmployee(@ModelAttribute("employee") @Valid EmployeeDto employeeDto,
                                BindingResult result,
@@ -127,14 +126,12 @@ public class EmployeeController {
          return "/admin/employees/edit";
       }
 
-//      employeeDto.setPassword(employeeDto.getPassword());
-
       service.updateEmployee(employeeDto);
       return "redirect:/admin/employees";
    }
 
    // DELETE
-   @PostMapping("/{id}/block")
+   @PatchMapping("/{id}/block")
    public String blockEmployee(@PathVariable Long id) throws EmployeeException {
       service.blockEmployee(id);
       return "redirect:/admin/employees";

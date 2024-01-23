@@ -6,9 +6,12 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
+import java.util.Collection;
 
 @Configuration
 @EnableWebSecurity
@@ -58,19 +61,17 @@ public class SecurityConfig {
                       login -> login
                               .loginPage("/login")
                               .defaultSuccessUrl("/") // URL перенаправления по умолчанию
-//                              .successHandler((request, response, authentication) -> {
-                              // Получаем роли пользователя
-//                                 Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+                              .successHandler((request, response, authentication) -> {
+                                 Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 
-                              // Перенаправляем в зависимости от ролей
-//                                 if (authorities.stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"))) {
-//                                    response.sendRedirect("/admin/products");
-//                                 } else if (authorities.stream().anyMatch(r -> r.getAuthority().equals("ROLE_MANAGER"))) {
-//                                    response.sendRedirect("/admin/employees");
-//                                 } else {
-//                                    response.sendRedirect("/");
-//                                 }
-//                              })
+                                 if (authorities.stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"))) {
+                                    response.sendRedirect("/admin/products");
+                                 } else if (authorities.stream().anyMatch(r -> r.getAuthority().equals("ROLE_MANAGER"))) {
+                                    response.sendRedirect("/admin/employees");
+                                 } else {
+                                    response.sendRedirect("/");
+                                 }
+                              })
                               .permitAll()
               )
               .build();

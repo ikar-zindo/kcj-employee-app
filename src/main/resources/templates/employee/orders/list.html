@@ -126,7 +126,7 @@
 							<div class="d-flex justify-content-between">
 
 								<!--CREATED-->
-								<form th:action="'/employee/orders/' + ${order.id} + '/created'" method="post">
+								<form th:action="'/employee/orders/' + ${order.id} + '/created'" th:method="PATCH">
 									<button type="submit"
 											  class="btn btn-sm btn-outline-secondary text-primary">
 										CREATED
@@ -134,7 +134,7 @@
 								</form>
 
 								<!--PROCESSING-->
-								<form th:action="'/employee/orders/' + ${order.id} + '/processing'" method="post">
+								<form th:action="'/employee/orders/' + ${order.id} + '/processing'" th:method="PATCH">
 									<button type="submit"
 											  class="btn btn-sm btn-outline-secondary text-warning">
 										PROCESSING
@@ -142,7 +142,7 @@
 								</form>
 
 								<!--COMPLETED-->
-								<form th:action="'/employee/orders/' + ${order.id} + '/completed'" method="post">
+								<form th:action="'/employee/orders/' + ${order.id} + '/completed'" th:method="PATCH">
 									<button type="submit"
 											  class="btn btn-sm btn-outline-secondary text-success">
 										COMPLETED
@@ -150,7 +150,7 @@
 								</form>
 
 								<!--CANCELLED-->
-								<form th:action="'/employee/orders/' + ${order.id} + '/cancelled'" method="post">
+								<form th:action="'/employee/orders/' + ${order.id} + '/cancelled'" th:method="PATCH">
 									<button type="submit"
 											  class="btn btn-sm btn-outline-secondary text-danger">
 										CANCELLED
