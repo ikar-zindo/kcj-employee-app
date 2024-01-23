@@ -28,6 +28,7 @@
 
 	<!-- Custom styles for this template -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+
 	<!-- Custom styles for this template -->
 	<link rel="stylesheet" th:href="@{/assets/css/style.css}"/>
 	<link rel="stylesheet" th:href="@{/assets/dist/css/dashboard.css}"/>
@@ -56,11 +57,11 @@
 			</div>
 		</div>
 
+		<!--Main-->
 		<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
 			<div class="col-md-7 col-lg-8">
 				<h4 class="mb-3">Edit restaurant</h4>
-
 
 				<form class="needs-validation"
 						th:method="POST"
@@ -70,7 +71,6 @@
 					<div class="row g-3">
 
 						<input type="hidden" th:field="*{id}" id="id"/><br/>
-
 
 						<div class="col-7">
 							<h3 th:text="*{name}"/>
@@ -98,7 +98,6 @@
 								  th:errors="*{address}"></div>
 						</div>
 
-
 						<div class="col-12">
 							<label for="phoneNumber" class="form-label">Phone humber</label>
 							<input placeholder="Enter restaurant phoneNumber" class="form-control"
@@ -109,7 +108,6 @@
 								  th:if="${#fields.hasErrors('phoneNumber')}"
 								  th:errors="*{phoneNumber}"></div>
 						</div>
-
 
 						<div class="col-12">
 							<label for="openingHours" class="form-label">Opening hours</label>
@@ -122,7 +120,6 @@
 								  th:errors="*{openingHours}"></div>
 						</div>
 
-
 						<div class="col-12">
 							<label for="cuisineType" class="form-label">Cuisine type</label>
 							<input placeholder="Enter restaurant cuisineType" class="form-control"
@@ -133,7 +130,6 @@
 								  th:if="${#fields.hasErrors('cuisineType')}"
 								  th:errors="*{cuisineType}"></div>
 						</div>
-
 
 						<div class="col-12">
 							<label for="description" class="form-label">Description</label>
@@ -146,7 +142,6 @@
 								  th:errors="*{description}"></div>
 						</div>
 
-
 						<div class="col-12">
 							<label for="socialMediaLinks" class="form-label">Social media links</label>
 							<input placeholder="Enter restaurant socialMediaLinks" class="form-control"
@@ -158,7 +153,6 @@
 								  th:errors="*{socialMediaLinks}"></div>
 						</div>
 					</div>
-
 
 					<hr class="my-4">
 
@@ -182,16 +176,19 @@
 		</main>
 	</div>
 </div>
+
 <script type="text/javascript" th:src="@{/assets/dist/js/bootstrap.bundle.min.js}"
 		  integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		  crossorigin="anonymous"></script>
-<script type="text/javascript" th:src="@{/assets/dist/js/bootstrap.bundle.min.js}"></script>
 
+<script type="text/javascript" th:src="@{/assets/dist/js/bootstrap.bundle.min.js}"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js"
 		  integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp"
 		  crossorigin="anonymous"></script>
+
 <script type="text/javascript" th:src="@{/assets/dist/css/dashboard.css}"></script>
+
 </body>
 
 </html>
