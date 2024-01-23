@@ -27,7 +27,7 @@ public class EmployeeController {
 
    @Autowired
    public EmployeeController(EmployeeService service,
-                                  RestaurantService restaurantService) {
+                             RestaurantService restaurantService) {
 
       this.service = service;
       this.restaurantService = restaurantService;
@@ -46,7 +46,7 @@ public class EmployeeController {
    // READ
    @GetMapping("/{id}")
    public String getEmployeeById(@PathVariable Long id,
-                                Model model) throws EmployeeException {
+                                 Model model) throws EmployeeException {
 
       EmployeeDto employeeDto = service.getEmployeeById(id);
 
@@ -59,7 +59,7 @@ public class EmployeeController {
    @GetMapping(value = "/add")
    @PreAuthorize("hasRole('ROLE_ADMIN')")
    public String addEmployee(@ModelAttribute("employee") EmployeeDto employeeDto,
-                            Model model) throws EmployeeException {
+                             Model model) throws EmployeeException {
 
       model.addAttribute("restaurants", restaurantService.getAll());
 
@@ -70,9 +70,9 @@ public class EmployeeController {
    @PostMapping(value = "/add")
    @PreAuthorize("hasRole('ROLE_ADMIN')")
    public String createEmployee(@ModelAttribute("employee") @Valid EmployeeDto employeeDto,
-                               BindingResult result,
-                               @RequestParam(name = "restaurantId") Long restaurantId,
-                               Model model) throws EmployeeException {
+                                BindingResult result,
+                                @RequestParam(name = "restaurantId") Long restaurantId,
+                                Model model) throws EmployeeException {
 
       RestaurantDto restaurantDto = restaurantService.getById(restaurantId);
       employeeDto.setRestaurantDto(restaurantDto);
@@ -85,7 +85,6 @@ public class EmployeeController {
       }
 
       service.addEmployee(employeeDto);
-
       return "redirect:/admin/employees";
    }
 
@@ -93,7 +92,7 @@ public class EmployeeController {
    @GetMapping(value = "/{id}/edit")
    @PreAuthorize("hasRole('ROLE_ADMIN')")
    public String editEmployee(@PathVariable(value = "id") Long id,
-                             Model model) throws EmployeeException {
+                              Model model) throws EmployeeException {
 
       if (service.getEmployeeById(id) == null) {
          return "redirect:/admin/employees";
@@ -109,12 +108,12 @@ public class EmployeeController {
 
    // todo: реализовать обновление информации о сотруднике без учёта пароля
    // UPDATE
-   @PostMapping(value = "/{id}/edit")
+   @PatchMapping(value = "/{id}/edit")
    @PreAuthorize("hasRole('ROLE_ADMIN')")
    public String updateEmployee(@ModelAttribute("employee") @Valid EmployeeDto employeeDto,
-                               BindingResult result,
-                               @RequestParam(name = "restaurantId") Long restaurantId,
-                               Model model) throws EmployeeException {
+                                BindingResult result,
+                                @RequestParam(name = "restaurantId") Long restaurantId,
+                                Model model) throws EmployeeException {
 
       RestaurantDto restaurantDto = restaurantService.getById(restaurantId);
 
@@ -127,14 +126,12 @@ public class EmployeeController {
          return "/admin/employees/edit";
       }
 
-//      employeeDto.setPassword(employeeDto.getPassword());
-
       service.updateEmployee(employeeDto);
       return "redirect:/admin/employees";
    }
 
    // DELETE
-   @PostMapping("/{id}/block")
+   @PatchMapping("/{id}/block")
    public String blockEmployee(@PathVariable Long id) throws EmployeeException {
       service.blockEmployee(id);
       return "redirect:/admin/employees";

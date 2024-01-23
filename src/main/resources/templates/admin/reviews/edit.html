@@ -66,7 +66,7 @@
 
 
 				<form class="needs-validation"
-						th:method="POST"
+						th:method="PATCH"
 						th:action="@{/admin/reviews/{id}/edit(id=${review.id})}"
 						th:object="${review}"
 						novalidate>

@@ -69,7 +69,7 @@ public class ReviewController {
    // CREATE
    @GetMapping(value = "/add")
    public String addReview(@ModelAttribute("review") ReviewDto reviewDto,
-                            Model model) throws ReviewException {
+                           Model model) throws ReviewException {
 
       model.addAttribute("restaurants", restaurantService.getAll());
       model.addAttribute("customers", customerService.getAll());
@@ -80,10 +80,10 @@ public class ReviewController {
    // CREATE
    @PostMapping(value = "/add")
    public String createReview(@ModelAttribute("review") @Valid ReviewDto reviewDto,
-                               BindingResult result,
-                               @RequestParam(name = "restaurantId") Long restaurantId,
-                               @RequestParam(name = "customerId") Long customerId,
-                               Model model) throws ReviewException {
+                              BindingResult result,
+                              @RequestParam(name = "restaurantId") Long restaurantId,
+                              @RequestParam(name = "customerId") Long customerId,
+                              Model model) throws ReviewException {
 
       RestaurantDto restaurantDto = restaurantService.getById(restaurantId);
       CustomerDto customerDto = customerService.getById(customerId);
@@ -106,7 +106,7 @@ public class ReviewController {
    // UPDATE
    @GetMapping(value = "/{id}/edit")
    public String editReview(@PathVariable(value = "id") Long id,
-                             Model model) throws ReviewException {
+                            Model model) throws ReviewException {
 
       ReviewDto reviewDto = service.getById(id);
 
@@ -122,12 +122,12 @@ public class ReviewController {
    }
 
    // UPDATE
-   @PostMapping(value = "/{id}/edit")
+   @PatchMapping(value = "/{id}/edit")
    public String updateReview(@ModelAttribute("review") @Valid ReviewDto reviewDto,
-                               BindingResult result,
-                               @RequestParam(name = "restaurantId") Long restaurantId,
-                               @RequestParam(name = "customerId") Long customerId,
-                               Model model) throws ReviewException {
+                              BindingResult result,
+                              @RequestParam(name = "restaurantId") Long restaurantId,
+                              @RequestParam(name = "customerId") Long customerId,
+                              Model model) throws ReviewException {
 
       RestaurantDto restaurantDto = restaurantService.getById(restaurantId);
       CustomerDto customerDto = customerService.getById(customerId);
@@ -145,6 +145,7 @@ public class ReviewController {
       }
 
       service.updateReview(reviewDto);
+
       return "redirect:/admin/reviews";
    }
 

@@ -132,7 +132,7 @@ public class RestaurantServiceTest {
       when(restaurantMapperMock.convertToRestaurantDto(any(Restaurant.class)))
               .thenReturn(expectedRestaurantDto);
 
-      RestaurantDto returnRestaurantDto = restaurantServiceTest.deleteRestaurant(1L);
+      RestaurantDto returnRestaurantDto = restaurantServiceTest.closeRestaurant(1L);
 
       assertEquals(expectedRestaurantDto, returnRestaurantDto);
    }
@@ -155,7 +155,7 @@ public class RestaurantServiceTest {
 
    @Test
    void deleteRestaurantExceptionTest() {
-      assertThrows(RestaurantException.class, () -> restaurantServiceTest.deleteRestaurant(null));
+      assertThrows(RestaurantException.class, () -> restaurantServiceTest.closeRestaurant(null));
    }
 
    @Test
@@ -165,7 +165,7 @@ public class RestaurantServiceTest {
       when(restaurantRepositoryMock.save(expectedRestaurant))
               .thenReturn(null);
 
-      assertThrows(RestaurantException.class, () -> restaurantServiceTest.deleteRestaurant(1L));
+      assertThrows(RestaurantException.class, () -> restaurantServiceTest.closeRestaurant(1L));
    }
 
    @Test
@@ -173,6 +173,6 @@ public class RestaurantServiceTest {
       when(restaurantRepositoryMock.findById(anyLong()))
               .thenReturn(Optional.empty());
 
-      assertThrows(RestaurantException.class, () -> restaurantServiceTest.deleteRestaurant(1L));
+      assertThrows(RestaurantException.class, () -> restaurantServiceTest.closeRestaurant(1L));
    }
 }

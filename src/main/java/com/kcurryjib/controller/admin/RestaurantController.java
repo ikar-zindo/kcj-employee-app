@@ -75,7 +75,7 @@ public class RestaurantController {
    @GetMapping(value = "/add")
    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
    public String addRestaurant(@ModelAttribute("restaurant") RestaurantDto restaurantDto,
-                            Model model) throws RestaurantException {
+                               Model model) throws RestaurantException {
 
       restaurantDto.setName("new restaurant");
 
@@ -86,8 +86,8 @@ public class RestaurantController {
    @PostMapping(value = "/add")
    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
    public String createRestaurant(@ModelAttribute("restaurant") @Valid RestaurantDto restaurantDto,
-                               BindingResult result,
-                               Model model) throws RestaurantException {
+                                  BindingResult result,
+                                  Model model) throws RestaurantException {
 
 
       if (result.hasErrors()) {
@@ -103,7 +103,7 @@ public class RestaurantController {
    @GetMapping(value = "/{id}/edit")
    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
    public String editRestaurant(@PathVariable(value = "id") Long id,
-                             Model model) throws RestaurantException {
+                                Model model) throws RestaurantException {
 
       RestaurantDto restaurantDto = service.getById(id);
 
@@ -117,11 +117,11 @@ public class RestaurantController {
    }
 
    // UPDATE
-   @PostMapping(value = "/{id}/edit")
+   @PatchMapping(value = "/{id}/edit")
    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
    public String updateRestaurant(@ModelAttribute("product") @Valid RestaurantDto restaurantDto,
-                               BindingResult result,
-                               Model model) throws RestaurantException {
+                                  BindingResult result,
+                                  Model model) throws RestaurantException {
 
       if (result.hasErrors()) {
          model.addAttribute("restaurant", restaurantDto);
@@ -133,10 +133,10 @@ public class RestaurantController {
    }
 
    // DELETE
-   @DeleteMapping("/{id}")
+   @PatchMapping("/{id}")
    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
-   public String deleteRestaurant(@PathVariable Long id) throws RestaurantException {
-      service.deleteRestaurant(id);
+   public String closeRestaurant(@PathVariable Long id) throws RestaurantException {
+      service.closeRestaurant(id);
       return "redirect:/admin/restaurants";
    }
 }

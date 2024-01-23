@@ -3,6 +3,7 @@ package com.kcurryjib.controller.employee;
 import com.kcurryjib.dto.EmployeeDto;
 import com.kcurryjib.dto.OrderDto;
 import com.kcurryjib.entity.Employee;
+import com.kcurryjib.exception.list.EmployeeException;
 import com.kcurryjib.exception.list.OrderException;
 import com.kcurryjib.service.admin.EmployeeService;
 import com.kcurryjib.service.employee.OrderService;
@@ -37,7 +38,7 @@ public class OrderController {
    // READ
    @GetMapping()
    @PreAuthorize("hasRole('ROLE_USER')")
-   public String getEmployeeOrders(Model model) {
+   public String getEmployeeOrders(Model model) throws EmployeeException {
 
       Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
       String currentPrincipalName = authentication.getName();
@@ -53,28 +54,28 @@ public class OrderController {
    }
 
    // UPDATE - CREATED
-   @PostMapping("/{id}/created")
+   @PatchMapping("/{id}/created")
    public String createdOrder(@PathVariable Long id) throws OrderException {
       service.createdOrderStatus(id);
       return "redirect:/employee/orders";
    }
 
    // UPDATE - COMPLETED
-   @PostMapping("/{id}/completed")
+   @PatchMapping("/{id}/completed")
    public String completedOrder(@PathVariable Long id) throws OrderException {
       service.completedOrderStatus(id);
       return "redirect:/employee/orders";
    }
 
    // UPDATE - PROCESSING
-   @PostMapping("/{id}/processing")
+   @PatchMapping("/{id}/processing")
    public String processingOrder(@PathVariable Long id) throws OrderException {
       service.processingOrderStatus(id);
       return "redirect:/employee/orders";
    }
 
    // UPDATE - PROCESSING
-   @PostMapping("/{id}/cancelled")
+   @PatchMapping("/{id}/cancelled")
    public String cancelledOrder(@PathVariable Long id) throws OrderException {
       service.cancelledOrderStatus(id);
       return "redirect:/employee/orders";

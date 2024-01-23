@@ -191,38 +191,47 @@ public class Customer {
          customer.id = id;
          return this;
       }
+
       public Builder firstName(String firstName) {
          customer.firstName = firstName;
          return this;
       }
+
       public Builder lastName(String lastName) {
          customer.lastName = lastName;
          return this;
       }
+
       public Builder email(String email) {
          customer.username = email;
          return this;
       }
+
       public Builder password(String password) {
          customer.password = password;
          return this;
       }
+
       public Builder phoneNumber(String phoneNumber) {
          customer.phoneNumber = phoneNumber;
          return this;
       }
+
       public Builder address(String address) {
          customer.address = address;
          return this;
       }
+
       public Builder postalCode(String postalCode) {
          customer.postalCode = postalCode;
          return this;
       }
+
       public Builder createdAt(LocalDateTime createdAt) {
          customer.createdAt = createdAt;
          return this;
       }
+
       public Builder isBlocked(Boolean isBlocked) {
          customer.isBlocked = isBlocked;
          return this;

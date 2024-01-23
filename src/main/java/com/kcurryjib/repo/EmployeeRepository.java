@@ -7,6 +7,5 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
-//   @Override
    UserDetails findByUsername(String username);
 }
