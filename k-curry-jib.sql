@@ -372,12 +372,21 @@ INSERT INTO `order` (`customer_id`, `restaurant_id`, `employee_id`, `delivery_ad
 
 --
 -- Dumping data for table `order_product`
- --
+--
 
 INSERT INTO `order_product` (`order_id`, `product_id`, `quantity`, `total`) VALUES
 	('1', '1', '1', '14'),
     ('1', '2', '1', '12'),
     ('2', '1', '1', '14');
+
+--
+-- Dumping data for table `review`
+--
+
+INSERT INTO `review` (`restaurant_id`, `customer_id`, `rating`, `comment`) VALUES
+    ('1', '1', '5', 'good food'),
+    ('1', '2', '4', 'nice'),
+    ('1', '3', '2', 'not tasty, I didnt like the food');
 
 COMMIT;
 
