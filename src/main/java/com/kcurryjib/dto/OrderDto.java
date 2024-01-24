@@ -6,6 +6,7 @@ import com.kcurryjib.entity.enums.OrderStatus;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Objects;
 
@@ -223,5 +224,16 @@ public class OrderDto {
               ", orderStatus=" + orderStatus +
               ", orderProductsDto=" + orderProductsDto +
               '}';
+   }
+
+   // DateTimeFormatter
+   public String getTime(LocalDateTime time) {
+      DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("HH:mm:ss");
+      return time.format(formatterTime);
+   }
+
+   public String getDate(LocalDateTime time) {
+      DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("dd MMM yyyy");
+      return time.format(formatterDate);
    }
 }

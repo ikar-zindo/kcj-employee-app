@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AdminOrderService {
@@ -29,7 +31,9 @@ public class AdminOrderService {
 
    // READ
    public List<OrderDto> getAll() throws OrderException {
-      List<Order> orders = new ArrayList<>(orderRepository.findAll());
+      List<Order> orders = new ArrayList<>(orderRepository.findAll()).stream()
+              .sorted(Comparator.comparing(Order::getCreatedAt).reversed())
+              .collect(Collectors.toList());
 
       return MapperUtil.convertlist(orders, adminOrderMapper::convertToOrderDto);
    }

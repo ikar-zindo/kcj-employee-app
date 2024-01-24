@@ -13,8 +13,11 @@ import com.kcurryjib.repo.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderService {
@@ -35,7 +38,7 @@ public class OrderService {
       this.orderRepository = orderRepository;
    }
 
-   // READ
+   // READ - ALL EMPLOYEE ORDERS
    public EmployeeDto getEmployeeWithOrders(Long employeeId) throws EmployeeException {
       Optional<Employee> employeeOptional = employeeRepository.findById(employeeId);
 
@@ -49,8 +52,17 @@ public class OrderService {
       }
    }
 
+   // READ - GET TODAY EMPLOYEE ORDERS
+   public List<OrderDto> getTodayOrders(Long employeeId) {
+      List<OrderDto> ordersDto = getEmployeeWithOrders(employeeId).getOrdersDto();
+
+      return ordersDto.stream()
+              .filter(order -> order.getCreatedAt().toLocalDate().isEqual(getToday()))
+              .collect(Collectors.toList());
+   }
+
    // UPDATE - CREATED
-   public OrderDto createdOrderStatus(Long id) throws OrderException {
+   public void createdOrderStatus(Long id) throws OrderException {
 
       if (id != null) {
          Optional<Order> optionalOrder = orderRepository.findById(id);
@@ -58,17 +70,10 @@ public class OrderService {
          if (optionalOrder.isPresent()) {
             Order order = optionalOrder.get();
             order.setOrderStatus(OrderStatus.CREATED);
+            order.setUpdateAt(LocalDateTime.now());
 
-            Order orderResponse = orderRepository.save(order);
+            orderRepository.save(order);
 
-            if (orderResponse != null) {
-               return orderMapper.convertToOrderDto(orderResponse);
-
-            } else {
-               throw new OrderException(
-                       String.format("Failed to created order in database with Id=%d!",
-                               id));
-            }
          } else {
             throw new OrderException(
                     String.format("Order not found in the database with Id=%d!",
@@ -80,7 +85,7 @@ public class OrderService {
    }
 
    // UPDATE - COMPLETED
-   public OrderDto completedOrderStatus(Long id) throws OrderException {
+   public void completedOrderStatus(Long id) throws OrderException {
 
       if (id != null) {
          Optional<Order> optionalOrder = orderRepository.findById(id);
@@ -90,16 +95,8 @@ public class OrderService {
             order.setOrderStatus(OrderStatus.COMPLETED);
             order.setUpdateAt(LocalDateTime.now());
 
-            Order orderResponse = orderRepository.save(order);
+            orderRepository.save(order);
 
-            if (orderResponse != null) {
-               return orderMapper.convertToOrderDto(orderResponse);
-
-            } else {
-               throw new OrderException(
-                       String.format("Failed to completed order in database with Id=%d!",
-                               id));
-            }
          } else {
             throw new OrderException(
                     String.format("Order not found in the database with Id=%d!",
@@ -111,7 +108,7 @@ public class OrderService {
    }
 
    // UPDATE - COOKING
-   public OrderDto cookingOrderStatus(Long id) throws OrderException {
+   public void cookingOrderStatus(Long id) throws OrderException {
 
       if (id != null) {
          Optional<Order> optionalOrder = orderRepository.findById(id);
@@ -121,16 +118,8 @@ public class OrderService {
             order.setOrderStatus(OrderStatus.COOKING);
             order.setUpdateAt(LocalDateTime.now());
 
-            Order orderResponse = orderRepository.save(order);
+            orderRepository.save(order);
 
-            if (orderResponse != null) {
-               return orderMapper.convertToOrderDto(orderResponse);
-
-            } else {
-               throw new OrderException(
-                       String.format("Failed to cooking order in database with Id=%d!",
-                               id));
-            }
          } else {
             throw new OrderException(
                     String.format("Order not found in the database with Id=%d!",
@@ -142,7 +131,7 @@ public class OrderService {
    }
 
    // UPDATE - DELIVERING
-   public OrderDto deliveringOrderStatus(Long id) throws OrderException {
+   public void deliveringOrderStatus(Long id) throws OrderException {
 
       if (id != null) {
          Optional<Order> optionalOrder = orderRepository.findById(id);
@@ -152,16 +141,8 @@ public class OrderService {
             order.setOrderStatus(OrderStatus.DELIVERING);
             order.setUpdateAt(LocalDateTime.now());
 
-            Order orderResponse = orderRepository.save(order);
+            orderRepository.save(order);
 
-            if (orderResponse != null) {
-               return orderMapper.convertToOrderDto(orderResponse);
-
-            } else {
-               throw new OrderException(
-                       String.format("Failed to delivering order in database with Id=%d!",
-                               id));
-            }
          } else {
             throw new OrderException(
                     String.format("Order not found in the database with Id=%d!",
@@ -173,7 +154,7 @@ public class OrderService {
    }
 
    // UPDATE - CANCELLED
-   public OrderDto cancelledOrderStatus(Long id) throws OrderException {
+   public void cancelledOrderStatus(Long id) throws OrderException {
 
       if (id != null) {
          Optional<Order> optionalOrder = orderRepository.findById(id);
@@ -183,16 +164,8 @@ public class OrderService {
             order.setOrderStatus(OrderStatus.CANCELLED);
             order.setUpdateAt(LocalDateTime.now());
 
-            Order orderResponse = orderRepository.save(order);
+            orderRepository.save(order);
 
-            if (orderResponse != null) {
-               return orderMapper.convertToOrderDto(orderResponse);
-
-            } else {
-               throw new OrderException(
-                       String.format("Failed to complete order in database with Id=%d!",
-                               id));
-            }
          } else {
             throw new OrderException(
                     String.format("Order not found in the database with Id=%d!",
@@ -201,5 +174,9 @@ public class OrderService {
       } else {
          throw new OrderException("The ID of the order to be cancelled is missing!");
       }
+   }
+
+   public LocalDate getToday() {
+      return LocalDate.now();
    }
 }

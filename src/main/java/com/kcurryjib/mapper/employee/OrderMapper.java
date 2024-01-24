@@ -64,7 +64,6 @@ public class OrderMapper {
               .collect(Collectors.toList());
    }
 
-
    public List<OrderProductDto> convertToOrderProductsDto(List<OrderProduct> orderProducts) {
       return orderProducts.stream()
               .map(this::converToOrderProductDto)
