@@ -366,9 +366,9 @@ INSERT INTO `product` (`name`, `description`,  `price`, `restaurant_id`, `image_
 -- Dumping data for table `order`
 --
 	
-INSERT INTO `order` (`customer_id`, `restaurant_id`, `employee_id`, `delivery_address`, `total_amount`, `order_status`) VALUES 
-	('1', '1', '1', 'Taczaka 2, 61891', '26', 'CREATED'),
-	('2', '1', '1', 'Limanowskiego 21, 61540', '14', 'CREATED');
+INSERT INTO `order` (`customer_id`, `restaurant_id`, `employee_id`, `delivery_address`, `total_amount`, `order_status`, `update_at`) VALUES
+	('1', '1', '1', 'Taczaka 2, 61891', '26', 'CREATED', '2024-01-24 23:55:41'),
+	('2', '1', '1', 'Limanowskiego 21, 61540', '14', 'CREATED', '2024-01-24 23:55:41');
 
 --
 -- Dumping data for table `order_product`
