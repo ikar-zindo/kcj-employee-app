@@ -4,7 +4,7 @@ import com.kcurryjib.dto.CustomerDto;
 import com.kcurryjib.dto.RestaurantDto;
 import com.kcurryjib.dto.ReviewDto;
 import com.kcurryjib.exception.list.ReviewException;
-import com.kcurryjib.service.admin.AdminCustomerService;
+import com.kcurryjib.service.admin.CustomerService;
 import com.kcurryjib.service.admin.RestaurantService;
 import com.kcurryjib.service.admin.ReviewService;
 import jakarta.validation.Valid;
@@ -26,12 +26,12 @@ public class ReviewController {
 
    private final RestaurantService restaurantService;
 
-   private final AdminCustomerService customerService;
+   private final CustomerService customerService;
 
    @Autowired
    public ReviewController(ReviewService service,
                            RestaurantService restaurantService,
-                           AdminCustomerService customerService) {
+                           CustomerService customerService) {
 
       this.service = service;
       this.restaurantService = restaurantService;

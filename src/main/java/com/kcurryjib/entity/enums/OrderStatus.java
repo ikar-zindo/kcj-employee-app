@@ -3,7 +3,8 @@ package com.kcurryjib.entity.enums;
 public enum OrderStatus {
 
    CREATED("CREATED"),
-   PROCESSING("PROCESSING"),
+   COOKING("COOKING"),
+   DELIVERING("DELIVERING"),
    COMPLETED("COMPLETED"),
    CANCELLED("CANCELLED");
 
@@ -17,8 +18,10 @@ public enum OrderStatus {
       switch (status) {
          case CREATED:
             return "primary";
-         case PROCESSING:
+         case COOKING:
             return "warning";
+         case DELIVERING:
+            return "info";
          case COMPLETED:
             return "success";
          case CANCELLED:

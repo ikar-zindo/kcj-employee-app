@@ -133,11 +133,19 @@
 									</button>
 								</form>
 
-								<!--PROCESSING-->
-								<form th:action="'/employee/orders/' + ${order.id} + '/processing'" th:method="PATCH">
+								<!--COOKING-->
+								<form th:action="'/employee/orders/' + ${order.id} + '/cooking'" th:method="PATCH">
 									<button type="submit"
 											  class="btn btn-sm btn-outline-secondary text-warning">
-										PROCESSING
+										COOKING
+									</button>
+								</form>
+
+								<!--DELIVERING-->
+								<form th:action="'/employee/orders/' + ${order.id} + '/delivering'" th:method="PATCH">
+									<button type="submit"
+											  class="btn btn-sm btn-outline-secondary text-info">
+										DELIVERING
 									</button>
 								</form>
 

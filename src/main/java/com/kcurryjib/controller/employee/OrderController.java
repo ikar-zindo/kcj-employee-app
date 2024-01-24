@@ -19,7 +19,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/employee/orders")
-@SessionAttributes("editOrders")
+@SessionAttributes("orders")
 @PreAuthorize("hasRole('ROLE_USER')")
 public class OrderController {
 
@@ -67,10 +67,17 @@ public class OrderController {
       return "redirect:/employee/orders";
    }
 
-   // UPDATE - PROCESSING
-   @PatchMapping("/{id}/processing")
-   public String processingOrder(@PathVariable Long id) throws OrderException {
-      service.processingOrderStatus(id);
+   // UPDATE - COOKING
+   @PatchMapping("/{id}/cooking")
+   public String cookingOrder(@PathVariable Long id) throws OrderException {
+      service.cookingOrderStatus(id);
+      return "redirect:/employee/orders";
+   }
+
+   // UPDATE - DELIVERING
+   @PatchMapping("/{id}/delivering")
+   public String deliveringOrder(@PathVariable Long id) throws OrderException {
+      service.deliveringOrderStatus(id);
       return "redirect:/employee/orders";
    }
 

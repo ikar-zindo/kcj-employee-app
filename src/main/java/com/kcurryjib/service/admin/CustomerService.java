@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AdminCustomerService {
+public class CustomerService {
 
    @Autowired
    private CustomerRepository customerRepository;
