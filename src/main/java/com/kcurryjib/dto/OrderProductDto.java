@@ -21,9 +21,6 @@ public class OrderProductDto {
    private BigDecimal total;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   private LocalDateTime cratedAt;
-
-   @JsonInclude(JsonInclude.Include.NON_NULL)
    @JsonProperty("order")
    private OrderDto orderDto;
 
@@ -56,14 +53,6 @@ public class OrderProductDto {
 
    public void setTotal(BigDecimal total) {
       this.total = total;
-   }
-
-   public LocalDateTime getCratedAt() {
-      return cratedAt;
-   }
-
-   public void setCratedAt(LocalDateTime cratedAt) {
-      this.cratedAt = cratedAt;
    }
 
    public OrderDto getOrderDto() {
@@ -102,11 +91,6 @@ public class OrderProductDto {
          return this;
       }
 
-      public Builder cratedAt(LocalDateTime cratedAt) {
-         orderProductDto.cratedAt = cratedAt;
-         return this;
-      }
-
       public Builder orderDto(OrderDto orderDto) {
          orderProductDto.orderDto = orderDto;
          return this;
@@ -122,39 +106,35 @@ public class OrderProductDto {
       }
    }
 
-   public static Review.Builder builder() {
-      return new Review.Builder();
+   public static Builder builder() {
+      return new Builder();
    }
 
    // ToString
-
    @Override
    public String toString() {
       return "OrderProductDto{" +
               "id=" + id +
               ", quantity=" + quantity +
               ", total=" + total +
-              ", cratedAt=" + cratedAt +
               ", orderDto=" + orderDto +
               ", productDto=" + productDto +
               '}';
    }
 
    // Equals & HashCode
-
    @Override
    public boolean equals(Object o) {
       if (this == o) return true;
       if (o == null || getClass() != o.getClass()) return false;
       OrderProductDto that = (OrderProductDto) o;
       return quantity == that.quantity && Objects.equals(id, that.id) && Objects.equals(total, that.total) &&
-              Objects.equals(cratedAt, that.cratedAt) && Objects.equals(orderDto, that.orderDto) &&
-              Objects.equals(productDto, that.productDto);
+              Objects.equals(orderDto, that.orderDto) && Objects.equals(productDto, that.productDto);
    }
 
    @Override
    public int hashCode() {
-      return Objects.hash(id, quantity, total, cratedAt, orderDto, productDto);
+      return Objects.hash(id, quantity, total, orderDto, productDto);
    }
 }
 

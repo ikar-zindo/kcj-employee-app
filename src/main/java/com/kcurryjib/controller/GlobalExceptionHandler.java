@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-   @ExceptionHandler(RuntimeException.class)
+   @ExceptionHandler(Exception.class)
    public String handleException(Exception e, Model model) {
       model.addAttribute("error", e.getMessage());
       return "error";

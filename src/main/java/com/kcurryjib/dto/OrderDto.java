@@ -28,7 +28,10 @@ public class OrderDto {
    private EmployeeDto employeeDto;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   private LocalDateTime orderDate;
+   private LocalDateTime createdAt;
+
+   @JsonInclude(JsonInclude.Include.NON_NULL)
+   private LocalDateTime updateAt;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
    private String deliveryAddress;
@@ -46,6 +49,7 @@ public class OrderDto {
    public OrderDto() {
    }
 
+   // Getters & Setters
    public Long getId() {
       return id;
    }
@@ -78,12 +82,20 @@ public class OrderDto {
       this.employeeDto = employeeDto;
    }
 
-   public LocalDateTime getOrderDate() {
-      return orderDate;
+   public LocalDateTime getCreatedAt() {
+      return createdAt;
    }
 
-   public void setOrderDate(LocalDateTime orderDate) {
-      this.orderDate = orderDate;
+   public void setCreatedAt(LocalDateTime createdAt) {
+      this.createdAt = createdAt;
+   }
+
+   public LocalDateTime getUpdateAt() {
+      return updateAt;
+   }
+
+   public void setUpdateAt(LocalDateTime updateAt) {
+      this.updateAt = updateAt;
    }
 
    public String getDeliveryAddress() {
@@ -143,8 +155,13 @@ public class OrderDto {
          return this;
       }
 
-      public Builder orderDate(LocalDateTime orderDate) {
-         orderDto.orderDate = orderDate;
+      public Builder createdAt(LocalDateTime createdAt) {
+         orderDto.createdAt = createdAt;
+         return this;
+      }
+
+      public Builder updateAt(LocalDateTime updateAt) {
+         orderDto.updateAt = updateAt;
          return this;
       }
 
@@ -180,16 +197,15 @@ public class OrderDto {
       OrderDto orderDto = (OrderDto) o;
       return Objects.equals(id, orderDto.id) && Objects.equals(customerDto, orderDto.customerDto) &&
               Objects.equals(restaurantDto, orderDto.restaurantDto) &&
-              Objects.equals(employeeDto, orderDto.employeeDto) && Objects.equals(orderDate, orderDto.orderDate) &&
-              Objects.equals(deliveryAddress, orderDto.deliveryAddress) &&
+              Objects.equals(employeeDto, orderDto.employeeDto) && Objects.equals(createdAt, orderDto.createdAt) &&
+              Objects.equals(updateAt, orderDto.updateAt) && Objects.equals(deliveryAddress, orderDto.deliveryAddress) &&
               Objects.equals(totalAmount, orderDto.totalAmount) && orderStatus == orderDto.orderStatus &&
               Objects.equals(orderProductsDto, orderDto.orderProductsDto);
    }
 
    @Override
    public int hashCode() {
-      return Objects.hash(id, customerDto, restaurantDto, employeeDto, orderDate,
-              deliveryAddress, totalAmount, orderStatus, orderProductsDto);
+      return Objects.hash(id, customerDto, restaurantDto, employeeDto, createdAt, updateAt, deliveryAddress, totalAmount, orderStatus, orderProductsDto);
    }
 
    // ToString
@@ -200,7 +216,8 @@ public class OrderDto {
               ", customerDto=" + customerDto +
               ", restaurantDto=" + restaurantDto +
               ", employeeDto=" + employeeDto +
-              ", orderDate=" + orderDate +
+              ", createdAt=" + createdAt +
+              ", updateAt=" + updateAt +
               ", deliveryAddress='" + deliveryAddress + '\'' +
               ", totalAmount=" + totalAmount +
               ", orderStatus=" + orderStatus +

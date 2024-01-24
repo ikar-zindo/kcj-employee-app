@@ -13,6 +13,7 @@ import com.kcurryjib.repo.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -87,6 +88,7 @@ public class OrderService {
          if (optionalOrder.isPresent()) {
             Order order = optionalOrder.get();
             order.setOrderStatus(OrderStatus.COMPLETED);
+            order.setUpdateAt(LocalDateTime.now());
 
             Order orderResponse = orderRepository.save(order);
 
@@ -108,15 +110,16 @@ public class OrderService {
       }
    }
 
-   // UPDATE - PROCESSING
-   public OrderDto processingOrderStatus(Long id) throws OrderException {
+   // UPDATE - COOKING
+   public OrderDto cookingOrderStatus(Long id) throws OrderException {
 
       if (id != null) {
          Optional<Order> optionalOrder = orderRepository.findById(id);
 
          if (optionalOrder.isPresent()) {
             Order order = optionalOrder.get();
-            order.setOrderStatus(OrderStatus.PROCESSING);
+            order.setOrderStatus(OrderStatus.COOKING);
+            order.setUpdateAt(LocalDateTime.now());
 
             Order orderResponse = orderRepository.save(order);
 
@@ -125,7 +128,7 @@ public class OrderService {
 
             } else {
                throw new OrderException(
-                       String.format("Failed to processing order in database with Id=%d!",
+                       String.format("Failed to cooking order in database with Id=%d!",
                                id));
             }
          } else {
@@ -134,7 +137,38 @@ public class OrderService {
                             id));
          }
       } else {
-         throw new OrderException("The ID of the order to be processing is missing!");
+         throw new OrderException("The ID of the order to be cooking is missing!");
+      }
+   }
+
+   // UPDATE - DELIVERING
+   public OrderDto deliveringOrderStatus(Long id) throws OrderException {
+
+      if (id != null) {
+         Optional<Order> optionalOrder = orderRepository.findById(id);
+
+         if (optionalOrder.isPresent()) {
+            Order order = optionalOrder.get();
+            order.setOrderStatus(OrderStatus.DELIVERING);
+            order.setUpdateAt(LocalDateTime.now());
+
+            Order orderResponse = orderRepository.save(order);
+
+            if (orderResponse != null) {
+               return orderMapper.convertToOrderDto(orderResponse);
+
+            } else {
+               throw new OrderException(
+                       String.format("Failed to delivering order in database with Id=%d!",
+                               id));
+            }
+         } else {
+            throw new OrderException(
+                    String.format("Order not found in the database with Id=%d!",
+                            id));
+         }
+      } else {
+         throw new OrderException("The ID of the order to be delivering is missing!");
       }
    }
 
@@ -147,6 +181,7 @@ public class OrderService {
          if (optionalOrder.isPresent()) {
             Order order = optionalOrder.get();
             order.setOrderStatus(OrderStatus.CANCELLED);
+            order.setUpdateAt(LocalDateTime.now());
 
             Order orderResponse = orderRepository.save(order);
 
