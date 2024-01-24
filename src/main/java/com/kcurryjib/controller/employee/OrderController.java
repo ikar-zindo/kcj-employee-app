@@ -39,14 +39,31 @@ public class OrderController {
    @GetMapping()
    @PreAuthorize("hasRole('ROLE_USER')")
    public String getEmployeeOrders(Model model) throws EmployeeException {
-
       Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
       String currentPrincipalName = authentication.getName();
+
 
       Employee employee = (Employee) employeeService.loadUserByUsername(currentPrincipalName);
 
       EmployeeDto employeeDto = service.getEmployeeWithOrders(employee.getId());
       List<OrderDto> ordersDto = employeeDto.getOrdersDto();
+
+      model.addAttribute("orders", ordersDto);
+      model.addAttribute("today", service.getToday());
+
+      return "/employee/orders/list";
+   }
+
+   // READ - GET TODAY EMPLOYEE ORDERS
+   @GetMapping("/today")
+   @PreAuthorize("hasRole('ROLE_USER')")
+   public String getTodayOrders(Model model) throws EmployeeException {
+      Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+      String currentPrincipalName = authentication.getName();
+
+      Employee employee = (Employee) employeeService.loadUserByUsername(currentPrincipalName);
+
+      List<OrderDto> ordersDto = service.getTodayOrders(employee.getId());
 
       model.addAttribute("orders", ordersDto);
 

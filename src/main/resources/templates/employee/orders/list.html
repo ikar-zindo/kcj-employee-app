@@ -64,19 +64,28 @@
 		<!--Main-->
 		<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 			<div>
-				<h2>Orders</h2>
+				<h2>Orders [<span class="text-muted"
+									  th:text="${today}"/>]</h2>
 
 				<div class="container">
 
 					<!--Item-->
 					<div th:each="order : ${orders}" class="alert alert-info mt-2">
 						<div class="card-body">
-							<p><span class="text-danger">Delivery address: </span><span th:text="${order.deliveryAddress}"/></p>
+							<div class="d-flex justify-content-between">
+								<p class="m-0"><span class="text-secondary">Delivery address: </span>
+									<span class="text-muted"
+											th:text="${order.deliveryAddress}"/></p>
+								<p class="m-0 text-secondary" >Created at:
+									<span class="text-muted"
+											th:text="${order.getTime(order.createdAt)}"></span></p>
+							</div>
 
 							<div class="d-flex justify-content-between mb-1">
 								<p>
-									<span class="text-danger">Name: </span>
-									<span th:text="|${order.customerDto.firstName}| + ' ' + |${order.customerDto.lastName}|"/></p>
+									<span class="text-secondary">Name: </span>
+									<span class="text-muted"
+											th:text="|${order.customerDto.firstName}| + ' ' + |${order.customerDto.lastName}|"/></p>
 								<p>
 									<span class="text-body-secondary">Phone number: </span>
 									<span class="text-body-secondary"
@@ -86,8 +95,10 @@
 							<div class="d-flex justify-content-between mb-1">
 								<p class="m-0"><span class="text-info">Order id: </span><span class="text-warning" th:text="${order.id}"/></p>
 
-								<span class="text-body-secondary"
-										th:text="${order.createdAt}"></span>
+								<p class="text-secondary">Update at:
+									<span class="text-muted"
+											th:text="${order.getTime(order.updateAt)}"></span>
+								</p>
 
 								<div th:class="'border rounded p-1 border-' + |${order.orderStatus.getColor(order.orderStatus)}|">
 									<p class="m-0">
