@@ -20,9 +20,6 @@ public class OrderProduct {
    @Column(name = "total", precision = 8, scale = 2)
    private BigDecimal total;
 
-   @Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-   private LocalDateTime cratedAt;
-
    @ManyToOne(fetch = FetchType.LAZY)
    @JoinColumn(name = "order_id")
    private Order order;
@@ -57,14 +54,6 @@ public class OrderProduct {
 
    public void setTotal(BigDecimal total) {
       this.total = total;
-   }
-
-   public LocalDateTime getCratedAt() {
-      return cratedAt;
-   }
-
-   public void setCratedAt(LocalDateTime cratedAt) {
-      this.cratedAt = cratedAt;
    }
 
    public Order getOrder() {
@@ -103,11 +92,6 @@ public class OrderProduct {
          return this;
       }
 
-      public Builder cratedAt(LocalDateTime cratedAt) {
-         orderProduct.cratedAt = cratedAt;
-         return this;
-      }
-
       public Builder order(Order order) {
          orderProduct.order = order;
          return this;
@@ -125,5 +109,17 @@ public class OrderProduct {
 
    public static Builder builder() {
       return new Builder();
+   }
+
+   // ToString
+   @Override
+   public String toString() {
+      return "OrderProduct{" +
+              "id=" + id +
+              ", quantity=" + quantity +
+              ", total=" + total +
+              ", order=" + order +
+              ", product=" + product +
+              '}';
    }
 }

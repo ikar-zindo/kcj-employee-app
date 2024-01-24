@@ -87,7 +87,7 @@
 								<p class="m-0"><span class="text-info">Order id: </span><span class="text-warning" th:text="${order.id}"/></p>
 
 								<span class="text-body-secondary"
-										th:text="${order.orderDate}"></span>
+										th:text="${order.createdAt}"></span>
 
 								<div th:class="'border rounded p-1 border-' + |${order.orderStatus.getColor(order.orderStatus)}|">
 									<p class="m-0">

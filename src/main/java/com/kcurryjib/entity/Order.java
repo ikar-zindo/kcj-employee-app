@@ -30,7 +30,10 @@ public class Order {
    private Employee employee;
 
    @Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-   private LocalDateTime orderDate;
+   private LocalDateTime createdAt;
+
+   @Column(name = "update_at", columnDefinition = "TIMESTAMP")
+   private LocalDateTime updateAt;
 
    @Column(name = "delivery_address")
    private String deliveryAddress;
@@ -81,12 +84,20 @@ public class Order {
       this.employee = employee;
    }
 
-   public LocalDateTime getOrderDate() {
-      return orderDate;
+   public LocalDateTime getCreatedAt() {
+      return createdAt;
    }
 
-   public void setOrderDate(LocalDateTime orderDate) {
-      this.orderDate = orderDate;
+   public void setCreatedAt(LocalDateTime createdAt) {
+      this.createdAt = createdAt;
+   }
+
+   public LocalDateTime getUpdateAt() {
+      return updateAt;
+   }
+
+   public void setUpdateAt(LocalDateTime updateAt) {
+      this.updateAt = updateAt;
    }
 
    public String getDeliveryAddress() {
@@ -146,8 +157,13 @@ public class Order {
          return this;
       }
 
-      public Builder orderDate(LocalDateTime orderDate) {
-         order.orderDate = orderDate;
+      public Builder createdAt(LocalDateTime createdAt) {
+         order.createdAt = createdAt;
+         return this;
+      }
+
+      public Builder updateAt(LocalDateTime updateAt) {
+         order.updateAt = updateAt;
          return this;
       }
 

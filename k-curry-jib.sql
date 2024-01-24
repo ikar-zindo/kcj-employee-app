@@ -68,6 +68,7 @@ CREATE TABLE `order` (
   restaurant_id BIGINT,
   employee_id BIGINT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  update_at TIMESTAMP,
   delivery_address VARCHAR(60),
   total_amount DECIMAL(8, 2),
   order_status ENUM('CREATED', 'COOKING', 'DELIVERING', 'COMPLETED', 'CANCELLED')
@@ -82,8 +83,7 @@ CREATE TABLE `order_product` (
   order_id BIGINT,
   product_id BIGINT,
   quantity INT,
-  total DECIMAL(8, 2),
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  total DECIMAL(8, 2)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 --

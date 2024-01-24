@@ -13,6 +13,7 @@ import com.kcurryjib.repo.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -87,6 +88,7 @@ public class OrderService {
          if (optionalOrder.isPresent()) {
             Order order = optionalOrder.get();
             order.setOrderStatus(OrderStatus.COMPLETED);
+            order.setUpdateAt(LocalDateTime.now());
 
             Order orderResponse = orderRepository.save(order);
 
@@ -117,6 +119,7 @@ public class OrderService {
          if (optionalOrder.isPresent()) {
             Order order = optionalOrder.get();
             order.setOrderStatus(OrderStatus.COOKING);
+            order.setUpdateAt(LocalDateTime.now());
 
             Order orderResponse = orderRepository.save(order);
 
@@ -147,6 +150,7 @@ public class OrderService {
          if (optionalOrder.isPresent()) {
             Order order = optionalOrder.get();
             order.setOrderStatus(OrderStatus.DELIVERING);
+            order.setUpdateAt(LocalDateTime.now());
 
             Order orderResponse = orderRepository.save(order);
 
@@ -177,6 +181,7 @@ public class OrderService {
          if (optionalOrder.isPresent()) {
             Order order = optionalOrder.get();
             order.setOrderStatus(OrderStatus.CANCELLED);
+            order.setUpdateAt(LocalDateTime.now());
 
             Order orderResponse = orderRepository.save(order);
 

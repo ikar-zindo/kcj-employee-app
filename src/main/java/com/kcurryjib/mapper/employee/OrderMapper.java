@@ -59,7 +59,7 @@ public class OrderMapper {
 
    public List<OrderDto> convertToOrdersDto(List<Order> orders) {
       return orders.stream()
-              .sorted(Comparator.comparing(Order::getOrderDate).reversed())
+              .sorted(Comparator.comparing(Order::getCreatedAt).reversed())
               .map(this::convertToOrderDto)
               .collect(Collectors.toList());
    }
