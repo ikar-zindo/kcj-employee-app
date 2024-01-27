@@ -51,7 +51,7 @@ public class CartService {
       this.productService = productService;
    }
 
-
+   // READ - CUSTOMER
    public CustomerDto getCustomerById(Long customerId) throws CustomerException {
       CustomerDto customerDto = null;
 
@@ -74,6 +74,7 @@ public class CartService {
       return customerDto;
    }
 
+   // CREATE - ADD PRODUCT TO CART
    public CartProductDto addProductToCustomerCart(Long customerId, Long productId) {
 
       if (customerId != null && productId != null) {

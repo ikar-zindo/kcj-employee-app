@@ -38,6 +38,9 @@ public class Order {
    @Column(name = "delivery_address")
    private String deliveryAddress;
 
+   @Column(name = "postal_code")
+   private String postalCode;
+
    @Column(name = "total_amount", precision = 8, scale = 2)
    private BigDecimal totalAmount;
 
@@ -54,6 +57,10 @@ public class Order {
    // Getters & Setters
    public Long getId() {
       return id;
+   }
+
+   public String getPostalCode() {
+      return postalCode;
    }
 
    public void setId(Long id) {
@@ -169,6 +176,11 @@ public class Order {
 
       public Builder deliveryAddress(String deliveryAddress) {
          order.deliveryAddress = deliveryAddress;
+         return this;
+      }
+
+      public Builder postalCode(String postalCode) {
+         order.postalCode = postalCode;
          return this;
       }
 

@@ -75,7 +75,7 @@
 							<div class="d-flex justify-content-between">
 								<p class="m-0"><span class="text-secondary">Delivery address: </span>
 									<span class="text-muted"
-											th:text="${order.deliveryAddress}"/></p>
+											th:text="|${order.deliveryAddress}| + ', ' + |${order.postalCode}|"/></p>
 								<p class="m-0 text-secondary" >Created at:
 									<span class="text-muted"
 											th:text="${order.getTime(order.createdAt)}"></span></p>
@@ -95,7 +95,7 @@
 							<div class="d-flex justify-content-between mb-1">
 								<p class="m-0"><span class="text-info">Order id: </span><span class="text-warning" th:text="${order.id}"/></p>
 
-								<p class="text-secondary">Update at:
+								<p class="m-0 text-secondary">Update at:
 									<span class="text-muted"
 											th:text="${order.getTime(order.updateAt)}"></span>
 								</p>

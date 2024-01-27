@@ -70,6 +70,7 @@ CREATE TABLE `order` (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   update_at TIMESTAMP,
   delivery_address VARCHAR(60),
+  postal_code VARCHAR(5),
   total_amount DECIMAL(8, 2),
   order_status ENUM('CREATED', 'COOKING', 'DELIVERING', 'COMPLETED', 'CANCELLED')
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
@@ -366,9 +367,9 @@ INSERT INTO `product` (`name`, `description`,  `price`, `restaurant_id`, `image_
 -- Dumping data for table `order`
 --
 	
-INSERT INTO `order` (`customer_id`, `restaurant_id`, `employee_id`, `delivery_address`, `total_amount`, `order_status`, `update_at`) VALUES
-	('1', '1', '1', 'Taczaka 2, 61891', '26', 'CREATED', '2024-01-24 23:55:41'),
-	('2', '1', '1', 'Limanowskiego 21, 61540', '14', 'CREATED', '2024-01-24 23:55:41');
+INSERT INTO `order` (`customer_id`, `restaurant_id`, `employee_id`, `delivery_address`, `postal_code`, `total_amount`, `order_status`, `update_at`) VALUES
+	('1', '1', '1', 'Taczaka 2', '61891', '26', 'CREATED', '2024-01-24 23:55:41'),
+	('2', '1', '1', 'Limanowskiego 21', '61540', '14', 'CREATED', '2024-01-24 23:55:41');
 
 --
 -- Dumping data for table `order_product`
