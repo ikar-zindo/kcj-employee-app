@@ -86,13 +86,17 @@
 						<div th:each="order : ${orders}">
 							<tr>
 								<td th:text="${order.id}"/>
-								<td class="text-muted" th:text="|${order.employeeDto.firstName}| + ' ' + |${order.employeeDto.lastName}|"/>
+								<td class="text-muted"
+									 th:text="${order.employeeDto != null} ? ${order.employeeDto.firstName} + ' ' + ${order.employeeDto.lastName} : ''"/>
 								<td th:text="|${order.deliveryAddress}| + ', ' + |${order.postalCode}|"/>
 								<td th:text="|${order.customerDto.firstName}| + ' ' +|${order.customerDto.lastName}|"/>
 								<td th:text="${order.customerDto.phoneNumber}"/>
-								<td class="text-secondary" th:text="|${order.getDate(order.createdAt)}| + ' '+ |${order.getTime(order.createdAt)}|"/>
-								<td class="text-secondary" th:text="|${order.getDate(order.updateAt)}| + ' '+ |${order.getTime(order.updateAt)}|"/>
-								<td th:class="'text-' + |${order.orderStatus.getColor(order.orderStatus)}|" th:text="${order.orderStatus}"/>
+								<td class="text-secondary"
+									 th:text="|${order.getDate(order.createdAt)}| + ' '+ |${order.getTime(order.createdAt)}|"/>
+								<td class="text-secondary"
+									 th:text="|${order.getDate(order.updateAt)}| + ' '+ |${order.getTime(order.updateAt)}|"/>
+								<td th:class="'text-' + |${order.orderStatus.getColor(order.orderStatus)}|"
+									 th:text="${order.orderStatus}"/>
 							</tr>
 						</div>
 						</tbody>
