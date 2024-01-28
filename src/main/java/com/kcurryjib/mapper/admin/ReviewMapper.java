@@ -35,8 +35,7 @@ public class ReviewMapper {
    public ReviewDto showReviewDtoWithCustomer(Review review) {
       ReviewDto reviewDto = mapper.map(review, ReviewDto.class);
 
-//      reviewDto.setRestaurantDto(showRestaurantDetails(review.getRestaurant()));
-      reviewDto.setCustomerDto(customerMapper.convertToCustomerDto(review.getCustomer()));
+      reviewDto.setCustomerDto(customerMapper.shortCustomerDto(review.getCustomer()));
 
       return reviewDto;
    }

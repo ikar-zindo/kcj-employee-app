@@ -10,11 +10,14 @@ import com.kcurryjib.exception.list.OrderException;
 import com.kcurryjib.mapper.employee.OrderMapper;
 import com.kcurryjib.repo.EmployeeRepository;
 import com.kcurryjib.repo.OrderRepository;
+import com.kcurryjib.service.admin.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -28,44 +31,106 @@ public class OrderService {
 
    private final OrderMapper orderMapper;
 
+   private final EmployeeService employeeService;
+
    @Autowired
    public OrderService(EmployeeRepository employeeRepository,
                        OrderMapper orderMapper,
-                       OrderRepository orderRepository) throws EmployeeException {
+                       OrderRepository orderRepository,
+                       EmployeeService employeeService) throws EmployeeException {
 
       this.employeeRepository = employeeRepository;
       this.orderMapper = orderMapper;
       this.orderRepository = orderRepository;
+      this.employeeService = employeeService;
+   }
+
+   // READ - GET TODAY ALL ORDERS
+   public List<OrderDto> getTodayNewOrders() {
+      List<Order> orders = new ArrayList<>(orderRepository.findAll()).stream()
+              .filter(order -> order.getCreatedAt().toLocalDate().isEqual(getToday()) &&
+                      order.getOrderStatus().equals(OrderStatus.CREATED))
+              .sorted(Comparator.comparing(Order::getCreatedAt).reversed())
+              .collect(Collectors.toList());
+
+//      return MapperUtil.convertlist(orders, orderMapper::convertToOrderDto);
+      return orderMapper.convertToOrdersDto(orders);
    }
 
    // READ - ALL EMPLOYEE ORDERS
    public EmployeeDto getEmployeeWithOrders(Long employeeId) throws EmployeeException {
-      Optional<Employee> employeeOptional = employeeRepository.findById(employeeId);
 
-      if (employeeOptional.isPresent()) {
-         Employee employee = employeeOptional.get();
+      if (employeeId != null) {
+         Optional<Employee> employeeOptional = employeeRepository.findById(employeeId);
 
-         return orderMapper.showEmployeeWithOrders(employee);
+         if (employeeOptional.isPresent()) {
+            Employee employee = employeeOptional.get();
 
+            return orderMapper.showEmployeeWithOrders(employee);
+
+         } else {
+            throw new EmployeeException("Employee not found with id: " + employeeId);
+         }
       } else {
-         throw new EmployeeException("Employee not found with id: " + employeeId);
+         throw new EmployeeException("Employee not passed to method");
       }
    }
 
-   // READ - GET TODAY EMPLOYEE ORDERS
-   public List<OrderDto> getTodayOrders(Long employeeId) {
-      List<OrderDto> ordersDto = getEmployeeWithOrders(employeeId).getOrdersDto();
+   // READ - GET TODAY ORDERS CURRENT EMPLOYEE
+   public List<OrderDto> getEmployeeTodayOrders(Long employeeId) {
 
-      return ordersDto.stream()
-              .filter(order -> order.getCreatedAt().toLocalDate().isEqual(getToday()))
-              .collect(Collectors.toList());
+      if (employeeId != null) {
+         List<OrderDto> ordersDto = employeeService.getEmployeeById(employeeId).getOrdersDto();
+
+         return ordersDto.stream()
+                 .filter(order -> order.getCreatedAt().toLocalDate().isEqual(getToday()))
+                 .sorted(Comparator.comparing(OrderDto::getUpdateAt))
+                 .collect(Collectors.toList());
+      } else {
+         throw new EmployeeException("Employee not passed to method");
+      }
+
    }
 
-   // UPDATE - CREATED
-   public void createdOrderStatus(Long id) throws OrderException {
+   // READ - GET COMPLETED TODAY ORDERS CURRENT EMPLOYEE
+   public List<OrderDto> getEmployeeCompletedOrders(Long employeeId) {
 
-      if (id != null) {
-         Optional<Order> optionalOrder = orderRepository.findById(id);
+      if (employeeId != null) {
+         List<OrderDto> ordersDto = employeeService.getEmployeeById(employeeId).getOrdersDto();
+
+         return ordersDto.stream()
+                 .filter(order ->
+                         order.getOrderStatus().equals(OrderStatus.COMPLETED) ||
+                                 order.getOrderStatus().equals(OrderStatus.CANCELLED))
+                 .sorted(Comparator.comparing(OrderDto::getUpdateAt))
+                 .collect(Collectors.toList());
+      } else {
+         throw new EmployeeException("Employee not passed to method");
+      }
+   }
+
+   // READ - GET PROCESSING TODAY ORDERS CURRENT EMPLOYEE
+   public List<OrderDto> getEmployeeProgressingTodayOrders(Long employeeId) {
+
+      if (employeeId != null) {
+         List<OrderDto> ordersDto = employeeService.getEmployeeById(employeeId).getOrdersDto();
+
+         return ordersDto.stream()
+                 .filter(order ->
+                         order.getOrderStatus().equals(OrderStatus.COOKING) ||
+                                 order.getOrderStatus().equals(OrderStatus.DELIVERING))
+                 .sorted(Comparator.comparing(OrderDto::getUpdateAt))
+                 .collect(Collectors.toList());
+      } else {
+         throw new EmployeeException("Employee not passed to method");
+      }
+   }
+
+   // UPDATE ORDER - CREATED
+   public void createdOrderStatus(Long orderId) throws OrderException {
+
+      if (orderId != null) {
+         Optional<Order> optionalOrder = orderRepository.findById(orderId);
 
          if (optionalOrder.isPresent()) {
             Order order = optionalOrder.get();
@@ -77,18 +142,18 @@ public class OrderService {
          } else {
             throw new OrderException(
                     String.format("Order not found in the database with Id=%d!",
-                            id));
+                            orderId));
          }
       } else {
          throw new OrderException("The ID of the order to be created is missing!");
       }
    }
 
-   // UPDATE - COMPLETED
-   public void completedOrderStatus(Long id) throws OrderException {
+   // UPDATE ORDER - COMPLETED
+   public void completedOrderStatus(Long orderId) throws OrderException {
 
-      if (id != null) {
-         Optional<Order> optionalOrder = orderRepository.findById(id);
+      if (orderId != null) {
+         Optional<Order> optionalOrder = orderRepository.findById(orderId);
 
          if (optionalOrder.isPresent()) {
             Order order = optionalOrder.get();
@@ -100,41 +165,54 @@ public class OrderService {
          } else {
             throw new OrderException(
                     String.format("Order not found in the database with Id=%d!",
-                            id));
+                            orderId));
          }
       } else {
          throw new OrderException("The ID of the order to be completed is missing!");
       }
    }
 
-   // UPDATE - COOKING
-   public void cookingOrderStatus(Long id) throws OrderException {
+   // UPDATE ORDER - COOKING
+   public void cookingOrderStatus(Long employeeId, Long orderId) throws OrderException {
 
-      if (id != null) {
-         Optional<Order> optionalOrder = orderRepository.findById(id);
+      if (employeeId != null) {
+         Optional<Employee> employeeOptional = employeeRepository.findById(employeeId);
 
-         if (optionalOrder.isPresent()) {
-            Order order = optionalOrder.get();
-            order.setOrderStatus(OrderStatus.COOKING);
-            order.setUpdateAt(LocalDateTime.now());
+         if (employeeOptional.isPresent()) {
+            Employee employee = employeeOptional.get();
 
-            orderRepository.save(order);
+            if (orderId != null) {
+               Optional<Order> optionalOrder = orderRepository.findById(orderId);
 
+               if (optionalOrder.isPresent()) {
+                  Order order = optionalOrder.get();
+                  order.setOrderStatus(OrderStatus.COOKING);
+                  order.setUpdateAt(LocalDateTime.now());
+                  order.setEmployee(employee);
+
+                  orderRepository.save(order);
+
+               } else {
+                  throw new OrderException(
+                          String.format("Order not found in the database with Id=%d!",
+                                  orderId));
+               }
+            } else {
+               throw new OrderException("The ID of the order to be cooking is missing!");
+            }
          } else {
-            throw new OrderException(
-                    String.format("Order not found in the database with Id=%d!",
-                            id));
+            throw new EmployeeException("Employee was not found!!");
          }
       } else {
-         throw new OrderException("The ID of the order to be cooking is missing!");
+         throw new EmployeeException("Employee not passed to method");
       }
    }
 
-   // UPDATE - DELIVERING
-   public void deliveringOrderStatus(Long id) throws OrderException {
+   // UPDATE ORDER - DELIVERING
+   public void deliveringOrderStatus(Long orderId) throws OrderException {
 
-      if (id != null) {
-         Optional<Order> optionalOrder = orderRepository.findById(id);
+      if (orderId != null) {
+         Optional<Order> optionalOrder = orderRepository.findById(orderId);
 
          if (optionalOrder.isPresent()) {
             Order order = optionalOrder.get();
@@ -146,14 +224,14 @@ public class OrderService {
          } else {
             throw new OrderException(
                     String.format("Order not found in the database with Id=%d!",
-                            id));
+                            orderId));
          }
       } else {
          throw new OrderException("The ID of the order to be delivering is missing!");
       }
    }
 
-   // UPDATE - CANCELLED
+   // UPDATE ORDER - CANCELLED
    public void cancelledOrderStatus(Long id) throws OrderException {
 
       if (id != null) {

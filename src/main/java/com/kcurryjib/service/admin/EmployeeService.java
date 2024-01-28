@@ -8,6 +8,7 @@ import com.kcurryjib.entity.Restaurant;
 import com.kcurryjib.entity.enums.Role;
 import com.kcurryjib.exception.list.EmployeeException;
 import com.kcurryjib.mapper.admin.EmployeeMapper;
+import com.kcurryjib.mapper.employee.OrderMapper;
 import com.kcurryjib.repo.EmployeeRepository;
 import com.kcurryjib.repo.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,8 @@ public class EmployeeService implements UserDetailsService {
 
    private final EmployeeMapper employeeMapper;
 
+   private final OrderMapper orderMapper;
+
    private final RestaurantRepository restaurantRepository;
 
    private final PasswordEncoder encoder;
@@ -36,11 +39,13 @@ public class EmployeeService implements UserDetailsService {
    @Autowired
    public EmployeeService(EmployeeRepository employeeRepository,
                           EmployeeMapper employeeMapper,
+                          OrderMapper orderMapper,
                           PasswordEncoder encoder,
                           RestaurantRepository restaurantRepository) {
 
       this.employeeRepository = employeeRepository;
       this.employeeMapper = employeeMapper;
+      this.orderMapper = orderMapper;
       this.restaurantRepository = restaurantRepository;
       this.encoder = encoder;
    }
@@ -49,7 +54,7 @@ public class EmployeeService implements UserDetailsService {
    public List<EmployeeDto> getAll() throws EmployeeException {
       List<Employee> employees = new ArrayList<>(employeeRepository.findAll());
 
-      return MapperUtil.convertlist(employees, employeeMapper::showEmployeeWithRestaurant);
+      return MapperUtil.convertlist(employees, employeeMapper::showEmployeeInfo);
    }
 
    //   READ
@@ -79,7 +84,7 @@ public class EmployeeService implements UserDetailsService {
          Optional<Employee> employeeOptional = employeeRepository.findById(id);
 
          if (employeeOptional.isPresent()) {
-            employeeDto = employeeMapper.showEmployeeWithRestaurant(employeeOptional.get());
+            employeeDto = orderMapper.showEmployeeWithOrders(employeeOptional.get());
 
          } else {
             throw new EmployeeException(
