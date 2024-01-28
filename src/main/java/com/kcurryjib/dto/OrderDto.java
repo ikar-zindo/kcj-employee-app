@@ -103,6 +103,9 @@ public class OrderDto {
    }
 
    public LocalDateTime getUpdateAt() {
+      if (updateAt == null) {
+         return createdAt;
+      }
       return updateAt;
    }
 

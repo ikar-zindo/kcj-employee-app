@@ -59,6 +59,10 @@ public class Order {
       return id;
    }
 
+   public void setPostalCode(String postalCode) {
+      this.postalCode = postalCode;
+   }
+
    public String getPostalCode() {
       return postalCode;
    }
