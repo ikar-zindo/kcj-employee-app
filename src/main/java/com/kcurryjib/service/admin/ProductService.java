@@ -55,7 +55,7 @@ public class ProductService {
    }
 
    // READ
-   public List<ProductDto> getProductShort() throws ProductException {
+   public List<ProductDto> getProductsShort() throws ProductException {
       List<Product> products = new ArrayList<>(productRepository.findAll());
 
       return MapperUtil.convertlist(products, productMapper::convertToProductDto);

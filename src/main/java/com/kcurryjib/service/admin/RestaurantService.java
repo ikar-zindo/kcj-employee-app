@@ -206,12 +206,12 @@ public class RestaurantService {
               !restaurantDto.getReviewsDto().isEmpty()) {
 
          BigDecimal sum = BigDecimal.ZERO;
-         int numberOfReviews = restaurantDto.getReviewsDto().size(); // save the number of reviews
+         int numberOfReviews = restaurantDto.getReviewsDto().size(); // save count reviews
 
          for (ReviewDto review : restaurantDto.getReviewsDto()) {
             BigDecimal rating = review.getRating();
 
-            if (rating != null) { // check that the rating is not null
+            if (rating != null) { // check rating is not null
                sum = sum.add(rating);
             }
          }

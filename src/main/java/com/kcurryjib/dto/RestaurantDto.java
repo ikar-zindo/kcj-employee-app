@@ -233,26 +233,6 @@ public class RestaurantDto {
       return new Builder();
    }
 
-   // toString
-   @Override
-   public String toString() {
-      return "RestaurantDto{" +
-              "id=" + id +
-              ", name='" + name + '\'' +
-              ", address='" + address + '\'' +
-              ", phoneNumber='" + phoneNumber + '\'' +
-              ", openingHours='" + openingHours + '\'' +
-              ", cuisineType='" + cuisineType + '\'' +
-              ", description='" + description + '\'' +
-              ", socialMediaLinks='" + socialMediaLinks + '\'' +
-              ", isOpen=" + isOpen +
-              ", productsDto=" + productsDto +
-              ", reviewsDto=" + reviewsDto +
-              ", ordersDto=" + ordersDto +
-              ", employeesDto=" + employeesDto +
-              '}';
-   }
-
    // Equals & HashCode
    @Override
    public boolean equals(Object o) {

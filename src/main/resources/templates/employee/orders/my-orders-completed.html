@@ -64,39 +64,91 @@
 		<!--Main-->
 		<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 			<div>
+				<h2>Orders [<span class="text-muted"
+										th:text="${today}"/>]</h2>
 
-				<h2>Orders</h2>
+				<div class="container">
 
-				<div class="table-responsive small">
-					<table class="table table-striped table-sm">
-						<thead>
-						<tr>
-							<th scope="col">#</th>
-							<th scope="col">Employee name</th>
-							<th scope="col">Delivery address</th>
-							<th scope="col">Customer name</th>
-							<th scope="col">Phone</th>
-							<th scope="col">Created</th>
-							<th scope="col">Updated</th>
-							<th scope="col">Status</th>
-						</tr>
-						</thead>
+					<!--Item-->
+					<div th:each="order : ${orders}" class="alert alert-info mt-2">
+						<div class="card-body">
+							<div class="d-flex justify-content-between">
+								<p class="m-0"><span class="text-secondary">Delivery address: </span>
+									<span class="text-muted"
+											th:text="|${order.deliveryAddress}| + ', ' + |${order.postalCode}|"/></p>
+								<p class="m-0 text-secondary" >Created at:
+									<span class="text-muted"
+											th:text="${order.getTime(order.createdAt)}"></span></p>
+							</div>
 
-						<tbody>
-						<div th:each="order : ${orders}">
-							<tr>
-								<td th:text="${order.id}"/>
-								<td class="text-muted" th:text="|${order.employeeDto.firstName}| + ' ' + |${order.employeeDto.lastName}|"/>
-								<td th:text="|${order.deliveryAddress}| + ', ' + |${order.postalCode}|"/>
-								<td th:text="|${order.customerDto.firstName}| + ' ' +|${order.customerDto.lastName}|"/>
-								<td th:text="${order.customerDto.phoneNumber}"/>
-								<td class="text-secondary" th:text="|${order.getDate(order.createdAt)}| + ' '+ |${order.getTime(order.createdAt)}|"/>
-								<td class="text-secondary" th:text="|${order.getDate(order.updateAt)}| + ' '+ |${order.getTime(order.updateAt)}|"/>
-								<td th:class="'text-' + |${order.orderStatus.getColor(order.orderStatus)}|" th:text="${order.orderStatus}"/>
-							</tr>
+							<div class="d-flex justify-content-between mb-1">
+								<p>
+									<span class="text-secondary">Name: </span>
+									<span class="text-muted"
+											th:text="|${order.customerDto.firstName}| + ' ' + |${order.customerDto.lastName}|"/></p>
+								<p>
+									<span class="text-body-secondary">Phone number: </span>
+									<span class="text-body-secondary"
+											th:text="${order.customerDto.phoneNumber}"/></p>
+							</div>
+
+							<div class="d-flex justify-content-between mb-1">
+								<p class="m-0"><span class="text-info">Order id: </span><span class="text-warning" th:text="${order.id}"/></p>
+
+								<p class="m-0 text-secondary">Update at:
+									<span class="text-muted"
+											th:text="${order.getTime(order.updateAt)}"></span>
+								</p>
+
+								<div th:class="'border rounded p-1 border-' + |${order.orderStatus.getColor(order.orderStatus)}|">
+									<p class="m-0">
+										<span class="text-info">Status: </span>
+										<span th:text="${order.orderStatus}"
+												th:class="'text-' + |${order.orderStatus.getColor(order.orderStatus)}|">
+										</span>
+									</p>
+								</div>
+							</div>
+
+							<table class="table table-striped table-sm">
+								<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Product name</th>
+									<th scope="col">Quantity</th>
+									<th scope="col">Price</th>
+								</tr>
+								</thead>
+								<tbody>
+								<div th:each="orderProducts : ${order.orderProductsDto}">
+									<div th:each="product : ${orderProducts.productDto}">
+										<tr>
+											<td th:text="${product.id}"/>
+											<td th:text="${product.name}"/>
+											<td class="text-danger font-weight-bold" th:text="${orderProducts.quantity}"/>
+											<td th:text="${product.price}"/>
+										</tr>
+									</div>
+
+								</div>
+								</tbody>
+							</table>
+
+							<div class="d-flex justify-content-between">
+
+								<!--BACK ORDER TO MY ORDERS-->
+								<form th:action="'/employee/order/' + ${order.id} + '/cooking'"
+										th:method="PATCH">
+									<button type="submit"
+											  class="btn btn-sm btn-outline-secondary text-warning">
+										BACK ORDER TO MY ORDERS
+									</button>
+								</form>
+
+								<p class="text-body-secondary m-0" th:text="'Total: ' + |${order.totalAmount}| + ' €'"/>
+							</div>
 						</div>
-						</tbody>
-					</table>
+					</div>
 				</div>
 			</div>
 

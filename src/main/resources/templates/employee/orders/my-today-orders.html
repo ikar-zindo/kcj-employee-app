@@ -75,7 +75,7 @@
 							<div class="d-flex justify-content-between">
 								<p class="m-0"><span class="text-secondary">Delivery address: </span>
 									<span class="text-muted"
-											th:text="${order.deliveryAddress}"/></p>
+											th:text="|${order.deliveryAddress}| + ', ' + |${order.postalCode}|"/></p>
 								<p class="m-0 text-secondary" >Created at:
 									<span class="text-muted"
 											th:text="${order.getTime(order.createdAt)}"></span></p>
@@ -95,7 +95,7 @@
 							<div class="d-flex justify-content-between mb-1">
 								<p class="m-0"><span class="text-info">Order id: </span><span class="text-warning" th:text="${order.id}"/></p>
 
-								<p class="text-secondary">Update at:
+								<p class="m-0 text-secondary">Update at:
 									<span class="text-muted"
 											th:text="${order.getTime(order.updateAt)}"></span>
 								</p>
@@ -137,15 +137,17 @@
 							<div class="d-flex justify-content-between">
 
 								<!--CREATED-->
-								<form th:action="'/employee/orders/' + ${order.id} + '/created'" th:method="PATCH">
-									<button type="submit"
-											  class="btn btn-sm btn-outline-secondary text-primary">
-										CREATED
-									</button>
-								</form>
+<!--								<form th:action="'/employee/order/' + ${order.id} + '/created'"-->
+<!--										th:method="PATCH">-->
+<!--									<button type="submit"-->
+<!--											  class="btn btn-sm btn-outline-secondary text-primary">-->
+<!--										CREATED-->
+<!--									</button>-->
+<!--								</form>-->
 
 								<!--COOKING-->
-								<form th:action="'/employee/orders/' + ${order.id} + '/cooking'" th:method="PATCH">
+								<form th:action="'/employee/order/' + ${order.id} + '/cooking'"
+										th:method="PATCH">
 									<button type="submit"
 											  class="btn btn-sm btn-outline-secondary text-warning">
 										COOKING
@@ -153,7 +155,8 @@
 								</form>
 
 								<!--DELIVERING-->
-								<form th:action="'/employee/orders/' + ${order.id} + '/delivering'" th:method="PATCH">
+								<form th:action="'/employee/order/' + ${order.id} + '/delivering'"
+										th:method="PATCH">
 									<button type="submit"
 											  class="btn btn-sm btn-outline-secondary text-info">
 										DELIVERING
@@ -161,7 +164,8 @@
 								</form>
 
 								<!--COMPLETED-->
-								<form th:action="'/employee/orders/' + ${order.id} + '/completed'" th:method="PATCH">
+								<form th:action="'/employee/order/' + ${order.id} + '/completed'"
+										th:method="PATCH">
 									<button type="submit"
 											  class="btn btn-sm btn-outline-secondary text-success">
 										COMPLETED
@@ -169,7 +173,8 @@
 								</form>
 
 								<!--CANCELLED-->
-								<form th:action="'/employee/orders/' + ${order.id} + '/cancelled'" th:method="PATCH">
+								<form th:action="'/employee/order/' + ${order.id} + '/cancelled'"
+										th:method="PATCH">
 									<button type="submit"
 											  class="btn btn-sm btn-outline-secondary text-danger">
 										CANCELLED

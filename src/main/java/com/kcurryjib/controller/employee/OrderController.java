@@ -42,7 +42,6 @@ public class OrderController {
       Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
       String currentPrincipalName = authentication.getName();
 
-
       Employee employee = (Employee) employeeService.loadUserByUsername(currentPrincipalName);
 
       EmployeeDto employeeDto = service.getEmployeeWithOrders(employee.getId());
@@ -65,6 +64,7 @@ public class OrderController {
 
       List<OrderDto> ordersDto = service.getTodayOrders(employee.getId());
 
+      model.addAttribute("today", service.getToday());
       model.addAttribute("orders", ordersDto);
 
       return "/employee/orders/list";

@@ -38,6 +38,9 @@ public class OrderDto {
    private String deliveryAddress;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
+   private String postalCode;
+
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private BigDecimal totalAmount;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -53,6 +56,14 @@ public class OrderDto {
    // Getters & Setters
    public Long getId() {
       return id;
+   }
+
+   public String getPostalCode() {
+      return postalCode;
+   }
+
+   public void setPostalCode(String postalCode) {
+      this.postalCode = postalCode;
    }
 
    public void setId(Long id) {
@@ -92,6 +103,9 @@ public class OrderDto {
    }
 
    public LocalDateTime getUpdateAt() {
+      if (updateAt == null) {
+         return createdAt;
+      }
       return updateAt;
    }
 
@@ -171,6 +185,11 @@ public class OrderDto {
          return this;
       }
 
+      public Builder postalCode(String postalCode) {
+         orderDto.postalCode = postalCode;
+         return this;
+      }
+
       public Builder totalAmount(BigDecimal totalAmount) {
          orderDto.totalAmount = totalAmount;
          return this;
@@ -229,11 +248,19 @@ public class OrderDto {
    // DateTimeFormatter
    public String getTime(LocalDateTime time) {
       DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("HH:mm:ss");
-      return time.format(formatterTime);
+      
+      if (time != null) {
+         return time.format(formatterTime);
+      }
+      return "";
    }
 
    public String getDate(LocalDateTime time) {
       DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("dd MMM yyyy");
-      return time.format(formatterDate);
+
+      if (time != null) {
+         return time.format(formatterDate);
+      }
+      return "";
    }
 }
