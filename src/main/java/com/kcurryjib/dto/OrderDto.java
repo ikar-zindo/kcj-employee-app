@@ -245,11 +245,19 @@ public class OrderDto {
    // DateTimeFormatter
    public String getTime(LocalDateTime time) {
       DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("HH:mm:ss");
-      return time.format(formatterTime);
+      
+      if (time != null) {
+         return time.format(formatterTime);
+      }
+      return "";
    }
 
    public String getDate(LocalDateTime time) {
       DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("dd MMM yyyy");
-      return time.format(formatterDate);
+
+      if (time != null) {
+         return time.format(formatterDate);
+      }
+      return "";
    }
 }
