@@ -2,6 +2,7 @@ package com.kcurryjib.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -12,6 +13,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import java.util.Collection;
+
+import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @Configuration
 @EnableWebSecurity
@@ -44,6 +47,7 @@ public class SecurityConfig {
                                       "/rest/employees/**",
                                       "/rest/orders/**",
                                       "/menu/**",
+                                      "/customer/**",
                                       "/auth/login",
                                       "/auth/token",
                                       "/swagger-ui.html",
@@ -71,14 +75,14 @@ public class SecurityConfig {
                                     response.sendRedirect("/admin/employees");
 
                                  } else if (authorities.stream().anyMatch(r -> r.getAuthority().equals("ROLE_USER"))) {
-                                    response.sendRedirect("/employee/orders");
+                                    response.sendRedirect("/employee/my-today-orders");
 
                               } else {
                                     response.sendRedirect("/");
                                  }
                               })
                               .permitAll()
-              )
+              ).httpBasic(Customizer.withDefaults()) // TODO: add 26/01/24 20:55 maybe save session
               .build();
    }
 }

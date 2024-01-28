@@ -35,6 +35,6 @@ public class AdminOrderService {
               .sorted(Comparator.comparing(Order::getCreatedAt).reversed())
               .collect(Collectors.toList());
 
-      return MapperUtil.convertlist(orders, adminOrderMapper::convertToOrderDto);
+      return MapperUtil.convertlist(orders, adminOrderMapper::orderWithoutEmployee);
    }
 }

@@ -32,7 +32,7 @@ public class EmployeeMapper {
       return mapper.map(restaurant, RestaurantDto.class);
    }
 
-   public EmployeeDto showEmployeeWithRestaurant(Employee employee) {
+   public EmployeeDto showEmployeeInfo(Employee employee) {
       mapper.typeMap(Employee.class, EmployeeDto.class)
               .addMappings(m -> m.skip(EmployeeDto::setPassword));
 

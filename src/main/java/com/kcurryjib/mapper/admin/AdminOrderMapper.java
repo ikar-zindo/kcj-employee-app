@@ -17,11 +17,32 @@ public class AdminOrderMapper {
    @Autowired
    private CustomerMapper customerMapper;
 
-   public OrderDto convertToOrderDto(Order order) {
+
+   public OrderDto orderWithoutEmployee(Order order) {
       OrderDto orderDto = mapper.map(order, OrderDto.class);
 
-      orderDto.setEmployeeDto(convertToEmployeeDto(order.getEmployee()));
       orderDto.setCustomerDto(customerMapper.customerInfoDelivery(order.getCustomer()));
+
+      if (order.getEmployee() != null) {
+         orderDto.setEmployeeDto(convertToEmployeeDto(order.getEmployee()));
+      } else {
+         EmployeeDto employeeDto = new EmployeeDto();
+
+         employeeDto.setFirstName("");
+         employeeDto.setLastName("");
+         employeeDto.setEmail("");
+
+         orderDto.setEmployeeDto(employeeDto);
+      }
+
+      return orderDto;
+   }
+
+   public OrderDto orderWithEmployee(Order order) {
+      OrderDto orderDto = mapper.map(order, OrderDto.class);
+
+      orderDto.setCustomerDto(customerMapper.customerInfoDelivery(order.getCustomer()));
+      orderDto.setEmployeeDto(convertToEmployeeDto(order.getEmployee()));
 
       return orderDto;
    }

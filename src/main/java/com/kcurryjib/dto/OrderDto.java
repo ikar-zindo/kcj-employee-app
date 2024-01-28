@@ -247,7 +247,7 @@ public class OrderDto {
 
    // DateTimeFormatter
    public String getTime(LocalDateTime time) {
-      DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("HH:mm:ss");
+      DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("HH:mm");
       
       if (time != null) {
          return time.format(formatterTime);
@@ -256,7 +256,7 @@ public class OrderDto {
    }
 
    public String getDate(LocalDateTime time) {
-      DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("dd MMM yyyy");
+      DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("dd MMM");
 
       if (time != null) {
          return time.format(formatterDate);

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/employee/orders")
+@RequestMapping("/employee")
 @SessionAttributes("orders")
 @PreAuthorize("hasRole('ROLE_USER')")
 public class OrderController {
@@ -35,7 +35,8 @@ public class OrderController {
       this.employeeService = employeeService;
    }
 
-   // READ
+   // TODO: придумать для чего нужен адрес /employee
+   // READ - GET ALL EMPLOYEE ORDERS
    @GetMapping()
    @PreAuthorize("hasRole('ROLE_USER')")
    public String getEmployeeOrders(Model model) throws EmployeeException {
@@ -50,58 +51,92 @@ public class OrderController {
       model.addAttribute("orders", ordersDto);
       model.addAttribute("today", service.getToday());
 
-      return "/employee/orders/list";
+      return "/employee/orders/my-today-orders";
    }
 
    // READ - GET TODAY EMPLOYEE ORDERS
-   @GetMapping("/today")
+   @GetMapping("/new-today-orders")
    @PreAuthorize("hasRole('ROLE_USER')")
-   public String getTodayOrders(Model model) throws EmployeeException {
+   public String getNewTodayOrders(Model model) throws EmployeeException {
+      List<OrderDto> ordersDto = service.getTodayNewOrders();
+
+      model.addAttribute("today", service.getToday());
+      model.addAttribute("orders", ordersDto);
+
+      return "/employee/orders/new-today-orders";
+   }
+
+   // READ - GET TODAY EMPLOYEE ORDERS
+   @GetMapping("/my-today-orders")
+   @PreAuthorize("hasRole('ROLE_USER')")
+   public String getEmployeeTodayOrders(Model model) throws EmployeeException {
       Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
       String currentPrincipalName = authentication.getName();
 
       Employee employee = (Employee) employeeService.loadUserByUsername(currentPrincipalName);
 
-      List<OrderDto> ordersDto = service.getTodayOrders(employee.getId());
+      List<OrderDto> ordersDto = service.getEmployeeProgressingTodayOrders(employee.getId());
+
+      model.addAttribute("orders", ordersDto);
+      model.addAttribute("today", service.getToday());
+
+      return "/employee/orders/my-today-orders";
+   }
+
+   // READ - GET TODAY EMPLOYEE ORDERS
+   @GetMapping("/my-orders-completed")
+   @PreAuthorize("hasRole('ROLE_USER')")
+   public String getEmployeeTodayCompletedOrders(Model model) throws EmployeeException {
+      Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+      String currentPrincipalName = authentication.getName();
+
+      Employee employee = (Employee) employeeService.loadUserByUsername(currentPrincipalName);
+
+      List<OrderDto> ordersDto = service.getEmployeeCompletedOrders(employee.getId());
 
       model.addAttribute("today", service.getToday());
       model.addAttribute("orders", ordersDto);
 
-      return "/employee/orders/list";
+      return "/employee/orders/my-orders-completed";
    }
 
    // UPDATE - CREATED
-   @PatchMapping("/{id}/created")
+   @PatchMapping("/order/{id}/created")
    public String createdOrder(@PathVariable Long id) throws OrderException {
       service.createdOrderStatus(id);
-      return "redirect:/employee/orders";
+      return "redirect:/employee/my-today-orders";
    }
 
    // UPDATE - COMPLETED
-   @PatchMapping("/{id}/completed")
+   @PatchMapping("/order/{id}/completed")
    public String completedOrder(@PathVariable Long id) throws OrderException {
       service.completedOrderStatus(id);
-      return "redirect:/employee/orders";
+      return "redirect:/employee/my-today-orders";
    }
 
    // UPDATE - COOKING
-   @PatchMapping("/{id}/cooking")
+   @PatchMapping("/order/{id}/cooking")
    public String cookingOrder(@PathVariable Long id) throws OrderException {
-      service.cookingOrderStatus(id);
-      return "redirect:/employee/orders";
+      Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+      String currentPrincipalName = authentication.getName();
+
+      Employee employee = (Employee) employeeService.loadUserByUsername(currentPrincipalName);
+
+      service.cookingOrderStatus(employee.getId(), id);
+      return "redirect:/employee/my-today-orders";
    }
 
    // UPDATE - DELIVERING
-   @PatchMapping("/{id}/delivering")
+   @PatchMapping("/order/{id}/delivering")
    public String deliveringOrder(@PathVariable Long id) throws OrderException {
       service.deliveringOrderStatus(id);
-      return "redirect:/employee/orders";
+      return "redirect:/employee/my-today-orders";
    }
 
    // UPDATE - PROCESSING
-   @PatchMapping("/{id}/cancelled")
+   @PatchMapping("/order/{id}/cancelled")
    public String cancelledOrder(@PathVariable Long id) throws OrderException {
       service.cancelledOrderStatus(id);
-      return "redirect:/employee/orders";
+      return "redirect:/employee/my-today-orders";
    }
 }
