@@ -83,8 +83,7 @@ CREATE TABLE `order_product` (
   order_product_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   order_id BIGINT,
   product_id BIGINT,
-  quantity INT,
-  total DECIMAL(8, 2)
+  quantity INT
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
 
 --
@@ -375,10 +374,10 @@ INSERT INTO `order` (`customer_id`, `restaurant_id`, `employee_id`, `delivery_ad
 -- Dumping data for table `order_product`
 --
 
-INSERT INTO `order_product` (`order_id`, `product_id`, `quantity`, `total`) VALUES
-	('1', '1', '1', '14'),
-    ('1', '2', '1', '12'),
-    ('2', '1', '1', '14');
+INSERT INTO `order_product` (`order_id`, `product_id`, `quantity`) VALUES
+	('1', '1', '1'),
+    ('1', '2', '1'),
+    ('2', '1', '1');
 
 --
 -- Dumping data for table `review`
