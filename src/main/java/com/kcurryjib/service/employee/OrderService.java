@@ -102,7 +102,7 @@ public class OrderService {
                  .filter(order ->
                          order.getOrderStatus().equals(OrderStatus.COMPLETED) ||
                                  order.getOrderStatus().equals(OrderStatus.CANCELLED))
-                 .sorted(Comparator.comparing(OrderDto::getUpdateAt))
+                 .sorted(Comparator.comparing(OrderDto::getUpdateAt).reversed())
                  .collect(Collectors.toList());
       } else {
          throw new EmployeeException("Employee not passed to method");
