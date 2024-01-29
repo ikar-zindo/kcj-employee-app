@@ -123,7 +123,7 @@
 							<select class="form-select" id="customerDto" name="customerId">
 								<option th:each="customer : ${customers}"
 										  th:value="${customer.id}"
-										  th:text="${customer.lastName}">
+										  th:text="${customer.firstName}">
 								</option>
 							</select>
 							<div class="text-danger"
