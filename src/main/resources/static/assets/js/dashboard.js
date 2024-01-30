@@ -3,6 +3,8 @@
 (() => {
   'use strict'
 
+    var orderDyDayOfWeek
+
   // Graphs
   const ctx = document.getElementById('myChart')
   // eslint-disable-next-line no-unused-vars

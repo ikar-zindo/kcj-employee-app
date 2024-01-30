@@ -86,8 +86,11 @@
 						<div th:each="order : ${orders}">
 							<tr>
 								<td th:text="${order.id}"/>
+
 								<td th:class="'text-' + |${order.orderStatus.getColor(order.orderStatus)}|"
+
 									 th:text="${order.orderStatus}"/>
+
 								<td class="text-muted"
 									 th:text="${order.employeeDto != null} ? ${order.employeeDto.firstName} + ' ' + ${order.employeeDto.lastName} : ''"/>
 								<td th:text="|${order.deliveryAddress}| + ', ' + |${order.postalCode}|"/>
