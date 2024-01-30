@@ -69,7 +69,7 @@ public class SecurityConfig {
                                  Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 
                                  if (authorities.stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"))) {
-                                    response.sendRedirect("/admin/products");
+                                    response.sendRedirect("/admin/orders");
 
                                  } else if (authorities.stream().anyMatch(r -> r.getAuthority().equals("ROLE_MANAGER"))) {
                                     response.sendRedirect("/admin/employees");
