@@ -47,6 +47,7 @@ public class ReviewService {
       List<Review> reviews = new ArrayList<>(reviewRepository.findAll());
 
       return MapperUtil.convertlist(reviews, reviewMapper::showReviewDtoWithCustomer);
+//      return reviewMapper.showReviewDtoWithCustomer(reviews);
    }
 
    // READ

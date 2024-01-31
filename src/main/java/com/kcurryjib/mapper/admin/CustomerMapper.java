@@ -43,6 +43,7 @@ public class CustomerMapper {
               .addMappings(m -> m.skip(CustomerDto::setPhoneNumber))
               .addMappings(m -> m.skip(CustomerDto::setAddress))
               .addMappings(m -> m.skip(CustomerDto::setPostalCode))
+              .addMappings(m -> m.skip(CustomerDto::setRole))
               .addMappings(m -> m.skip(CustomerDto::setCreatedAt))
               .addMappings(m -> m.skip(CustomerDto::setBlocked))
               .addMappings(m -> m.skip(CustomerDto::setCartDto))

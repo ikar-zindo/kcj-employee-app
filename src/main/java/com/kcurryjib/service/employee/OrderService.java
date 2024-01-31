@@ -50,7 +50,7 @@ public class OrderService {
       List<Order> orders = new ArrayList<>(orderRepository.findAll()).stream()
               .filter(order -> order.getCreatedAt().toLocalDate().isEqual(getToday()) &&
                       order.getOrderStatus().equals(OrderStatus.CREATED))
-              .sorted(Comparator.comparing(Order::getCreatedAt).reversed())
+              .sorted(Comparator.comparing(Order::getCreatedAt))
               .collect(Collectors.toList());
 
 //      return MapperUtil.convertlist(orders, orderMapper::convertToOrderDto);
@@ -102,7 +102,7 @@ public class OrderService {
                  .filter(order ->
                          order.getOrderStatus().equals(OrderStatus.COMPLETED) ||
                                  order.getOrderStatus().equals(OrderStatus.CANCELLED))
-                 .sorted(Comparator.comparing(OrderDto::getUpdateAt))
+                 .sorted(Comparator.comparing(OrderDto::getUpdateAt).reversed())
                  .collect(Collectors.toList());
       } else {
          throw new EmployeeException("Employee not passed to method");

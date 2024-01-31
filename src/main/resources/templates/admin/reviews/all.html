@@ -96,7 +96,7 @@
 					<div th:each="review : ${reviews}">
 						<tr>
 							<td th:text="${review.id}"/>
-							<td></td>
+							<td th:text="${review.restaurantDto.name}"></td>
 							<td th:text="|${review.customerDto.lastName}| + ' ' + |${review.customerDto.lastName}|"/>
 							<td th:text="${review.rating}"/>
 							<td th:text="${review.comment}"/>

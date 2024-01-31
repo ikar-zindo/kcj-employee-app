@@ -84,7 +84,7 @@ public class OrderController {
    }
 
    // READ - GET TODAY EMPLOYEE ORDERS
-   @GetMapping("/my-orders-completed")
+   @GetMapping("/my-history-orders")
    @PreAuthorize("hasRole('ROLE_USER')")
    public String getEmployeeTodayCompletedOrders(Model model) throws EmployeeException {
       Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -97,7 +97,7 @@ public class OrderController {
       model.addAttribute("today", service.getToday());
       model.addAttribute("orders", ordersDto);
 
-      return "/employee/orders/my-orders-completed";
+      return "/employee/orders/my-history-orders";
    }
 
    // UPDATE - CREATED
