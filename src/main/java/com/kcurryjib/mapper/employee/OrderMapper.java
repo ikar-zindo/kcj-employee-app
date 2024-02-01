@@ -3,9 +3,11 @@ package com.kcurryjib.mapper.employee;
 import com.kcurryjib.dto.EmployeeDto;
 import com.kcurryjib.dto.OrderDto;
 import com.kcurryjib.dto.OrderProductDto;
+import com.kcurryjib.dto.RestaurantDto;
 import com.kcurryjib.entity.Employee;
 import com.kcurryjib.entity.Order;
 import com.kcurryjib.entity.OrderProduct;
+import com.kcurryjib.entity.Restaurant;
 import com.kcurryjib.mapper.admin.CustomerMapper;
 import com.kcurryjib.mapper.admin.ProductMapper;
 import org.modelmapper.ModelMapper;
@@ -29,6 +31,10 @@ public class OrderMapper {
    CustomerMapper customerMapper;
 
    // convert to DTO
+   public RestaurantDto convertToRestaurantDto(Restaurant restaurant) {
+      return mapper.map(restaurant, RestaurantDto.class);
+   }
+
    public EmployeeDto showEmployeeWithOrders(Employee employee) {
       mapper.typeMap(Employee.class, EmployeeDto.class)
               .addMappings(m -> m.skip(EmployeeDto::setPassword));
@@ -45,6 +51,7 @@ public class OrderMapper {
 
       orderDto.setCustomerDto(customerMapper.customerInfoDelivery(order.getCustomer()));
       orderDto.setOrderProductsDto(convertToOrderProductsDto(order.getOrderProducts()));
+      orderDto.setRestaurantDto(convertToRestaurantDto(order.getRestaurant()));
 
       return orderDto;
    }
