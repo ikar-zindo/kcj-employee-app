@@ -3,6 +3,7 @@ package com.kcurryjib.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
 
 import java.util.List;
@@ -25,19 +26,20 @@ public class RestaurantDto {
    private String address;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-//   @Pattern(regexp = "\\\\+49\\\\d{10}", message = "{validation.restaurant.phoneNumber.length}")
-   @Length(max = 20, message = "{validation.length.max.20}")
+   @Pattern(regexp = "^\\+\\d{2}\\s\\d{3}\\s\\d{3}\\s\\d{3}$", message = "{validation.value.phoneNumber}")
    private String phoneNumber;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @Length(max = 30, message = "{validation.length.max.30}")
+   @Pattern(regexp = "^\\d{2}:\\d{2} - \\d{2}:\\d{2}$", message = "{validation.value.openingHours}")
    private String openingHours;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
+   @NotBlank(message = "{validation.length.empty}")
    @Length(max = 30, message = "{validation.length.max.30}")
    private String cuisineType;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
+   @NotBlank(message = "{validation.length.empty}")
    @Length(max = 1000, message = "{validation.length.max.1000}")
    private String description;
 

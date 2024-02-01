@@ -9,9 +9,4 @@ import java.util.List;
 
 
 public interface CartProductRepository extends JpaRepository<CartProduct, Long> {
-
-   @Query(value = "SELECT * " +
-           "FROM cart_product " +
-           "WHERE cart_id = :cartId;", nativeQuery = true)
-   List<CartProduct> findByCart(@Param("cartId") Long cartId);
 }

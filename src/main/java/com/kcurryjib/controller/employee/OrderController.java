@@ -86,7 +86,7 @@ public class OrderController {
    // READ - GET TODAY EMPLOYEE ORDERS
    @GetMapping("/my-history-orders")
    @PreAuthorize("hasRole('ROLE_USER')")
-   public String getEmployeeTodayCompletedOrders(Model model) throws EmployeeException {
+   public String getEmployeeHistoryOrders(Model model) throws EmployeeException {
       Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
       String currentPrincipalName = authentication.getName();
 
