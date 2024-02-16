@@ -1,6 +1,7 @@
 package com.kcurryjib.entity;
 
 
+import com.kcurryjib.entity.enums.OrderStatus;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -28,17 +29,24 @@ public class Order {
    @JoinColumn(name = "employee_id")
    private Employee employee;
 
-   @Column(name = "order_date", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-   private LocalDateTime orderDate;
+   @Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+   private LocalDateTime createdAt;
+
+   @Column(name = "update_at", columnDefinition = "TIMESTAMP")
+   private LocalDateTime updateAt;
 
    @Column(name = "delivery_address")
    private String deliveryAddress;
 
+   @Column(name = "postal_code")
+   private String postalCode;
+
    @Column(name = "total_amount", precision = 8, scale = 2)
    private BigDecimal totalAmount;
 
+   @Enumerated(EnumType.STRING)
    @Column(name = "order_status")
-   private String orderStatus;
+   private OrderStatus orderStatus;
 
    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
    private List<OrderProduct> orderProducts;
@@ -46,8 +54,17 @@ public class Order {
    public Order() {
    }
 
+   // Getters & Setters
    public Long getId() {
       return id;
+   }
+
+   public void setPostalCode(String postalCode) {
+      this.postalCode = postalCode;
+   }
+
+   public String getPostalCode() {
+      return postalCode;
    }
 
    public void setId(Long id) {
@@ -78,12 +95,20 @@ public class Order {
       this.employee = employee;
    }
 
-   public LocalDateTime getOrderDate() {
-      return orderDate;
+   public LocalDateTime getCreatedAt() {
+      return createdAt;
    }
 
-   public void setOrderDate(LocalDateTime orderDate) {
-      this.orderDate = orderDate;
+   public void setCreatedAt(LocalDateTime createdAt) {
+      this.createdAt = createdAt;
+   }
+
+   public LocalDateTime getUpdateAt() {
+      return updateAt;
+   }
+
+   public void setUpdateAt(LocalDateTime updateAt) {
+      this.updateAt = updateAt;
    }
 
    public String getDeliveryAddress() {
@@ -102,11 +127,11 @@ public class Order {
       this.totalAmount = totalAmount;
    }
 
-   public String getOrderStatus() {
+   public OrderStatus getOrderStatus() {
       return orderStatus;
    }
 
-   public void setOrderStatus(String orderStatus) {
+   public void setOrderStatus(OrderStatus orderStatus) {
       this.orderStatus = orderStatus;
    }
 
@@ -116,5 +141,69 @@ public class Order {
 
    public void setOrderProducts(List<OrderProduct> orderProducts) {
       this.orderProducts = orderProducts;
+   }
+
+   // Builder class
+   public static class Builder {
+
+      private Order order = new Order();
+
+      public Builder id(Long id) {
+         order.id = id;
+         return this;
+      }
+
+      public Builder customer(Customer customer) {
+         order.customer = customer;
+         return this;
+      }
+
+      public Builder restaurant(Restaurant restaurant) {
+         order.restaurant = restaurant;
+         return this;
+      }
+
+      public Builder employee(Employee employee) {
+         order.employee = employee;
+         return this;
+      }
+
+      public Builder createdAt(LocalDateTime createdAt) {
+         order.createdAt = createdAt;
+         return this;
+      }
+
+      public Builder updateAt(LocalDateTime updateAt) {
+         order.updateAt = updateAt;
+         return this;
+      }
+
+      public Builder deliveryAddress(String deliveryAddress) {
+         order.deliveryAddress = deliveryAddress;
+         return this;
+      }
+
+      public Builder postalCode(String postalCode) {
+         order.postalCode = postalCode;
+         return this;
+      }
+
+      public Builder totalAmount(BigDecimal totalAmount) {
+         order.totalAmount = totalAmount;
+         return this;
+      }
+
+      public Builder orderStatus(OrderStatus orderStatus) {
+         order.orderStatus = orderStatus;
+         return this;
+      }
+
+      public Order build() {
+         return order;
+      }
+   }
+
+   public static Builder builder() {
+      return new Builder();
    }
 }

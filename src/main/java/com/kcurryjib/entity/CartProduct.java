@@ -69,4 +69,40 @@ public class CartProduct {
    public void setCratedAt(LocalDateTime cratedAt) {
       this.cratedAt = cratedAt;
    }
+
+   // Builder class
+   public static class Builder {
+
+      private CartProduct cartProduct = new CartProduct();
+
+      public Builder id(Long id) {
+         cartProduct.id = id;
+         return this;
+      }
+
+      public Builder cart(Cart cart) {
+         cartProduct.cart = cart;
+         return this;
+      }
+
+      public Builder product(Product product) {
+         cartProduct.product = product;
+         return this;
+      }
+
+      public Builder cratedAt(LocalDateTime cratedAt) {
+         cartProduct.cratedAt = cratedAt;
+         return this;
+      }
+
+      public CartProduct build() {
+         return cartProduct;
+      }
+   }
+
+   public static Builder builder() {
+      return new Builder();
+   }
+
+   // Override
 }

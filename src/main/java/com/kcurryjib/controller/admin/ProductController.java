@@ -2,41 +2,40 @@ package com.kcurryjib.controller.admin;
 
 import com.kcurryjib.dto.ProductDto;
 import com.kcurryjib.dto.RestaurantDto;
-import com.kcurryjib.exceptions.ProductException;
+import com.kcurryjib.exception.list.ProductException;
 import com.kcurryjib.service.admin.ProductService;
 import com.kcurryjib.service.admin.RestaurantService;
-import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Valid;
-import jakarta.validation.Validator;
-import jakarta.validation.constraints.DecimalMin;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/admin/products")
-//@SessionAttributes("editProduct")
+@SessionAttributes("editProducts")
+@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_USER')")
 public class ProductController {
 
-   @Autowired
-   private ProductService service;
+   private final ProductService service;
+
+   private final RestaurantService restaurantService;
 
    @Autowired
-   private RestaurantService restaurantService;
+   public ProductController(ProductService service,
+                            RestaurantService restaurantService) {
 
+      this.service = service;
+      this.restaurantService = restaurantService;
+   }
 
    // READ
    @GetMapping
-   public String getAllProducts(Model model) {
+   public String getAllProducts(Model model) throws ProductException {
       List<ProductDto> productsDto = service.getAll();
 
       model.addAttribute("products", productsDto);
@@ -46,132 +45,107 @@ public class ProductController {
 
    // READ
    @GetMapping("/{id}")
-   public String getProductById(@PathVariable Long id, Model model) {
-      ProductDto product = service.getProductById(id);
-      model.addAttribute("product", product);
+   public String getProductById(@PathVariable Long id,
+                                Model model) throws ProductException {
+
+      if (service.getProductById(id) == null) {
+         return "redirect:/admin/products";
+      }
+
+      ProductDto productDto = service.getProductById(id);
+
+      model.addAttribute("product", productDto);
+
       return "/admin/products/info";
    }
 
    // CREATE
+   @GetMapping(value = "/add")
+   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
+   public String addProduct(@ModelAttribute("product") ProductDto productDto,
+                            Model model) throws ProductException {
 
-   /**
-    * old version
-    */
+      productDto.setImageUrl("1.jpg");
+      productDto.setName("new product");
 
-
-   // CREATE
-   @GetMapping("/add")
-   public String addProductForm(@ModelAttribute("product") ProductDto productDto,
-                                Model model) throws ProductException {
-
-
-//      ProductDto productDto = new ProductDto();
-
-//      Iterable<RestaurantDto> restaurantsDto = restaurantService.getAll();
-
-//      model.addAttribute("product", productDto);
       model.addAttribute("restaurants", restaurantService.getAll());
 
       return "/admin/products/add";
    }
 
    // CREATE
-   @PostMapping("/add")
-   public String addProduct(@RequestParam @Valid String name,
-                            @RequestParam @Valid String description,
-                            @RequestParam @Valid BigDecimal price,
-                            @RequestParam String imageUrl,
-                            @RequestParam(name = "available", required = false,
-                                    defaultValue = "false") boolean available,
-                            @RequestParam Long restaurantId,
-                            Model model) throws ProductException {
+   @PostMapping(value = "/add")
+   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
+   public String createProduct(@ModelAttribute("product") @Valid ProductDto productDto,
+                               BindingResult result,
+                               @RequestParam(name = "restaurantId") Long restaurantId,
+                               Model model) throws ProductException {
 
-      ProductDto productDto = new ProductDto();
+      RestaurantDto restaurantDto = restaurantService.getById(restaurantId);
+      productDto.setRestaurantDto(restaurantDto);
 
-      productDto.setName(name);
-      productDto.setDescription(description);
-      productDto.setPrice(price);
-      productDto.setImageUrl(imageUrl);
-      productDto.setAvailable(available);
-      productDto.setRestaurantDto(restaurantService.getById(restaurantId));
+      if (result.hasErrors()) {
+         model.addAttribute("product", productDto);
+         model.addAttribute("restaurants", restaurantService.getAll());
+
+         return "/admin/products/add";
+      }
 
       service.addProduct(productDto);
-
       return "redirect:/admin/products";
    }
 
-   // CREATE
-//   @PostMapping("/add")
-//   public String addProduct(@ModelAttribute("product") ProductDto productDto,
-//                            @RequestParam Long restaurantId,
-//                            Model model) throws ProductException {
-//
-//
-//      model.addAttribute("product", productDto);
-//      model.addAttribute("restaurants", restaurantService.getAll());
-//
-//
-////      productDto.setName(productDto.getName());
-////      productDto.setDescription(productDto.getDescription());
-////      productDto.setPrice(productDto.getPrice());
-////      productDto.setImageUrl(productDto.getImageUrl());
-////      productDto.setAvailable(productDto.isAvailable());
-//      productDto.setRestaurantDto(restaurantService.getById(restaurantId));
-//
-//      // Остальной код, если валидация прошла успешно
-//      service.addProduct(productDto);
-//      return "redirect:/admin/products";
-//   }
-
    // UPDATE
-   @GetMapping("/{id}/edit")
-   public String editProduct(@PathVariable(value = "id") Long id, Model model) throws ProductException {
-      if (service.getProductById(id) == null) {
+   @GetMapping(value = "/{id}/edit")
+   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
+   public String editProduct(@PathVariable(value = "id") Long id,
+                             Model model) throws ProductException {
+
+      ProductDto productDto = service.getProductById(id);
+
+      if (productDto.getId() == null) {
          return "redirect:/admin/products";
       }
 
-      ProductDto productDto = service.getProductById(id);
-      Iterable<RestaurantDto> restaurantsDto = restaurantService.getAll();
-
       model.addAttribute("product", productDto);
-      model.addAttribute("restaurants", restaurantsDto);
+      model.addAttribute("restaurants", restaurantService.getAll());
 
       return "/admin/products/edit";
    }
 
    // UPDATE
-   @PostMapping("/{id}/edit")
-   public String updateProduct(@PathVariable(value = "id") Long id,
-                               @RequestParam String name,
-                               @RequestParam String description,
-                               @RequestParam BigDecimal price,
-                               @RequestParam String imageUrl,
-                               @RequestParam(name = "available", required = false,
-                                       defaultValue = "false") boolean available,
-                               @RequestParam Long restaurantId,
+   @PatchMapping(value = "/{id}/edit")
+   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_USER')")
+   public String updateProduct(@ModelAttribute("product") @Valid ProductDto productDto,
+                               BindingResult result,
+                               @RequestParam(name = "restaurantId") Long restaurantId,
                                Model model) throws ProductException {
 
-      ProductDto productDto = service.getProductById(id);
+      RestaurantDto restaurantDto = restaurantService.getById(restaurantId);
 
+      productDto.setRestaurantDto(restaurantDto);
 
-      productDto.setName(name);
-      productDto.setDescription(description);
-      productDto.setPrice(price);
-      productDto.setImageUrl(imageUrl);
-      productDto.setAvailable(available);
-      productDto.setRestaurantDto(restaurantService.getById(restaurantId));
+      if (result.hasErrors()) {
+         model.addAttribute("product", productDto);
+         model.addAttribute("restaurants", restaurantService.getAll());
+         return "/admin/products/edit";
+      }
 
       service.updateProduct(productDto);
-
-      model.addAttribute("product", productDto);
-
-      return "redirect:/admin/products/{id}";
+      return "redirect:/admin/products";
    }
 
-   // DELETE
-   @DeleteMapping("/{id}")
-   public String deleteProduct(@PathVariable Long id) throws ProductException {
-      service.deleteProduct(id);
+   // UPDATE
+   @PatchMapping("/{id}/block")
+   public String blockProduct(@PathVariable Long id) throws ProductException {
+      service.blockProduct(id);
+      return "redirect:/admin/products";
+   }
+
+   // UPDATE
+   @PatchMapping("/{id}/unblock")
+   public String unblockProduct(@PathVariable Long id) throws ProductException {
+      service.unblockProduct(id);
       return "redirect:/admin/products";
    }
 }

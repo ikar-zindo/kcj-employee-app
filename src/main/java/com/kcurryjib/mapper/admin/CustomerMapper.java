@@ -1,7 +1,9 @@
 package com.kcurryjib.mapper.admin;
 
 import com.kcurryjib.dto.CustomerDto;
+import com.kcurryjib.dto.ReviewDto;
 import com.kcurryjib.entity.Customer;
+import com.kcurryjib.entity.Review;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,31 +17,33 @@ public class CustomerMapper {
    @Autowired
    private ModelMapper mapper;
 
-
-
-
    // convert to DTO
+   public ReviewDto convertToReviewDto(Review review) {
+      return mapper.map(review, ReviewDto.class);
+   }
+
+   public List<ReviewDto> convertToReviewsDto(List<Review> reviews) {
+      return reviews.stream()
+              .map(this::convertToReviewDto)
+              .collect(Collectors.toList());
+   }
+
    public CustomerDto convertToCustomerDto(Customer customer) {
-      CustomerDto customerDto = mapper.map(customer, CustomerDto.class);
-
-//      customerDto.setReviewsDto(reviewMapper.convertToReviewsDto(customer.getReviews()));
-//      customerDto.setOrdersDto(orderMapper.convertToOrdersDto(customer.getOrders()));
-
-      return customerDto;
+      return mapper.map(customer, CustomerDto.class);
    }
 
    public CustomerDto shortCustomerDto(Customer customer) {
 
-
 //      "id"
 //      "firstName"
 //      "lastName"
-      mapper.createTypeMap(Customer.class, CustomerDto.class)
+      mapper.typeMap(Customer.class, CustomerDto.class)
               .addMappings(m -> m.skip(CustomerDto::setEmail))
               .addMappings(m -> m.skip(CustomerDto::setPassword))
               .addMappings(m -> m.skip(CustomerDto::setPhoneNumber))
               .addMappings(m -> m.skip(CustomerDto::setAddress))
               .addMappings(m -> m.skip(CustomerDto::setPostalCode))
+              .addMappings(m -> m.skip(CustomerDto::setRole))
               .addMappings(m -> m.skip(CustomerDto::setCreatedAt))
               .addMappings(m -> m.skip(CustomerDto::setBlocked))
               .addMappings(m -> m.skip(CustomerDto::setCartDto))
@@ -47,7 +51,29 @@ public class CustomerMapper {
               .addMappings(m -> m.skip(CustomerDto::setReviewsDto));
 
       CustomerDto customerDto = mapper.map(customer, CustomerDto.class);
+      customerDto.setReviewsDto(convertToReviewsDto(customer.getReviews()));
 
+      return customerDto;
+   }
+
+   public CustomerDto customerInfoDelivery(Customer customer) {
+
+//      "id"
+//      "firstName"
+//      "lastName"
+//      "email"
+//      "phoneNumber"
+//      "address"
+//      "postalCode"
+      mapper.typeMap(Customer.class, CustomerDto.class)
+              .addMappings(m -> m.skip(CustomerDto::setPassword))
+              .addMappings(m -> m.skip(CustomerDto::setCreatedAt))
+              .addMappings(m -> m.skip(CustomerDto::setBlocked))
+              .addMappings(m -> m.skip(CustomerDto::setCartDto))
+              .addMappings(m -> m.skip(CustomerDto::setOrdersDto))
+              .addMappings(m -> m.skip(CustomerDto::setReviewsDto));
+
+      CustomerDto customerDto = mapper.map(customer, CustomerDto.class);
 
       return customerDto;
    }

@@ -36,7 +36,7 @@ public class Restaurant {
    private String socialMediaLinks;
 
    @Column(name = "is_open")
-   private boolean isOpen;
+   private Boolean isOpen;
 
    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
    private List<Product> products;
@@ -53,6 +53,7 @@ public class Restaurant {
    public Restaurant() {
    }
 
+   // Getters & Setters
    public Long getId() {
       return id;
    }
@@ -117,11 +118,11 @@ public class Restaurant {
       this.socialMediaLinks = socialMediaLinks;
    }
 
-   public boolean isOpen() {
+   public Boolean getOpen() {
       return isOpen;
    }
 
-   public void setOpen(boolean open) {
+   public void setOpen(Boolean open) {
       isOpen = open;
    }
 
@@ -157,4 +158,73 @@ public class Restaurant {
       this.employees = employees;
    }
 
+   // Builder class
+   public static class Builder {
+      private Restaurant restaurant = new Restaurant();
+
+      public Builder id(Long id) {
+         restaurant.id = id;
+         return this;
+      }
+      public Builder name(String name) {
+         restaurant.name = name;
+         return this;
+      }
+      public Builder address(String address) {
+         restaurant.address = address;
+         return this;
+      }
+      public Builder phoneNumber(String phoneNumber) {
+         restaurant.phoneNumber = phoneNumber;
+         return this;
+      }
+      public Builder openingHours(String openingHours) {
+         restaurant.openingHours = openingHours;
+         return this;
+      }
+      public Builder cuisineType(String cuisineType) {
+         restaurant.cuisineType = cuisineType;
+         return this;
+      }
+      public Builder description(String description) {
+         restaurant.description = description;
+         return this;
+      }
+      public Builder socialMediaLinks(String socialMediaLinks) {
+         restaurant.socialMediaLinks = socialMediaLinks;
+         return this;
+      }
+      public Builder isOpen(Boolean isOpen) {
+         restaurant.isOpen = isOpen;
+         return this;
+      }
+
+      public Restaurant build() {
+         return restaurant;
+      }
+   }
+
+   public static Builder builder() {
+      return new Builder();
+   }
+
+   @Override
+   public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      Restaurant that = (Restaurant) o;
+      return Objects.equals(id, that.id) && Objects.equals(name, that.name) &&
+              Objects.equals(address, that.address) && Objects.equals(phoneNumber, that.phoneNumber) &&
+              Objects.equals(openingHours, that.openingHours) && Objects.equals(cuisineType, that.cuisineType) &&
+              Objects.equals(description, that.description) &&
+              Objects.equals(socialMediaLinks, that.socialMediaLinks) && Objects.equals(isOpen, that.isOpen) &&
+              Objects.equals(products, that.products) && Objects.equals(reviews, that.reviews) &&
+              Objects.equals(orders, that.orders) && Objects.equals(employees, that.employees);
+   }
+
+   @Override
+   public int hashCode() {
+      return Objects.hash(id, name, address, phoneNumber, openingHours, cuisineType,
+              description, socialMediaLinks, isOpen, products, reviews, orders, employees);
+   }
 }

@@ -2,8 +2,11 @@ package com.kcurryjib.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.kcurryjib.entity.enums.Role;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
+import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,32 +18,53 @@ public class CustomerDto {
    private Long id;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
+   @NotEmpty(message = "{validation.length.empty}")
+   @Length(max = 30, message = "{validation.length.max.60}")
    private String firstName;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
+   @NotEmpty(message = "{validation.length.empty}")
+   @Length(max = 30, message = "{validation.length.max.60}")
    private String lastName;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @Email(message = "Invalid email")
+   @NotEmpty(message = "{validation.length.empty}")
+   @Email(message = "{validation.value.email}")
+   @Length(max = 60, message = "{validation.length.max.60}")
    private String email;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
+   @NotEmpty(message = "{validation.length.empty}")
+   @Length(max = 60, message = "{validation.length.max.60}")
+   private String username;
+
+   @JsonInclude(JsonInclude.Include.NON_NULL)
+   @NotEmpty(message = "{validation.length.empty}")
+   @Length(max = 60, message = "{validation.length.max.60}")
    private String password;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   @Pattern(regexp = "\\\\+49\\\\d{10}", message = "Invalid phone number")
+   @NotEmpty(message = "{validation.length.empty}")
+   @Pattern(regexp = "^\\+\\d{2}\\s\\d{3}\\s\\d{3}\\s\\d{3}$", message = "{validation.value.phoneNumber}")
    private String phoneNumber;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
+   @NotEmpty(message = "{validation.length.empty}")
    private String address;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
+   @NotEmpty(message = "{validation.length.empty}")
+   @Length(max = 5, message = "{validation.length.max.5}")
    private String postalCode;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
    private LocalDateTime createdAt;
 
-   private boolean isBlocked;
+   @JsonInclude(JsonInclude.Include.NON_NULL)
+   private Role role;
+
+   @JsonInclude(JsonInclude.Include.NON_NULL)
+   private Boolean isBlocked;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
    @JsonProperty("cart")
@@ -57,6 +81,7 @@ public class CustomerDto {
    public CustomerDto() {
    }
 
+   // Getters && Setters
    public Long getId() {
       return id;
    }
@@ -87,6 +112,14 @@ public class CustomerDto {
 
    public void setEmail(String email) {
       this.email = email;
+   }
+
+   public String getUsername() {
+      return username;
+   }
+
+   public void setUsername(String username) {
+      this.username = username;
    }
 
    public String getPassword() {
@@ -129,11 +162,19 @@ public class CustomerDto {
       this.createdAt = createdAt;
    }
 
-   public boolean isBlocked() {
+   public Role getRole() {
+      return role;
+   }
+
+   public void setRole(Role role) {
+      this.role = role;
+   }
+
+   public Boolean getBlocked() {
       return isBlocked;
    }
 
-   public void setBlocked(boolean blocked) {
+   public void setBlocked(Boolean blocked) {
       isBlocked = blocked;
    }
 
@@ -159,5 +200,101 @@ public class CustomerDto {
 
    public void setReviewsDto(List<ReviewDto> reviewsDto) {
       this.reviewsDto = reviewsDto;
+   }
+
+   // ToString
+   @Override
+   public String toString() {
+      return "CustomerDto{" +
+              "id=" + id +
+              ", firstName='" + firstName + '\'' +
+              ", lastName='" + lastName + '\'' +
+              ", email='" + email + '\'' +
+              ", username='" + username + '\'' +
+              ", password='" + password + '\'' +
+              ", phoneNumber='" + phoneNumber + '\'' +
+              ", address='" + address + '\'' +
+              ", postalCode='" + postalCode + '\'' +
+              ", createdAt=" + createdAt +
+              ", role=" + role +
+              ", isBlocked=" + isBlocked +
+              ", cartDto=" + cartDto +
+              ", ordersDto=" + ordersDto +
+              ", reviewsDto=" + reviewsDto +
+              '}';
+   }
+
+   // Builder class
+   public static class Builder {
+
+      private CustomerDto customerDto = new CustomerDto();
+
+      public Builder id(Long id) {
+         customerDto.id = id;
+         return this;
+      }
+
+      public Builder firstName(String firstName) {
+         customerDto.firstName = firstName;
+         return this;
+      }
+
+      public Builder lastName(String lastName) {
+         customerDto.lastName = lastName;
+         return this;
+      }
+
+      public Builder email(String email) {
+         customerDto.email = email;
+         return this;
+      }
+
+      public Builder password(String password) {
+         customerDto.password = password;
+         return this;
+      }
+
+      public Builder phoneNumber(String phoneNumber) {
+         customerDto.phoneNumber = phoneNumber;
+         return this;
+      }
+
+      public Builder address(String address) {
+         customerDto.address = address;
+         return this;
+      }
+
+      public Builder postalCode(String postalCode) {
+         customerDto.postalCode = postalCode;
+         return this;
+      }
+
+      public Builder createdAt(LocalDateTime createdAt) {
+         customerDto.createdAt = createdAt;
+         return this;
+      }
+
+      public Builder isBlocked(Boolean isBlocked) {
+         customerDto.isBlocked = isBlocked;
+         return this;
+      }
+
+      public Builder role(Role role) {
+         customerDto.role = role;
+         return this;
+      }
+
+      public Builder username(String username) {
+         customerDto.username = username;
+         return this;
+      }
+
+      public CustomerDto build() {
+         return customerDto;
+      }
+   }
+
+   public static Builder builder() {
+      return new Builder();
    }
 }

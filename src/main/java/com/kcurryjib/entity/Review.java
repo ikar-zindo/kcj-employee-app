@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @Entity
 @Table(name = "review")
@@ -35,6 +34,7 @@ public class Review {
    public Review() {
    }
 
+   // Getters & Setters
    public Long getId() {
       return id;
    }
@@ -81,5 +81,43 @@ public class Review {
 
    public void setCreatedAt(LocalDateTime createdAt) {
       this.createdAt = createdAt;
+   }
+
+   // Builder class
+   public static class Builder {
+      private Review review = new Review();
+
+      public Builder id(Long id) {
+         review.id = id;
+         return this;
+      }
+      public Builder restaurant(Restaurant restaurant) {
+         review.restaurant = restaurant;
+         return this;
+      }
+      public Builder customer(Customer customer) {
+         review.customer = customer;
+         return this;
+      }
+      public Builder rating(BigDecimal rating) {
+         review.rating = rating;
+         return this;
+      }
+      public Builder comment(String comment) {
+         review.comment = comment;
+         return this;
+      }
+      public Builder createdAt(LocalDateTime createdAt) {
+         review.createdAt = createdAt;
+         return this;
+      }
+
+      public Review build() {
+         return review;
+      }
+   }
+
+   public static Builder builder() {
+      return new Builder();
    }
 }

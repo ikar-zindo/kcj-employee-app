@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" class="h-100" data-bs-theme="auto">
 <head>
 	<script type="text/javascript" th:src="@{/assets/js/color-modes.js}"></script>
-	<title>Dashboard</title>
+	<title>Admin Menu list</title>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta charset="utf-8">
@@ -46,7 +46,6 @@
 	<div class="row">
 
 		<!--Sidebar-->
-		<!--			<div th:insert="/blocks/sidebar :: sidebar"></div>-->
 		<div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
 			<div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu"
 				  aria-labelledby="sidebarMenuLabel">
@@ -69,16 +68,16 @@
 						<!--Item-->
 						<div th:each="product : ${products}" class="col">
 							<div class="card shadow-sm">
-								<!--							<img src="http://dummyimage.com/248.400x80.125" />-->
 								<div class="card-body">
 									<div class="d-flex gap-2">
 										<div class="fixed-size-div">
-<!--											<img src="http://placehold.it/100x100" alt="">-->
-<!--											 todo: размеры изображения не отображаются корректно -->
-											<img class="fixed-size-div" th:src="${product.imageUrl}" th:alt="${product.name}">
+
+											<img width="100px" height="100px" class="fixed-size-div"
+												  th:src="'/images/products/' + ${product.imageUrl}"
+												  th:alt="${product.name}"/>
 										</div>
 										<div>
-											<a th:href="'/user/products/' + ${product.id}"><h3 th:text="${product.name}"/></a>
+											<a href="#"><h3 th:text="${product.name}"/></a>
 											<p th:text="${product.description}"/>
 										</div>
 									</div>
@@ -86,7 +85,6 @@
 
 										<div class="btn-group">
 
-<!--											<form th:action="'/user/products/' + ${product.id} + '/add'" method="post">-->
 											<form action="#">
 
 												<button type="submit"
@@ -95,7 +93,7 @@
 														<path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9z"></path>
 														<path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"></path>
 													</svg>
-													Add product to cart
+													Add to cart
 												</button>
 											</form>
 										</div>
@@ -120,16 +118,19 @@
 		</main>
 	</div>
 </div>
+
 <script type="text/javascript" th:src="@{/assets/dist/js/bootstrap.bundle.min.js}"
 		  integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		  crossorigin="anonymous"></script>
-<script type="text/javascript" th:src="@{/assets/dist/js/bootstrap.bundle.min.js}"></script>
 
+<script type="text/javascript" th:src="@{/assets/dist/js/bootstrap.bundle.min.js}"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js"
 		  integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp"
 		  crossorigin="anonymous"></script>
+
 <script type="text/javascript" th:src="@{/assets/dist/css/dashboard.css}"></script>
+
 </body>
 
 </html>

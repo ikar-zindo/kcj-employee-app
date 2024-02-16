@@ -42,9 +42,7 @@ public class ProductMapper {
 
    // convert to entity
    public Product convertToProduct(ProductDto productDto) {
-      Product product = mapper.map(productDto, Product.class);
-
-      return product;
+      return mapper.map(productDto, Product.class);
    }
 
    public List<Product> convertToProducts(List<ProductDto> productsDto) {

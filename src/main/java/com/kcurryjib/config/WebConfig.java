@@ -9,11 +9,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
+
    @Bean
    public FilterRegistrationBean<HiddenHttpMethodFilter> hiddenHttpMethodFilter() {
       FilterRegistrationBean<HiddenHttpMethodFilter> filterRegBean = new FilterRegistrationBean<>();
+
       filterRegBean.setFilter(new HiddenHttpMethodFilter());
       filterRegBean.setOrder(Ordered.HIGHEST_PRECEDENCE);
+
       return filterRegBean;
    }
 }

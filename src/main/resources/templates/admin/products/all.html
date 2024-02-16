@@ -1,8 +1,9 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" class="h-100" data-bs-theme="auto">
+<html xmlns:th="http://www.thymeleaf.org" class="h-100" data-bs-theme="auto"
+		xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 	<script type="text/javascript" th:src="@{/assets/js/color-modes.js}"></script>
-	<title>Dashboard</title>
+	<title>All products</title>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta charset="utf-8">
@@ -32,6 +33,8 @@
 	<!-- Custom styles for this template -->
 	<link rel="stylesheet" th:href="@{/assets/css/style.css}"/>
 	<link th:href="@{/assets/dist/css/dashboard.css}" rel="stylesheet"/>
+
+	<!--	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
 </head>
 
 <body>
@@ -46,7 +49,6 @@
 	<div class="row">
 
 		<!--Sidebar-->
-		<!--			<div th:insert="/blocks/sidebar :: sidebar"></div>-->
 		<div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
 			<div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu"
 				  aria-labelledby="sidebarMenuLabel">
@@ -64,21 +66,35 @@
 			<div>
 				<!--	class="col-md-9 ms-sm-auto"-->
 				<h2>List of all products</h2>
+
+				<a href="/admin/products/add" type="button" class="btn btn-success"
+					sec:authorize="hasRole('ROLE_ADMIN')">
+
+					<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-plus-square"
+						  viewBox="0 0 16 16">
+						<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"></path>
+						<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
+					</svg>
+					<svg class="bi">
+						<use xlink:href="#cart"/>
+					</svg>
+				</a>
+
 				<div class="table-responsive small">
 					<table class="table table-striped table-sm">
 						<thead>
 						<tr>
 							<th scope="col">#</th>
-							<th scope="col">product_name</th>
-							<th scope="col">price, €</th>
-							<!--				<th scope="col">category</th>-->
-							<th scope="col">available</th>
-							<th scope="col">description</th>
-							<th scope="col">restaurant</th>
-							<th scope="col">created_at</th>
+							<th scope="col">Product name</th>
+							<th scope="col">Price, €</th>
+							<th scope="col">Description</th>
+							<th scope="col">Restaurant</th>
+							<th scope="col">Created</th>
 							<th scope="col"></th>
 							<th scope="col"></th>
-							<th scope="col"></th>
+							<th scope="col">Available</th>
+							<th scope="col">Unblock</th>
+							<th scope="col">Block</th>
 						</tr>
 						</thead>
 						<tbody>
@@ -87,8 +103,6 @@
 								<td th:text="${product.id}"/>
 								<td th:text="${product.name}"/>
 								<td th:text="${product.price}"/>
-								<!--					<td th:text="${el.category}"/>-->
-								<td th:text="${product.available}"/>
 								<td th:text="${product.description}"/>
 								<td th:text="${product.restaurantDto.name}"/>
 								<td th:text="${product.createdAt}"/>
@@ -101,8 +115,11 @@
 										</svg>
 									</a>
 								</td>
+
 								<td>
-									<a th:href="'/admin/products/' + ${product.id} + '/edit'" title="EDIT" class="text-success">
+									<a th:href="'/admin/products/' + ${product.id} + '/edit'" title="EDIT" class="text-success"
+										sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')">
+
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 											  class="bi bi-pencil-square" viewBox="0 0 16 16">
 											<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
@@ -111,14 +128,32 @@
 										</svg>
 									</a>
 								</td>
+
+								<td th:text="${product.available}"/>
+
 								<td>
-<!--									<a th:href="'/admin/products/' + ${product.id} + '/remove'" title="DELETE" class="text-danger" method="post">-->
-<!--										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"-->
-<!--											  class="bi bi-x-square" viewBox="0 0 16 16">-->
-<!--											<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>-->
-<!--											<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>-->
-<!--										</svg>-->
-<!--									</a>-->
+									<form th:action="'/admin/products/' + ${product.id} + '/unblock'" th:method="PATCH">
+										<button type="submit"
+												  class="btn btn-sm btn-outline-secondary text-success">
+											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+												<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+												<path d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05"/>
+											</svg>
+										</button>
+									</form>
+								</td>
+
+								<td>
+									<form th:action="'/admin/products/' + ${product.id} + '/block'" th:method="PATCH">
+										<button type="submit"
+												  class="btn btn-sm btn-outline-secondary text-danger">
+											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+												  class="bi bi-x-circle" viewBox="0 0 16 16">
+												<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+												<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+											</svg>
+										</button>
+									</form>
 								</td>
 							</tr>
 						</div>
@@ -132,16 +167,19 @@
 		</main>
 	</div>
 </div>
+
 <script type="text/javascript" th:src="@{/assets/dist/js/bootstrap.bundle.min.js}"
 		  integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		  crossorigin="anonymous"></script>
-<script type="text/javascript" th:src="@{/assets/dist/js/bootstrap.bundle.min.js}"></script>
 
+<script type="text/javascript" th:src="@{/assets/dist/js/bootstrap.bundle.min.js}"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js"
 		  integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp"
 		  crossorigin="anonymous"></script>
+
 <script type="text/javascript" th:src="@{/assets/dist/css/dashboard.css}"></script>
+
 </body>
 
 </html>
