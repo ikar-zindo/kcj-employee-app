@@ -81,18 +81,26 @@
 											th:text="${order.getTime(order.createdAt)}"></span></p>
 							</div>
 
-							<div class="d-flex justify-content-between mb-1">
-								<p>
+							<div class="d-flex justify-content-between">
+								<p class="m-0">
 									<span class="text-secondary">Name: </span>
 									<span class="text-muted"
 											th:text="|${order.customerDto.firstName}| + ' ' + |${order.customerDto.lastName}|"/></p>
-								<p>
+								<p class="m-0">
 									<span class="text-body-secondary">Phone number: </span>
 									<span class="text-body-secondary"
 											th:text="${order.customerDto.phoneNumber}"/></p>
 							</div>
 
-							<div class="d-flex justify-content-between mb-1">
+							<div class="d-flex justify-content-between">
+								<p class="m-0">
+									<span class="text-secondary">Restaurant: </span>
+									<span class="text-muted"
+											th:text="'«' + |${order.restaurantDto.name}| + '»'"/></p>
+
+							</div>
+
+							<div class="d-flex justify-content-between">
 								<p class="m-0"><span class="text-info">Order id: </span><span class="text-warning" th:text="${order.id}"/></p>
 
 								<p class="m-0 text-secondary">Update at:
