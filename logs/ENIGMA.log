@@ -1,0 +1,504 @@
+2024-02-16 17:07:02.529 | main                      | INFO  | com.kcurryjib.KCurryJibApplicationTests                                 -
+				 Starting KCurryJibApplicationTests using Java 21.0.1 with PID 18308 (E:\projects\k-curry-jib\target\test-classes started by plagi in E:\projects\k-curry-jib)
+2024-02-16 17:07:02.551 | main                      | INFO  | com.kcurryjib.KCurryJibApplicationTests                                 -
+				 No active profile set, falling back to 1 default profile: "default"
+2024-02-16 17:07:16.789 | main                      | INFO  | com.kcurryjib.KCurryJibApplicationTests                                 -
+				 Starting KCurryJibApplicationTests using Java 21.0.1 with PID 4456 (started by plagi in E:\projects\k-curry-jib)
+2024-02-16 17:07:16.792 | main                      | INFO  | com.kcurryjib.KCurryJibApplicationTests                                 -
+				 No active profile set, falling back to 1 default profile: "default"
+2024-02-16 17:07:23.820 | main                      | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 ============================ START APPLICATION ============================
+2024-02-16 17:07:27.467 | main                      | INFO  | com.kcurryjib.KCurryJibApplicationTests                                 -
+				 Started KCurryJibApplicationTests in 11.339 seconds (process running for 12.833)
+2024-02-16 17:10:07.213 | main                      | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 Starting KCurryJibApplication using Java 21.0.1 with PID 3208 (E:\projects\k-curry-jib\target\classes started by plagi in E:\projects\k-curry-jib)
+2024-02-16 17:10:07.214 | main                      | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 No active profile set, falling back to 1 default profile: "default"
+2024-02-16 17:46:05.155 | main                      | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 Starting KCurryJibApplication using Java 21.0.1 with PID 16260 (E:\projects\k-curry-jib\target\classes started by plagi in E:\projects\k-curry-jib)
+2024-02-16 17:46:05.158 | main                      | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 No active profile set, falling back to 1 default profile: "default"
+2024-02-16 17:48:38.377 | main                      | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 Starting KCurryJibApplication using Java 21.0.1 with PID 16956 (E:\projects\k-curry-jib\target\classes started by plagi in E:\projects\k-curry-jib)
+2024-02-16 17:48:38.378 | main                      | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 No active profile set, falling back to 1 default profile: "default"
+2024-02-16 17:51:11.130 | main                      | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 Starting KCurryJibApplication using Java 21.0.2 with PID 16896 (E:\projects\k-curry-jib\target\classes started by plagi in E:\projects\k-curry-jib)
+2024-02-16 17:51:11.133 | main                      | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 No active profile set, falling back to 1 default profile: "default"
+2024-02-16 17:52:54.863 | main                      | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 Starting KCurryJibApplication using Java 21.0.1 with PID 21656 (E:\projects\k-curry-jib\target\classes started by plagi in E:\projects\k-curry-jib)
+2024-02-16 17:52:54.865 | main                      | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 No active profile set, falling back to 1 default profile: "default"
+2024-02-16 18:11:26.411 | main                      | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 Starting KCurryJibApplication using Java 21.0.1 with PID 15984 (E:\projects\k-curry-jib\target\classes started by plagi in E:\projects\k-curry-jib)
+2024-02-16 18:11:26.414 | main                      | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 No active profile set, falling back to 1 default profile: "default"
+2024-02-16 18:25:46.414 | main                      | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 Starting KCurryJibApplication using Java 21.0.2 with PID 3208 (E:\projects\k-curry-jib\target\classes started by plagi in E:\projects\k-curry-jib)
+2024-02-16 18:25:46.416 | main                      | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 No active profile set, falling back to 1 default profile: "default"
+2024-02-16 18:27:03.633 | restartedMain             | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 Starting KCurryJibApplication using Java 21.0.2 with PID 20836 (E:\projects\k-curry-jib\target\classes started by plagi in E:\projects\k-curry-jib)
+2024-02-16 18:27:03.634 | restartedMain             | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 No active profile set, falling back to 1 default profile: "default"
+2024-02-16 18:27:07.909 | restartedMain             | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 ============================ START APPLICATION ============================
+2024-02-16 18:27:10.038 | restartedMain             | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 Started KCurryJibApplication in 6.95 seconds (process running for 7.924)
+2024-02-16 18:31:24.156 | restartedMain             | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 Starting KCurryJibApplication using Java 21.0.2 with PID 20132 (E:\projects\k-curry-jib\target\classes started by plagi in E:\projects\k-curry-jib)
+2024-02-16 18:31:24.157 | restartedMain             | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 No active profile set, falling back to 1 default profile: "default"
+2024-02-16 18:31:28.228 | restartedMain             | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 ============================ START APPLICATION ============================
+2024-02-16 18:31:30.413 | restartedMain             | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 Started KCurryJibApplication in 6.815 seconds (process running for 7.598)
+2024-02-16 18:53:16.190 | restartedMain             | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 Starting KCurryJibApplication using Java 21.0.2 with PID 18756 (E:\projects\k-curry-jib\target\classes started by plagi in E:\projects\k-curry-jib)
+2024-02-16 18:53:16.192 | restartedMain             | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 No active profile set, falling back to 1 default profile: "default"
+2024-02-16 18:53:21.704 | restartedMain             | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 ============================ START APPLICATION ============================
+2024-02-16 18:53:24.273 | restartedMain             | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 Started KCurryJibApplication in 8.942 seconds (process running for 10.553)
+2024-02-16 18:59:30.797 | restartedMain             | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 Starting KCurryJibApplication using Java 21.0.2 with PID 18756 (E:\projects\k-curry-jib\target\classes started by plagi in E:\projects\k-curry-jib)
+2024-02-16 18:59:30.797 | restartedMain             | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 No active profile set, falling back to 1 default profile: "default"
+2024-02-16 18:59:31.191 | restartedMain             | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 ============================ START APPLICATION ============================
+2024-02-16 18:59:31.493 | restartedMain             | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 Started KCurryJibApplication in 0.725 seconds (process running for 377.772)
+2024-02-16 18:59:33.952 | restartedMain             | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 Starting KCurryJibApplication using Java 21.0.2 with PID 18756 (E:\projects\k-curry-jib\target\classes started by plagi in E:\projects\k-curry-jib)
+2024-02-16 18:59:33.952 | restartedMain             | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 No active profile set, falling back to 1 default profile: "default"
+2024-02-16 18:59:34.805 | main                      | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 Starting KCurryJibApplication using Java 21.0.2 with PID 300 (E:\projects\k-curry-jib\target\classes started by plagi in E:\projects\k-curry-jib)
+2024-02-16 18:59:34.808 | main                      | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 No active profile set, falling back to 1 default profile: "default"
+2024-02-16 18:59:35.127 | restartedMain             | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 ============================ START APPLICATION ============================
+2024-02-16 18:59:36.625 | restartedMain             | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 Started KCurryJibApplication in 2.708 seconds (process running for 382.905)
+2024-02-16 18:59:44.512 | restartedMain             | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 Starting KCurryJibApplication using Java 21.0.2 with PID 18756 (E:\projects\k-curry-jib\target\classes started by plagi in E:\projects\k-curry-jib)
+2024-02-16 18:59:44.512 | restartedMain             | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 No active profile set, falling back to 1 default profile: "default"
+2024-02-16 18:59:45.285 | restartedMain             | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 ============================ START APPLICATION ============================
+2024-02-16 18:59:46.884 | restartedMain             | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 Started KCurryJibApplication in 2.395 seconds (process running for 393.163)
+2024-02-16 19:24:26.484 | main                      | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 Starting KCurryJibApplication v0.0.1-SNAPSHOT using Java 21.0.1 with PID 15100 (E:\projects\k-curry-jib\k-curry-jib-0.0.1-SNAPSHOT.jar started by plagi in E:\projects\k-curry-jib)
+2024-02-16 19:24:26.488 | main                      | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 No active profile set, falling back to 1 default profile: "default"
+2024-02-16 19:24:33.803 | main                      | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 ============================ START APPLICATION ============================
+2024-02-16 19:24:36.997 | main                      | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 Started KCurryJibApplication in 11.882 seconds (process running for 12.775)
+2024-02-16 19:25:12.225 | main                      | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 Starting KCurryJibApplication v0.0.1-SNAPSHOT using Java 21.0.1 with PID 12304 (E:\projects\k-curry-jib\k-curry-jib-0.0.1-SNAPSHOT.jar started by plagi in E:\projects\k-curry-jib)
+2024-02-16 19:25:12.228 | main                      | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 No active profile set, falling back to 1 default profile: "default"
+2024-02-16 19:25:19.830 | main                      | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 ============================ START APPLICATION ============================
+2024-02-16 19:25:23.146 | main                      | INFO  | com.kcurryjib.KCurryJibApplication                                      -
+				 Started KCurryJibApplication in 12.108 seconds (process running for 12.955)
+2024-02-16 19:25:44.143 | http-nio-8888-exec-2      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:44.144 | http-nio-8888-exec-2      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:44.167 | http-nio-8888-exec-3      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:44.167 | http-nio-8888-exec-3      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:44.184 | http-nio-8888-exec-4      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:44.184 | http-nio-8888-exec-4      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:44.200 | http-nio-8888-exec-5      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:44.200 | http-nio-8888-exec-5      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:44.218 | http-nio-8888-exec-6      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:44.218 | http-nio-8888-exec-6      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:44.233 | http-nio-8888-exec-7      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:44.234 | http-nio-8888-exec-7      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:44.245 | http-nio-8888-exec-8      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:44.245 | http-nio-8888-exec-8      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:44.258 | http-nio-8888-exec-9      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:44.258 | http-nio-8888-exec-9      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:44.270 | http-nio-8888-exec-10     | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:44.270 | http-nio-8888-exec-10     | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:44.281 | http-nio-8888-exec-1      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:44.282 | http-nio-8888-exec-1      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:44.293 | http-nio-8888-exec-2      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:44.293 | http-nio-8888-exec-2      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:44.305 | http-nio-8888-exec-3      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:44.305 | http-nio-8888-exec-3      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:44.317 | http-nio-8888-exec-4      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:44.317 | http-nio-8888-exec-4      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:44.331 | http-nio-8888-exec-5      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:44.332 | http-nio-8888-exec-5      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:44.345 | http-nio-8888-exec-6      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:44.345 | http-nio-8888-exec-6      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:44.356 | http-nio-8888-exec-7      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:44.357 | http-nio-8888-exec-7      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:44.367 | http-nio-8888-exec-8      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:44.367 | http-nio-8888-exec-8      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:44.378 | http-nio-8888-exec-9      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:44.379 | http-nio-8888-exec-9      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:44.389 | http-nio-8888-exec-10     | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:44.389 | http-nio-8888-exec-10     | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:45.424 | http-nio-8888-exec-1      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:45.424 | http-nio-8888-exec-1      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:45.442 | http-nio-8888-exec-2      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:45.442 | http-nio-8888-exec-2      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:45.455 | http-nio-8888-exec-3      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:45.455 | http-nio-8888-exec-3      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:45.466 | http-nio-8888-exec-4      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:45.466 | http-nio-8888-exec-4      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:45.477 | http-nio-8888-exec-5      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:45.477 | http-nio-8888-exec-5      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:45.488 | http-nio-8888-exec-6      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:45.489 | http-nio-8888-exec-6      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:45.499 | http-nio-8888-exec-7      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:45.499 | http-nio-8888-exec-7      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:45.511 | http-nio-8888-exec-8      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:45.511 | http-nio-8888-exec-8      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:45.521 | http-nio-8888-exec-9      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:45.522 | http-nio-8888-exec-9      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:45.530 | http-nio-8888-exec-10     | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:45.530 | http-nio-8888-exec-10     | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:45.540 | http-nio-8888-exec-1      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:45.540 | http-nio-8888-exec-1      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:45.550 | http-nio-8888-exec-2      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:45.550 | http-nio-8888-exec-2      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:45.558 | http-nio-8888-exec-3      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:45.558 | http-nio-8888-exec-3      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:45.567 | http-nio-8888-exec-4      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:45.567 | http-nio-8888-exec-4      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:45.576 | http-nio-8888-exec-5      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:45.577 | http-nio-8888-exec-5      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:45.588 | http-nio-8888-exec-6      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:45.588 | http-nio-8888-exec-6      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:45.598 | http-nio-8888-exec-7      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:45.598 | http-nio-8888-exec-7      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:45.608 | http-nio-8888-exec-8      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:45.609 | http-nio-8888-exec-8      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:45.618 | http-nio-8888-exec-9      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:45.618 | http-nio-8888-exec-9      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:45.627 | http-nio-8888-exec-10     | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:45.627 | http-nio-8888-exec-10     | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:50.676 | http-nio-8888-exec-1      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:50.677 | http-nio-8888-exec-1      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:50.721 | http-nio-8888-exec-2      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:50.722 | http-nio-8888-exec-2      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:50.758 | http-nio-8888-exec-3      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:50.759 | http-nio-8888-exec-3      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:50.793 | http-nio-8888-exec-4      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:50.794 | http-nio-8888-exec-4      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:50.810 | http-nio-8888-exec-5      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:50.810 | http-nio-8888-exec-5      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:50.822 | http-nio-8888-exec-6      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:50.822 | http-nio-8888-exec-6      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:50.835 | http-nio-8888-exec-7      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:50.835 | http-nio-8888-exec-7      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:50.846 | http-nio-8888-exec-8      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:50.846 | http-nio-8888-exec-8      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:50.858 | http-nio-8888-exec-9      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:50.858 | http-nio-8888-exec-9      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:50.867 | http-nio-8888-exec-10     | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:50.867 | http-nio-8888-exec-10     | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:50.877 | http-nio-8888-exec-1      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:50.878 | http-nio-8888-exec-1      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:50.888 | http-nio-8888-exec-2      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:50.888 | http-nio-8888-exec-2      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:50.896 | http-nio-8888-exec-3      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:50.897 | http-nio-8888-exec-3      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:50.906 | http-nio-8888-exec-4      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:50.906 | http-nio-8888-exec-4      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:50.916 | http-nio-8888-exec-5      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:50.916 | http-nio-8888-exec-5      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:50.928 | http-nio-8888-exec-6      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:50.928 | http-nio-8888-exec-6      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:50.937 | http-nio-8888-exec-7      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:50.937 | http-nio-8888-exec-7      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:50.949 | http-nio-8888-exec-8      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:50.949 | http-nio-8888-exec-8      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:50.958 | http-nio-8888-exec-9      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:50.958 | http-nio-8888-exec-9      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:25:50.966 | http-nio-8888-exec-10     | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:25:50.966 | http-nio-8888-exec-10     | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:26:20.994 | http-nio-8888-exec-1      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:26:20.994 | http-nio-8888-exec-1      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:26:21.005 | http-nio-8888-exec-2      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:26:21.005 | http-nio-8888-exec-2      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:26:21.013 | http-nio-8888-exec-3      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:26:21.013 | http-nio-8888-exec-3      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:26:21.021 | http-nio-8888-exec-4      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:26:21.021 | http-nio-8888-exec-4      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:26:21.030 | http-nio-8888-exec-5      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:26:21.030 | http-nio-8888-exec-5      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:26:21.038 | http-nio-8888-exec-6      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:26:21.038 | http-nio-8888-exec-6      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:26:21.048 | http-nio-8888-exec-7      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:26:21.048 | http-nio-8888-exec-7      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:26:21.056 | http-nio-8888-exec-8      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:26:21.056 | http-nio-8888-exec-8      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:26:21.066 | http-nio-8888-exec-9      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:26:21.066 | http-nio-8888-exec-9      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:26:21.075 | http-nio-8888-exec-10     | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:26:21.075 | http-nio-8888-exec-10     | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:26:21.085 | http-nio-8888-exec-1      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:26:21.085 | http-nio-8888-exec-1      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:26:21.093 | http-nio-8888-exec-2      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:26:21.093 | http-nio-8888-exec-2      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:26:21.101 | http-nio-8888-exec-3      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:26:21.102 | http-nio-8888-exec-3      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:26:21.112 | http-nio-8888-exec-4      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:26:21.114 | http-nio-8888-exec-4      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:26:21.123 | http-nio-8888-exec-5      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:26:21.123 | http-nio-8888-exec-5      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:26:21.132 | http-nio-8888-exec-6      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:26:21.132 | http-nio-8888-exec-6      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:26:21.142 | http-nio-8888-exec-7      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:26:21.143 | http-nio-8888-exec-7      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:26:21.153 | http-nio-8888-exec-8      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:26:21.153 | http-nio-8888-exec-8      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:26:21.163 | http-nio-8888-exec-9      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:26:21.164 | http-nio-8888-exec-9      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=1} args=[]; RESULT: [login]
+2024-02-16 19:26:21.172 | http-nio-8888-exec-10     | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:26:21.172 | http-nio-8888-exec-10     | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:27:21.235 | http-nio-8888-exec-2      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:27:21.236 | http-nio-8888-exec-2      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:27:21.249 | http-nio-8888-exec-3      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:27:21.249 | http-nio-8888-exec-3      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:27:21.260 | http-nio-8888-exec-4      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:27:21.260 | http-nio-8888-exec-4      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:27:21.270 | http-nio-8888-exec-5      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:27:21.271 | http-nio-8888-exec-5      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:27:21.280 | http-nio-8888-exec-6      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:27:21.281 | http-nio-8888-exec-6      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:27:21.290 | http-nio-8888-exec-7      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:27:21.290 | http-nio-8888-exec-7      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:27:21.301 | http-nio-8888-exec-8      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:27:21.302 | http-nio-8888-exec-8      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:27:21.310 | http-nio-8888-exec-9      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:27:21.311 | http-nio-8888-exec-9      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:27:21.322 | http-nio-8888-exec-10     | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:27:21.322 | http-nio-8888-exec-10     | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:27:21.334 | http-nio-8888-exec-1      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:27:21.334 | http-nio-8888-exec-1      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:27:21.346 | http-nio-8888-exec-2      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:27:21.347 | http-nio-8888-exec-2      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:27:21.356 | http-nio-8888-exec-3      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:27:21.356 | http-nio-8888-exec-3      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:27:21.362 | http-nio-8888-exec-4      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:27:21.363 | http-nio-8888-exec-4      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:27:21.372 | http-nio-8888-exec-5      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:27:21.372 | http-nio-8888-exec-5      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:27:21.380 | http-nio-8888-exec-6      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:27:21.380 | http-nio-8888-exec-6      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:27:21.390 | http-nio-8888-exec-7      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:27:21.390 | http-nio-8888-exec-7      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:27:21.401 | http-nio-8888-exec-8      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:27:21.401 | http-nio-8888-exec-8      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:27:21.413 | http-nio-8888-exec-9      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:27:21.413 | http-nio-8888-exec-9      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:27:21.423 | http-nio-8888-exec-10     | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:27:21.424 | http-nio-8888-exec-10     | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
+2024-02-16 19:27:21.430 | http-nio-8888-exec-1      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_IN{SERVICE_METHOD=getLoginPage} args=[];
+2024-02-16 19:27:21.431 | http-nio-8888-exec-1      | INFO  | com.kcurryjib.aspect.logging.AspectLoggingController                    -
+				SERVICE_OUT{SERVICE_METHOD=getLoginPage}{SERVICE_TIME=0} args=[]; RESULT: [login]
