@@ -7,8 +7,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 12345  # Укажите пароль для root пользователя
       MYSQL_DATABASE: k-curry-jib  # Укажите название вашей базы данных
-#      MYSQL_USER: ваш_пользователь  # Укажите имя пользователя
-#      MYSQL_PASSWORD: ваш_пароль_пользователя  # Укажите пароль пользователя
+#      MYSQL_USER: ваш_пользователь - Укажите имя пользователя
+#      MYSQL_PASSWORD: ваш_пароль_пользователя - Укажите пароль пользователя
     volumes:
       - ./k-curry-jib.sql:/docker-entrypoint-initdb.d/k-curry-jib.sql # Путь для инициализации базы данных
     ports:
@@ -25,7 +25,7 @@ services:
       - SPRING_DATASOURCE_USERNAME=root
     restart: always
     ports:
-      - "8081:8081"
+      - "8888:8888"
 
 #  pgadmin:
 #    container_name: pgadmin
