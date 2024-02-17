@@ -40,7 +40,7 @@ public class EmployeeController {
 
       model.addAttribute("employees", employeesDto);
 
-      return "/admin/employees/list";
+      return "admin/employees/list";
    }
 
    // READ
@@ -52,7 +52,7 @@ public class EmployeeController {
 
       model.addAttribute("employee", employeeDto);
 
-      return "/admin/employees/info";
+      return "admin/employees/info";
    }
 
    // CREATE
@@ -63,7 +63,7 @@ public class EmployeeController {
 
       model.addAttribute("restaurants", restaurantService.getAll());
 
-      return "/admin/employees/add";
+      return "admin/employees/add";
    }
 
    // CREATE
@@ -81,7 +81,7 @@ public class EmployeeController {
          model.addAttribute("employee", employeeDto);
          model.addAttribute("restaurants", restaurantService.getAll());
 
-         return "/admin/employees/add";
+         return "admin/employees/add";
       }
 
       service.addEmployee(employeeDto);
@@ -103,7 +103,7 @@ public class EmployeeController {
       model.addAttribute("employee", employeeDto);
       model.addAttribute("restaurants", restaurantService.getAll());
 
-      return "/admin/employees/edit";
+      return "admin/employees/edit";
    }
 
    // todo: реализовать обновление информации о сотруднике без учёта пароля
@@ -123,7 +123,7 @@ public class EmployeeController {
          model.addAttribute("employee", employeeDto);
          model.addAttribute("restaurants", restaurantService.getAll());
 
-         return "/admin/employees/edit";
+         return "admin/employees/edit";
       }
 
       service.updateEmployee(employeeDto);

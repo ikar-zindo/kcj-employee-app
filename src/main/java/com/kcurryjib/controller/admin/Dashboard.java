@@ -38,6 +38,6 @@ public class Dashboard {
       model.addAttribute("ordersByDayOfWeek", ordersByDayOfWeek);
       model.addAttribute("restaurants", restaurantsDto);
 
-      return "/admin/dashboard";
+      return "admin/dashboard";
    }
 }
