@@ -26,11 +26,11 @@
 
 ---
 
-### [View](http://localhost:8888)
+### [View](http://localhost:8888/login)
 
 *Copy to browser address bar*
 
-`http://localhost:8888`
+`http://localhost:8888/login`
 
 pass for all: `qwerty123`
 
