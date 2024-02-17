@@ -28,7 +28,7 @@
   done
 
   echo "Checking if the k-curry-jib table exists in the database..."
-  sleep 10
+  sleep 15
 
   # Check if the k-curry-jib table exists in the database
 #  echo "Waiting for the database to start..."
