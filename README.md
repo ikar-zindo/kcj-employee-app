@@ -1,14 +1,20 @@
 # Web application for food delivery K-Curry Jib
 
+---
+
 ### Clone the repository
 
 `git clone git@github.com:ikar-zindo/zindo-shop.git`
+
+---
 
 ### Launch jar archive
 
 *At the root of the project*
 
 `java -jar k-curry-jib-0.0.1-SNAPSHOT.jar`
+
+---
 
 ### The docker way
 
@@ -17,6 +23,8 @@
 `docker-compose build`
 
 `docker-compose up`
+
+---
 
 ### [View](http://localhost:8888)
 
