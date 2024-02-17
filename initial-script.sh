@@ -49,7 +49,7 @@
 
 	# Run application containers
 	docker run -d -p 8888:8888 --link db:db --name k-curry-jib-employee ikarzindo/k-curry-jib-employee-app
-	echo "Employee application is running localhost:8888"
+	echo "Employee application is running  -  localhost:8888"
 
 	docker run -d -p 8889:8889 --link db:db --name k-curry-jib-customer ikarzindo/k-curry-jib-customer-app
-	echo echo "Customer application is running localhost:8889"
+	echo "Customer application is running  -  localhost:8889"
