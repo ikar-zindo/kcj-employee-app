@@ -4,7 +4,13 @@
 
 `git clone git@github.com:ikar-zindo/zindo-shop.git`
 
-### Docker commands
+### Launch jar archive
+
+*At the root of the project*
+
+`java -jar k-curry-jib-0.0.1-SNAPSHOT.jar`
+
+### The docker way
 
 *At the root of the project*
 
