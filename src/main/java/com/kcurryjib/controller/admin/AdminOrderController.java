@@ -31,6 +31,6 @@ public class AdminOrderController {
 
       model.addAttribute("orders", ordersDto);
 
-      return "/admin/orders/all";
+      return "admin/orders/all";
    }
 }

@@ -23,6 +23,6 @@ public class AdminMenuController {
 
       model.addAttribute("products", productsDto);
 
-      return "/admin/menu/list";
+      return "admin/menu/list";
    }
 }

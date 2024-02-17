@@ -51,7 +51,7 @@ public class OrderController {
       model.addAttribute("orders", ordersDto);
       model.addAttribute("today", service.getToday());
 
-      return "/employee/orders/my-today-orders";
+      return "employee/orders/my-today-orders";
    }
 
    // READ - GET TODAY EMPLOYEE ORDERS
@@ -63,7 +63,7 @@ public class OrderController {
       model.addAttribute("today", service.getToday());
       model.addAttribute("orders", ordersDto);
 
-      return "/employee/orders/new-today-orders";
+      return "employee/orders/new-today-orders";
    }
 
    // READ - GET TODAY EMPLOYEE ORDERS
@@ -80,7 +80,7 @@ public class OrderController {
       model.addAttribute("orders", ordersDto);
       model.addAttribute("today", service.getToday());
 
-      return "/employee/orders/my-today-orders";
+      return "employee/orders/my-today-orders";
    }
 
    // READ - GET TODAY EMPLOYEE ORDERS
@@ -97,7 +97,7 @@ public class OrderController {
       model.addAttribute("today", service.getToday());
       model.addAttribute("orders", ordersDto);
 
-      return "/employee/orders/my-history-orders";
+      return "employee/orders/my-history-orders";
    }
 
    // UPDATE - CREATED

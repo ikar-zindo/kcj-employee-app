@@ -40,7 +40,7 @@ public class ProductController {
 
       model.addAttribute("products", productsDto);
 
-      return "/admin/products/all";
+      return "admin/products/all";
    }
 
    // READ
@@ -56,7 +56,7 @@ public class ProductController {
 
       model.addAttribute("product", productDto);
 
-      return "/admin/products/info";
+      return "admin/products/info";
    }
 
    // CREATE
@@ -70,7 +70,7 @@ public class ProductController {
 
       model.addAttribute("restaurants", restaurantService.getAll());
 
-      return "/admin/products/add";
+      return "admin/products/add";
    }
 
    // CREATE
@@ -88,7 +88,7 @@ public class ProductController {
          model.addAttribute("product", productDto);
          model.addAttribute("restaurants", restaurantService.getAll());
 
-         return "/admin/products/add";
+         return "admin/products/add";
       }
 
       service.addProduct(productDto);
@@ -110,7 +110,7 @@ public class ProductController {
       model.addAttribute("product", productDto);
       model.addAttribute("restaurants", restaurantService.getAll());
 
-      return "/admin/products/edit";
+      return "admin/products/edit";
    }
 
    // UPDATE
@@ -128,7 +128,7 @@ public class ProductController {
       if (result.hasErrors()) {
          model.addAttribute("product", productDto);
          model.addAttribute("restaurants", restaurantService.getAll());
-         return "/admin/products/edit";
+         return "admin/products/edit";
       }
 
       service.updateProduct(productDto);

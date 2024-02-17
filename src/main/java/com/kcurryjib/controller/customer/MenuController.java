@@ -37,6 +37,6 @@ public class MenuController {
 
       model.addAttribute("products", productsDto);
 
-      return "/customer/menu";
+      return "customer/menu";
    }
 }
