@@ -41,10 +41,10 @@
 <body>
 
 <!--Themes-2-->
-<div th:insert="~{/blocks/themes :: themes-2}"></div>
+<div th:insert="~{blocks/themes :: themes-2}"></div>
 
 <!--Header-dashboard-->
-<div th:insert="~{/blocks/header :: header-dashboard}"></div>
+<div th:insert="~{blocks/header :: header-dashboard}"></div>
 
 <div class="container-fluid">
 	<div class="row">
@@ -58,7 +58,7 @@
 					<button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu"
 							  aria-label="Close"></button>
 				</div>
-				<div th:insert="~{/blocks/sidebar :: sidebar}"></div>
+				<div th:insert="~{blocks/sidebar :: sidebar}"></div>
 			</div>
 		</div>
 
@@ -115,7 +115,7 @@
 <!--			<p class="text-dark">text-dark</p>-->
 <!--			<p class="text-muted">text-muted</p>-->
 
-			<foot th:insert="~{/blocks/footer :: footer}"></foot>
+			<foot th:insert="~{blocks/footer :: footer}"></foot>
 
 		</main>
 

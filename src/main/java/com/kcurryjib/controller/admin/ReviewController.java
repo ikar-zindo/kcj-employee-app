@@ -63,7 +63,7 @@ public class ReviewController {
       model.addAttribute("restaurant", reviewDto.getRestaurantDto());
       model.addAttribute("customer", reviewDto.getCustomerDto());
 
-      return "/admin/reviews/info";
+      return "admin/reviews/info";
    }
 
    // CREATE
@@ -118,7 +118,7 @@ public class ReviewController {
       model.addAttribute("restaurants", restaurantService.getAll());
       model.addAttribute("customers", customerService.getAll());
 
-      return "/admin/reviews/edit";
+      return "admin/reviews/edit";
    }
 
    // UPDATE

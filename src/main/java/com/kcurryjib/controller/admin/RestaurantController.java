@@ -46,7 +46,7 @@ public class RestaurantController {
 
       model.addAttribute("restaurants", restaurantsDto);
 
-      return "/admin/restaurants/all";
+      return "admin/restaurants/all";
    }
 
    // READ
@@ -68,7 +68,7 @@ public class RestaurantController {
       model.addAttribute("avgRating", avgRating);
       model.addAttribute("reviews", reviewsDto);
 
-      return "/admin/restaurants/info";
+      return "admin/restaurants/info";
    }
 
    // CREATE
@@ -113,7 +113,7 @@ public class RestaurantController {
 
       model.addAttribute("restaurant", restaurantDto);
 
-      return "/admin/restaurants/edit";
+      return "admin/restaurants/edit";
    }
 
    // UPDATE
