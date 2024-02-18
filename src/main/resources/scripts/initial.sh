@@ -10,7 +10,7 @@
 	curl -O https://raw.githubusercontent.com/ikar-zindo/k-curry-jib/main/src/main/resources/db/k-curry-jib.sql
   curl -O https://raw.githubusercontent.com/ikar-zindo/k-curry-jib/main/src/main/resources/db/Dockerfile
 
-  echo "Downloading"
+  echo "Downloading scripts..."
   curl -O https://raw.githubusercontent.com/ikar-zindo/k-curry-jib/main/src/main/resources/scripts/start.sh
   curl -O https://raw.githubusercontent.com/ikar-zindo/k-curry-jib/main/src/main/resources/scripts/stop.sh
 
