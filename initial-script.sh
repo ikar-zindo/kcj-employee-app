@@ -19,11 +19,11 @@
 
 	# Run the database container
 	echo "Running the database container..."
-	docker run -d --name db k-curry-jib-db
+	docker run -d --name k-curry-jib-db k-curry-jib-db
 
 	# Wait for the database to be ready
   echo "Waiting for the database to start..."
-  while ! docker exec db mysqladmin ping -hlocalhost --silent; do
+  while ! docker exec k-curry-jib-db mysqladmin ping -hlocalhost --silent; do
       sleep 1
   done
 
@@ -48,8 +48,8 @@
 	docker pull ikarzindo/k-curry-jib-customer-app
 
 	# Run application containers
-	docker run -d -p 8888:8888 --link db:db --name k-curry-jib-employee ikarzindo/k-curry-jib-employee-app
+	docker run -d -p 8888:8888 --link k-curry-jib-db:db --name k-curry-jib-employee ikarzindo/k-curry-jib-employee-app
 	echo "Employee application is running  -  localhost:8888"
 
-	docker run -d -p 8889:8889 --link db:db --name k-curry-jib-customer ikarzindo/k-curry-jib-customer-app
+	docker run -d -p 8889:8889 --link k-curry-jib-db:db --name k-curry-jib-customer ikarzindo/k-curry-jib-customer-app
 	echo "Customer application is running  -  localhost:8889"
