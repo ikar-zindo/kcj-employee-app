@@ -1,7 +1,5 @@
 # Web application for food delivery K-Curry Jib
 
----
-
 ### Clone the repository
 
 ```
@@ -13,6 +11,8 @@ git clone git@github.com:ikar-zindo/zindo-shop.git
 ### Launch jar archive
 
 *At the root of the project*
+
+**You need to make sure that the DB exists and is connected correctly.**
 
 ```
 java -jar k-curry-jib-0.0.1-SNAPSHOT.jar

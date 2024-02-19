@@ -5,8 +5,8 @@ services:
     image: mysql:8.0.33
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: 12345  # Укажите пароль для root пользователя
-      MYSQL_DATABASE: k-curry-jib  # Укажите название вашей базы данных
+      MYSQL_ROOT_PASSWORD: 12345  # пароль для root пользователя
+      MYSQL_DATABASE: k-curry-jib  # название базы данных
     volumes:
       - ./k-curry-jib.sql:/docker-entrypoint-initdb.d/k-curry-jib.sql # Путь для инициализации базы данных
     ports:
