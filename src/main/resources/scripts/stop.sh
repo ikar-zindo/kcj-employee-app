@@ -13,12 +13,3 @@
   docker stop k-curry-jib-db
 
   echo "All containers stopped."
-
-  # Deleting file initial.sh
-  cd ..
-  if [ -f initial.sh ]; then
-      rm initial.sh
-      echo "File initial.sh has been deleted."
-  else
-      echo ""
-  fi
