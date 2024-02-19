@@ -8,7 +8,7 @@ services:
       MYSQL_ROOT_PASSWORD: 12345  # пароль для root пользователя
       MYSQL_DATABASE: k-curry-jib  # название базы данных
     volumes:
-      - ./k-curry-jib.sql:/docker-entrypoint-initdb.d/k-curry-jib.sql # Путь для инициализации базы данных
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql # Путь для инициализации базы данных
     ports:
       - "3307:3306"
 
