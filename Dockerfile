@@ -12,5 +12,4 @@ RUN mvn -f /home/app/pom.xml clean package -Dmaven.test.skip=true
 FROM openjdk:17-slim-buster
 COPY --from=build /home/app/target/k-curry-jib-0.0.1-SNAPSHOT.jar /usr/local/lib/k-curry-jib.jar
 EXPOSE 8888
-#EXPOSE 80
 ENTRYPOINT ["java","-Dspring.profiles.active=docker","-jar","/usr/local/lib/k-curry-jib.jar"]

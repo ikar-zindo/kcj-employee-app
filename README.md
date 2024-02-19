@@ -4,7 +4,9 @@
 
 ### Clone the repository
 
-`git clone git@github.com:ikar-zindo/zindo-shop.git`
+```
+git clone git@github.com:ikar-zindo/zindo-shop.git
+```
 
 ---
 
@@ -12,7 +14,9 @@
 
 *At the root of the project*
 
-`java -jar k-curry-jib-0.0.1-SNAPSHOT.jar`
+```
+java -jar k-curry-jib-0.0.1-SNAPSHOT.jar
+```
 
 ---
 
@@ -20,9 +24,10 @@
 
 *At the root of the project*
 
-`docker-compose build`
-
-`docker-compose up`
+```
+docker-compose build
+docker-compose up
+```
 
 ---
 
@@ -30,7 +35,9 @@
 
 *Copy to browser address bar*
 
-`http://localhost:8888/login`
+```
+http://localhost:8888/login
+```
 
 pass for all: `qwerty123`
 
@@ -46,14 +53,21 @@ pass for all: `qwerty123`
 
 ---
 
+- Java 17
 - Spring Framework
-- MySQL
 - Spring Security
+- MySQL
+- JPA
 - Model Mapper
-- Jupiter
-- Maven
-
+- 
 ---
 
+- Jupiter - Testing
+- Maven
+- SLF4J
+- 
+---
+
+- WebMVC
 - Thymeleaf
 - Bootstrap

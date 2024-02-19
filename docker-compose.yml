@@ -7,8 +7,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 12345  # Укажите пароль для root пользователя
       MYSQL_DATABASE: k-curry-jib  # Укажите название вашей базы данных
-#      MYSQL_USER: ваш_пользователь - Укажите имя пользователя
-#      MYSQL_PASSWORD: ваш_пароль_пользователя - Укажите пароль пользователя
     volumes:
       - ./k-curry-jib.sql:/docker-entrypoint-initdb.d/k-curry-jib.sql # Путь для инициализации базы данных
     ports:
@@ -26,23 +24,3 @@ services:
     restart: always
     ports:
       - "8888:8888"
-
-#  pgadmin:
-#    container_name: pgadmin
-#    image: dpage/pgadmin4
-#    depends_on:
-#      - db
-#    environment:
-#      PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin-t.org
-#      PGADMIN_DEFAULT_PASSWORD: admin
-#      PGADMIN_CONFIG_SERVER_MODE: 'False'
-#    #    volumes:
-#    #      - pgadmin:/var/lib/pgadmin
-#    ports:
-#      - "5050:80"
-#    restart: unless-stopped
-
-#  volumes:
-#    db:
-#    pgadmin:
-
