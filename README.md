@@ -3,30 +3,32 @@
 ### Clone the repository
 
 ```
-git clone git@github.com:ikar-zindo/zindo-shop.git
+$ git clone git@github.com:ikar-zindo/zindo-shop.git
 ```
 
 ---
 
 ### Launch jar archive
 
+###### You need to make sure that the DB exists and is connected correctly.
+
 *At the root of the project*
 
-**You need to make sure that the DB exists and is connected correctly.**
-
 ```
-java -jar k-curry-jib-0.0.1-SNAPSHOT.jar
+$ java -jar k-curry-jib-0.0.1-SNAPSHOT.jar
 ```
 
 ---
 
 ### [The docker way](https://hub.docker.com/repository/docker/ikarzindo/k-curry-jib-employee-app/general)
 
+###### At the 1st launch, a DB will be created.
+
 *At the root of the project*
 
 ```
-docker-compose build
-docker-compose up
+$ docker-compose build
+$ docker-compose up
 ```
 
 ---
@@ -47,11 +49,9 @@ pass for all: `qwerty123`
 
 ---
 
-### Employee part web application
+## Employee part web application
 
-**Used technology stack in my web application**
-
----
+### Used technology stack in my web application:
 
 - Java 17
 - Spring Framework
@@ -59,13 +59,13 @@ pass for all: `qwerty123`
 - MySQL
 - JPA
 - Model Mapper
-- 
+
 ---
 
 - Jupiter - Testing
 - Maven
 - SLF4J
-- 
+
 ---
 
 - WebMVC
