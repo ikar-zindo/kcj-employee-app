@@ -42,7 +42,7 @@ public class ProductRestController {
    @PutMapping
    public ResponseEntity<ProductDto> updateProduct(@RequestBody ProductDto productDto) throws ProductException {
 
-      ProductDto product = service.addProduct(productDto);
+      ProductDto product = service.updateProduct(productDto);
       return new ResponseEntity<>(product, HttpStatus.OK);
    }
 
