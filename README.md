@@ -3,7 +3,7 @@
 ### Clone the repository
 
 ```
-$ git clone git@github.com:ikar-zindo/zindo-shop.git
+git clone git@github.com:ikar-zindo/k-curry-jib.git
 ```
 
 ---
@@ -15,7 +15,7 @@ $ git clone git@github.com:ikar-zindo/zindo-shop.git
 *At the root of the project*
 
 ```
-$ java -jar k-curry-jib-0.0.1-SNAPSHOT.jar
+java -jar k-curry-jib-v1.1.0.jar
 ```
 
 ---
@@ -27,8 +27,8 @@ $ java -jar k-curry-jib-0.0.1-SNAPSHOT.jar
 *At the root of the project*
 
 ```
-$ docker-compose build
-$ docker-compose up
+docker-compose build
+docker-compose up
 ```
 
 ---
@@ -53,7 +53,6 @@ pass for all: `qwerty123`
 
 ### Used technology stack in my web application:
 
-- Java 17
 - Spring Framework
 - Spring Security
 - MySQL
