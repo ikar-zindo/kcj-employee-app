@@ -28,19 +28,16 @@
       sleep 1
   done
 
-  # Waiting for tables to initialize
-  echo "Waiting for tables to initialize..."
-  sleep 15
-
-  echo "Database is ready, proceeding with application startup."
-
   # Pull application Docker images from Docker Hub
   docker pull ikarzindo/k-curry-jib-employee-app
   docker pull ikarzindo/k-curry-jib-customer-app
 
+  # Waiting for tables to initialize
+  echo "Waiting for tables to initialize..."
+
   # Run application containers
-  docker run -d -p 8888:8888 --link k-curry-jib-db:db --name k-curry-jib-employee ikarzindo/k-curry-jib-employee-app
+  docker run -d -p 8888:8888 --link k-curry-jib-db:db --name k-curry-jib-employee --restart always ikarzindo/k-curry-jib-employee-app
   echo "Employee application is running  -  localhost:8888"
 
-  docker run -d -p 8889:8889 --link k-curry-jib-db:db --name k-curry-jib-customer ikarzindo/k-curry-jib-customer-app
+  docker run -d -p 8889:8889 --link k-curry-jib-db:db --name k-curry-jib-customer --restart always ikarzindo/k-curry-jib-customer-app
   echo "Customer application is running  -  localhost:8889"
