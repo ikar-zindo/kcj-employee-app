@@ -6,9 +6,9 @@ COPY pom.xml /home/app
 RUN mvn -f /home/app/pom.xml clean package -Dmaven.test.skip=true
 
 
-#
+##
 # Package stage
-#
+##
 FROM openjdk:17-slim-buster
 COPY --from=build /home/app/target/k-curry-jib-0.0.1-SNAPSHOT.jar /usr/local/lib/k-curry-jib.jar
 EXPOSE 8888
