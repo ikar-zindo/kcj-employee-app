@@ -7,7 +7,7 @@
 
   # Download initialization files and Dockerfile from the GitHub repository
   echo "Downloading initialization files and Dockerfile from GitHub..."
-  curl -O https://raw.githubusercontent.com/ikar-zindo/k-curry-jib/main/src/main/resources/db/k-curry-jib.sql
+  curl -O https://raw.githubusercontent.com/ikar-zindo/k-curry-jib/main/src/main/resources/db/init-db.sql
   curl -O https://raw.githubusercontent.com/ikar-zindo/k-curry-jib/main/src/main/resources/db/Dockerfile
 
   echo "Downloading scripts..."
