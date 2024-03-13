@@ -15,7 +15,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.modelmapper.ModelMapper;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -27,7 +26,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
-//@SpringBootTest
 @ExtendWith(MockitoExtension.class)
 public class ProductServiceTest {
 
@@ -40,9 +38,6 @@ public class ProductServiceTest {
    @Mock
    private ProductMapper productMapperMock;
 
-   @Mock
-   private ModelMapper mapper;
-
    @InjectMocks
    private ProductService productServiceTest;
 
@@ -51,8 +46,6 @@ public class ProductServiceTest {
    private ProductDto expectedProductDto;
 
    private Restaurant expectedRestaurant;
-
-   private RestaurantDto expectedRestaurantDto;
 
    private ProductDto expectedProductDtoWithoutId;
 
@@ -96,7 +89,7 @@ public class ProductServiceTest {
               .build();
 
       // test instance of the restaurantDto
-      expectedRestaurantDto = RestaurantDto.builder()
+      RestaurantDto expectedRestaurantDto = RestaurantDto.builder()
               .id(1L)
               .name("Test name")
               .address("Test str., 000")
@@ -148,7 +141,6 @@ public class ProductServiceTest {
    void addProductTest() throws ProductException {
       when(restaurantRepositoryMock.findById(anyLong()))
               .thenReturn(Optional.of(expectedRestaurant));
-
       when(productMapperMock.convertToProduct(any(ProductDto.class)))
               .thenReturn(expectedProduct);
       when(productRepositoryMock.save(expectedProduct))

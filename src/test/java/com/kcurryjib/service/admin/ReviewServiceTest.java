@@ -27,7 +27,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -60,12 +59,7 @@ public class ReviewServiceTest {
 
    private Restaurant expectedRestaurant;
 
-   private RestaurantDto expectedRestaurantDto;
-
-
    private Customer expectedCustomer;
-
-   private CustomerDto expectedCustomerDto;
 
    @BeforeEach
    void init() {
@@ -85,7 +79,7 @@ public class ReviewServiceTest {
               .build();
 
       // test instance of the restaurantDto
-      expectedRestaurantDto = RestaurantDto.builder()
+      RestaurantDto expectedRestaurantDto = RestaurantDto.builder()
               .id(expectedRestaurant.getId())
               .name(expectedRestaurant.getName())
               .address(expectedRestaurant.getAddress())
@@ -112,7 +106,7 @@ public class ReviewServiceTest {
               .build();
 
       // test instance of the customerDto
-      expectedCustomerDto = CustomerDto.builder()
+      CustomerDto expectedCustomerDto = CustomerDto.builder()
               .id(expectedCustomer.getId())
               .firstName(expectedCustomer.getFirstName())
               .lastName(expectedCustomer.getLastName())
@@ -250,17 +244,6 @@ public class ReviewServiceTest {
    void deleteReviewExceptionTest() {
       assertThrows(ReviewException.class, () -> reviewServiceTest.deleteReview(null));
    }
-
-   // нет функционала для удаления комментариев
-//   @Test
-//   void deleteReviewExceptionNoSaveTest() {
-//      when(reviewRepositoryMock.findById(anyLong()))
-//              .thenReturn(Optional.of(expectedReview));
-//
-//      doNothing().when(reviewRepositoryMock).deleteById(anyLong());
-//
-//      assertThrows(ReviewException.class, () -> reviewServiceTest.deleteReview(1L));
-//   }
 
    @Test
    void deleteReviewExceptionNoFindReviewTest() {
