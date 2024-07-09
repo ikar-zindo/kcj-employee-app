@@ -48,24 +48,11 @@
 <!--Main-->
 <main class="form-signin w-100 m-auto">
 
-<!--	<h1 class="login-title text-success" th:inline="text">Hello,-->
-<!--		<span th:remove="tag" sec:authentication="name"></span>!-->
-<!--	</h1>-->
-
-	<div class="container" th:inline="text">
-		<p class="m-0 text-info">user, manager, admin</p>
-	</div>
-
-	<div class="container">
-		<p class="text-info">password = qwerty123</p>
-	</div>
-
-
 	<form th:action="@{login}" method="post">
 		<h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
 		<div class="form-floating">
-			<input type="name"
+			<input type="text"
 					 class="form-control"
 					 id="username"
 					 name="username"
