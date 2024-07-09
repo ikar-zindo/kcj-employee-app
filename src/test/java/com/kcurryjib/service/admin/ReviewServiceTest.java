@@ -22,6 +22,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -93,7 +94,7 @@ public class ReviewServiceTest {
 
       // test instance of the customer
       expectedCustomer = Customer.builder()
-              .id(1L)
+              .id(UUID.fromString("d234d99d-170e-42f7-b6ae-435ee56f49a1"))
               .firstName("First")
               .lastName("Second")
               .email("test@mail.com")
@@ -110,7 +111,7 @@ public class ReviewServiceTest {
               .id(expectedCustomer.getId())
               .firstName(expectedCustomer.getFirstName())
               .lastName(expectedCustomer.getLastName())
-              .email(expectedCustomer.getUsername())
+              .email(expectedCustomer.getEmail())
               .password(expectedCustomer.getPassword())
               .phoneNumber(expectedCustomer.getPhoneNumber())
               .address(expectedCustomer.getAddress())
@@ -178,10 +179,10 @@ public class ReviewServiceTest {
    }
 
    @Test
-   void addProductTest() throws ReviewException {
+   void addReviewTest() throws ReviewException {
       when(restaurantRepositoryMock.findById(anyLong()))
               .thenReturn(Optional.of(expectedRestaurant));
-      when(customerRepositoryMock.findById(anyLong()))
+      when(customerRepositoryMock.findById(any(UUID.class)))
               .thenReturn(Optional.of(expectedCustomer));
 
       when(reviewMapperMock.convertToReview(any(ReviewDto.class)))

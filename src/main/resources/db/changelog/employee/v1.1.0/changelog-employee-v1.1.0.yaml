@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: data-employee.sql
+      relativeToChangelogFile: true
+  - include:
+      file: schema-roles.sql
+      relativeToChangelogFile: true

@@ -101,7 +101,7 @@
 							</div>
 
 							<div class="d-flex justify-content-between mb-1">
-								<p class="m-0"><span class="text-info">Order id: </span><span class="text-warning" th:text="${order.id}"/></p>
+								<p class="m-0"><span class="text-info">Order id: </span><span class="text-warning" th:text="${order.getShortId()}"/></p>
 
 								<p class="m-0 text-secondary">Update at:
 									<span class="text-muted"
@@ -143,15 +143,6 @@
 							</table>
 
 							<div class="d-flex justify-content-between">
-
-								<!--CREATED-->
-<!--								<form th:action="'/employee/order/' + ${order.id} + '/created'"-->
-<!--										th:method="PATCH">-->
-<!--									<button type="submit"-->
-<!--											  class="btn btn-sm btn-outline-secondary text-primary">-->
-<!--										CREATED-->
-<!--									</button>-->
-<!--								</form>-->
 
 								<!--COOKING-->
 								<form th:action="'/employee/order/' + ${order.id} + '/cooking'"

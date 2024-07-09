@@ -1,0 +1,15 @@
+server:
+  port: 9092
+
+spring:
+  profiles:
+    active: test
+  liquibase:
+    enabled: false
+  main:
+    banner-mode: off
+  jpa:
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true

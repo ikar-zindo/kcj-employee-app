@@ -33,12 +33,12 @@ docker-compose up
 
 ---
 
-### [View](http://localhost:8888/login)
+### [View](http://localhost:8880/login)
 
 *Copy to browser address bar*
 
 ```
-http://localhost:8888/login
+http://localhost:8880/login
 ```
 
 pass for all: `qwerty123`

@@ -23,4 +23,4 @@ services:
       - SPRING_DATASOURCE_USERNAME=root
     restart: always
     ports:
-      - "8888:8888"
+      - "8000:8000"

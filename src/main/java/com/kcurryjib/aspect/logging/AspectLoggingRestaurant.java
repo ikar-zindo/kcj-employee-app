@@ -59,7 +59,7 @@ public class AspectLoggingRestaurant {
     * logging if addRestaurant() throwing exception
     */
    @AfterThrowing(pointcut = "updateRestaurant()", throwing = "exception")
-   public void afterUpdateRestaurantxception(Exception exception) {
+   public void afterUpdateRestaurantException(Exception exception) {
       LOGGER.error(exception.getMessage());
    }
 

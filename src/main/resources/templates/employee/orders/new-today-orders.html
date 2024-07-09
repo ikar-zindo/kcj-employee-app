@@ -144,50 +144,14 @@
 
 							<div class="d-flex justify-content-between">
 
-								<!--CREATED-->
-<!--								<form th:action="'/employee/order/' + ${order.id} + '/created'"-->
-<!--										th:method="PATCH">-->
-<!--									<button type="submit"-->
-<!--											  class="btn btn-sm btn-outline-secondary text-primary">-->
-<!--										CREATED-->
-<!--									</button>-->
-<!--								</form>-->
-
 								<!--GET ORDER TO MY ORDERS-->
-								<form th:action="'/employee/order/' + ${order.id} + '/cooking'"
+								<form th:action="'/employee/order/' + ${order.getShortId()} + '/cooking'"
 										th:method="PATCH">
 									<button type="submit"
 											  class="btn btn-sm btn-outline-secondary text-warning">
 										GET ORDER TO MY ORDERS
 									</button>
 								</form>
-
-								<!--DELIVERING-->
-<!--								<form th:action="'/employee/order/' + ${order.id} + '/delivering'"-->
-<!--										th:method="PATCH">-->
-<!--									<button type="submit"-->
-<!--											  class="btn btn-sm btn-outline-secondary text-info">-->
-<!--										DELIVERING-->
-<!--									</button>-->
-<!--								</form>-->
-
-								<!--COMPLETED-->
-<!--								<form th:action="'/employee/order/' + ${order.id} + '/completed'"-->
-<!--										th:method="PATCH">-->
-<!--									<button type="submit"-->
-<!--											  class="btn btn-sm btn-outline-secondary text-success">-->
-<!--										COMPLETED-->
-<!--									</button>-->
-<!--								</form>-->
-
-								<!--CANCELLED-->
-<!--								<form th:action="'/employee/order/' + ${order.id} + '/cancelled'"-->
-<!--										th:method="PATCH">-->
-<!--									<button type="submit"-->
-<!--											  class="btn btn-sm btn-outline-secondary text-danger">-->
-<!--										CANCELLED-->
-<!--									</button>-->
-<!--								</form>-->
 
 								<p class="text-body-secondary m-0" th:text="'Total: ' + |${order.totalAmount}| + ' €'"/>
 							</div>

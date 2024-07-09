@@ -85,7 +85,7 @@
 						<tbody>
 						<div th:each="order : ${orders}">
 							<tr>
-								<td th:text="${order.id}"/>
+								<td th:text="${order.getShortId()}"/>
 
 								<td th:class="'text-' + |${order.orderStatus.getColor(order.orderStatus)}|"
 									 th:text="${order.orderStatus}"/>

@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/root/v1.1.0/changelog-root-v1.1.0.yaml
+  - include:
+      file: db/changelog/employee/v1.1.0/changelog-employee-v1.1.0.yaml

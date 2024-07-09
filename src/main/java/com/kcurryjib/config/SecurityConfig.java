@@ -36,14 +36,11 @@ public class SecurityConfig {
                       logout -> logout
                               .logoutUrl("/logout")
                               .permitAll()
-//                              .logoutSuccessUrl("/")
+                              .logoutSuccessUrl("/login")
               )
               .authorizeHttpRequests(
                       requests -> requests
                               .requestMatchers(
-//                                      "/**",
-//                                      "/admin/**",
-                                      "/",
                                       "/rest/employees/**",
                                       "/rest/orders/**",
                                       "/menu/**",
@@ -64,7 +61,6 @@ public class SecurityConfig {
               .formLogin(
                       login -> login
                               .loginPage("/login")
-                              .defaultSuccessUrl("/") // URL перенаправления по умолчанию
                               .successHandler((request, response, authentication) -> {
                                  Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 
@@ -78,7 +74,7 @@ public class SecurityConfig {
                                     response.sendRedirect("/employee/my-today-orders");
 
                               } else {
-                                    response.sendRedirect("/");
+                                    response.sendRedirect("/login");
                                  }
                               })
                               .permitAll()

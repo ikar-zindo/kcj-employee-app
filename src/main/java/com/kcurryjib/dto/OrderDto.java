@@ -146,6 +146,11 @@ public class OrderDto {
       this.orderProductsDto = orderProductsDto;
    }
 
+   public String getShortId() {
+      String uuidStr = id.toString();
+      return uuidStr.substring(uuidStr.length() - 12);
+   }
+
    // Builder class
    public static class Builder {
 
