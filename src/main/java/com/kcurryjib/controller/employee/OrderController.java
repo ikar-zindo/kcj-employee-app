@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/employee")
@@ -101,42 +102,42 @@ public class OrderController {
    }
 
    // UPDATE - CREATED
-   @PatchMapping("/order/{id}/created")
-   public String createdOrder(@PathVariable Long id) throws OrderException {
-      service.createdOrderStatus(id);
+   @PatchMapping("/order/{orderId}/created")
+   public String createdOrder(@PathVariable UUID orderId) throws OrderException {
+      service.createdOrderStatus(orderId);
       return "redirect:/employee/my-today-orders";
    }
 
    // UPDATE - COMPLETED
-   @PatchMapping("/order/{id}/completed")
-   public String completedOrder(@PathVariable Long id) throws OrderException {
-      service.completedOrderStatus(id);
+   @PatchMapping("/order/{orderId}/completed")
+   public String completedOrder(@PathVariable UUID orderId) throws OrderException {
+      service.completedOrderStatus(orderId);
       return "redirect:/employee/my-today-orders";
    }
 
    // UPDATE - COOKING
-   @PatchMapping("/order/{id}/cooking")
-   public String cookingOrder(@PathVariable Long id) throws OrderException {
+   @PatchMapping("/order/{orderId}/cooking")
+   public String cookingOrder(@PathVariable UUID orderId) throws OrderException {
       Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
       String currentPrincipalName = authentication.getName();
 
       Employee employee = (Employee) employeeService.loadUserByUsername(currentPrincipalName);
 
-      service.cookingOrderStatus(employee.getId(), id);
+      service.cookingOrderStatus(employee.getId(), orderId);
       return "redirect:/employee/my-today-orders";
    }
 
    // UPDATE - DELIVERING
-   @PatchMapping("/order/{id}/delivering")
-   public String deliveringOrder(@PathVariable Long id) throws OrderException {
-      service.deliveringOrderStatus(id);
+   @PatchMapping("/order/{orderId}/delivering")
+   public String deliveringOrder(@PathVariable UUID orderId) throws OrderException {
+      service.deliveringOrderStatus(orderId);
       return "redirect:/employee/my-today-orders";
    }
 
    // UPDATE - PROCESSING
-   @PatchMapping("/order/{id}/cancelled")
-   public String cancelledOrder(@PathVariable Long id) throws OrderException {
-      service.cancelledOrderStatus(id);
+   @PatchMapping("/order/{orderId}/cancelled")
+   public String cancelledOrder(@PathVariable UUID orderId) throws OrderException {
+      service.cancelledOrderStatus(orderId);
       return "redirect:/employee/my-today-orders";
    }
 }

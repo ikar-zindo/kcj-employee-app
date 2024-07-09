@@ -3,19 +3,22 @@ package com.kcurryjib.entity;
 
 import com.kcurryjib.entity.enums.OrderStatus;
 import jakarta.persistence.*;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
-@Table(name = "\"order\"")
+@Table(name = "orders")
 public class Order {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   @UuidGenerator(style = UuidGenerator.Style.TIME)
    @Column(name = "order_id")
-   private Long id;
+   private UUID id;
 
    @ManyToOne(fetch = FetchType.LAZY)
    @JoinColumn(name = "customer_id")
@@ -55,7 +58,7 @@ public class Order {
    }
 
    // Getters & Setters
-   public Long getId() {
+   public UUID getId() {
       return id;
    }
 
@@ -67,7 +70,7 @@ public class Order {
       return postalCode;
    }
 
-   public void setId(Long id) {
+   public void setId(UUID id) {
       this.id = id;
    }
 
@@ -148,7 +151,7 @@ public class Order {
 
       private Order order = new Order();
 
-      public Builder id(Long id) {
+      public Builder id(UUID id) {
          order.id = id;
          return this;
       }

@@ -70,6 +70,7 @@ public class ProductService {
 
          if (productOptional.isPresent()) {
             productDto = productMapper.showProductDetails(productOptional.get());
+            return productDto;
 
          } else {
             throw new ProductException(
@@ -79,8 +80,6 @@ public class ProductService {
       } else {
          throw new ProductException("There is no product ID to search for!");
       }
-
-      return productDto;
    }
 
    // CREATE

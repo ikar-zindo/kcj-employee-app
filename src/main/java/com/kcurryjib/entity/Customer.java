@@ -2,18 +2,21 @@ package com.kcurryjib.entity;
 
 import com.kcurryjib.entity.enums.Role;
 import jakarta.persistence.*;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
-@Table(name = "customer")
+@Table(name = "customers")
 public class Customer {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   @UuidGenerator(style = UuidGenerator.Style.TIME)
    @Column(name = "customer_id")
-   private Long id;
+   private UUID id;
 
    @Column(name = "first_name")
    private String firstName;
@@ -23,9 +26,6 @@ public class Customer {
 
    @Column(name = "email")
    private String email;
-
-   @Column(name = "username")
-   private String username;
 
    @Column(name = "password")
    private String password;
@@ -41,6 +41,9 @@ public class Customer {
 
    @Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
    private LocalDateTime createdAt;
+
+   @Column(name = "updated_at")
+   private LocalDateTime updatedAt;
 
    @Enumerated(EnumType.STRING)
    @Column(name = "role")
@@ -62,11 +65,11 @@ public class Customer {
    }
 
    // Getters & Setters
-   public Long getId() {
+   public UUID getId() {
       return id;
    }
 
-   public void setId(Long id) {
+   public void setId(UUID id) {
       this.id = id;
    }
 
@@ -94,12 +97,12 @@ public class Customer {
       this.email = email;
    }
 
-   public String getUsername() {
-      return username;
+   public LocalDateTime getUpdatedAt() {
+      return updatedAt;
    }
 
-   public void setUsername(String username) {
-      this.username = username;
+   public void setUpdatedAt(LocalDateTime updatedAt) {
+      this.updatedAt = updatedAt;
    }
 
    public String getPassword() {
@@ -187,7 +190,7 @@ public class Customer {
 
       private Customer customer = new Customer();
 
-      public Builder id(Long id) {
+      public Builder id(UUID id) {
          customer.id = id;
          return this;
       }
@@ -203,7 +206,7 @@ public class Customer {
       }
 
       public Builder email(String email) {
-         customer.username = email;
+         customer.email = email;
          return this;
       }
 
@@ -242,8 +245,8 @@ public class Customer {
          return this;
       }
 
-      public Builder username(String username) {
-         customer.username = username;
+      public Builder updatedAt(LocalDateTime updatedAt) {
+         customer.updatedAt = updatedAt;
          return this;
       }
 

@@ -16,10 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -58,7 +55,7 @@ public class OrderService {
    }
 
    // READ - ALL EMPLOYEE ORDERS
-   public EmployeeDto getEmployeeWithOrders(Long employeeId) throws EmployeeException {
+   public EmployeeDto getEmployeeWithOrders(UUID employeeId) throws EmployeeException {
 
       if (employeeId != null) {
          Optional<Employee> employeeOptional = employeeRepository.findById(employeeId);
@@ -69,7 +66,7 @@ public class OrderService {
             return orderMapper.showEmployeeWithOrders(employee);
 
          } else {
-            throw new EmployeeException("Employee not found with id: " + employeeId);
+            throw new EmployeeException("Employee not found with id=: " + employeeId);
          }
       } else {
          throw new EmployeeException("Employee not passed to method");
@@ -77,7 +74,7 @@ public class OrderService {
    }
 
    // READ - GET TODAY ORDERS CURRENT EMPLOYEE
-   public List<OrderDto> getEmployeeTodayOrders(Long employeeId) {
+   public List<OrderDto> getEmployeeTodayOrders(UUID employeeId) {
 
       if (employeeId != null) {
          List<OrderDto> ordersDto = employeeService.getEmployeeById(employeeId).getOrdersDto();
@@ -93,7 +90,7 @@ public class OrderService {
    }
 
    // READ - GET COMPLETED TODAY ORDERS CURRENT EMPLOYEE
-   public List<OrderDto> getEmployeeCompletedOrders(Long employeeId) {
+   public List<OrderDto> getEmployeeCompletedOrders(UUID employeeId) {
 
       if (employeeId != null) {
          List<OrderDto> ordersDto = employeeService.getEmployeeById(employeeId).getOrdersDto();
@@ -110,7 +107,7 @@ public class OrderService {
    }
 
    // READ - GET PROCESSING TODAY ORDERS CURRENT EMPLOYEE
-   public List<OrderDto> getEmployeeProgressingTodayOrders(Long employeeId) {
+   public List<OrderDto> getEmployeeProgressingTodayOrders(UUID employeeId) {
 
       if (employeeId != null) {
          List<OrderDto> ordersDto = employeeService.getEmployeeById(employeeId).getOrdersDto();
@@ -127,7 +124,7 @@ public class OrderService {
    }
 
    // UPDATE ORDER - CREATED
-   public void createdOrderStatus(Long orderId) throws OrderException {
+   public void createdOrderStatus(UUID orderId) throws OrderException {
 
       if (orderId != null) {
          Optional<Order> optionalOrder = orderRepository.findById(orderId);
@@ -141,7 +138,7 @@ public class OrderService {
 
          } else {
             throw new OrderException(
-                    String.format("Order not found in the database with Id=%d!",
+                    String.format("Order not found in the database with Id=%s!",
                             orderId));
          }
       } else {
@@ -150,7 +147,7 @@ public class OrderService {
    }
 
    // UPDATE ORDER - COMPLETED
-   public void completedOrderStatus(Long orderId) throws OrderException {
+   public void completedOrderStatus(UUID orderId) throws OrderException {
 
       if (orderId != null) {
          Optional<Order> optionalOrder = orderRepository.findById(orderId);
@@ -164,7 +161,7 @@ public class OrderService {
 
          } else {
             throw new OrderException(
-                    String.format("Order not found in the database with Id=%d!",
+                    String.format("Order not found in the database with Id=%s!",
                             orderId));
          }
       } else {
@@ -173,7 +170,7 @@ public class OrderService {
    }
 
    // UPDATE ORDER - COOKING
-   public void cookingOrderStatus(Long employeeId, Long orderId) throws OrderException {
+   public void cookingOrderStatus(UUID employeeId, UUID orderId) throws OrderException {
 
       if (employeeId != null) {
          Optional<Employee> employeeOptional = employeeRepository.findById(employeeId);
@@ -194,7 +191,7 @@ public class OrderService {
 
                } else {
                   throw new OrderException(
-                          String.format("Order not found in the database with Id=%d!",
+                          String.format("Order not found in the database with Id=%s!",
                                   orderId));
                }
             } else {
@@ -209,7 +206,7 @@ public class OrderService {
    }
 
    // UPDATE ORDER - DELIVERING
-   public void deliveringOrderStatus(Long orderId) throws OrderException {
+   public void deliveringOrderStatus(UUID orderId) throws OrderException {
 
       if (orderId != null) {
          Optional<Order> optionalOrder = orderRepository.findById(orderId);
@@ -223,7 +220,7 @@ public class OrderService {
 
          } else {
             throw new OrderException(
-                    String.format("Order not found in the database with Id=%d!",
+                    String.format("Order not found in the database with Id=%s!",
                             orderId));
          }
       } else {
@@ -232,10 +229,10 @@ public class OrderService {
    }
 
    // UPDATE ORDER - CANCELLED
-   public void cancelledOrderStatus(Long id) throws OrderException {
+   public void cancelledOrderStatus(UUID orderId) throws OrderException {
 
-      if (id != null) {
-         Optional<Order> optionalOrder = orderRepository.findById(id);
+      if (orderId != null) {
+         Optional<Order> optionalOrder = orderRepository.findById(orderId);
 
          if (optionalOrder.isPresent()) {
             Order order = optionalOrder.get();
@@ -246,8 +243,8 @@ public class OrderService {
 
          } else {
             throw new OrderException(
-                    String.format("Order not found in the database with Id=%d!",
-                            id));
+                    String.format("Order not found in the database with Id=%s!",
+                            orderId));
          }
       } else {
          throw new OrderException("The ID of the order to be cancelled is missing!");

@@ -13,6 +13,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/rest/customer")
@@ -22,7 +23,7 @@ public class CartController {
    private CartService cartService;
 
    @GetMapping("/{customerId}")
-   public ResponseEntity<CustomerDto> getCustomer(@PathVariable Long customerId) {
+   public ResponseEntity<CustomerDto> getCustomer(@PathVariable UUID customerId) {
       CustomerDto product = cartService.getCustomerById(customerId);
       return new ResponseEntity<>(product, HttpStatus.OK);
    }
@@ -30,7 +31,7 @@ public class CartController {
    @PostMapping("/{customerId}/add/{productId}")
 //   @PreAuthorize("hasRole('ROLE_CUSTOMER')")
    public ResponseEntity<CartProductDto> addProductToCustomerCart(
-           @PathVariable Long customerId,
+           @PathVariable UUID customerId,
            @PathVariable Long productId) throws CartException {
 
       CartProductDto cartProductDto = cartService.addProductToCustomerCart(customerId, productId);

@@ -1,18 +1,21 @@
 package com.kcurryjib.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
-@Table(name = "order_product")
+@Table(name = "order_products")
 public class OrderProduct {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   @UuidGenerator(style = UuidGenerator.Style.TIME)
    @Column(name = "order_product_id")
-   private Long id;
+   private UUID id;
 
    @Column(name = "quantity")
    private int quantity;
@@ -29,11 +32,11 @@ public class OrderProduct {
    }
 
    // Getters & Setters
-   public Long getId() {
+   public UUID getId() {
       return id;
    }
 
-   public void setId(Long id) {
+   public void setId(UUID id) {
       this.id = id;
    }
 
@@ -66,7 +69,7 @@ public class OrderProduct {
 
       private OrderProduct orderProduct = new OrderProduct();
 
-      public Builder id(Long id) {
+      public Builder id(UUID id) {
          orderProduct.id = id;
          return this;
       }

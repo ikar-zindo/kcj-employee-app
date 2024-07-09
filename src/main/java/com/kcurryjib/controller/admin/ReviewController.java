@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/admin/reviews")
@@ -82,7 +83,7 @@ public class ReviewController {
    public String createReview(@ModelAttribute("review") @Valid ReviewDto reviewDto,
                               BindingResult result,
                               @RequestParam(name = "restaurantId") Long restaurantId,
-                              @RequestParam(name = "customerId") Long customerId,
+                              @RequestParam(name = "customerId") UUID customerId,
                               Model model) throws ReviewException {
 
       RestaurantDto restaurantDto = restaurantService.getById(restaurantId);
@@ -126,7 +127,7 @@ public class ReviewController {
    public String updateReview(@ModelAttribute("review") @Valid ReviewDto reviewDto,
                               BindingResult result,
                               @RequestParam(name = "restaurantId") Long restaurantId,
-                              @RequestParam(name = "customerId") Long customerId,
+                              @RequestParam(name = "customerId") UUID customerId,
                               Model model) throws ReviewException {
 
       RestaurantDto restaurantDto = restaurantService.getById(restaurantId);

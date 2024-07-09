@@ -22,6 +22,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class EmployeeService implements UserDetailsService {
@@ -57,13 +58,6 @@ public class EmployeeService implements UserDetailsService {
       return MapperUtil.convertlist(employees, employeeMapper::showEmployeeInfo);
    }
 
-   //   READ
-   public List<Employee> getAllEntity() {
-      List<Employee> employees = new ArrayList<>(employeeRepository.findAll());
-
-      return employees;
-   }
-
    // READ
    @Override
    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -77,19 +71,19 @@ public class EmployeeService implements UserDetailsService {
    }
 
    // READ
-   public EmployeeDto getEmployeeById(Long id) throws EmployeeException {
+   public EmployeeDto getEmployeeById(UUID employeeId) throws EmployeeException {
       EmployeeDto employeeDto = null;
 
-      if (id != null) {
-         Optional<Employee> employeeOptional = employeeRepository.findById(id);
+      if (employeeId != null) {
+         Optional<Employee> employeeOptional = employeeRepository.findById(employeeId);
 
          if (employeeOptional.isPresent()) {
             employeeDto = orderMapper.showEmployeeWithOrders(employeeOptional.get());
 
          } else {
             throw new EmployeeException(
-                    String.format("Employee not found in database with id=%d",
-                            id));
+                    String.format("Employee not found in database with id=%s",
+                            employeeId));
          }
       } else {
          throw new EmployeeException("There is no employee ID to search for!");
@@ -116,9 +110,9 @@ public class EmployeeService implements UserDetailsService {
                employee.setCreatedAt(LocalDateTime.now());
 
                Employee employeeResponse = employeeRepository.save(employee);
-               Long idResponse = employeeResponse.getId();
+               UUID idResponse = employeeResponse.getId();
 
-               if (idResponse != null && idResponse > 0) {
+               if (idResponse != null) {
                   return employeeMapper.convertToEmployeeDto(employeeResponse);
 
                } else {
@@ -179,12 +173,12 @@ public class EmployeeService implements UserDetailsService {
 
             } else {
                throw new EmployeeException(
-                       String.format("Failed to update the product in the database with Id=%d!",
+                       String.format("Failed to update the product in the database with Id=%s!",
                                employeeDto.getId()));
             }
          } else {
             throw new EmployeeException(
-                    String.format("The product was not found in the database with Id=%d!",
+                    String.format("The product was not found in the database with Id=%s!",
                             employeeDto.getId()));
          }
       } else {
@@ -193,10 +187,10 @@ public class EmployeeService implements UserDetailsService {
    }
 
    //DELETE
-   public EmployeeDto blockEmployee(Long id) throws EmployeeException {
+   public EmployeeDto blockEmployee(UUID employeeId) throws EmployeeException {
 
-      if (id != null) {
-         Optional<Employee> employeeOptional = employeeRepository.findById(id);
+      if (employeeId != null) {
+         Optional<Employee> employeeOptional = employeeRepository.findById(employeeId);
 
          if (employeeOptional.isPresent()) {
             Employee employee = employeeOptional.get();
@@ -209,13 +203,13 @@ public class EmployeeService implements UserDetailsService {
 
             } else {
                throw new EmployeeException(
-                       String.format("Failed to delete employee in database with Id=%d!",
-                               id));
+                       String.format("Failed to delete employee in database with Id=%s!",
+                               employeeId));
             }
          } else {
             throw new EmployeeException(
-                    String.format("Employee not found in the database with Id=%d!",
-                            id));
+                    String.format("Employee not found in the database with Id=%s!",
+                            employeeId));
          }
       } else {
          throw new EmployeeException("The ID of the employee to be deleted is missing!");

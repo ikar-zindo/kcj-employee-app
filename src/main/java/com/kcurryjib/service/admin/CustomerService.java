@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class CustomerService {
@@ -28,8 +29,8 @@ public class CustomerService {
       return MapperUtil.convertlist(customers, customerMapper::convertToCustomerDto);
    }
 
-   public CustomerDto getById(Long id) {
-      Optional<Customer> customerOptional = customerRepository.findById(id);
+   public CustomerDto getById(UUID customerId) {
+      Optional<Customer> customerOptional = customerRepository.findById(customerId);
       CustomerDto customerDto = null;
 
       if (customerOptional.isPresent()) {

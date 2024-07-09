@@ -11,12 +11,13 @@ import org.hibernate.validator.constraints.Length;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 
 public class EmployeeDto {
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   private Long id;
+   private UUID id;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
    @NotEmpty(message = "{validation.length.empty}")
@@ -67,11 +68,11 @@ public class EmployeeDto {
    public EmployeeDto() {
    }
 
-   public Long getId() {
+   public UUID getId() {
       return id;
    }
 
-   public void setId(Long id) {
+   public void setId(UUID id) {
       this.id = id;
    }
 
@@ -168,7 +169,7 @@ public class EmployeeDto {
 
       private EmployeeDto employeeDto = new EmployeeDto();
 
-      public Builder id(Long id) {
+      public Builder id(UUID id) {
          employeeDto.id = id;
          return this;
       }

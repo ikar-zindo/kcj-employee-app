@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/admin/employees")
@@ -44,11 +45,11 @@ public class EmployeeController {
    }
 
    // READ
-   @GetMapping("/{id}")
-   public String getEmployeeById(@PathVariable Long id,
+   @GetMapping("/{employeeId}")
+   public String getEmployeeById(@PathVariable UUID employeeId,
                                  Model model) throws EmployeeException {
 
-      EmployeeDto employeeDto = service.getEmployeeById(id);
+      EmployeeDto employeeDto = service.getEmployeeById(employeeId);
 
       model.addAttribute("employee", employeeDto);
 
@@ -91,14 +92,14 @@ public class EmployeeController {
    // UPDATE
    @GetMapping(value = "/{id}/edit")
    @PreAuthorize("hasRole('ROLE_ADMIN')")
-   public String editEmployee(@PathVariable(value = "id") Long id,
+   public String editEmployee(@PathVariable(value = "id") UUID employeeId,
                               Model model) throws EmployeeException {
 
-      if (service.getEmployeeById(id) == null) {
+      if (service.getEmployeeById(employeeId) == null) {
          return "redirect:/admin/employees";
       }
 
-      EmployeeDto employeeDto = service.getEmployeeById(id);
+      EmployeeDto employeeDto = service.getEmployeeById(employeeId);
 
       model.addAttribute("employee", employeeDto);
       model.addAttribute("restaurants", restaurantService.getAll());
@@ -131,9 +132,9 @@ public class EmployeeController {
    }
 
    // DELETE
-   @PatchMapping("/{id}/block")
-   public String blockEmployee(@PathVariable Long id) throws EmployeeException {
-      service.blockEmployee(id);
+   @PatchMapping("/{employeeId}/block")
+   public String blockEmployee(@PathVariable UUID employeeId) throws EmployeeException {
+      service.blockEmployee(employeeId);
       return "redirect:/admin/employees";
    }
 }

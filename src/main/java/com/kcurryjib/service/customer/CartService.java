@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class CartService {
@@ -52,7 +53,7 @@ public class CartService {
    }
 
    // READ - CUSTOMER
-   public CustomerDto getCustomerById(Long customerId) throws CustomerException {
+   public CustomerDto getCustomerById(UUID customerId) throws CustomerException {
       CustomerDto customerDto = null;
 
       if (customerId != null) {
@@ -63,7 +64,7 @@ public class CartService {
 
          } else {
             throw new CustomerException(
-                    String.format("Customer not found in database with id=%d",
+                    String.format("Customer not found in database with id=%s",
                             customerId));
          }
 
@@ -75,7 +76,7 @@ public class CartService {
    }
 
    // CREATE - ADD PRODUCT TO CART
-   public CartProductDto addProductToCustomerCart(Long customerId, Long productId) {
+   public CartProductDto addProductToCustomerCart(UUID customerId, Long productId) {
 
       if (customerId != null && productId != null) {
          CustomerDto customerDto = getCustomerById(customerId);
@@ -99,9 +100,9 @@ public class CartService {
                cartProduct.setQuantity(1);
 
                CartProduct cartProductResponse = cartProductRepository.save(cartProduct);
-               Long idResponse = cartProductResponse.getId();
+               UUID idResponse = cartProductResponse.getId();
 
-               if (idResponse != null && idResponse > 0) {
+               if (idResponse != null) {
                   return cartMapper.convertToCartProductDto(cartProductResponse);
 
                } else {

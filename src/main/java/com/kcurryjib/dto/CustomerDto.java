@@ -10,12 +10,13 @@ import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 
 public class CustomerDto {
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   private Long id;
+   private UUID id;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
    @NotEmpty(message = "{validation.length.empty}")
@@ -33,10 +34,10 @@ public class CustomerDto {
    @Length(max = 60, message = "{validation.length.max.60}")
    private String email;
 
-   @JsonInclude(JsonInclude.Include.NON_NULL)
-   @NotEmpty(message = "{validation.length.empty}")
-   @Length(max = 60, message = "{validation.length.max.60}")
-   private String username;
+//   @JsonInclude(JsonInclude.Include.NON_NULL)
+//   @NotEmpty(message = "{validation.length.empty}")
+//   @Length(max = 60, message = "{validation.length.max.60}")
+//   private String username;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
    @NotEmpty(message = "{validation.length.empty}")
@@ -61,6 +62,9 @@ public class CustomerDto {
    private LocalDateTime createdAt;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
+   private LocalDateTime updatedAt;
+
+   @JsonInclude(JsonInclude.Include.NON_NULL)
    private Role role;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -82,11 +86,11 @@ public class CustomerDto {
    }
 
    // Getters && Setters
-   public Long getId() {
+   public UUID getId() {
       return id;
    }
 
-   public void setId(Long id) {
+   public void setId(UUID id) {
       this.id = id;
    }
 
@@ -114,12 +118,12 @@ public class CustomerDto {
       this.email = email;
    }
 
-   public String getUsername() {
-      return username;
+   public LocalDateTime getUpdatedAt() {
+      return updatedAt;
    }
 
-   public void setUsername(String username) {
-      this.username = username;
+   public void setUpdatedAt(LocalDateTime updatedAt) {
+      this.updatedAt = updatedAt;
    }
 
    public String getPassword() {
@@ -210,12 +214,12 @@ public class CustomerDto {
               ", firstName='" + firstName + '\'' +
               ", lastName='" + lastName + '\'' +
               ", email='" + email + '\'' +
-              ", username='" + username + '\'' +
               ", password='" + password + '\'' +
               ", phoneNumber='" + phoneNumber + '\'' +
               ", address='" + address + '\'' +
               ", postalCode='" + postalCode + '\'' +
               ", createdAt=" + createdAt +
+              ", updatedAt=" + updatedAt +
               ", role=" + role +
               ", isBlocked=" + isBlocked +
               ", cartDto=" + cartDto +
@@ -229,7 +233,7 @@ public class CustomerDto {
 
       private CustomerDto customerDto = new CustomerDto();
 
-      public Builder id(Long id) {
+      public Builder id(UUID id) {
          customerDto.id = id;
          return this;
       }
@@ -284,8 +288,8 @@ public class CustomerDto {
          return this;
       }
 
-      public Builder username(String username) {
-         customerDto.username = username;
+      public Builder updatedAt(LocalDateTime updatedAt) {
+         customerDto.updatedAt = updatedAt;
          return this;
       }
 

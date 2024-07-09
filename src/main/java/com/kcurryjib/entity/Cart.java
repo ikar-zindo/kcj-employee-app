@@ -1,17 +1,20 @@
 package com.kcurryjib.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.util.List;
+import java.util.UUID;
 
 @Entity
-@Table(name = "cart")
+@Table(name = "carts")
 public class Cart {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   @UuidGenerator(style = UuidGenerator.Style.TIME)
    @Column(name = "cart_id")
-   private Long id;
+   private UUID id;
 
    @OneToOne(cascade = CascadeType.ALL)
    @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
@@ -23,11 +26,11 @@ public class Cart {
    public Cart() {
    }
 
-   public Long getId() {
+   public UUID getId() {
       return id;
    }
 
-   public void setId(Long id) {
+   public void setId(UUID id) {
       this.id = id;
    }
 
@@ -52,7 +55,7 @@ public class Cart {
 
       private Cart cart = new Cart();
 
-      public Builder id(Long id) {
+      public Builder id(UUID id) {
          cart.id = id;
          return this;
       }

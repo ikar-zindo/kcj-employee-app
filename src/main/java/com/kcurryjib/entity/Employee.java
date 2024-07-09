@@ -2,6 +2,7 @@ package com.kcurryjib.entity;
 
 import com.kcurryjib.entity.enums.Role;
 import jakarta.persistence.*;
+import org.hibernate.annotations.UuidGenerator;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,15 +11,17 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
-@Table(name = "employee")
+@Table(name = "employees")
 public class Employee implements UserDetails {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   @UuidGenerator(style = UuidGenerator.Style.TIME)
    @Column(name = "employee_id")
-   private Long id;
+   private UUID id;
 
    @Column(name = "first_name")
    private String firstName;
@@ -29,7 +32,7 @@ public class Employee implements UserDetails {
    @Column(name = "email")
    private String email;
 
-   @Column(name = "nickname", unique = true)
+   @Column(name = "username", unique = true)
    private String username;
 
    @Enumerated(EnumType.STRING)
@@ -94,11 +97,11 @@ public class Employee implements UserDetails {
    }
 
    // Getters & Setters
-   public Long getId() {
+   public UUID getId() {
       return id;
    }
 
-   public void setId(Long id) {
+   public void setId(UUID id) {
       this.id = id;
    }
 
@@ -182,7 +185,6 @@ public class Employee implements UserDetails {
       this.orders = orders;
    }
 
-
    // Equals & HashCode
    @Override
    public boolean equals(Object o) {
@@ -227,7 +229,7 @@ public class Employee implements UserDetails {
 
       private Employee employee = new Employee();
 
-      public Builder id(Long id) {
+      public Builder id(UUID id) {
          employee.id = id;
          return this;
       }

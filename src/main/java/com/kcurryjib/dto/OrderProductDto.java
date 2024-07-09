@@ -7,12 +7,13 @@ import com.kcurryjib.entity.Review;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.UUID;
 
 
 public class OrderProductDto {
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
-   private Long id;
+   private UUID id;
 
    @JsonInclude(JsonInclude.Include.NON_NULL)
    private int quantity;
@@ -28,11 +29,11 @@ public class OrderProductDto {
    public OrderProductDto() {
    }
 
-   public Long getId() {
+   public UUID getId() {
       return id;
    }
 
-   public void setId(Long id) {
+   public void setId(UUID id) {
       this.id = id;
    }
 
@@ -65,7 +66,7 @@ public class OrderProductDto {
 
       private OrderProductDto orderProductDto = new OrderProductDto();
 
-      public Builder id(Long id) {
+      public Builder id(UUID id) {
          orderProductDto.id = id;
          return this;
       }
