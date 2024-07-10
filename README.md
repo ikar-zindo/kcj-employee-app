@@ -89,7 +89,7 @@ pass for all: `qwerty123`
 
 - admin: `adam`, `anne`, `admin`
 - manager: `manager`, `robert`
-- user: `ewa`, `steven`, `margaret`, `janet`, `nancy` 
+- user: `ewa`, `steven`, `margaret`, `janet`, `nancy`
 
 ---
 

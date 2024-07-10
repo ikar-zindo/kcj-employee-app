@@ -139,7 +139,7 @@
 				<version>4.8.0</version>
 				<configuration>
 					<changeLogFile>src/main/resources/db/changelog/db.changelog-master.xml</changeLogFile>
-					<url>jdbc:mysql://db:3306/kcj-db</url>
+					<url>jdbc:mysql://localhost:3306/kcj-db</url>
 					<username>root</username>
 					<password>12345</password>
 					<driver>com.mysql.cj.jdbc.Driver</driver>
