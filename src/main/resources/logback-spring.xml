@@ -33,7 +33,7 @@
 		</layout>
 	</appender>
 
-	<logger name="com.kcurryjib" additivity="false" level="INFO">
+	<logger name="com.kcj_employee_app" additivity="false" level="INFO">
 		<appender-ref ref="STDOUT"/>
 		<appender-ref ref="FILE"/>
 	</logger>
