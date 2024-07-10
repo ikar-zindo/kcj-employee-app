@@ -35,8 +35,6 @@ public class CustomerService {
 
       if (customerOptional.isPresent()) {
          customerDto = customerMapper.shortCustomerDto(customerOptional.get());
-//                 MapperUtil.convertlist(
-//                 List.of(customerOptional.get()), customerMapper::shortCustomerDto).get(0);
       }
 
       return customerDto;

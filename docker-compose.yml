@@ -1,26 +1,61 @@
 version: '3.8'
 
 services:
+  # db
   db:
-    image: mysql:8.0.33
+    image: mysql:8.3.0
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: 12345  # пароль для root пользователя
-      MYSQL_DATABASE: k-curry-jib  # название базы данных
-    volumes:
-      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql # Путь для инициализации базы данных
+      MYSQL_ROOT_PASSWORD: 12345
+      MYSQL_DATABASE: kcj-db
     ports:
-      - "3307:3306"
+      - "3308:3306"
 
-  app:
-    build:
-      context: ./
+  # employee-app
+  employee-app:
+    image: ikarzindo/kcj-employee-app:latest
     depends_on:
       - db
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/k-curry-jib
-      - SPRING_DATASOURCE_PASSWORD=12345
-      - SPRING_DATASOURCE_USERNAME=root
+      - DATASOURCE_DATABASE_HOST=db
+      - DATASOURCE_DATABASE_PORT=3306
+      - DATASOURCE_DATABASE_NAME=kcj-db
+      - DATASOURCE_DATABASE_USERNAME=root
+      - DATASOURCE_DATABASE_PASSWORD=12345
     restart: always
     ports:
-      - "8000:8000"
+      - "8880:8880"
+
+  # customer-be
+  customer-be:
+    image: ikarzindo/kcj-customer-be:latest
+    depends_on:
+      - db
+    environment:
+      - DATASOURCE_DATABASE_HOST=db
+      - DATASOURCE_DATABASE_PORT=3306
+      - DATASOURCE_DATABASE_NAME=kcj-db
+      - DATASOURCE_DATABASE_USERNAME=root
+      - DATASOURCE_DATABASE_PASSWORD=12345
+    restart: always
+    ports:
+      - "8890:8890"
+
+  # customer-fe
+  customer-fe:
+    image: ikarzindo/kcj-customer-fe:latest
+    environment:
+      - NODE_ENV=development
+    restart: always
+    ports:
+      - "9000:9000"
+
+  # watchtower
+  watchtower:
+    image: containrrr/watchtower
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_POLL_INTERVAL=30

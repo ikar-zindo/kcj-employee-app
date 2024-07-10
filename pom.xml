@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com</groupId>
 	<artifactId>k-curry-jib</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.1.0.RELEASE</version>
 	<name>k-curry-jib</name>
 	<description>Web application for food delivery K-Curry Jib</description>
 	<properties>
@@ -139,12 +139,14 @@
 				<version>4.8.0</version>
 				<configuration>
 					<changeLogFile>src/main/resources/db/changelog/db.changelog-master.xml</changeLogFile>
-					<url>jdbc:mysql://localhost:3306/kcj</url>
+					<url>jdbc:mysql://localhost:3306/kcj-db</url>
 					<username>root</username>
 					<password>12345</password>
 					<driver>com.mysql.cj.jdbc.Driver</driver>
 				</configuration>
 			</plugin>
 		</plugins>
+
+		<finalName>kcj-employee-app</finalName>
 	</build>
 </project>
