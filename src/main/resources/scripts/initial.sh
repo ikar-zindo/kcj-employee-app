@@ -7,12 +7,12 @@
 
   # Download initialization files and Dockerfile from the GitHub repository
   echo "Downloading initialization files and Dockerfile from GitHub..."
-  curl -O https://raw.githubusercontent.com/ikar-zindo/k-curry-jib/main/src/main/resources/db/init-db.sql
-  curl -O https://raw.githubusercontent.com/ikar-zindo/k-curry-jib/main/src/main/resources/db/Dockerfile
+  curl -O https://raw.githubusercontent.com/ikar-zindo/kcj-employee-app/v1.0.0/src/main/resources/db/init-db.sql
+  curl -O https://raw.githubusercontent.com/ikar-zindo/kcj-employee-app/v1.0.0/src/main/resources/db/Dockerfile
 
   echo "Downloading scripts..."
-  curl -O https://raw.githubusercontent.com/ikar-zindo/k-curry-jib/main/src/main/resources/scripts/start.sh
-  curl -O https://raw.githubusercontent.com/ikar-zindo/k-curry-jib/main/src/main/resources/scripts/stop.sh
+  curl -O https://raw.githubusercontent.com/ikar-zindo/kcj-employee-app/v1.0.0/src/main/resources/scripts/start.sh
+  curl -O https://raw.githubusercontent.com/ikar-zindo/kcj-employee-app/v1.0.0/src/main/resources/scripts/stop.sh
 
   # Build the Docker image for the database
   echo "Building the Docker image for the database..."
