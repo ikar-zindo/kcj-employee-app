@@ -52,7 +52,7 @@ java -jar kcj-employee-app.jar
 
 ---
 
-### [3. The docker way](https://hub.docker.com/repository/docker/ikarzindo/k-curry-jib-employee-app/general)
+### [3. The docker way](https://hub.docker.com/repository/docker/ikarzindo/kcj-employee-app/general)
 
 ###### At the 1st launch, a DB will be created.
 
